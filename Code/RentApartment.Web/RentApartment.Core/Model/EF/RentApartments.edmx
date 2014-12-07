@@ -1,0 +1,817 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="RentApartmentsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="_Amenities">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="_Country">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IsoCode" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="_Currency">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Country" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Currency" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="Symbol" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="_Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="RoleDescription" Type="varchar" MaxLength="40" />
+        </EntityType>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccountId" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="IsEmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="FK__Country" Type="int" Nullable="false" />
+          <Property Name="FK__Roles" Type="tinyint" Nullable="false" />
+          <Property Name="City" Type="nvarchar" MaxLength="255" />
+          <Property Name="Address" Type="nvarchar" MaxLength="255" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="15" />
+          <Property Name="Gender" Type="tinyint" />
+          <Property Name="PostalCode" Type="nvarchar" MaxLength="255" />
+          <Property Name="Language" Type="int" />
+          <Property Name="IsValidated" Type="bit" Nullable="false" />
+          <Property Name="ImageSourceId" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="GuestReviews">
+          <Key>
+            <PropertyRef Name="ReviewId" />
+          </Key>
+          <Property Name="ReviewId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FK_Account" Type="int" Nullable="false" />
+          <Property Name="FK_PropertyListing" Type="int" Nullable="false" />
+          <Property Name="Review" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="RatingScore" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Messages">
+          <Key>
+            <PropertyRef Name="MessageId" />
+          </Key>
+          <Property Name="MessageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MessageType" Type="tinyint" Nullable="false" />
+          <Property Name="MessageStatus" Type="tinyint" Nullable="false" />
+          <Property Name="MessageBody" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="FK_Account" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PropertyListing">
+          <Key>
+            <PropertyRef Name="PropertyId" />
+          </Key>
+          <Property Name="PropertyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FK_Account" Type="int" Nullable="false" />
+          <Property Name="State" Type="tinyint" Nullable="false" />
+          <Property Name="PricePerNight" Type="bigint" />
+          <Property Name="PricePerMonth" Type="bigint" />
+          <Property Name="PricePerWeek" Type="bigint" />
+          <Property Name="Photos" Type="nvarchar" MaxLength="2000" />
+          <Property Name="GreatTitle" Type="nvarchar" MaxLength="40" />
+          <Property Name="GreatSummary" Type="nvarchar" MaxLength="255" />
+          <Property Name="BedRoom" Type="tinyint" Nullable="false" />
+          <Property Name="Bathroom" Type="int" Nullable="false" />
+          <Property Name="HomeType" Type="tinyint" Nullable="false" />
+          <Property Name="RoomType" Type="tinyint" Nullable="false" />
+          <Property Name="Accommodates" Type="tinyint" Nullable="false" />
+          <Property Name="Address1" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address2" Type="nvarchar" MaxLength="50" />
+          <Property Name="City" Type="nvarchar" MaxLength="20" />
+          <Property Name="State2" Type="nvarchar" MaxLength="255" />
+          <Property Name="Zip" Type="nvarchar" MaxLength="10" />
+          <Property Name="FK__Country" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PropertyListing__Amenities">
+          <Key>
+            <PropertyRef Name="FK_PropertyListing" />
+            <PropertyRef Name="FK__Amenities" />
+          </Key>
+          <Property Name="FK_PropertyListing" Type="int" Nullable="false" />
+          <Property Name="FK__Amenities" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Reservations">
+          <Key>
+            <PropertyRef Name="ReservationId" />
+          </Key>
+          <Property Name="ReservationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FK_Account" Type="int" Nullable="false" />
+          <Property Name="FK_PropertyListing" Type="int" Nullable="false" />
+          <Property Name="ReservationStatus" Type="int" Nullable="false" />
+          <Property Name="ReservationStart" Type="datetime" Nullable="false" />
+          <Property Name="ReservationEnd" Type="datetime" Nullable="false" />
+          <Property Name="ReservationNote" Type="nvarchar" MaxLength="255" />
+          <Property Name="FK__Currency" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FKAccount816800">
+          <End Role="_Country" Type="Self._Country" Multiplicity="1" />
+          <End Role="Account" Type="Self.Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="_Country">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="FK__Country" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKAccount860859">
+          <End Role="_Roles" Type="Self._Roles" Multiplicity="1" />
+          <End Role="Account" Type="Self.Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="_Roles">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="FK__Roles" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKGuestRevie649365">
+          <End Role="PropertyListing" Type="Self.PropertyListing" Multiplicity="1" />
+          <End Role="GuestReviews" Type="Self.GuestReviews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropertyListing">
+              <PropertyRef Name="PropertyId" />
+            </Principal>
+            <Dependent Role="GuestReviews">
+              <PropertyRef Name="FK_PropertyListing" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKGuestRevie904213">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="GuestReviews" Type="Self.GuestReviews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="GuestReviews">
+              <PropertyRef Name="FK_Account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKMessages695479">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="Messages" Type="Self.Messages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Messages">
+              <PropertyRef Name="FK_Account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKPropertyLi611631">
+          <End Role="_Amenities" Type="Self._Amenities" Multiplicity="1" />
+          <End Role="PropertyListing__Amenities" Type="Self.PropertyListing__Amenities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="_Amenities">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="PropertyListing__Amenities">
+              <PropertyRef Name="FK__Amenities" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKPropertyLi69776">
+          <End Role="PropertyListing" Type="Self.PropertyListing" Multiplicity="1" />
+          <End Role="PropertyListing__Amenities" Type="Self.PropertyListing__Amenities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropertyListing">
+              <PropertyRef Name="PropertyId" />
+            </Principal>
+            <Dependent Role="PropertyListing__Amenities">
+              <PropertyRef Name="FK_PropertyListing" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKPropertyLi96721">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="PropertyListing" Type="Self.PropertyListing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="PropertyListing">
+              <PropertyRef Name="FK_Account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKPropertyLi968374">
+          <End Role="_Country" Type="Self._Country" Multiplicity="1" />
+          <End Role="PropertyListing" Type="Self.PropertyListing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="_Country">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="PropertyListing">
+              <PropertyRef Name="FK__Country" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKReservatio101343">
+          <End Role="_Currency" Type="Self._Currency" Multiplicity="1" />
+          <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="_Currency">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reservations">
+              <PropertyRef Name="FK__Currency" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKReservatio405665">
+          <End Role="PropertyListing" Type="Self.PropertyListing" Multiplicity="1" />
+          <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropertyListing">
+              <PropertyRef Name="PropertyId" />
+            </Principal>
+            <Dependent Role="Reservations">
+              <PropertyRef Name="FK_PropertyListing" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKReservatio820773">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Reservations">
+              <PropertyRef Name="FK_Account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RentApartmentsModelStoreContainer">
+          <EntitySet Name="_Amenities" EntityType="Self._Amenities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="_Country" EntityType="Self._Country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="_Currency" EntityType="Self._Currency" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="_Roles" EntityType="Self._Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GuestReviews" EntityType="Self.GuestReviews" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Messages" EntityType="Self.Messages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PropertyListing" EntityType="Self.PropertyListing" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PropertyListing__Amenities" EntityType="Self.PropertyListing__Amenities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reservations" EntityType="Self.Reservations" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FKAccount816800" Association="Self.FKAccount816800">
+            <End Role="_Country" EntitySet="_Country" />
+            <End Role="Account" EntitySet="Account" />
+          </AssociationSet>
+          <AssociationSet Name="FKAccount860859" Association="Self.FKAccount860859">
+            <End Role="_Roles" EntitySet="_Roles" />
+            <End Role="Account" EntitySet="Account" />
+          </AssociationSet>
+          <AssociationSet Name="FKGuestRevie649365" Association="Self.FKGuestRevie649365">
+            <End Role="PropertyListing" EntitySet="PropertyListing" />
+            <End Role="GuestReviews" EntitySet="GuestReviews" />
+          </AssociationSet>
+          <AssociationSet Name="FKGuestRevie904213" Association="Self.FKGuestRevie904213">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="GuestReviews" EntitySet="GuestReviews" />
+          </AssociationSet>
+          <AssociationSet Name="FKMessages695479" Association="Self.FKMessages695479">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Messages" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FKPropertyLi611631" Association="Self.FKPropertyLi611631">
+            <End Role="_Amenities" EntitySet="_Amenities" />
+            <End Role="PropertyListing__Amenities" EntitySet="PropertyListing__Amenities" />
+          </AssociationSet>
+          <AssociationSet Name="FKPropertyLi69776" Association="Self.FKPropertyLi69776">
+            <End Role="PropertyListing" EntitySet="PropertyListing" />
+            <End Role="PropertyListing__Amenities" EntitySet="PropertyListing__Amenities" />
+          </AssociationSet>
+          <AssociationSet Name="FKPropertyLi96721" Association="Self.FKPropertyLi96721">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="PropertyListing" EntitySet="PropertyListing" />
+          </AssociationSet>
+          <AssociationSet Name="FKPropertyLi968374" Association="Self.FKPropertyLi968374">
+            <End Role="_Country" EntitySet="_Country" />
+            <End Role="PropertyListing" EntitySet="PropertyListing" />
+          </AssociationSet>
+          <AssociationSet Name="FKReservatio101343" Association="Self.FKReservatio101343">
+            <End Role="_Currency" EntitySet="_Currency" />
+            <End Role="Reservations" EntitySet="Reservations" />
+          </AssociationSet>
+          <AssociationSet Name="FKReservatio405665" Association="Self.FKReservatio405665">
+            <End Role="PropertyListing" EntitySet="PropertyListing" />
+            <End Role="Reservations" EntitySet="Reservations" />
+          </AssociationSet>
+          <AssociationSet Name="FKReservatio820773" Association="Self.FKReservatio820773">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Reservations" EntitySet="Reservations" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RentApartmentsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C_Amenities">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="PropertyListing" Relationship="Self.PropertyListing__Amenities" FromRole="C_Amenities" ToRole="PropertyListing" />
+        </EntityType>
+        <EntityType Name="C_Country">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IsoCode" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Account" Relationship="Self.FKAccount816800" FromRole="C_Country" ToRole="Account" />
+          <NavigationProperty Name="PropertyListing" Relationship="Self.FKPropertyLi968374" FromRole="C_Country" ToRole="PropertyListing" />
+        </EntityType>
+        <EntityType Name="C_Currency">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Country" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Currency" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Code" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Symbol" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Reservations" Relationship="Self.FKReservatio101343" FromRole="C_Currency" ToRole="Reservations" />
+        </EntityType>
+        <EntityType Name="C_Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RoleDescription" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Account" Relationship="Self.FKAccount860859" FromRole="C_Roles" ToRole="Account" />
+        </EntityType>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountId" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsEmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="FK__Country" Type="Int32" Nullable="false" />
+          <Property Name="FK__Roles" Type="Byte" Nullable="false" />
+          <Property Name="City" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="Byte" />
+          <Property Name="PostalCode" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Language" Type="Int32" />
+          <Property Name="IsValidated" Type="Boolean" Nullable="false" />
+          <Property Name="ImageSourceId" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="C_Country" Relationship="Self.FKAccount816800" FromRole="Account" ToRole="C_Country" />
+          <NavigationProperty Name="C_Roles" Relationship="Self.FKAccount860859" FromRole="Account" ToRole="C_Roles" />
+          <NavigationProperty Name="GuestReviews" Relationship="Self.FKGuestRevie904213" FromRole="Account" ToRole="GuestReviews" />
+          <NavigationProperty Name="Messages" Relationship="Self.FKMessages695479" FromRole="Account" ToRole="Messages" />
+          <NavigationProperty Name="PropertyListing" Relationship="Self.FKPropertyLi96721" FromRole="Account" ToRole="PropertyListing" />
+          <NavigationProperty Name="Reservations" Relationship="Self.FKReservatio820773" FromRole="Account" ToRole="Reservations" />
+        </EntityType>
+        <EntityType Name="GuestReviews">
+          <Key>
+            <PropertyRef Name="ReviewId" />
+          </Key>
+          <Property Name="ReviewId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_Account" Type="Int32" Nullable="false" />
+          <Property Name="FK_PropertyListing" Type="Int32" Nullable="false" />
+          <Property Name="Review" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RatingScore" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Account" Relationship="Self.FKGuestRevie904213" FromRole="GuestReviews" ToRole="Account" />
+          <NavigationProperty Name="PropertyListing" Relationship="Self.FKGuestRevie649365" FromRole="GuestReviews" ToRole="PropertyListing" />
+        </EntityType>
+        <EntityType Name="Messages">
+          <Key>
+            <PropertyRef Name="MessageId" />
+          </Key>
+          <Property Name="MessageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MessageType" Type="Byte" Nullable="false" />
+          <Property Name="MessageStatus" Type="Byte" Nullable="false" />
+          <Property Name="MessageBody" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FK_Account" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Account" Relationship="Self.FKMessages695479" FromRole="Messages" ToRole="Account" />
+        </EntityType>
+        <EntityType Name="PropertyListing">
+          <Key>
+            <PropertyRef Name="PropertyId" />
+          </Key>
+          <Property Name="PropertyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_Account" Type="Int32" Nullable="false" />
+          <Property Name="State" Type="Byte" Nullable="false" />
+          <Property Name="PricePerNight" Type="Int64" />
+          <Property Name="PricePerMonth" Type="Int64" />
+          <Property Name="PricePerWeek" Type="Int64" />
+          <Property Name="Photos" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="GreatTitle" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="GreatSummary" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="BedRoom" Type="Byte" Nullable="false" />
+          <Property Name="Bathroom" Type="Int32" Nullable="false" />
+          <Property Name="HomeType" Type="Byte" Nullable="false" />
+          <Property Name="RoomType" Type="Byte" Nullable="false" />
+          <Property Name="Accommodates" Type="Byte" Nullable="false" />
+          <Property Name="Address1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="State2" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Zip" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="FK__Country" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="C_Country" Relationship="Self.FKPropertyLi968374" FromRole="PropertyListing" ToRole="C_Country" />
+          <NavigationProperty Name="Account" Relationship="Self.FKPropertyLi96721" FromRole="PropertyListing" ToRole="Account" />
+          <NavigationProperty Name="GuestReviews" Relationship="Self.FKGuestRevie649365" FromRole="PropertyListing" ToRole="GuestReviews" />
+          <NavigationProperty Name="Reservations" Relationship="Self.FKReservatio405665" FromRole="PropertyListing" ToRole="Reservations" />
+          <NavigationProperty Name="C_Amenities" Relationship="Self.PropertyListing__Amenities" FromRole="PropertyListing" ToRole="C_Amenities" />
+        </EntityType>
+        <EntityType Name="Reservations">
+          <Key>
+            <PropertyRef Name="ReservationId" />
+          </Key>
+          <Property Name="ReservationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_Account" Type="Int32" Nullable="false" />
+          <Property Name="FK_PropertyListing" Type="Int32" Nullable="false" />
+          <Property Name="ReservationStatus" Type="Int32" Nullable="false" />
+          <Property Name="ReservationStart" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ReservationEnd" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ReservationNote" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="FK__Currency" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="C_Currency" Relationship="Self.FKReservatio101343" FromRole="Reservations" ToRole="C_Currency" />
+          <NavigationProperty Name="Account" Relationship="Self.FKReservatio820773" FromRole="Reservations" ToRole="Account" />
+          <NavigationProperty Name="PropertyListing" Relationship="Self.FKReservatio405665" FromRole="Reservations" ToRole="PropertyListing" />
+        </EntityType>
+        <Association Name="FKAccount816800">
+          <End Role="C_Country" Type="Self.C_Country" Multiplicity="1" />
+          <End Role="Account" Type="Self.Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_Country">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="FK__Country" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKPropertyLi968374">
+          <End Role="C_Country" Type="Self.C_Country" Multiplicity="1" />
+          <End Role="PropertyListing" Type="Self.PropertyListing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_Country">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="PropertyListing">
+              <PropertyRef Name="FK__Country" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKReservatio101343">
+          <End Role="C_Currency" Type="Self.C_Currency" Multiplicity="1" />
+          <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_Currency">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reservations">
+              <PropertyRef Name="FK__Currency" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKAccount860859">
+          <End Role="C_Roles" Type="Self.C_Roles" Multiplicity="1" />
+          <End Role="Account" Type="Self.Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_Roles">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="FK__Roles" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKGuestRevie904213">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="GuestReviews" Type="Self.GuestReviews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="GuestReviews">
+              <PropertyRef Name="FK_Account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKMessages695479">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="Messages" Type="Self.Messages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Messages">
+              <PropertyRef Name="FK_Account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKPropertyLi96721">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="PropertyListing" Type="Self.PropertyListing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="PropertyListing">
+              <PropertyRef Name="FK_Account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKReservatio820773">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Reservations">
+              <PropertyRef Name="FK_Account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKGuestRevie649365">
+          <End Role="PropertyListing" Type="Self.PropertyListing" Multiplicity="1" />
+          <End Role="GuestReviews" Type="Self.GuestReviews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropertyListing">
+              <PropertyRef Name="PropertyId" />
+            </Principal>
+            <Dependent Role="GuestReviews">
+              <PropertyRef Name="FK_PropertyListing" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKReservatio405665">
+          <End Role="PropertyListing" Type="Self.PropertyListing" Multiplicity="1" />
+          <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropertyListing">
+              <PropertyRef Name="PropertyId" />
+            </Principal>
+            <Dependent Role="Reservations">
+              <PropertyRef Name="FK_PropertyListing" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PropertyListing__Amenities">
+          <End Role="C_Amenities" Type="Self.C_Amenities" Multiplicity="*" />
+          <End Role="PropertyListing" Type="Self.PropertyListing" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="RentApartmentsContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C_Amenities" EntityType="Self.C_Amenities" />
+          <EntitySet Name="C_Country" EntityType="Self.C_Country" />
+          <EntitySet Name="C_Currency" EntityType="Self.C_Currency" />
+          <EntitySet Name="C_Roles" EntityType="Self.C_Roles" />
+          <EntitySet Name="Account" EntityType="Self.Account" />
+          <EntitySet Name="GuestReviews" EntityType="Self.GuestReviews" />
+          <EntitySet Name="Messages" EntityType="Self.Messages" />
+          <EntitySet Name="PropertyListing" EntityType="Self.PropertyListing" />
+          <EntitySet Name="Reservations" EntityType="Self.Reservations" />
+          <AssociationSet Name="FKAccount816800" Association="Self.FKAccount816800">
+            <End Role="C_Country" EntitySet="C_Country" />
+            <End Role="Account" EntitySet="Account" />
+          </AssociationSet>
+          <AssociationSet Name="FKPropertyLi968374" Association="Self.FKPropertyLi968374">
+            <End Role="C_Country" EntitySet="C_Country" />
+            <End Role="PropertyListing" EntitySet="PropertyListing" />
+          </AssociationSet>
+          <AssociationSet Name="FKReservatio101343" Association="Self.FKReservatio101343">
+            <End Role="C_Currency" EntitySet="C_Currency" />
+            <End Role="Reservations" EntitySet="Reservations" />
+          </AssociationSet>
+          <AssociationSet Name="FKAccount860859" Association="Self.FKAccount860859">
+            <End Role="C_Roles" EntitySet="C_Roles" />
+            <End Role="Account" EntitySet="Account" />
+          </AssociationSet>
+          <AssociationSet Name="FKGuestRevie904213" Association="Self.FKGuestRevie904213">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="GuestReviews" EntitySet="GuestReviews" />
+          </AssociationSet>
+          <AssociationSet Name="FKMessages695479" Association="Self.FKMessages695479">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Messages" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FKPropertyLi96721" Association="Self.FKPropertyLi96721">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="PropertyListing" EntitySet="PropertyListing" />
+          </AssociationSet>
+          <AssociationSet Name="FKReservatio820773" Association="Self.FKReservatio820773">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Reservations" EntitySet="Reservations" />
+          </AssociationSet>
+          <AssociationSet Name="FKGuestRevie649365" Association="Self.FKGuestRevie649365">
+            <End Role="PropertyListing" EntitySet="PropertyListing" />
+            <End Role="GuestReviews" EntitySet="GuestReviews" />
+          </AssociationSet>
+          <AssociationSet Name="FKReservatio405665" Association="Self.FKReservatio405665">
+            <End Role="PropertyListing" EntitySet="PropertyListing" />
+            <End Role="Reservations" EntitySet="Reservations" />
+          </AssociationSet>
+          <AssociationSet Name="PropertyListing__Amenities" Association="Self.PropertyListing__Amenities">
+            <End Role="C_Amenities" EntitySet="C_Amenities" />
+            <End Role="PropertyListing" EntitySet="PropertyListing" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RentApartmentsModelStoreContainer" CdmEntityContainer="RentApartmentsContext">
+          <EntitySetMapping Name="C_Amenities">
+            <EntityTypeMapping TypeName="RentApartmentsModel.C_Amenities">
+              <MappingFragment StoreEntitySet="_Amenities">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C_Country">
+            <EntityTypeMapping TypeName="RentApartmentsModel.C_Country">
+              <MappingFragment StoreEntitySet="_Country">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="IsoCode" ColumnName="IsoCode" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C_Currency">
+            <EntityTypeMapping TypeName="RentApartmentsModel.C_Currency">
+              <MappingFragment StoreEntitySet="_Currency">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Currency" ColumnName="Currency" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Symbol" ColumnName="Symbol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C_Roles">
+            <EntityTypeMapping TypeName="RentApartmentsModel.C_Roles">
+              <MappingFragment StoreEntitySet="_Roles">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="RoleDescription" ColumnName="RoleDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Account">
+            <EntityTypeMapping TypeName="RentApartmentsModel.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IsEmailConfirmed" ColumnName="IsEmailConfirmed" />
+                <ScalarProperty Name="FK__Country" ColumnName="FK__Country" />
+                <ScalarProperty Name="FK__Roles" ColumnName="FK__Roles" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="Language" ColumnName="Language" />
+                <ScalarProperty Name="IsValidated" ColumnName="IsValidated" />
+                <ScalarProperty Name="ImageSourceId" ColumnName="ImageSourceId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GuestReviews">
+            <EntityTypeMapping TypeName="RentApartmentsModel.GuestReviews">
+              <MappingFragment StoreEntitySet="GuestReviews">
+                <ScalarProperty Name="ReviewId" ColumnName="ReviewId" />
+                <ScalarProperty Name="FK_Account" ColumnName="FK_Account" />
+                <ScalarProperty Name="FK_PropertyListing" ColumnName="FK_PropertyListing" />
+                <ScalarProperty Name="Review" ColumnName="Review" />
+                <ScalarProperty Name="RatingScore" ColumnName="RatingScore" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Messages">
+            <EntityTypeMapping TypeName="RentApartmentsModel.Messages">
+              <MappingFragment StoreEntitySet="Messages">
+                <ScalarProperty Name="MessageId" ColumnName="MessageId" />
+                <ScalarProperty Name="MessageType" ColumnName="MessageType" />
+                <ScalarProperty Name="MessageStatus" ColumnName="MessageStatus" />
+                <ScalarProperty Name="MessageBody" ColumnName="MessageBody" />
+                <ScalarProperty Name="FK_Account" ColumnName="FK_Account" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PropertyListing">
+            <EntityTypeMapping TypeName="RentApartmentsModel.PropertyListing">
+              <MappingFragment StoreEntitySet="PropertyListing">
+                <ScalarProperty Name="PropertyId" ColumnName="PropertyId" />
+                <ScalarProperty Name="FK_Account" ColumnName="FK_Account" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="PricePerNight" ColumnName="PricePerNight" />
+                <ScalarProperty Name="PricePerMonth" ColumnName="PricePerMonth" />
+                <ScalarProperty Name="PricePerWeek" ColumnName="PricePerWeek" />
+                <ScalarProperty Name="Photos" ColumnName="Photos" />
+                <ScalarProperty Name="GreatTitle" ColumnName="GreatTitle" />
+                <ScalarProperty Name="GreatSummary" ColumnName="GreatSummary" />
+                <ScalarProperty Name="BedRoom" ColumnName="BedRoom" />
+                <ScalarProperty Name="Bathroom" ColumnName="Bathroom" />
+                <ScalarProperty Name="HomeType" ColumnName="HomeType" />
+                <ScalarProperty Name="RoomType" ColumnName="RoomType" />
+                <ScalarProperty Name="Accommodates" ColumnName="Accommodates" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State2" ColumnName="State2" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="FK__Country" ColumnName="FK__Country" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reservations">
+            <EntityTypeMapping TypeName="RentApartmentsModel.Reservations">
+              <MappingFragment StoreEntitySet="Reservations">
+                <ScalarProperty Name="ReservationId" ColumnName="ReservationId" />
+                <ScalarProperty Name="FK_Account" ColumnName="FK_Account" />
+                <ScalarProperty Name="FK_PropertyListing" ColumnName="FK_PropertyListing" />
+                <ScalarProperty Name="ReservationStatus" ColumnName="ReservationStatus" />
+                <ScalarProperty Name="ReservationStart" ColumnName="ReservationStart" />
+                <ScalarProperty Name="ReservationEnd" ColumnName="ReservationEnd" />
+                <ScalarProperty Name="ReservationNote" ColumnName="ReservationNote" />
+                <ScalarProperty Name="FK__Currency" ColumnName="FK__Currency" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="PropertyListing__Amenities" TypeName="RentApartmentsModel.PropertyListing__Amenities" StoreEntitySet="PropertyListing__Amenities">
+            <EndProperty Name="C_Amenities">
+              <ScalarProperty Name="id" ColumnName="FK__Amenities" />
+            </EndProperty>
+            <EndProperty Name="PropertyListing">
+              <ScalarProperty Name="PropertyId" ColumnName="FK_PropertyListing" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

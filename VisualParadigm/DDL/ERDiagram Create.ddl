@@ -1,0 +1,23 @@
+CREATE TABLE Messages (MessageId int IDENTITY NOT NULL, MessageType tinyint NOT NULL, MessageStatus tinyint NOT NULL, MessageBody varchar(255) NOT NULL, FK_Account int NOT NULL, PRIMARY KEY (MessageId));
+CREATE TABLE PropertyListing__Amenities (FK_PropertyListing int NOT NULL, FK__Amenities int NOT NULL, PRIMARY KEY (FK_PropertyListing, FK__Amenities));
+CREATE TABLE _Roles (RoleId tinyint IDENTITY NOT NULL, RoleName varchar(15) NOT NULL UNIQUE, RoleDescription varchar(40) NULL, CONSTRAINT RoleId PRIMARY KEY (RoleId));
+CREATE TABLE Reservations (ReservationId int IDENTITY NOT NULL, FK_PropertyListing int NOT NULL, FK_Account int NOT NULL, ReservationStatus int NOT NULL, ReservationStart datetime NOT NULL, ReservationEnd datetime NOT NULL, ReservationNote varchar(255) NULL, FK__Currency int NOT NULL, PRIMARY KEY (ReservationId));
+CREATE TABLE Messages (MessageId int IDENTITY NOT NULL, MessageType tinyint NOT NULL, MessageStatus tinyint NOT NULL, MessageBody varchar(255) NOT NULL, FK_Account int NOT NULL, PRIMARY KEY (MessageId));
+CREATE TABLE GuestReviews (ReviewId int IDENTITY NOT NULL, FK_Account int NOT NULL, FK_PropertyListing int NOT NULL, Review varchar(255) NOT NULL, RatingScore int NOT NULL, PRIMARY KEY (ReviewId));
+CREATE TABLE _Amenities (id int IDENTITY NOT NULL, Name int NOT NULL, Description varchar(255) NULL, IsActive bit NOT NULL, CONSTRAINT Description PRIMARY KEY (id));
+CREATE TABLE _Currency ([Column] int IDENTITY NOT NULL, Country varchar(255) NOT NULL, Currency varchar(255) NOT NULL, Code varchar(3) NOT NULL, Symbol varchar(255) NOT NULL, PRIMARY KEY ([Column]));
+CREATE TABLE PropertyListing (PropertyId int IDENTITY NOT NULL, State tinyint NOT NULL, PricePerNight bigint NULL, PricePerMonth bigint NULL, PricePerWeek bigint NULL, Photos varchar(2000) NULL, GreatTitle varchar(40) NULL, GreatSummary varchar(255) NULL, BedRoom tinyint NOT NULL, Bathroom int NOT NULL, HomeType tinyint NOT NULL, RoomType tinyint NOT NULL, Accommodates tinyint NOT NULL, Address1 varchar(50) NULL, Address2 varchar(50) NULL, City varchar(20) NULL, State2 varchar(255) NULL, Zip varchar(10) NULL, FK__Country int NOT NULL, PRIMARY KEY (PropertyId));
+CREATE TABLE _Country (id int IDENTITY NOT NULL, IsoCode varchar(2) NOT NULL, Name varchar(255) NOT NULL, PRIMARY KEY (id));
+CREATE TABLE Account (id int IDENTITY NOT NULL, AccountId int NOT NULL UNIQUE, FK__Roles tinyint NOT NULL, FirstName varchar(255) NOT NULL, LastName varchar(255) NOT NULL, Email varchar(255) NOT NULL, City varchar(255) NULL, FK__Country int NOT NULL, Address varchar(255) NULL, Mobile varchar(15) NULL, Gender tinyint NULL, PostalCode int NULL, Language int NULL, IsValidated bit NOT NULL, PRIMARY KEY (id));
+ALTER TABLE Messages ADD CONSTRAINT FKMessages695479 FOREIGN KEY (FK_Account) REFERENCES Account (id);
+ALTER TABLE PropertyListing ADD CONSTRAINT FKPropertyLi968374 FOREIGN KEY (FK__Country) REFERENCES _Country (id);
+ALTER TABLE Reservations ADD CONSTRAINT FKReservatio873284 FOREIGN KEY (FK__Currency) REFERENCES _Currency ([Column]);
+ALTER TABLE Reservations ADD CONSTRAINT FKReservatio820773 FOREIGN KEY (FK_Account) REFERENCES Account (id);
+ALTER TABLE PropertyListing__Amenities ADD CONSTRAINT FKPropertyLi69776 FOREIGN KEY (FK_PropertyListing) REFERENCES PropertyListing (PropertyId);
+ALTER TABLE PropertyListing__Amenities ADD CONSTRAINT FKPropertyLi611631 FOREIGN KEY (FK__Amenities) REFERENCES _Amenities (id);
+ALTER TABLE GuestReviews ADD CONSTRAINT FKGuestRevie649365 FOREIGN KEY (FK_PropertyListing) REFERENCES PropertyListing (PropertyId);
+ALTER TABLE Account ADD CONSTRAINT FKAccount860859 FOREIGN KEY (FK__Roles) REFERENCES _Roles (RoleId);
+ALTER TABLE Reservations ADD CONSTRAINT FKReservatio405665 FOREIGN KEY (FK_PropertyListing) REFERENCES PropertyListing (PropertyId);
+ALTER TABLE GuestReviews ADD CONSTRAINT FKGuestRevie969399 FOREIGN KEY (FK_Account) REFERENCES Account (AccountId);
+ALTER TABLE Account ADD CONSTRAINT FKAccount816800 FOREIGN KEY (FK__Country) REFERENCES _Country (id);
+
