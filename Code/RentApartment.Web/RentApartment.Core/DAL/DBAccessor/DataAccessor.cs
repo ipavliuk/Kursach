@@ -45,7 +45,6 @@ namespace RentApartment.Core.DAL.DBAccessor
 					CommandType = CommandType.StoredProcedure
 				})
 				{
-					//TODO: check with DBA output parameters can have different names
 					if (passErrorParams)
 					{
 						command.Parameters.Add(new SqlParameter("@O_ErrCode", SqlDbType.Int, 4) { Direction = ParameterDirection.Output });
@@ -216,7 +215,6 @@ namespace RentApartment.Core.DAL.DBAccessor
 					CommandType = CommandType.StoredProcedure
 				})
 				{
-					//TODO: check with DBA output parameters can have different names
 					if (passErrorParams)
 					{
 						command.Parameters.Add(new SqlParameter("@O_ErrCode", SqlDbType.Int, 4) { Direction = ParameterDirection.Output });

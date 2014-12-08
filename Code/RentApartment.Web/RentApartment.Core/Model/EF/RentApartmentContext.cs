@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RentApartment.Core.Model
+namespace RentApartment.Core.Model.EF
 {
 	public partial class RentApartmentsContext
 	{

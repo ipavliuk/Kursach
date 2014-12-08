@@ -41,6 +41,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -51,15 +52,60 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAL\ADORepository.cs" />
     <Compile Include="DAL\DBAccessor\DataAccessor.cs" />
+    <Compile Include="DAL\DataAccessorWrapper.cs" />
     <Compile Include="DAL\DBAccessor\Entities\DataBaseResponse.cs" />
     <Compile Include="DAL\DBAccessor\Entities\ListDbResponse.cs" />
     <Compile Include="DAL\DBAccessor\IDataAccessor.cs" />
+    <Compile Include="DAL\EFRepository.cs" />
     <Compile Include="DAL\IRApmentRepository.cs" />
+    <Compile Include="DAL\Linq2SqlRepository.cs" />
+    <Compile Include="Infrastructure\StringExtensions.cs" />
+    <Compile Include="Model\AccountAdditional.cs" />
+    <Compile Include="Model\EF\Account.cs">
+      <DependentUpon>RentApartments.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\EF\C_Amenities.cs">
+      <DependentUpon>RentApartments.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\EF\C_Country.cs">
+      <DependentUpon>RentApartments.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\EF\C_Currency.cs">
+      <DependentUpon>RentApartments.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\EF\C_Roles.cs">
+      <DependentUpon>RentApartments.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\EF\GuestReviews.cs">
+      <DependentUpon>RentApartments.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\EF\Messages.cs">
+      <DependentUpon>RentApartments.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\EF\PropertyListing.cs">
+      <DependentUpon>RentApartments.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\EF\RentApartmentContext.cs" />
-    <Compile Include="Model\PropertyListing.cs" />
-    <Compile Include="Model\Account.cs" />
-    <Compile Include="Model\Reservations.cs" />
+    <Compile Include="Model\EF\RentApartments.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RentApartments.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\EF\RentApartments.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RentApartments.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\EF\RentApartments.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RentApartments.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\EF\Reservations.cs">
+      <DependentUpon>RentApartments.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -67,6 +113,23 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
+    <EntityDeploy Include="Model\EF\RentApartments.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>RentApartments.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model\EF\RentApartments.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>RentApartments.edmx</DependentUpon>
+      <LastGenOutput>RentApartments.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Model\EF\RentApartments.edmx.diagram">
+      <DependentUpon>RentApartments.edmx</DependentUpon>
+    </None>
+    <None Include="Model\EF\RentApartments.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>RentApartments.edmx</DependentUpon>
+      <LastGenOutput>RentApartments.cs</LastGenOutput>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
