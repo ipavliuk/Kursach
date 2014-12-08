@@ -145,6 +145,39 @@ Go
 --SELECT	'Return Value' = @return_value
 --GO
 ----------------------------------------------------------------
+----------------------------------------------------------------
+--create procedure dbo.AccountGetbyEmail
+--@Email nvarchar(255)
+--as
+--begin
+--	set nocount on;
+--	SELECT [id]
+--		  ,[AccountId]
+--		  ,[PasswordHash]
+--		  ,[FirstName]
+--		  ,[LastName]
+--		  ,[Email]
+--		  ,[IsEmailConfirmed]
+--		  ,[FK__Country]
+--		  ,[FK__Roles]
+--		  ,[City]
+--		  ,[Address]
+--		  ,[Mobile]
+--		  ,[Gender]
+--		  ,[PostalCode]
+--		  ,[Language]
+--		  ,[IsValidated]
+--		  ,[ImageSourceId]
+--	  FROM [RentApartments].[dbo].[Account]
+--	  where Email = @Email
+--end
+--EXEC
+--DECLARE	@return_value int
+--EXEC	@return_value = [dbo].[AccountGetbyId]
+--		@Email = 'test@gmail.com'
+--SELECT	'Return Value' = @return_value
+--GO
+----------------------------------------------------------------
 
 ----------------------------------------------------------------
 --create procedure dbo.AccountGetbyId

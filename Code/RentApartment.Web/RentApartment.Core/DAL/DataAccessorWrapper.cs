@@ -3,6 +3,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text;
+using log4net;
 using RentApartment.Core.Model;
 using RentApartment.Core.Model.EF;
 
@@ -13,10 +14,12 @@ namespace RentApartment.Core.DAL
 		private const string spAccountCreate = "AccountCreate";
 		private const string spAccountUpdate = "AccountUpdate";
 		private const string spAccountGetbyPassword = "AccountGetbyPassword";
+		private const string spAccountGetbyEmail = "AccountGetbyEmail";
 		private const string spAccountGetbyId = "AccountGetbyId";
 		private const string spAccountGetAll = "AccountGetAll";
 		private const string spAccountDelete = "AccountDelete";
 
+		private static readonly ILog log = LogManager.GetLogger(typeof (DataAccessorWrapper));
 		//_CountryGetById
 		//_RolesGetById
 
@@ -41,9 +44,9 @@ namespace RentApartment.Core.DAL
 					
 				}
 			}
-			catch (Exception)
+			catch (Exception ex)
 			{
-				
+				log.Error("Exception when creating Account", ex);
 			}
 		}
 
@@ -72,9 +75,9 @@ namespace RentApartment.Core.DAL
 					}
 				}
 			}
-			catch (Exception)
+			catch (Exception ex)
 			{
-
+				log.Error("Exception when getting Account by id", ex);
 			}
 
 			return a;
@@ -107,7 +110,40 @@ namespace RentApartment.Core.DAL
 			}
 			catch (Exception)
 			{
+				log.Error("Exception when getting Account by pwd", ex);
+			}
 
+			return a;
+		}
+
+		public Account GetAccountByEmail(string email)
+		{
+
+			Account a = new Account();
+			try
+			{
+				using (var conn = GetConnection())
+				using (SqlCommand command = new SqlCommand(spAccountGetbyEmail, conn)
+				{
+					CommandType = CommandType.StoredProcedure
+				})
+				{
+					command.Parameters.AddWithValue("Email", email);
+
+
+					using (var reader = command.ExecuteReader())
+					{
+
+						if (reader.Read())
+						{
+							a.CreateAccount(reader);
+						}
+					}
+				}
+			}
+			catch (Exception ex)
+			{
+				log.Error("Exception when getting Account by email", ex);
 			}
 
 			return a;
@@ -128,9 +164,9 @@ namespace RentApartment.Core.DAL
 					command.ExecuteNonQuery();
 				}
 			}
-			catch (Exception)
+			catch (Exception ex)
 			{
-
+				log.Error("Exception when deleting Account by id", ex);
 			}
 		}
 		private SqlConnection GetConnection()

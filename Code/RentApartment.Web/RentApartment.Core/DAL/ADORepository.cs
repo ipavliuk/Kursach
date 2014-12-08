@@ -9,16 +9,16 @@ namespace RentApartment.Core.DAL
 {
 	public class ADORepository : IRApmentRepository
 	{
-		DataAccessorWrapper datawrapepr = new DataAccessorWrapper();
+		DataAccessorWrapper db = new DataAccessorWrapper();
 
 		public Account GetAccountByEmail(string email)
 		{
-			throw new NotImplementedException();
+			return db.GetAccountByEmail(email);
 		}
 
 		public Account GetAccountById(int id)
 		{
-			return datawrapepr.GetAccountGetbyId(id);
+			return db.GetAccountGetbyId(id);
 		}
 
 		public ICollection<Account> GetAccounts()
