@@ -1,19 +1,20 @@
 use [RentApartments]
 Go
 
---create procedure dbo.ReservationsCreate
---	  @AccountId         int, 
---	  @PropertyListingId int, 
---	  @ReservationStatus  int, 
---	  @ReservationStart   datetime, 
---	  @ReservationEnd     datetime, 
---	  @ReservationNote    nvarchar(255), 
---	  @CurrencyId       int
---as
---begin	
---	INSERT INTO Reservations(FK_Account, FK_PropertyListing, ReservationStatus, ReservationStart, ReservationEnd, ReservationNote, FK__Currency) 
---	VALUES (@AccountId, @PropertyListingId, @ReservationStatus, @ReservationStart, @ReservationEnd, @ReservationNote, @CurrencyId);
---end
+create procedure dbo.ReservationsCreate
+	  @AccountId         int, 
+	  @PropertyListingId int, 
+	  @ReservationStatus  int, 
+	  @ReservationStart   datetime, 
+	  @ReservationEnd     datetime, 
+	  @ReservationNote    nvarchar(255), 
+	  @CurrencyId       int
+as
+begin	
+	INSERT INTO Reservations(FK_Account, FK_PropertyListing, ReservationStatus, ReservationStart, ReservationEnd, ReservationNote, FK__Currency) 
+	VALUES (@AccountId, @PropertyListingId, @ReservationStatus, @ReservationStart, @ReservationEnd, @ReservationNote, @CurrencyId);
+end
+GO
 --EXEC
 --DECLARE	@return_value int
 --EXEC	@return_value = [dbo].[ReservationsCreate]
@@ -33,26 +34,27 @@ Go
 ----------------------------------------------------------------
 
 ----------------------------------------------------------------
---create procedure dbo.ReservationsUpdate
---	@ReservationId		int,
---	@PropertyListingId	int = null, 
---	@ReservationStatus  int = null, 
---	@ReservationStart   datetime = null, 
---	@ReservationEnd     datetime = null, 
---	@ReservationNote    nvarchar(255) = null, 
---	@CurrencyId			int = null
---as
---begin	
---	--SET NOCOUNT ON;
---	update Reservations
---	set	FK_PropertyListing = ISNULL(@PropertyListingId,FK_PropertyListing), 
---		ReservationStatus = ISNULL(@ReservationStatus,ReservationStatus), 
---		ReservationStart = ISNULL(@ReservationStart,ReservationStart),  
---		ReservationEnd = ISNULL(@ReservationEnd,ReservationEnd),  
---		ReservationNote = ISNULL(@ReservationNote,ReservationNote),  
---		FK__Currency = ISNULL(@CurrencyId, FK__Currency)
---	where ReservationId = @ReservationId
---end
+create procedure dbo.ReservationsUpdate
+	@ReservationId		int,
+	@PropertyListingId	int = null, 
+	@ReservationStatus  int = null, 
+	@ReservationStart   datetime = null, 
+	@ReservationEnd     datetime = null, 
+	@ReservationNote    nvarchar(255) = null, 
+	@CurrencyId			int = null
+as
+begin	
+	--SET NOCOUNT ON;
+	update Reservations
+	set	FK_PropertyListing = ISNULL(@PropertyListingId,FK_PropertyListing), 
+		ReservationStatus = ISNULL(@ReservationStatus,ReservationStatus), 
+		ReservationStart = ISNULL(@ReservationStart,ReservationStart),  
+		ReservationEnd = ISNULL(@ReservationEnd,ReservationEnd),  
+		ReservationNote = ISNULL(@ReservationNote,ReservationNote),  
+		FK__Currency = ISNULL(@CurrencyId, FK__Currency)
+	where ReservationId = @ReservationId
+end
+GO
 ----Exec
 --DECLARE	@return_value int
 --EXEC	@return_value = [dbo].[ReservationsUpdate]
@@ -67,42 +69,44 @@ Go
 ----------------------------------------------------------------
 
 ----------------------------------------------------------------
---create procedure dbo.ReservationsGetAll
---as
---begin
---	set nocount on;
---	  select [ReservationId]
---      ,[FK_Account]
---      ,[FK_PropertyListing]
---      ,[ReservationStatus]
---      ,[ReservationStart]
---      ,[ReservationEnd]
---      ,[ReservationNote]
---      ,[FK__Currency]
---  FROM [RentApartments].[dbo].[Reservations]
---end
+create procedure dbo.ReservationsGetAll
+as
+begin
+	set nocount on;
+	  select [ReservationId]
+      ,[FK_Account]
+      ,[FK_PropertyListing]
+      ,[ReservationStatus]
+      ,[ReservationStart]
+      ,[ReservationEnd]
+      ,[ReservationNote]
+      ,[FK__Currency]
+  FROM [RentApartments].[dbo].[Reservations]
+end
+GO
 ----EXEC
 --DECLARE	@return_value int
 --EXEC	@return_value = [dbo].[ReservationsGetAll]
 --SELECT	'Return Value' = @return_value
 --GO
 ----------------------------------------------------------------
---create procedure dbo.ReservationsGetByAccId
---	@AccId int
---as
---begin
---	set nocount on;
--- select [ReservationId]
---      ,[FK_Account]
---      ,[FK_PropertyListing]
---      ,[ReservationStatus]
---      ,[ReservationStart]
---      ,[ReservationEnd]
---      ,[ReservationNote]
---      ,[FK__Currency]
---  FROM [RentApartments].[dbo].[Reservations]
---  where FK_Account = @AccId
---end
+create procedure dbo.ReservationsGetByAccId
+	@AccId int
+as
+begin
+	set nocount on;
+ select [ReservationId]
+      ,[FK_Account]
+      ,[FK_PropertyListing]
+      ,[ReservationStatus]
+      ,[ReservationStart]
+      ,[ReservationEnd]
+      ,[ReservationNote]
+      ,[FK__Currency]
+  FROM [RentApartments].[dbo].[Reservations]
+  where FK_Account = @AccId
+end
+GO
 -----EXEC
 --DECLARE	@return_value int
 --EXEC	@return_value = [dbo].[ReservationsGetByAccId]
@@ -111,22 +115,23 @@ Go
 --GO
 ----------------------------------------------------------------
 ----------------------------------------------------------------
---create procedure dbo.ReservationsGetByPropertyId
---	@PropertyId int
---as
---begin
---	set nocount on;
--- select [ReservationId]
---      ,[FK_Account]
---      ,[FK_PropertyListing]
---      ,[ReservationStatus]
---      ,[ReservationStart]
---      ,[ReservationEnd]
---      ,[ReservationNote]
---      ,[FK__Currency]
---  FROM [RentApartments].[dbo].[Reservations]
---  where FK_PropertyListing = @PropertyId
---end
+create procedure dbo.ReservationsGetByPropertyId
+	@PropertyId int
+as
+begin
+	set nocount on;
+ select [ReservationId]
+      ,[FK_Account]
+      ,[FK_PropertyListing]
+      ,[ReservationStatus]
+      ,[ReservationStart]
+      ,[ReservationEnd]
+      ,[ReservationNote]
+      ,[FK__Currency]
+  FROM [RentApartments].[dbo].[Reservations]
+  where FK_PropertyListing = @PropertyId
+end
+GO
 ----EXEC
 --DECLARE	@return_value int
 --EXEC	@return_value = [dbo].[ReservationsGetByPropertyId]
@@ -135,22 +140,23 @@ Go
 --GO
 ----------------------------------------------------------------
 ----------------------------------------------------------------
---create procedure dbo.ReservationsGetById
---	@ReservationId int
---as
---begin
---	set nocount on;
--- select [ReservationId]
---      ,[FK_Account]
---      ,[FK_PropertyListing]
---      ,[ReservationStatus]
---      ,[ReservationStart]
---      ,[ReservationEnd]
---      ,[ReservationNote]
---      ,[FK__Currency]
---  FROM [RentApartments].[dbo].[Reservations]
---  where ReservationId = @ReservationId
---end
+create procedure dbo.ReservationsGetById
+	@ReservationId int
+as
+begin
+	set nocount on;
+ select [ReservationId]
+      ,[FK_Account]
+      ,[FK_PropertyListing]
+      ,[ReservationStatus]
+      ,[ReservationStart]
+      ,[ReservationEnd]
+      ,[ReservationNote]
+      ,[FK__Currency]
+  FROM [RentApartments].[dbo].[Reservations]
+  where ReservationId = @ReservationId
+end
+GO
 ----EXEC
 --DECLARE	@return_value int
 --EXEC	@return_value = [dbo].[ReservationsGetById]
@@ -160,14 +166,14 @@ Go
 ----------------------------------------------------------------
 ----------------------------------------------------------------
 ------Delete
---CREATE PROCEDURE dbo.ReservationsDelete
---	@ReservationId int
---AS
---begin
---	DELETE FROM Reservations
---	 WHERE ReservationId = @ReservationId
---end
---go
+CREATE PROCEDURE dbo.ReservationsDelete
+	@ReservationId int
+AS
+begin
+	DELETE FROM Reservations
+	 WHERE ReservationId = @ReservationId
+end
+go
 
 --Exec
 --DECLARE	@return_value int
