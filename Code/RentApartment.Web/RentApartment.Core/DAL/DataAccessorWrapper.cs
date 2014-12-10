@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Text;
 using log4net;
-using RentApartment.Core.Model;
 using RentApartment.Core.Model.EF;
 
 namespace RentApartment.Core.DAL
@@ -108,7 +109,7 @@ namespace RentApartment.Core.DAL
 					}
 				}
 			}
-			catch (Exception)
+			catch (Exception ex)
 			{
 				log.Error("Exception when getting Account by pwd", ex);
 			}
@@ -148,6 +149,53 @@ namespace RentApartment.Core.DAL
 
 			return a;
 		}
+
+		public IList<Account> GetAccounts()
+		{
+			List<Account> acounts = new List<Account>();
+
+			try
+			{
+				using (var conn = GetConnection())
+				using (SqlCommand command = new SqlCommand(spAccountGetAll, conn)
+				{
+					CommandType = CommandType.StoredProcedure
+				})
+				{
+					//command.Parameters.AddWithValue("Email", email);
+					//using (var reader = command.ExecuteReader())
+					//{
+
+					//	if (reader.Read())
+					//	{
+					//		a.CreateAccount(reader);
+					//	}
+					//}
+					DataSet ds = new DataSet();
+					SqlDataAdapter adapter = new SqlDataAdapter(command);
+					adapter.Fill(ds);
+
+					if (ds.Tables.Count >= 1)
+					{
+						acounts = ds.Tables[0].AsEnumerable().Select(row =>
+						{
+							Account a = new Account();
+							a.CreateAccount(row);
+							return a;
+						}).ToList();
+					}
+
+
+				}
+			}
+			catch (Exception ex)
+			{
+				log.Error("Exception when getting Account by email", ex);
+			}
+
+			return acounts;
+		}
+
 		public void DeleteAccount(int id)
 		{
 			try

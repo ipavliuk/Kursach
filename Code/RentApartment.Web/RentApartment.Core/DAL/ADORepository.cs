@@ -23,7 +23,7 @@ namespace RentApartment.Core.DAL
 
 		public ICollection<Account> GetAccounts()
 		{
-			throw new NotImplementedException();
+			return db.GetAccounts();
 		}
 
 		public Reservations GetReservationById(int Id)

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using RentApartment.Core.Model;
 using RentApartment.Core.Model.EF;
 
 namespace DALTest
