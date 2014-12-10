@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("RentApartment.Core")]
+[assembly: AssemblyTitle("DALUnitTest")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("RentApartment.Core")]
+[assembly: AssemblyProduct("DALUnitTest")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,10 +20,8 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("d4805a97-0a6d-4d37-b7c3-1799c63a5456")]
+[assembly: Guid("92e1dbf7-562e-4d17-aff8-33bf88a46ff1")]
 
-[assembly: InternalsVisibleTo("DALUnitTest")]
-[assembly: InternalsVisibleTo("DALTest")]
 // Version information for an assembly consists of the following four values:
 //
 //      Major Version

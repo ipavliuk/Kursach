@@ -29,7 +29,7 @@ namespace RentApartment.Core.Model.EF
         public virtual DbSet<C_Country> C_Country { get; set; }
         public virtual DbSet<C_Currency> C_Currency { get; set; }
         public virtual DbSet<C_Roles> C_Roles { get; set; }
-        public virtual DbSet<Account> Accounts { get; set; }
+        public virtual DbSet<Account> Account { get; set; }
         public virtual DbSet<GuestReviews> GuestReviews { get; set; }
         public virtual DbSet<Messages> Messages { get; set; }
         public virtual DbSet<PropertyListing> PropertyListing { get; set; }

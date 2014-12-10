@@ -1,13 +1,15 @@
 ﻿using System;
 using System.CodeDom;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Common.CommandTrees;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RentApartment.Core.DAL;
+using RentApartment.Core.DAL.Test;
 using RentApartment.Core.Infrastructure;
-
+using RentApartment.Core.Model.EF;
 
 
 namespace DALTest
@@ -16,7 +18,7 @@ namespace DALTest
 	{
 		private class Test
 		{
-			public static Test Create(Action iteration, string name)
+			public static Test Create(Action<int> iteration, string name)
 			{
 				return new Test() { IterationAction = iteration, Name = name };
 			}
@@ -27,7 +29,7 @@ namespace DALTest
 				IterNumber += count;
 			}
 
-			public Action IterationAction { get; set; }
+			public Action<int> IterationAction { get; set; }
 			public string Name { get; set; }
 
 			public long ElapsedMilliseconds { get; set; }
@@ -38,7 +40,7 @@ namespace DALTest
 		private class Tests : List<Test>
 		{
 
-			public void Add(Action action, string name)
+			public void Add(Action<int> action, string name)
 			{
 				this.Add(Test.Create(action, name));
 			}
@@ -53,7 +55,7 @@ namespace DALTest
 					for (int i = 0; i < iterations; i++)
 					{
 						watch.Start();
-						iteration.IterationAction();
+						iteration.IterationAction(i);
 						watch.Stop();
 						iteration.AddExecutionTime(watch.ElapsedMilliseconds, i);
 					}
@@ -69,58 +71,57 @@ namespace DALTest
 		public void Run(int iter)
 		{
 			Tests tests = new Tests();
+			Console.WriteLine("----------------------");
+			Console.WriteLine("ADO.NET Test ");
 			DataAccessorWrapper db = new DataAccessorWrapper();
-			var acc = AcccountGenerator.GenerateADOEF("Ado_net");
-			tests.Add(() => db.CreateAccount(acc.AccountId, acc.PasswordHash, acc));
+			var acc = AcccountGenerator.GenerateADOEF("Ado_net_");
+			tests.Add((n) => acc.id = db.CreateAccount(acc.AccountId, acc.PasswordHash, acc.FirstName, acc.LastName, acc.Email, acc.FK__Country), "AdoNet_CreateAccount");
+			tests.Add((n) => db.GetAccountByPwd(acc.PasswordHash).ThrowIfNull("No item in DB ADO.NEt GetAccountByPwd"), "AdoNet_GetByPwd");
+			tests.Add((n) => db.GetAccountGetbyId(acc.id).ThrowIfNull("No item in DB ADO.NEt GetAccountByPwd"), "AdoNet_GetAccountGetbyId");
+			tests.Add((n) => db.GetAccountByEmail(acc.Email).ThrowIfNull("No item in DB ADO.NEt GetAccountByEmail"), "AdoNet_GetAccountByEmail");
+			tests.Add((n) => db.DeleteAccount(acc.id), "AdoNet_DeleteAccount");
+			Console.WriteLine("Results:");
+			tests.Run(iter);
+			tests.Clear();
+
+			Console.WriteLine("----------------------"); 
+			Console.WriteLine("Ef Test ");
+			///Run EF test
+			Account[] array = new Account[iter];
+			for (int i = 0; i < iter; i++)
+			{
+				array[i] = AcccountGenerator.GenerateADOEF("EF_");
+			}
+			
+			var dbEF = new RentApartmentsContext();
+			tests.Add((n) => { dbEF.Account.Add(array[n]); dbEF.SaveChanges(); }, "EF_CreateAccount");
+
+			tests.Add((n) =>
+			{
+				var accEf = array[n];
+				dbEF.Account.Single(a => a.id == accEf.id);
+			}, "EF_GetAccountById");
+			tests.Add((n) =>{var accEf = array[n];
+				                dbEF.Account.FirstOrDefault(a => a.Email == accEf.Email);
+			}, "EF_GetAccountByEmail");
+			tests.Add((n) =>
+			{
+				var accEf = array[n];
+				dbEF.Account.Single(a => a.PasswordHash == accEf.PasswordHash);
+			}, "EF_GetAccountByPwd");
+			tests.Add((n) =>
+			{
+				var accEf = array[n];
+				dbEF.Account.Remove((dbEF.Account.Single(a => a.id == accEf.id))); dbEF.SaveChanges();
+			}, "EF_Remove");
+			Console.WriteLine("Results:");
+			tests.Run(iter);
+			dbEF.Dispose();
+
 
 		}
 	}
 
-	internal class AcccountGenerator
-	{
-		public static RentApartment.Core.Model.EF.Account GenerateADOEF(string rm)
-		{
-			string accId = Guid.NewGuid().ToString("N");
-			return new RentApartment.Core.Model.EF.Account()
-			{
-				AccountId = accId,
-				PasswordHash = "123456".ToSha256(""),
-				FirstName = "_" + rm + accId,
-				LastName = "LastName" + accId,
-				Email = "email@gmail.com",
-				Gender = 0,
-				IsValidated = false,
-				Mobile = "022555546",
-				FK__Country = 10,
-				City = "Vinnitsya",
-				Address = "600-ritchya st 55, ap.12",
-				PostalCode = "21000",
-				IsEmailConfirmed = false,
-				Language = 5
-			};
-		}
-
-		public static RentApartment.Core.Model.Account GenerateLinq2SQl()
-		{
-			string accId = Guid.NewGuid().ToString("N");
-			return new RentApartment.Core.Model.Account()
-			{
-				AccountId = accId,
-				PasswordHash = "123456".ToSha256(""),
-				FirstName = "_linq2sql" + accId,
-				LastName = "LastName" + accId,
-				Email = "email@gmail.com",
-				Gender = 0,
-				IsValidated = false,
-				Mobile = "022555546",
-				FK__Country = 10,
-				City = "Vinnitsya",
-				Address = "600-ritchya st 55, ap.12",
-				PostalCode = "21000",
-				IsEmailConfirmed = true,
-				Language = 5
-			};
-		}
-	}
+	
 
 }

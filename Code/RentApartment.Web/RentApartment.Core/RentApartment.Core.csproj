@@ -53,37 +53,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DAL\ADORepository.cs" />
-    <Compile Include="DAL\DBAccessor\DataAccessor.cs" />
-    <Compile Include="DAL\DataAccessorWrapper.cs" />
-    <Compile Include="DAL\DBAccessor\Entities\DataBaseResponse.cs" />
-    <Compile Include="DAL\DBAccessor\Entities\ListDbResponse.cs" />
-    <Compile Include="DAL\DBAccessor\IDataAccessor.cs" />
-    <Compile Include="DAL\IRampentService.cs" />
-    <Compile Include="DAL\IRApmentRepository.cs" />
-    <Compile Include="DAL\Linq2SqlRepository.cs" />
-    <Compile Include="Infrastructure\Extensions.cs" />
-    <Compile Include="Infrastructure\StringExtensions.cs" />
-    <Compile Include="Models\Account.cs" />
-    <Compile Include="Models\C_Amenities.cs" />
-    <Compile Include="Models\C_Country.cs" />
-    <Compile Include="Models\C_Currency.cs" />
-    <Compile Include="Models\C_Roles.cs" />
-    <Compile Include="Models\GuestReview.cs" />
-    <Compile Include="Models\Mapping\AccountMap.cs" />
-    <Compile Include="Models\Mapping\C_AmenitiesMap.cs" />
-    <Compile Include="Models\Mapping\C_CountryMap.cs" />
-    <Compile Include="Models\Mapping\C_CurrencyMap.cs" />
-    <Compile Include="Models\Mapping\C_RolesMap.cs" />
-    <Compile Include="Models\Mapping\GuestReviewMap.cs" />
-    <Compile Include="Models\Mapping\MessageMap.cs" />
-    <Compile Include="Models\Mapping\PropertyListingMap.cs" />
-    <Compile Include="Models\Mapping\ReservationMap.cs" />
-    <Compile Include="Models\Message.cs" />
-    <Compile Include="Models\PropertyListing.cs" />
-    <Compile Include="Models\RentApartmentsContext.cs" />
-    <Compile Include="Models\Reservation.cs" />
-    <Compile Include="Model\EF\Account_Helper.cs" />
     <Compile Include="Model\EF\Account.cs">
       <DependentUpon>RentApartments.tt</DependentUpon>
     </Compile>
@@ -99,16 +68,30 @@
     <Compile Include="Model\EF\C_Roles.cs">
       <DependentUpon>RentApartments.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAL\ADORepository.cs" />
+    <Compile Include="DAL\DBAccessor\DataAccessor.cs" />
+    <Compile Include="DAL\DataAccessorWrapper.cs" />
+    <Compile Include="DAL\DBAccessor\Entities\DataBaseResponse.cs" />
+    <Compile Include="DAL\DBAccessor\Entities\ListDbResponse.cs" />
+    <Compile Include="DAL\DBAccessor\IDataAccessor.cs" />
+    <Compile Include="DAL\IRampentService.cs" />
+    <Compile Include="DAL\IRApmentRepository.cs" />
+    <Compile Include="DAL\Linq2SqlRepository.cs" />
+    <Compile Include="DAL\Test\AcccountGenerator.cs" />
     <Compile Include="Model\EF\GuestReviews.cs">
       <DependentUpon>RentApartments.tt</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\Extensions.cs" />
+    <Compile Include="Infrastructure\StringExtensions.cs" />
     <Compile Include="Model\EF\Messages.cs">
       <DependentUpon>RentApartments.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\EF\Account_Helper.cs" />
+    <Compile Include="Model\EF\RentApartmentContext.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Model\EF\PropertyListing.cs">
       <DependentUpon>RentApartments.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\EF\RentApartmentContext.cs" />
     <Compile Include="Model\EF\RentApartments.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -127,25 +110,15 @@
     <Compile Include="Model\EF\Reservations.cs">
       <DependentUpon>RentApartments.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\RApmentLinq2SqlContext.cs" />
-    <Compile Include="Model\RApmentModell2sql.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RApmentModell2sql.dbml</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DAL\LRepositories\" />
+    <Folder Include="Models\" />
     <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
+    <None Include="packages.config" />
     <EntityDeploy Include="Model\EF\RentApartments.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>RentApartments.Designer.cs</LastGenOutput>
@@ -163,25 +136,10 @@
       <DependentUpon>RentApartments.edmx</DependentUpon>
       <LastGenOutput>RentApartments.cs</LastGenOutput>
     </None>
-    <None Include="Model\RApmentModell2sql.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>RApmentModell2sql.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="packages.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Model\RApmentModell2sql.dbml.layout">
-      <DependentUpon>RApmentModell2sql.dbml</DependentUpon>
-    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

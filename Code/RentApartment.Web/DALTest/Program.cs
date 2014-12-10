@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RentApartment.Core.DAL.Test;
 using RentApartment.Core.Model.EF;
 
 namespace DALTest
@@ -11,34 +12,44 @@ namespace DALTest
 	{
 		static void Main(string[] args)
 		{
-			using (var db = new RentApartmentsContext())
+			try
 			{
-				Account account = new Account()
-				{
-					AccountId = Guid.NewGuid().ToString("N"),
-					FirstName = "Druidd",
-					LastName = "Pavl",
-					Language = 4,
-					PostalCode = "21000",
-					Email = "bla@gmail.com"
-				};
-
-				db.Accounts.Add(account);
-
-				db.SaveChanges();
-
-
-				var query = from a in db.Accounts
-					orderby a.FirstName
-					select a;
-
-				foreach (var item in query)
-				{
-					Console.WriteLine("Acount First Name => " + item.FirstName);
-				}
-
+				PerformanceTest test = new PerformanceTest();
+				test.Run(100);
 				Console.ReadLine();
 			}
+			catch (Exception)
+			{
+
+				throw;
+			}
+
+
+
+			
+
+			//using (var db = new RentApartmentsContext())
+			//{
+			//	Account account = AcccountGenerator.GenerateADOEF("EF_");
+
+			//	db.Account.Add(account);
+
+			//	db.SaveChanges();
+
+
+			//	db.Account.Remove((db.Account.Single(a => a.id == account.id)));
+			//	db.SaveChanges();
+			//	var query = from a in db.Account
+			//				orderby a.FirstName
+			//				select a;
+
+			//	foreach (var item in query)
+			//	{
+			//		Console.WriteLine("acount first name => " + item.FirstName);
+			//	}
+
+			//	Console.ReadLine();
+			//}
 		}
 	}
 }

@@ -19,6 +19,7 @@ as
 begin	
 	INSERT INTO Account(AccountId, PasswordHash, FirstName, LastName, Email, IsEmailConfirmed, FK__Country, FK__Roles, City, Address, Mobile, Gender, PostalCode, Language, IsValidated, ImageSourceId) 
 	VALUES (@AccountId, @PasswordHash, @FirstName, @LastName, @Email, 0, @Country, 1, @City, @Address, @Mobile, @Gender, @PostalCode, @Language, 0, @ImageSourceId);
+	SELECT SCOPE_IDENTITY()
 end
 
 
@@ -109,7 +110,7 @@ end
 GO
 ----------------------------------------------------------------
 create procedure dbo.AccountGetbyPassword
-@PwdHash int
+@PwdHash nvarchar(255)
 as
 begin
 	set nocount on;

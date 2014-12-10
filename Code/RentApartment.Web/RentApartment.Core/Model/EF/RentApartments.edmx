@@ -476,7 +476,7 @@
         </EntityType>
         <Association Name="FKAccount816800">
           <End Role="C_Country" Type="Self.C_Country" Multiplicity="1" />
-          <End Role="Account" Type="Self.Account" Multiplicity="*" />
+          <End Role="Account" Type="RentApartmentsModel.Account" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="C_Country">
               <PropertyRef Name="id" />
@@ -512,7 +512,7 @@
         </Association>
         <Association Name="FKAccount860859">
           <End Role="C_Roles" Type="Self.C_Roles" Multiplicity="1" />
-          <End Role="Account" Type="Self.Account" Multiplicity="*" />
+          <End Role="Account" Type="RentApartmentsModel.Account" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="C_Roles">
               <PropertyRef Name="RoleId" />
@@ -523,7 +523,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FKGuestRevie904213">
-          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="Account" Type="RentApartmentsModel.Account" Multiplicity="1" />
           <End Role="GuestReviews" Type="Self.GuestReviews" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Account">
@@ -535,7 +535,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FKMessages695479">
-          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="Account" Type="RentApartmentsModel.Account" Multiplicity="1" />
           <End Role="Messages" Type="Self.Messages" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Account">
@@ -547,7 +547,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FKPropertyLi96721">
-          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="Account" Type="RentApartmentsModel.Account" Multiplicity="1" />
           <End Role="PropertyListing" Type="Self.PropertyListing" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Account">
@@ -559,7 +559,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FKReservatio820773">
-          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="Account" Type="RentApartmentsModel.Account" Multiplicity="1" />
           <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Account">
@@ -603,7 +603,7 @@
           <EntitySet Name="C_Country" EntityType="Self.C_Country" />
           <EntitySet Name="C_Currency" EntityType="Self.C_Currency" />
           <EntitySet Name="C_Roles" EntityType="Self.C_Roles" />
-          <EntitySet Name="Account" EntityType="Self.Account" />
+          <EntitySet Name="Account" EntityType="RentApartmentsModel.Account" />
           <EntitySet Name="GuestReviews" EntityType="Self.GuestReviews" />
           <EntitySet Name="Messages" EntityType="Self.Messages" />
           <EntitySet Name="PropertyListing" EntityType="Self.PropertyListing" />

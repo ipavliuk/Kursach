@@ -24,8 +24,9 @@ namespace RentApartment.Core.DAL
 		//_CountryGetById
 		//_RolesGetById
 
-		public void CreateAccount(int accountId, string passwordHash, string firstName, string lastName, string email, int countryId)
+		public int CreateAccount(string accountSystemId, string passwordHash, string firstName, string lastName, string email, int countryId)
 		{
+			int newId = 0;
 			try
 			{
 				using (var conn = GetConnection())
@@ -33,15 +34,16 @@ namespace RentApartment.Core.DAL
 				{
 					CommandType = CommandType.StoredProcedure
 				})
-				{	
-					command.Parameters.AddWithValue("AccountId", accountId);
+				{
+					command.Parameters.AddWithValue("AccountId", accountSystemId);
 					command.Parameters.AddWithValue("PasswordHash", passwordHash);
 					command.Parameters.AddWithValue("FirstName", firstName);
 					command.Parameters.AddWithValue("LastName", lastName);
 					command.Parameters.AddWithValue("Email", email);
 					command.Parameters.AddWithValue("Country", countryId);
 
-					command.ExecuteNonQuery();
+					newId = Convert.ToInt32(command.ExecuteScalar());
+					
 					
 				}
 			}
@@ -49,6 +51,8 @@ namespace RentApartment.Core.DAL
 			{
 				log.Error("Exception when creating Account", ex);
 			}
+
+			return newId;
 		}
 
 		public Account GetAccountGetbyId(int accountId)
