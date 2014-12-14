@@ -53,6 +53,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\RApmentErrors.cs" />
+    <Compile Include="Infrastructure\AdminManager.cs" />
+    <Compile Include="Services\AdministrationService.cs" />
+    <Compile Include="Services\IAccountService.cs" />
     <Compile Include="Model\EF\Account.cs">
       <DependentUpon>RentApartments.tt</DependentUpon>
     </Compile>
@@ -76,13 +80,12 @@
     <Compile Include="DAL\DBAccessor\IDataAccessor.cs" />
     <Compile Include="DAL\IRampentService.cs" />
     <Compile Include="DAL\IRApmentRepository.cs" />
-    <Compile Include="DAL\Linq2SqlRepository.cs" />
     <Compile Include="DAL\Test\AcccountGenerator.cs" />
     <Compile Include="Model\EF\GuestReviews.cs">
       <DependentUpon>RentApartments.tt</DependentUpon>
     </Compile>
-    <Compile Include="Infrastructure\Extensions.cs" />
-    <Compile Include="Infrastructure\StringExtensions.cs" />
+    <Compile Include="Common\Extensions\Extensions.cs" />
+    <Compile Include="Common\Extensions\StringExtensions.cs" />
     <Compile Include="Model\EF\Messages.cs">
       <DependentUpon>RentApartments.tt</DependentUpon>
     </Compile>
@@ -114,7 +117,6 @@
   <ItemGroup>
     <Folder Include="DAL\LRepositories\" />
     <Folder Include="Models\" />
-    <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />

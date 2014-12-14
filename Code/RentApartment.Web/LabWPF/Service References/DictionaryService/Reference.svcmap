@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="668e4c95-b960-4a30-98e5-0762eaa7f65d" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:61870/Dictionaries.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="Dictionaries.xsd" MetadataType="Schema" ID="40083d05-475e-4930-add6-ba5c91dd0480" SourceId="1" SourceUrl="http://localhost:61870/Dictionaries.svc?xsd=xsd1" />
+    <MetadataFile FileName="Dictionaries.disco" MetadataType="Disco" ID="84d311c4-6280-4cfb-bb70-21921f42085a" SourceId="1" SourceUrl="http://localhost:61870/Dictionaries.svc?disco" />
+    <MetadataFile FileName="Dictionaries.wsdl" MetadataType="Wsdl" ID="15e9fbd4-10e1-4d96-a16d-16ff7f2bea8a" SourceId="1" SourceUrl="http://localhost:61870/Dictionaries.svc?wsdl" />
+    <MetadataFile FileName="Dictionaries1.xsd" MetadataType="Schema" ID="0ecfcf27-e7b3-427f-beb8-3f46c0fdbc16" SourceId="1" SourceUrl="http://localhost:61870/Dictionaries.svc?xsd=xsd2" />
+    <MetadataFile FileName="Dictionaries2.xsd" MetadataType="Schema" ID="bfca17b9-e425-4be2-b16d-3efaa7defb5b" SourceId="1" SourceUrl="http://localhost:61870/Dictionaries.svc?xsd=xsd0" />
+    <MetadataFile FileName="Dictionaries3.xsd" MetadataType="Schema" ID="338b1fbc-20d5-4163-b693-51bab70a6f78" SourceId="1" SourceUrl="http://localhost:61870/Dictionaries.svc?xsd=xsd3" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

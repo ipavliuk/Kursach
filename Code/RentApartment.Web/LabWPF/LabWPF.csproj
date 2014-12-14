@@ -34,8 +34,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MahApps.Metro">
+      <HintPath>..\packages\MahApps.Metro.1.0.0.0\lib\net45\MahApps.Metro.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.1.0.0.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -61,10 +69,37 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Command\DelegateCommand.cs" />
+    <Compile Include="Command\RelayCommand.cs" />
+    <Compile Include="Model\Account.cs" />
+    <Compile Include="Model\AccountService.cs" />
+    <Compile Include="Model\RapmentService.cs" />
+    <Compile Include="Service References\AccountService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\DictionaryService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\RApmentAdministrationService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\SafeWcfClient.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Resources\Icons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -84,14 +119,135 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <Resource Include="Resources\Entypo.ttf" />
+    <None Include="Service References\AccountService\Accounts.wsdl" />
+    <None Include="Service References\AccountService\Accounts.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AccountService\Accounts1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AccountService\Accounts2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AccountService\Accounts3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AccountService\LabWPF.AccountService.AuthenticationResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AccountService\LabWPF.AccountService.GetAccountProfileResponce.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DictionaryService\Dictionaries.wsdl" />
+    <None Include="Service References\DictionaryService\Dictionaries.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DictionaryService\Dictionaries1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DictionaryService\Dictionaries2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DictionaryService\Dictionaries3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DictionaryService\LabWPF.DictionaryService.CountriesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\RApmentAdministrationService\LabWPF.RApmentAdministrationService.GetPropertiesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\RApmentAdministrationService\LabWPF.RApmentAdministrationService.GetReservationsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\RApmentAdministrationService\RApmentAdministration.wsdl" />
+    <None Include="Service References\RApmentAdministrationService\RApmentAdministration.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\RApmentAdministrationService\RApmentAdministration1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\RApmentAdministrationService\RApmentAdministration2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\RApmentAdministrationService\RApmentAdministration3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\RApmentAdministrationService\RApmentAdministration4.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="View\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\AccountService\" />
+    <WCFMetadataStorage Include="Service References\DictionaryService\" />
+    <WCFMetadataStorage Include="Service References\RApmentAdministrationService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AccountService\Accounts.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AccountService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AccountService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AccountService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DictionaryService\Dictionaries.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DictionaryService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DictionaryService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DictionaryService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\RApmentAdministrationService\RApmentAdministration.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\RApmentAdministrationService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\RApmentAdministrationService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\RApmentAdministrationService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\WindowsIcons-license.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Entypo-license.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

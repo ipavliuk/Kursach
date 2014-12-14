@@ -1,6 +1,34 @@
-﻿<Window x:Class="LabWPF.MainWindow"
+﻿<Controls:MetroWindow x:Class="LabWPF.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid/>
-</Window>
+		Title="RApment Admin" Height="450" Width="850">
+	<Window.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="/Resources/Icons.xaml" />
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
+	</Window.Resources>
+	<Controls:MetroWindow.RightWindowCommands>
+		<Controls:WindowCommands>
+			<Button Content="Save Data"  />
+			<Button Content="Load data" />
+			<Button>
+				<StackPanel Orientation="Horizontal">
+					<Rectangle Width="20" Height="20"
+                   Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+						<Rectangle.OpacityMask>
+							<VisualBrush Stretch="Fill"
+                         Visual="{StaticResource appbar_door_lock_closed}" />
+						</Rectangle.OpacityMask>
+					</Rectangle>
+					<ToggleButton Content="Login"
+                          ToolTip="Login to system"
+                          IsChecked="{Binding IsUserLogedIn}" />
+				</StackPanel>
+			</Button>
+		</Controls:WindowCommands>
+	</Controls:MetroWindow.RightWindowCommands>
+	<Grid/>
+</Controls:MetroWindow>
