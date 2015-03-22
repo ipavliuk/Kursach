@@ -7,7 +7,7 @@ using System.Web;
 namespace RentApartment.Service.DataContract.Entities
 {
 	[DataContract]
-	public class Property
+	public class PropertyDto
 	{
 		[DataMember]
 		public int PropertyId { get; set; }

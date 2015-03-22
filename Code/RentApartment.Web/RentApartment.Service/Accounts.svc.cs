@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using AutoMapper;
 using RentApartment.Core.Common;
 using RentApartment.Core.Infrastructure;
 using RentApartment.Core.Model.EF;
@@ -14,6 +15,10 @@ namespace RentApartment.Service
 {
 	public class Accounts : IAccounts
 	{
+		public Accounts()
+		{
+			Mapper.CreateMap<Account, AccountDto>();
+		}
 
 		public AuthenticationResponse Authenticate(AuthenticationRequest request)
 		{
@@ -81,31 +86,33 @@ namespace RentApartment.Service
 			return response;
 		}
 
-		private AccountProfile TranslateAccountEntityToAccount(Account accountEF)
+		private AccountDto TranslateAccountEntityToAccount(Account accountEF)
 		{
 
 			if (accountEF == null)
-				return new AccountProfile();
+				return new AccountDto();
 
-			AccountProfile acc = new AccountProfile()
-			{
-				id = accountEF.id,
-				AccountId = accountEF.AccountId,
-				Address = accountEF.Address,
-				City = accountEF.City,
-				Country = accountEF.C_Country.Name,
-				Email = accountEF.Email,
-				FirstName = accountEF.FirstName,
-				Gender = accountEF.Gender,
-				ImageSourceId = accountEF.ImageSourceId,
-				IsEmailConfirmed = accountEF.IsEmailConfirmed,
-				IsValidated = accountEF.IsValidated,
-				Language = accountEF.Language,
-				LastName = accountEF.LastName,
-				Mobile = accountEF.Mobile,
-				PostalCode = accountEF.PostalCode,
-				Roles = accountEF.C_Roles.RoleName
-			};
+			AccountDto acc = Mapper.Map<AccountDto>(accountEF);
+
+			//AccountDto acc = new AccountDto()
+			//{
+			//	id = accountEF.id,
+			//	AccountId = accountEF.AccountId,
+			//	Address = accountEF.Address,
+			//	City = accountEF.City,
+			//	Country = accountEF.C_Country.Name,
+			//	Email = accountEF.Email,
+			//	FirstName = accountEF.FirstName,
+			//	Gender = accountEF.Gender,
+			//	ImageSourceId = accountEF.ImageSourceId,
+			//	IsEmailConfirmed = accountEF.IsEmailConfirmed,
+			//	IsValidated = accountEF.IsValidated,
+			//	Language = accountEF.Language,
+			//	LastName = accountEF.LastName,
+			//	Mobile = accountEF.Mobile,
+			//	PostalCode = accountEF.PostalCode,
+			//	Roles = accountEF.C_Roles.RoleName
+			//};
 
 			return acc;
 		}

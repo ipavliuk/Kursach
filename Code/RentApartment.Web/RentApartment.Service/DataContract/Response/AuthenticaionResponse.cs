@@ -14,7 +14,7 @@ namespace RentApartment.Service.DataContract.Response
 		public bool AuthenticationResult { get; set; }
 
 		[DataMember]
-		public AccountProfile AccountProfile { get; set; }
+		public AccountDto AccountProfile { get; set; }
 
 	}
 }

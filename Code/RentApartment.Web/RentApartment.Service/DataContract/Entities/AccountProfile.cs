@@ -6,7 +6,7 @@ using System.Web;
 
 namespace RentApartment.Service.DataContract.Response
 {
-	public class AccountProfile
+	public class AccountDto
 	{
 		[DataMember]
 		public int id { get; set; }

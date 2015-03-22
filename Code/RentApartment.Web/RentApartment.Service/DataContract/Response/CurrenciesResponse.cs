@@ -11,6 +11,6 @@ namespace RentApartment.Service.DataContract.Response
 	public class CurrenciesResponse : BaseResponse
 	{
 		[DataMember]
-		public List<Currency> Currensies { get; set; }
+		public List<CurrencyDto> Currensies { get; set; }
 	}
 }

@@ -11,6 +11,6 @@ namespace RentApartment.Service.DataContract.Response
 	public class RolesResponse :BaseResponse
 	{
 		[DataMember]
-		public List<Role> Roles { get; set; }
+		public List<RoleDto> Roles { get; set; }
 	}
 }

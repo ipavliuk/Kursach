@@ -11,9 +11,10 @@ namespace LabWPF.ViewModel
 	{
 		internal void RaisePropertyChanged(string property)
 		{
-			if (PropertyChanged != null)
+			PropertyChangedEventHandler handler = PropertyChanged;
+			if (handler != null)
 			{
-				PropertyChanged(this, new PropertyChangedEventArgs(property));
+				handler(this, new PropertyChangedEventArgs(property));
 			}
 		}
 		public event PropertyChangedEventHandler PropertyChanged;

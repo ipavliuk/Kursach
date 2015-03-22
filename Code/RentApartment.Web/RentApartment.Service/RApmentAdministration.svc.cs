@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using AutoMapper;
 using RentApartment.Core.Common;
 using RentApartment.Core.Infrastructure;
 using RentApartment.Core.Model.EF;
@@ -15,6 +16,11 @@ namespace RentApartment.Service
 {
 	public class RApmentAdministration : IRApmentAdministration
 	{
+		public RApmentAdministration()
+		{
+			Mapper.CreateMap<PropertyListing, PropertyDto>();
+			Mapper.CreateMap<Reservations, ReservationDto>();
+		}
 
 		public GetPropertiesResponse GetProperties(GetPropertiesRequest request)
 		{
@@ -36,12 +42,13 @@ namespace RentApartment.Service
 													: AdminManager.Instance.GetPropertyByCityCountry(request.City, 
 																								request.Country);
 
-				foreach (var item in propertyListings)
-				{
-					Property property = TranslatePropertyListingEntityToProperty(item);
-					response.Properties.Add(property);
-				}
-				
+				//foreach (var item in propertyListings)
+				//{
+				//	PropertyDto property = TranslatePropertyListingEntityToProperty(item);
+				//	response.Properties.Add(property);
+				//}
+				response.Properties = Mapper.Map<List<PropertyListing>, List<PropertyDto>>(propertyListings.ToList());
+
 			}
 			catch (Exception ex)
 			{
@@ -71,11 +78,13 @@ namespace RentApartment.Service
 					AdminManager.Instance.GetReservations(request.AccountId, request.ReservationStart, 
 															request.ReservationEnd, request.ReservationStatus);
 
-				foreach (var item in reservations)
-				{
-					Reservation reservation = TranslateReservationEntityToReservation(item);
-					response.Reservation.Add(reservation);
-				}
+				//foreach (var item in reservations)
+				//{
+				//	ReservationDto reservation = TranslateReservationEntityToReservation(item);
+				//	response.Reservation.Add(reservation);
+				//}
+				response.Reservation = Mapper.Map<List<Reservations>, List<ReservationDto>>(reservations.ToList());
+
 			}
 			catch (Exception ex)
 			{
@@ -88,60 +97,60 @@ namespace RentApartment.Service
 			return response;
 		}
 
-		private Reservation TranslateReservationEntityToReservation(Reservations reservationEF)
-		{
+		//private ReservationDto TranslateReservationEntityToReservation(Reservations reservationEF)
+		//{
 
-			if (reservationEF == null)
-				return new Reservation();
+		//	if (reservationEF == null)
+		//		return new ReservationDto();
 
-			Reservation acc = new Reservation()
-			{
-				AccountId = reservationEF.FK_Account,
-				ReservationId = reservationEF.ReservationId,
-				PropertyListingId = reservationEF.FK_PropertyListing,
-				Currency = reservationEF.C_Currency.Id,
-				ReservationStart = reservationEF.ReservationStart,
-				ReservationEnd = reservationEF.ReservationEnd,
-				ReservationNote = reservationEF.ReservationNote,
-				ReservationStatus = reservationEF.ReservationStatus,
-				PropertyItem = TranslatePropertyListingEntityToProperty(reservationEF.PropertyListing)
-			};
+		//	ReservationDto acc = new ReservationDto()
+		//	{
+		//		AccountId = reservationEF.FK_Account,
+		//		ReservationId = reservationEF.ReservationId,
+		//		PropertyListingId = reservationEF.FK_PropertyListing,
+		//		Currency = reservationEF.C_Currency.Id,
+		//		ReservationStart = reservationEF.ReservationStart,
+		//		ReservationEnd = reservationEF.ReservationEnd,
+		//		ReservationNote = reservationEF.ReservationNote,
+		//		ReservationStatus = reservationEF.ReservationStatus,
+		//		PropertyItem = TranslatePropertyListingEntityToProperty(reservationEF.PropertyListing)
+		//	};
 
-			return acc;
-		}
+		//	return acc;
+		//}
 
-		private Property TranslatePropertyListingEntityToProperty(PropertyListing propertyEF)
-		{
+		//private PropertyDto TranslatePropertyListingEntityToProperty(PropertyListing propertyEF)
+		//{
 
-			if (propertyEF == null)
-				return new Property();
+		//	if (propertyEF == null)
+		//		return new PropertyDto();
 
-			Property acc = new Property()
-			{
-				PropertyId = propertyEF.PropertyId,
-				AccountId = propertyEF.FK_Account,
-				Accommodates = propertyEF.Accommodates,
-				Country = propertyEF.FK__Country,
-				City = propertyEF.City,
-				Address1 = propertyEF.Address1,
-				Address2 = propertyEF.Address2,
-				State = propertyEF.State,
-				State2 = propertyEF.State2,
-				Zip = propertyEF.Zip,
-				Bathroom = propertyEF.Bathroom,
-				BedRoom = propertyEF.BedRoom,
-				GreatSummary = propertyEF.GreatSummary,
-				GreatTitle = propertyEF.GreatTitle,
-				HomeType = propertyEF.HomeType,
-				Photos = propertyEF.Photos,
-				PricePerMonth = propertyEF.PricePerMonth,
-				PricePerNight = propertyEF.PricePerNight,
-				PricePerWeek = propertyEF.PricePerWeek,
-				RoomType = propertyEF.RoomType
-			};
+		//	PropertyDto acc = new PropertyDto()
+		//	{
+		//		PropertyId = propertyEF.PropertyId,
+		//		AccountId = propertyEF.FK_Account,
+		//		Accommodates = propertyEF.Accommodates,
+		//		Country = propertyEF.FK__Country,
+		//		City = propertyEF.City,
+		//		Address1 = propertyEF.Address1,
+		//		Address2 = propertyEF.Address2,
+		//		State = propertyEF.State,
+		//		State2 = propertyEF.State2,
+		//		Zip = propertyEF.Zip,
+		//		Bathroom = propertyEF.Bathroom,
+		//		BedRoom = propertyEF.BedRoom,
+		//		GreatSummary = propertyEF.GreatSummary,
+		//		GreatTitle = propertyEF.GreatTitle,
+		//		HomeType = propertyEF.HomeType,
+		//		Photos = propertyEF.Photos,
+		//		PricePerMonth = propertyEF.PricePerMonth,
+		//		PricePerNight = propertyEF.PricePerNight,
+		//		PricePerWeek = propertyEF.PricePerWeek,
+		//		RoomType = propertyEF.RoomType
+		//	};
 
-			return acc;
-		}
+		//	return acc;
+		//}
 
 	}
 }

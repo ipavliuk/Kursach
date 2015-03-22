@@ -10,7 +10,7 @@ namespace RentApartment.Service.DataContract.Response
 	public class GetReservationsResponse : BaseResponse
 	{
 		[DataMember]
-		public List<Reservation> Reservation { get; set; }
+		public List<ReservationDto> Reservation { get; set; }
 
 	}
 }

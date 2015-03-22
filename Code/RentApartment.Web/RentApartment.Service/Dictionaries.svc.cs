@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using AutoMapper;
 using RentApartment.Core.Common;
 using RentApartment.Core.Infrastructure;
 using RentApartment.Core.Model.EF;
@@ -15,6 +16,14 @@ namespace RentApartment.Service
 	public class Dictionaries : IDictionaries
 	{
 
+		public Dictionaries()
+		{
+			Mapper.CreateMap<C_Country, CountryDto>();
+			Mapper.CreateMap<C_Roles, RoleDto>();
+			Mapper.CreateMap<C_Currency, CurrencyDto>();
+			Mapper.CreateMap<C_Amenities, AmenityDto>();
+		}
+
 		public CountriesResponse GetCountries()
 		{
 			var response = new CountriesResponse();
@@ -24,17 +33,18 @@ namespace RentApartment.Service
 				response.ErrorId = (int)RApmentErrors.Ok;
 
 				IEnumerable<C_Country> countries = AdminManager.Instance.GetCountries();
-				foreach (var item in countries)
-				{
-					var country = new Country()
-					{
-						Id = item.id,
-						IsoCode =  item.IsoCode,
-						Name = item.Name
-					};
-					response.Countries.Add(country);
-				}
-
+				//foreach (var item in countries)
+				//{
+				//	var country = new CountryDto()
+				//	{
+				//		Id = item.id,
+				//		IsoCode =  item.IsoCode,
+				//		Name = item.Name
+				//	};
+				//	response.Countries.Add(country);
+				//}
+				List<CountryDto> countriesDto = Mapper.Map<List<C_Country>, List<CountryDto>>(countries.ToList());
+				response.Countries = countriesDto;
 			}
 			catch (Exception ex)
 			{
@@ -55,17 +65,18 @@ namespace RentApartment.Service
 				response.ErrorId = (int)RApmentErrors.Ok;
 
 				IEnumerable<C_Roles> roles = AdminManager.Instance.GetRoles();
-				foreach (var item in roles)
-				{
-					var role = new Role()
-					{
-						RoleId = item.RoleId,
-						RoleDescription = item.RoleDescription,
-						RoleName = item.RoleName
-					};
-					response.Roles.Add(role);
-				}
-
+				//foreach (var item in roles)
+				//{
+				//	var role = new Role()
+				//	{
+				//		RoleId = item.RoleId,
+				//		RoleDescription = item.RoleDescription,
+				//		RoleName = item.RoleName
+				//	};
+				//	response.Roles.Add(role);
+				//}
+				List<RoleDto> rolesDto = Mapper.Map<List<C_Roles>, List<RoleDto>>(roles.ToList());
+				response.Roles = rolesDto;
 			}
 			catch (Exception ex)
 			{
@@ -87,18 +98,20 @@ namespace RentApartment.Service
 
 				IEnumerable<C_Currency> currencies = AdminManager.Instance.GetCurrencies();
 
-				foreach (var item in currencies)
-				{
-					var currency = new Currency()
-					{
-						Id = item.Id,
-						Name = item.Currency,
-						Country = item.Country,
-						Code = item.Code,
-						Symbol = item.Symbol
-					};
-					response.Currensies.Add(currency);
-				}
+				//foreach (var item in currencies)
+				//{
+				//	var currency = new CurrencyDto()
+				//	{
+				//		Id = item.Id,
+				//		Name = item.Currency,
+				//		Country = item.Country,
+				//		Code = item.Code,
+				//		Symbol = item.Symbol
+				//	};
+				//	response.Currensies.Add(currency);
+				//}
+				List<CurrencyDto> currenciesDto = Mapper.Map<List<C_Currency>, List<CurrencyDto>>(currencies.ToList());
+				response.Currensies = currenciesDto;
 
 			}
 			catch (Exception ex)
@@ -121,18 +134,19 @@ namespace RentApartment.Service
 
 				IEnumerable<C_Amenities> amenities = AdminManager.Instance.GetAmenities();
 
-				foreach (var item in amenities)
-				{
-					var amenity = new Amenity()
-					{
-						id = item.id,
-						Name = item.Name,
-						Description = item.Description,
-						IsActive = item.IsActive
-					};
-					response.Amenities.Add(amenity);
-				}
-
+				//foreach (var item in amenities)
+				//{
+				//	var amenity = new AmenityDto()
+				//	{
+				//		id = item.id,
+				//		Name = item.Name,
+				//		Description = item.Description,
+				//		IsActive = item.IsActive
+				//	};
+				//	response.Amenities.Add(amenity);
+				//}
+				List<AmenityDto> amenitiesDto = Mapper.Map<List<C_Amenities>, List<AmenityDto>>(amenities.ToList());
+				response.Amenities = amenitiesDto;
 			}
 			catch (Exception ex)
 			{

@@ -11,6 +11,6 @@ namespace RentApartment.Service.DataContract.Response
 	public class AmenitiesResponse : BaseResponse
 	{
 		[DataMember]
-		public List<Amenity> Amenities { get; set; }
+		public List<AmenityDto> Amenities { get; set; }
 	}
 }

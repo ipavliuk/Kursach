@@ -12,6 +12,6 @@ namespace RentApartment.Service.DataContract.Response
 	public class CountriesResponse : BaseResponse
 	{
 		[DataMember]
-		public List<Country> Countries { get; set; }
+		public List<CountryDto> Countries { get; set; }
 	}
 }

@@ -7,7 +7,7 @@ using RentApartment.Service.DataContract.Entities;
 
 namespace RentApartment.Service.DataContract.Response
 {
-	public class Reservation
+	public class ReservationDto
 	{
 		[DataMember]
 		public int ReservationId { get; set; }
@@ -34,6 +34,6 @@ namespace RentApartment.Service.DataContract.Response
 		public int Currency { get; set; }
 
 		[DataMember]
-		public Property PropertyItem { get; set; }
+		public PropertyDto PropertyItem { get; set; }
 	}
 }
