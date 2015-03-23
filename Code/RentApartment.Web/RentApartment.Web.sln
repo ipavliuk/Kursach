@@ -22,6 +22,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DALUnitTest", "DALUnitTest\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentApartment.Service", "RentApartment.Service\RentApartment.Service.csproj", "{26BD12F3-F6AC-462F-9C12-3E60827E9E2B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Helpers", "Helpers", "{C6B4A424-50D7-4788-8978-043466FA9DB2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDataHelper", "TestDataHelper\TestDataHelper.csproj", "{0E83C4DD-64F5-47FE-8712-872AECA68E39}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,6 +60,10 @@ Global
 		{26BD12F3-F6AC-462F-9C12-3E60827E9E2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{26BD12F3-F6AC-462F-9C12-3E60827E9E2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{26BD12F3-F6AC-462F-9C12-3E60827E9E2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E83C4DD-64F5-47FE-8712-872AECA68E39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E83C4DD-64F5-47FE-8712-872AECA68E39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E83C4DD-64F5-47FE-8712-872AECA68E39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E83C4DD-64F5-47FE-8712-872AECA68E39}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,5 +72,6 @@ Global
 		{E78A556B-3F39-4688-A0C6-0AC13C871B34} = {4FC66EA9-A592-4E11-AD73-13FB6331EBE8}
 		{F9895489-6280-4E58-BC21-D8354A2158F2} = {4FC66EA9-A592-4E11-AD73-13FB6331EBE8}
 		{F3A59D65-3C6B-4BD3-8475-3BEE56AFA6E1} = {4FC66EA9-A592-4E11-AD73-13FB6331EBE8}
+		{0E83C4DD-64F5-47FE-8712-872AECA68E39} = {C6B4A424-50D7-4788-8978-043466FA9DB2}
 	EndGlobalSection
 EndGlobal

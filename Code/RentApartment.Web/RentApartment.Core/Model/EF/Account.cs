@@ -13,7 +13,7 @@ namespace RentApartment.Core.Model.EF
     using System.Collections.Generic;
     
     public partial class Account
-    {
+    {   
         public Account()
         {
             this.GuestReviews = new HashSet<GuestReviews>();

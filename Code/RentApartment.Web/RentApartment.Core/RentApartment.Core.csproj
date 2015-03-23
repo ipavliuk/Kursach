@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\RApmentErrors.cs" />
+    <Compile Include="DAL\Enums\EnumType.cs" />
     <Compile Include="Infrastructure\AdminManager.cs" />
     <Compile Include="Services\AdministrationService.cs" />
     <Compile Include="Services\IAccountService.cs" />
