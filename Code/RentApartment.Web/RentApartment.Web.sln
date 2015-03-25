@@ -26,6 +26,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Helpers", "Helpers", "{C6B4
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDataHelper", "TestDataHelper\TestDataHelper.csproj", "{0E83C4DD-64F5-47FE-8712-872AECA68E39}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentAppartment.Client", "RentAppartment.Client\RentAppartment.Client.csproj", "{0E8FC375-C76D-416B-AD76-B6005462F684}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -64,6 +66,10 @@ Global
 		{0E83C4DD-64F5-47FE-8712-872AECA68E39}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E83C4DD-64F5-47FE-8712-872AECA68E39}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E83C4DD-64F5-47FE-8712-872AECA68E39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E8FC375-C76D-416B-AD76-B6005462F684}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E8FC375-C76D-416B-AD76-B6005462F684}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E8FC375-C76D-416B-AD76-B6005462F684}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E8FC375-C76D-416B-AD76-B6005462F684}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
