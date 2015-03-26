@@ -1,0 +1,43 @@
+1. PropertyListingViewModel:
+
+//For Grid
+PropertyId => int
+PriceOerNight => bigint(long)
+BedRoom(количество спальных мест) => byte
+Accomodates
+HomeType (enum/Dictionary) => byte
+City => string
+
+
+//Owner Info:
+//Add to account avatar image url
+AccountId
+firstName
+lastName
+email
+mobile
+City
+
+
+
+2. PropertydetailsViewModel
+GreatTitle
+Great summary
+PricePerNight
+PricePerWeek
+PricePerMonth
+RoomType
+HomeType
+BedRoom
+BathRoom
+Accomodates
+Address
+City
+PhotoUrl => LoadPhotoCommand
+AmentiesList => add checkboxes
+GuestReviews
+
+
+
+
+
