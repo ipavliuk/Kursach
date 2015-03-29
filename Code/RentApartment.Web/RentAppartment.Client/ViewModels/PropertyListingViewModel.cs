@@ -8,5 +8,6 @@ namespace RentAppartment.Client.ViewModels
 {
 	public class PropertyListingViewModel : ViewModelBase
 	{
+
 	}
 }
