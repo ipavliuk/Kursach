@@ -1,19 +1,17 @@
 use [RentApartments]
 go
-INSERT Into _Amenities(Name, Description, IsActive) VALUES (N'Туалетні приналежності', N'Простирадла, рушник, мило, туалетний папір', 1);
+INSERT Into _Amenities(Name, Description, IsActive) VALUES (N'РўСѓР°Р»РµС‚РЅС– РїСЂРёРЅР°Р»РµР¶РЅРѕСЃС‚С–', N'РџСЂРѕСЃС‚РёСЂР°РґР»Р°, СЂСѓС€РЅРёРє, РјРёР»Рѕ, С‚СѓР°Р»РµС‚РЅРёР№ РїР°РїС–СЂ', 1);
 INSERT Into _Amenities(Name, Description, IsActive) VALUES (N'TV', N'', 1);
-INSERT Into _Amenities(Name, Description, IsActive) VALUES (N'Кабельне телебачення', N'', 1);
-INSERT Into _Amenities(Name, Description, IsActive) VALUES (N'Опалення', N'Центральна система опалення', 1);
-INSERT Into _Amenities(Name, Description, IsActive) VALUES (N'Кондлиціонер', N'', 1);
-INSERT Into _Amenities(Name, Description, IsActive) VALUES (N'Безпровідний інтернет', N'Доступ 24/7', 1);
-INSERT Into _Amenities(Name, Description, IsActive) VALUES (N'Кухня', N'Гості можуть використовувати кухню', 1);
-INSERT Into _Amenities(Name, Description, IsActive) VALUES (N'Правльна машина', N'Платна або безоплатна в приміщенні будинку', 1);
-INSERT Into _Amenities(Name, Description, IsActive) VALUES (N'Парковка', N'', 1);
-INSERT Into _Amenities(Name, Description, IsActive) VALUES (N'Камін', N'', 1);
-INSERT Into _Amenities(Name, Description, IsActive) VALUES (N'Холодильник', N'', 1);
-INSERT Into _Amenities(Name, Description, IsActive) VALUES (N'Джакузі', N'', 1);
-INSERT Into _Amenities(Name, Description, IsActive) VALUES (N'Ліфт', N'', 1);
-INSERT Into _Amenities(Name, Description, IsActive) VALUES (N'Можливо з тваринами', N'', 1);
-INSERT Into _Amenities(Name, Description, IsActive) VALUES (N'Дозволено палити', N'', 1);
-
-select * from _Amenities
+INSERT Into _Amenities(Name, Description, IsActive) VALUES (N'РљР°Р±РµР»СЊРЅРµ С‚РµР»РµР±Р°С‡РµРЅРЅСЏ', N'', 1);
+INSERT Into _Amenities(Name, Description, IsActive) VALUES (N'РћРїР°Р»РµРЅРЅСЏ', N'Р¦РµРЅС‚СЂР°Р»СЊРЅР° СЃРёСЃС‚РµРјР° РѕРїР°Р»РµРЅРЅСЏ', 1);
+INSERT Into _Amenities(Name, Description, IsActive) VALUES (N'РљРѕРЅРґР»РёС†С–РѕРЅРµСЂ', N'', 1);
+INSERT Into _Amenities(Name, Description, IsActive) VALUES (N'Р‘РµР·РїСЂРѕРІС–РґРЅРёР№ С–РЅС‚РµСЂРЅРµС‚', N'Р”РѕСЃС‚СѓРї 24/7', 1);
+INSERT Into _Amenities(Name, Description, IsActive) VALUES (N'РљСѓС…РЅСЏ', N'Р“РѕСЃС‚С– РјРѕР¶СѓС‚СЊ РІРёРєРѕСЂРёСЃС‚РѕРІСѓРІР°С‚Рё РєСѓС…РЅСЋ', 1);
+INSERT Into _Amenities(Name, Description, IsActive) VALUES (N'РџСЂР°РІР»СЊРЅР° РјР°С€РёРЅР°', N'РџР»Р°С‚РЅР° Р°Р±Рѕ Р±РµР·РѕРїР»Р°С‚РЅР° РІ РїСЂРёРјС–С‰РµРЅРЅС– Р±СѓРґРёРЅРєСѓ', 1);
+INSERT Into _Amenities(Name, Description, IsActive) VALUES (N'РџР°СЂРєРѕРІРєР°', N'', 1);
+INSERT Into _Amenities(Name, Description, IsActive) VALUES (N'РљР°РјС–РЅ', N'', 1);
+INSERT Into _Amenities(Name, Description, IsActive) VALUES (N'РҐРѕР»РѕРґРёР»СЊРЅРёРє', N'', 1);
+INSERT Into _Amenities(Name, Description, IsActive) VALUES (N'Р”Р¶Р°РєСѓР·С–', N'', 1);
+INSERT Into _Amenities(Name, Description, IsActive) VALUES (N'Р›С–С„С‚', N'', 1);
+INSERT Into _Amenities(Name, Description, IsActive) VALUES (N'РњРѕР¶Р»РёРІРѕ Р· С‚РІР°СЂРёРЅР°РјРё', N'', 1);
+INSERT Into _Amenities(Name, Description, IsActive) VALUES (N'Р”РѕР·РІРѕР»РµРЅРѕ РїР°Р»РёС‚Рё', N'', 1);
