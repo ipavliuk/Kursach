@@ -25,6 +25,7 @@
         <AssociationConnector Association="RentApartmentsModel.FKGuestRevie649365" ManuallyRouted="false" />
         <AssociationConnector Association="RentApartmentsModel.FKReservatio405665" ManuallyRouted="false" />
         <AssociationConnector Association="RentApartmentsModel.PropertyListing__Amenities" ManuallyRouted="false" />
+        <AssociationConnector Association="RentApartmentsModel.FKPropertyLi101343" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -32,10 +32,9 @@ namespace RentApartment.Core.Model.EF
 				this.PostalCode = reader["PostalCode"].ToString();
 
 				string lang = reader["Language"].ToString();
-				this.Language = string.IsNullOrEmpty(lang) ? (int?)Int32.Parse(lang) : null;
 
 				this.IsValidated = Boolean.Parse(reader["IsValidated"].ToString());
-				this.ImageSourceId = reader["ImageSourceId"].ToString();
+				this.PictureUrl = reader["PictureUrl"].ToString();
 
 			}
 			catch (Exception)
@@ -66,10 +65,9 @@ namespace RentApartment.Core.Model.EF
 				this.PostalCode = row["PostalCode"].ToString();
 
 				string lang = row["Language"].ToString();
-				this.Language = string.IsNullOrEmpty(lang) ? (int?)Int32.Parse(lang) : null;
 
 				this.IsValidated = Boolean.Parse(row["IsValidated"].ToString());
-				this.ImageSourceId = row["ImageSourceId"].ToString();
+				this.PictureUrl = row["PictureUrl"].ToString();
 			}
 			catch (Exception)
 			{

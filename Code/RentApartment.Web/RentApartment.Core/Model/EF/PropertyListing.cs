@@ -41,11 +41,13 @@ namespace RentApartment.Core.Model.EF
         public string State2 { get; set; }
         public string Zip { get; set; }
         public int FK__Country { get; set; }
+        public Nullable<int> Currency { get; set; }
     
         public virtual C_Country C_Country { get; set; }
         public virtual Account Account { get; set; }
         public virtual ICollection<GuestReviews> GuestReviews { get; set; }
         public virtual ICollection<Reservations> Reservations { get; set; }
         public virtual ICollection<C_Amenities> C_Amenities { get; set; }
+        public virtual C_Currency C_Currency { get; set; }
     }
 }

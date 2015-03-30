@@ -13,7 +13,7 @@ namespace RentApartment.Core.Model.EF
     using System.Collections.Generic;
     
     public partial class Account
-    {   
+    {
         public Account()
         {
             this.GuestReviews = new HashSet<GuestReviews>();
@@ -36,9 +36,8 @@ namespace RentApartment.Core.Model.EF
         public string Mobile { get; set; }
         public Nullable<byte> Gender { get; set; }
         public string PostalCode { get; set; }
-        public Nullable<int> Language { get; set; }
         public bool IsValidated { get; set; }
-        public string ImageSourceId { get; set; }
+        public string PictureUrl { get; set; }
     
         public virtual C_Country C_Country { get; set; }
         public virtual C_Roles C_Roles { get; set; }

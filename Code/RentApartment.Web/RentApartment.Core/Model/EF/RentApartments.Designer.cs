@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'D:\!!!Study\Lviv\5Sem\Kursach\Code\RentApartment.Web\RentApartment.Core\Model\EF\RentApartments.edmx'. 
+﻿// T4 code generation is enabled for model 'D:\New folder (2)\Kursach\Code\RentApartment.Web\RentApartment.Core\Model\EF\RentApartments.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

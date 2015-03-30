@@ -17,6 +17,7 @@ namespace RentApartment.Core.Model.EF
         public C_Currency()
         {
             this.Reservations = new HashSet<Reservations>();
+            this.PropertyListing = new HashSet<PropertyListing>();
         }
     
         public int Id { get; set; }
@@ -26,5 +27,6 @@ namespace RentApartment.Core.Model.EF
         public string Symbol { get; set; }
     
         public virtual ICollection<Reservations> Reservations { get; set; }
+        public virtual ICollection<PropertyListing> PropertyListing { get; set; }
     }
 }

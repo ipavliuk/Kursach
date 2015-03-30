@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="RentApartmentsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="RentApartmentsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="_Amenities">
           <Key>
             <PropertyRef Name="id" />
@@ -19,8 +19,8 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IsoCode" Type="varchar" MaxLength="2" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="IsoCode" Type="nvarchar" MaxLength="2" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
         </EntityType>
         <EntityType Name="_Currency">
           <Key>
@@ -37,8 +37,8 @@
             <PropertyRef Name="RoleId" />
           </Key>
           <Property Name="RoleId" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="RoleName" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="RoleDescription" Type="varchar" MaxLength="40" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="RoleDescription" Type="nvarchar" MaxLength="40" />
         </EntityType>
         <EntityType Name="Account">
           <Key>
@@ -58,9 +58,8 @@
           <Property Name="Mobile" Type="nvarchar" MaxLength="15" />
           <Property Name="Gender" Type="tinyint" />
           <Property Name="PostalCode" Type="nvarchar" MaxLength="255" />
-          <Property Name="Language" Type="int" />
           <Property Name="IsValidated" Type="bit" Nullable="false" />
-          <Property Name="ImageSourceId" Type="nvarchar" MaxLength="255" />
+          <Property Name="PictureUrl" Type="nvarchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="GuestReviews">
           <Key>
@@ -106,6 +105,7 @@
           <Property Name="State2" Type="nvarchar" MaxLength="255" />
           <Property Name="Zip" Type="nvarchar" MaxLength="10" />
           <Property Name="FK__Country" Type="int" Nullable="false" />
+          <Property Name="Currency" Type="int" />
         </EntityType>
         <EntityType Name="PropertyListing__Amenities">
           <Key>
@@ -185,6 +185,18 @@
             </Principal>
             <Dependent Role="Messages">
               <PropertyRef Name="FK_Account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKPropertyLi101343">
+          <End Role="_Currency" Type="Self._Currency" Multiplicity="0..1" />
+          <End Role="PropertyListing" Type="Self.PropertyListing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="_Currency">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PropertyListing">
+              <PropertyRef Name="Currency" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -303,6 +315,10 @@
             <End Role="Account" EntitySet="Account" />
             <End Role="Messages" EntitySet="Messages" />
           </AssociationSet>
+          <AssociationSet Name="FKPropertyLi101343" Association="Self.FKPropertyLi101343">
+            <End Role="_Currency" EntitySet="_Currency" />
+            <End Role="PropertyListing" EntitySet="PropertyListing" />
+          </AssociationSet>
           <AssociationSet Name="FKPropertyLi611631" Association="Self.FKPropertyLi611631">
             <End Role="_Amenities" EntitySet="_Amenities" />
             <End Role="PropertyListing__Amenities" EntitySet="PropertyListing__Amenities" />
@@ -332,8 +348,7 @@
             <End Role="Reservations" EntitySet="Reservations" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="RentApartmentsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -352,8 +367,8 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IsoCode" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IsoCode" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Account" Relationship="Self.FKAccount816800" FromRole="C_Country" ToRole="Account" />
           <NavigationProperty Name="PropertyListing" Relationship="Self.FKPropertyLi968374" FromRole="C_Country" ToRole="PropertyListing" />
         </EntityType>
@@ -367,14 +382,15 @@
           <Property Name="Code" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Symbol" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Reservations" Relationship="Self.FKReservatio101343" FromRole="C_Currency" ToRole="Reservations" />
+          <NavigationProperty Name="PropertyListing" Relationship="RentApartmentsModel.FKPropertyLi101343" FromRole="C_Currency" ToRole="PropertyListing" />
         </EntityType>
         <EntityType Name="C_Roles">
           <Key>
             <PropertyRef Name="RoleId" />
           </Key>
           <Property Name="RoleId" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RoleName" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="RoleDescription" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="RoleName" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RoleDescription" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Account" Relationship="Self.FKAccount860859" FromRole="C_Roles" ToRole="Account" />
         </EntityType>
         <EntityType Name="Account">
@@ -395,15 +411,14 @@
           <Property Name="Mobile" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="Gender" Type="Byte" />
           <Property Name="PostalCode" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Language" Type="Int32" />
           <Property Name="IsValidated" Type="Boolean" Nullable="false" />
-          <Property Name="ImageSourceId" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="C_Country" Relationship="Self.FKAccount816800" FromRole="Account" ToRole="C_Country" />
           <NavigationProperty Name="C_Roles" Relationship="Self.FKAccount860859" FromRole="Account" ToRole="C_Roles" />
           <NavigationProperty Name="GuestReviews" Relationship="Self.FKGuestRevie904213" FromRole="Account" ToRole="GuestReviews" />
           <NavigationProperty Name="Messages" Relationship="Self.FKMessages695479" FromRole="Account" ToRole="Messages" />
           <NavigationProperty Name="PropertyListing" Relationship="Self.FKPropertyLi96721" FromRole="Account" ToRole="PropertyListing" />
           <NavigationProperty Name="Reservations" Relationship="Self.FKReservatio820773" FromRole="Account" ToRole="Reservations" />
+          <Property Name="PictureUrl" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="GuestReviews">
           <Key>
@@ -457,6 +472,8 @@
           <NavigationProperty Name="GuestReviews" Relationship="Self.FKGuestRevie649365" FromRole="PropertyListing" ToRole="GuestReviews" />
           <NavigationProperty Name="Reservations" Relationship="Self.FKReservatio405665" FromRole="PropertyListing" ToRole="Reservations" />
           <NavigationProperty Name="C_Amenities" Relationship="Self.PropertyListing__Amenities" FromRole="PropertyListing" ToRole="C_Amenities" />
+          <Property Name="Currency" Type="Int32" />
+          <NavigationProperty Name="C_Currency" Relationship="RentApartmentsModel.FKPropertyLi101343" FromRole="PropertyListing" ToRole="C_Currency" />
         </EntityType>
         <EntityType Name="Reservations">
           <Key>
@@ -652,7 +669,23 @@
             <End Role="C_Amenities" EntitySet="C_Amenities" />
             <End Role="PropertyListing" EntitySet="PropertyListing" />
           </AssociationSet>
+          <AssociationSet Name="FKPropertyLi101343" Association="RentApartmentsModel.FKPropertyLi101343">
+            <End Role="C_Currency" EntitySet="C_Currency" />
+            <End Role="PropertyListing" EntitySet="PropertyListing" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FKPropertyLi101343">
+          <End Type="RentApartmentsModel.C_Currency" Role="C_Currency" Multiplicity="0..1" />
+          <End Type="RentApartmentsModel.PropertyListing" Role="PropertyListing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_Currency">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PropertyListing">
+              <PropertyRef Name="Currency" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -701,6 +734,7 @@
           <EntitySetMapping Name="Account">
             <EntityTypeMapping TypeName="RentApartmentsModel.Account">
               <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="PictureUrl" ColumnName="PictureUrl" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="AccountId" ColumnName="AccountId" />
                 <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
@@ -715,9 +749,7 @@
                 <ScalarProperty Name="Mobile" ColumnName="Mobile" />
                 <ScalarProperty Name="Gender" ColumnName="Gender" />
                 <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
-                <ScalarProperty Name="Language" ColumnName="Language" />
                 <ScalarProperty Name="IsValidated" ColumnName="IsValidated" />
-                <ScalarProperty Name="ImageSourceId" ColumnName="ImageSourceId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -746,6 +778,7 @@
           <EntitySetMapping Name="PropertyListing">
             <EntityTypeMapping TypeName="RentApartmentsModel.PropertyListing">
               <MappingFragment StoreEntitySet="PropertyListing">
+                <ScalarProperty Name="Currency" ColumnName="Currency" />
                 <ScalarProperty Name="PropertyId" ColumnName="PropertyId" />
                 <ScalarProperty Name="FK_Account" ColumnName="FK_Account" />
                 <ScalarProperty Name="State" ColumnName="State" />

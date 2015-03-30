@@ -59,10 +59,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountsCreator.cs" />
-    <Compile Include="ApiDataLoader.cs" />
+    <Compile Include="DataLoaders\ApiDataLoader.cs" />
     <Compile Include="DataCreator.cs" />
     <Compile Include="DO\GeneratedData.cs" />
-    <Compile Include="FileLoader.cs" />
+    <Compile Include="DataLoaders\FileLoader.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PropertyCreator.cs" />

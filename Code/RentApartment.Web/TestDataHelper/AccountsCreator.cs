@@ -50,6 +50,7 @@ namespace TestDataHelper
                         PostalCode = (string)user["location"]["zip"],
                         Mobile = (string)user["cell"],
                         PasswordHash = (string)user["md5"],
+						PictureUrl = (string)user["picture"]["medium"],
                         FK__Roles = 1,
                         FK__Country = 187 // USA
                         //item[]

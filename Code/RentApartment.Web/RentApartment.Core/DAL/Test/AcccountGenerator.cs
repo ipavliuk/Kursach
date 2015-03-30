@@ -27,7 +27,6 @@ namespace RentApartment.Core.DAL.Test
 				Address = "600-ritchya st 55, ap.12",
 				PostalCode = "21000",
 				IsEmailConfirmed = false,
-				Language = 5,
 				FK__Roles = 1
 			};
 		}
