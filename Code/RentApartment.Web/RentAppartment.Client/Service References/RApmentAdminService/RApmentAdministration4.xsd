@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Entities" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Entities" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:61870/RApmentAdministration.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Response" />
+  <xs:complexType name="ArrayOfPropertyDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PropertyDto" nillable="true" type="tns:PropertyDto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPropertyDto" nillable="true" type="tns:ArrayOfPropertyDto" />
+  <xs:complexType name="PropertyDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Accommodates" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="Address1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Address2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Bathroom" type="xs:int" />
+      <xs:element minOccurs="0" name="BedRoom" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="City" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Country" type="xs:int" />
+      <xs:element minOccurs="0" name="GreatSummary" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GreatTitle" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HomeType" type="xs:unsignedByte" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Response" minOccurs="0" name="Owner" nillable="true" type="q1:AccountDto" />
+      <xs:element minOccurs="0" name="Photos" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PricePerMonth" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="PricePerNight" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="PricePerWeek" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="PropertyId" type="xs:int" />
+      <xs:element minOccurs="0" name="RoomType" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="State" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="State2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Zip" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PropertyDto" nillable="true" type="tns:PropertyDto" />
+</xs:schema>

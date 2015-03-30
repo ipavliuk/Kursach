@@ -36,6 +36,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -53,8 +55,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ViewModels\PropertyListingViewModel.cs" />
-    <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="DataAccess\AppartmentsRepository.cs" />
+    <Compile Include="Service References\RApmentAdminService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\RelayCommand.cs" />
+    <Compile Include="Utils\RepositoryFactory.cs" />
+    <Compile Include="ViewModel\PropertyListingViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="Views\PropertyListingView.xaml.cs">
       <DependentUpon>PropertyListingView.xaml</DependentUpon>
     </Compile>
@@ -98,11 +108,53 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Service References\RApmentAdminService\RApmentAdministration.wsdl" />
+    <None Include="Service References\RApmentAdminService\RApmentAdministration.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\RApmentAdminService\RApmentAdministration1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\RApmentAdminService\RApmentAdministration2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\RApmentAdminService\RApmentAdministration3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\RApmentAdminService\RApmentAdministration4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\RApmentAdminService\RentAppartment.Client.RApmentAdminService.GetPropertyListingResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\RApmentAdminService\RentAppartment.Client.RApmentAdminService.GetReservationsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\RApmentAdminService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\RApmentAdminService\RApmentAdministration.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\RApmentAdminService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\RApmentAdminService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\RApmentAdminService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -27,6 +27,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDataHelper", "TestDataHelper\TestDataHelper.csproj", "{0E83C4DD-64F5-47FE-8712-872AECA68E39}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentAppartment.Client", "RentAppartment.Client\RentAppartment.Client.csproj", "{0E8FC375-C76D-416B-AD76-B6005462F684}"
+	ProjectSection(ProjectDependencies) = postProject
+		{26BD12F3-F6AC-462F-9C12-3E60827E9E2B} = {26BD12F3-F6AC-462F-9C12-3E60827E9E2B}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

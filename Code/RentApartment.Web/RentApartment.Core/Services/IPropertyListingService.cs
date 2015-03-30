@@ -7,7 +7,7 @@ using RentApartment.Core.Model.EF;
 
 namespace RentApartment.Core.Infrastructure
 {
-	interface IAccountService
+    interface IPropertyListingService
 	{
 		Account Authenticate(string login, string password);
 
@@ -22,7 +22,7 @@ namespace RentApartment.Core.Infrastructure
 		IEnumerable<Reservations> GetReservationsByDate(DateTime startDate, DateTime endDate, int status);
 
 		IEnumerable<Reservations> GetReservationsByAccount(int accountId);
-
+        IEnumerable<PropertyListing> GetPropertyListingByFilter(string city, int? homeType, int? roomNumbers);
 		IEnumerable<C_Country> GetCountries();
 		IEnumerable<C_Roles> GetRoles();
 		IEnumerable<C_Currency> GetCurrencies();

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RentApartment.Service.DataContract.Response;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -12,8 +13,9 @@ namespace RentApartment.Service.DataContract.Entities
 		[DataMember]
 		public int PropertyId { get; set; }
 
+
 		[DataMember]
-		public int AccountId { get; set; }
+        public AccountDto Owner { get; set; }
 
 		[DataMember]
 		public byte State { get; set; }

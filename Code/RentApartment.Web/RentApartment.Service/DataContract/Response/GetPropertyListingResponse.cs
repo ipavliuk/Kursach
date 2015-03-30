@@ -9,9 +9,9 @@ using RentApartment.Service.DataContract.Entities;
 namespace RentApartment.Service.DataContract.Response
 {
 	[DataContract]
-	public class GetPropertiesResponse : BaseResponse
+	public class GetPropertyListingResponse : BaseResponse
 	{
 		[DataMember]
-		public List<PropertyDto> Properties { get; set; }
+		public List<PropertyDto> PropertListing { get; set; }
 	}
 }

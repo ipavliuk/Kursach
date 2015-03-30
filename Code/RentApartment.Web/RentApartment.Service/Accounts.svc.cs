@@ -35,7 +35,7 @@ namespace RentApartment.Service
 			{
 				response.ErrorId = (int)RApmentErrors.Ok;
 
-				Account acc = AdminManager.Instance.Authenticate(request.Login, request.Password);
+				Account acc = RentApartmentManager.Instance.Authenticate(request.Login, request.Password);
 
 				response.AuthenticationResult = acc != null && acc.id > 0;
 				response.AccountProfile = TranslateAccountEntityToAccount(acc);
@@ -72,7 +72,7 @@ namespace RentApartment.Service
 			{
 				response.ErrorId = (int)RApmentErrors.Ok;
 
-				Account acc = AdminManager.Instance.GetAccountById(request.AccountId);
+				Account acc = RentApartmentManager.Instance.GetAccountById(request.AccountId);
 				response.AccountProfile = TranslateAccountEntityToAccount(acc);
 
 			}

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="de1d224e-8f77-44a1-bfee-428e3c5948c1" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:61870/RApmentAdministration.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="RApmentAdministration.disco" MetadataType="Disco" ID="e31ceab2-c18a-438d-8039-5c5dd07e8778" SourceId="1" SourceUrl="http://localhost:61870/RApmentAdministration.svc?disco" />
+    <MetadataFile FileName="RApmentAdministration.xsd" MetadataType="Schema" ID="54ee88eb-0d48-40ec-bfb8-0742e737d798" SourceId="1" SourceUrl="http://localhost:61870/RApmentAdministration.svc?xsd=xsd0" />
+    <MetadataFile FileName="RApmentAdministration1.xsd" MetadataType="Schema" ID="fd8b4609-9f41-4df9-b4ea-78aaf76781e7" SourceId="1" SourceUrl="http://localhost:61870/RApmentAdministration.svc?xsd=xsd1" />
+    <MetadataFile FileName="RApmentAdministration2.xsd" MetadataType="Schema" ID="7fe474aa-216c-4522-a92a-1b099a2b6c23" SourceId="1" SourceUrl="http://localhost:61870/RApmentAdministration.svc?xsd=xsd2" />
+    <MetadataFile FileName="RApmentAdministration3.xsd" MetadataType="Schema" ID="db35f336-96b8-407f-a3c9-ad109b7c691c" SourceId="1" SourceUrl="http://localhost:61870/RApmentAdministration.svc?xsd=xsd3" />
+    <MetadataFile FileName="RApmentAdministration4.xsd" MetadataType="Schema" ID="49d84637-a9f4-485d-9276-c827e76f6c00" SourceId="1" SourceUrl="http://localhost:61870/RApmentAdministration.svc?xsd=xsd4" />
+    <MetadataFile FileName="RApmentAdministration.wsdl" MetadataType="Wsdl" ID="16aa178e-6ba1-4668-b319-0b43c7283db0" SourceId="1" SourceUrl="http://localhost:61870/RApmentAdministration.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -12,9 +12,9 @@ using RentApartment.Core.Model.EF;
 
 namespace RentApartment.Core.Infrastructure
 {
-	internal class AdministrationService : IAccountService, IDisposable
+    internal class PropertyListingService : IPropertyListingService, IDisposable
 	{
-		private static readonly ILog log = LogManager.GetLogger(typeof(AdministrationService));
+		private static readonly ILog log = LogManager.GetLogger(typeof(PropertyListingService));
 
 		private readonly RentApartmentsContext _db = new RentApartmentsContext();
 
@@ -62,9 +62,38 @@ namespace RentApartment.Core.Infrastructure
 				log.Error("Exception when get property by account Id => ", ex);
 			}
 
-			return null;
+            return new List<PropertyListing>();
 		}
+        public IEnumerable<PropertyListing> GetPropertyByPropertyId(int propertyId)
+        {
+            try
+            {
+                return _db.PropertyListing.Where(prop => prop.PropertyId == propertyId);
+            }
+            catch (Exception ex)
+            {
+                log.Error("Exception when get property by property Id => ", ex);
+            }
 
+            return new List<PropertyListing>();
+        }
+
+        public IEnumerable<PropertyListing> GetPropertyListingByFilter(string city, int? homeType, int? roomNumbers)
+        {
+            try
+            {
+                var loc = _db.PropertyListing;//.Where(prop => prop.City == city);
+                var type = loc.Where(p => p.HomeType == homeType);
+                var bed = type.Where(p=>p.BedRoom == roomNumbers);
+                return loc;
+            }
+            catch (Exception ex)
+            {
+                log.Error("Exception when get property by property Id => ", ex);
+            }
+
+            return new List<PropertyListing>();
+        }
 		public IEnumerable<PropertyListing> GetPropertyByCityCountry(string city, int country)
 		{
 			try
@@ -76,10 +105,23 @@ namespace RentApartment.Core.Infrastructure
 				log.Error("Exception when get property by city and country => ", ex);
 			}
 
-			return null;
+            return new List<PropertyListing>();
 
 		}
+        public IEnumerable<PropertyListing> GetPropertyByCity(string city)
+        {
+            try
+            {
+                return _db.PropertyListing.Where(prop => prop.City == city);
+            }
+            catch (Exception ex)
+            {
+                log.Error("Exception when get property by city => ", ex);
+            }
 
+            return new List<PropertyListing>();
+
+        }
 		/*public IEnumerable<PropertyListing> GetPropertyListings()
 		{
 
@@ -96,7 +138,7 @@ namespace RentApartment.Core.Infrastructure
 			{
 				log.Error("Exception when get reservations by date  => ", ex);
 			}
-			return null;
+            return new List<Reservations>();
 		}
 
 		public IEnumerable<Reservations> GetReservationsByAccount(int accountId)
@@ -110,7 +152,7 @@ namespace RentApartment.Core.Infrastructure
 				log.Error("Exception when get reservations by date  => ", ex);
 			}
 
-			return null;
+            return new List<Reservations>();
 		}
 
 		public void Dispose()

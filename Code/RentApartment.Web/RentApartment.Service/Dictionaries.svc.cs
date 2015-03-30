@@ -32,7 +32,7 @@ namespace RentApartment.Service
 			{
 				response.ErrorId = (int)RApmentErrors.Ok;
 
-				IEnumerable<C_Country> countries = AdminManager.Instance.GetCountries();
+				IEnumerable<C_Country> countries = RentApartmentManager.Instance.GetCountries();
 				//foreach (var item in countries)
 				//{
 				//	var country = new CountryDto()
@@ -64,7 +64,7 @@ namespace RentApartment.Service
 			{
 				response.ErrorId = (int)RApmentErrors.Ok;
 
-				IEnumerable<C_Roles> roles = AdminManager.Instance.GetRoles();
+				IEnumerable<C_Roles> roles = RentApartmentManager.Instance.GetRoles();
 				//foreach (var item in roles)
 				//{
 				//	var role = new Role()
@@ -96,7 +96,7 @@ namespace RentApartment.Service
 			{
 				response.ErrorId = (int)RApmentErrors.Ok;
 
-				IEnumerable<C_Currency> currencies = AdminManager.Instance.GetCurrencies();
+				IEnumerable<C_Currency> currencies = RentApartmentManager.Instance.GetCurrencies();
 
 				//foreach (var item in currencies)
 				//{
@@ -132,7 +132,7 @@ namespace RentApartment.Service
 			{
 				response.ErrorId = (int)RApmentErrors.Ok;
 
-				IEnumerable<C_Amenities> amenities = AdminManager.Instance.GetAmenities();
+				IEnumerable<C_Amenities> amenities = RentApartmentManager.Instance.GetAmenities();
 
 				//foreach (var item in amenities)
 				//{

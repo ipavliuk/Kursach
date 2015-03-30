@@ -6,15 +6,21 @@ using System.Web;
 
 namespace RentApartment.Service.DataContract.Request
 {
-	public class GetPropertiesRequest
+    public class GetPropertyListingRequest : PaginationRequest
 	{
 		[DataMember]
-		public int? AccountId { get; set; }
+		public int? OwnerId { get; set; }
 
 		[DataMember]
 		public string City { get; set; }
 
-		[DataMember]
-		public int Country { get; set; }
+        [DataMember]
+        public int? PropertyId { get; set; }
+
+        [DataMember]
+        public int? HomeType { get; set; }
+
+        [DataMember]
+        public int? RoomNumbers { get; set; }
 	}
 }

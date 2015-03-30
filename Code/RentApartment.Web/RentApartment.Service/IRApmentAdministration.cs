@@ -13,7 +13,7 @@ namespace RentApartment.Service
 	public interface IRApmentAdministration
 	{
 		[OperationContract]
-		GetPropertiesResponse GetProperties(GetPropertiesRequest request);
+		GetPropertyListingResponse GetPropertyListing(GetPropertyListingRequest request);
 
 		[OperationContract]
 		GetReservationsResponse GetReservations(GetReservationsRequest request);

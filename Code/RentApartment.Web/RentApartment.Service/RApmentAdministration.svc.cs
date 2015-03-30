@@ -20,11 +20,12 @@ namespace RentApartment.Service
 		{
 			Mapper.CreateMap<PropertyListing, PropertyDto>();
 			Mapper.CreateMap<Reservations, ReservationDto>();
+            Mapper.CreateMap<Account, AccountDto>();
 		}
 
-		public GetPropertiesResponse GetProperties(GetPropertiesRequest request)
+		public GetPropertyListingResponse GetPropertyListing(GetPropertyListingRequest request)
 		{
-			var response = new GetPropertiesResponse();
+			var response = new GetPropertyListingResponse();
 
 			
 			if (request == null)
@@ -37,17 +38,12 @@ namespace RentApartment.Service
 			{
 				response.ErrorId = (int)RApmentErrors.Ok;
 
-				IEnumerable<PropertyListing> propertyListings = (request.AccountId != null) 
-													? AdminManager.Instance.GetPropertyByAccount((int)request.AccountId)
-													: AdminManager.Instance.GetPropertyByCityCountry(request.City, 
-																								request.Country);
+                List<PropertyListing> propertyListings = 
+                    RentApartmentManager.Instance.LoadPropertyListingByFilter(request.City, request.OwnerId, 
+                                                    request.PropertyId, request.HomeType, request.RoomNumbers).ToList();
 
-				//foreach (var item in propertyListings)
-				//{
-				//	PropertyDto property = TranslatePropertyListingEntityToProperty(item);
-				//	response.Properties.Add(property);
-				//}
-				response.Properties = Mapper.Map<List<PropertyListing>, List<PropertyDto>>(propertyListings.ToList());
+			
+				response.PropertListing = Mapper.Map<List<PropertyListing>, List<PropertyDto>>(propertyListings.ToList());
 
 			}
 			catch (Exception ex)
@@ -75,7 +71,7 @@ namespace RentApartment.Service
 			{
 				response.ErrorId = (int)RApmentErrors.Ok;
 				IEnumerable<Reservations> reservations = 
-					AdminManager.Instance.GetReservations(request.AccountId, request.ReservationStart, 
+					RentApartmentManager.Instance.GetReservations(request.AccountId, request.ReservationStart, 
 															request.ReservationEnd, request.ReservationStatus);
 
 				//foreach (var item in reservations)
