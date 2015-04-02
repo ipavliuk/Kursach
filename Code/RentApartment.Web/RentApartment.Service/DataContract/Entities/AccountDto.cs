@@ -54,6 +54,6 @@ namespace RentApartment.Service.DataContract.Response
 		public bool IsValidated { get; set; }
 
 		[DataMember]
-		public string ImageSourceId { get; set; }
+		public string PictureUrl { get; set; }
 	}
 }

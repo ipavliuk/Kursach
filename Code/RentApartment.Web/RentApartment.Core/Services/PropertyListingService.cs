@@ -82,11 +82,11 @@ namespace RentApartment.Core.Infrastructure
         {
             try
             {
-                var loc = _db.PropertyListing;//.Where(prop => prop.City == city);
-                var type = loc.Where(p => p.HomeType == homeType);
-                var bed = type.Where(p=>p.BedRoom == roomNumbers);
-                return loc;
-            }
+                var loc = _db.PropertyListing.Where(prop => prop.City == city)
+							.Where(p => homeType != null && p.HomeType == homeType || homeType == null)
+							.Where(p=> roomNumbers != null && p.BedRoom == roomNumbers || roomNumbers ==null);
+				return loc;
+            }	
             catch (Exception ex)
             {
                 log.Error("Exception when get property by property Id => ", ex);

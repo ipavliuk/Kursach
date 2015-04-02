@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using RentAppartment.Client.ViewModels;
 
 namespace RentAppartment.Client
 {
@@ -24,5 +25,12 @@ namespace RentAppartment.Client
         {
             InitializeComponent();
         }
+
+		public override void OnApplyTemplate()
+		{
+			base.OnApplyTemplate();
+			//Create MainViewModel
+			DataContext = new PropertyListingViewModel();
+		}
     }
 }

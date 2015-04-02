@@ -29,8 +29,8 @@ namespace RentAppartment.Client
         private void SetupService()
         {
             RepositoryFactory.Instance.Service = new  RApmentAdministrationClient();
-            var rep = RepositoryFactory.Instance.GetApartmentRepository();
-            var list = rep.GetProperties("Phoenix", null, null, null, null);
+			//var rep = RepositoryFactory.Instance.GetApartmentRepository();
+			//var list = rep.GetProperties("Phoenix", null, null, null, null);
         }
 
         protected override void OnExit(ExitEventArgs e)

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RentAppartment.Client.DataAccess
 {
-    public class AppartmentsRepository
+	public class AppartmentsRepository : IDisposable
     {
         private readonly IRApmentAdministration _service;
         public AppartmentsRepository(IRApmentAdministration service)
@@ -15,13 +15,13 @@ namespace RentAppartment.Client.DataAccess
             _service = service;
         }
 
-        public IList<PropertyDto> GetProperties(string city, int? ownerId, 
+        public List<PropertyDto> GetPropertyListings(string city, int? ownerId, 
                                                 int? propertyId, int? homeType, int? roomNumbers )
         {
 
             List<PropertyDto> properties = new List<PropertyDto>();
             try 
-	        {	        
+	        {
 		        GetPropertyListingRequest request = new GetPropertyListingRequest()
                 {
                     City = city,
@@ -34,7 +34,7 @@ namespace RentAppartment.Client.DataAccess
                 GetPropertyListingResponse response = _service.GetPropertyListing(request);
                 if (response != null )
                 {
-                    if (response.ErrorId != 0)
+                    if (response.ErrorId == 0)
                     {
                         properties = response.PropertListing.ToList();
                     }
@@ -60,5 +60,10 @@ namespace RentAppartment.Client.DataAccess
         //List<> GetPropertyListing()
         //{
         //}
-    }
+
+		public void Dispose()
+		{
+			
+		}
+	}
 }

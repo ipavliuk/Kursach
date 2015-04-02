@@ -15,7 +15,7 @@ namespace RentApartment.Service.DataContract.Entities
 
 
 		[DataMember]
-        public AccountDto Owner { get; set; }
+        public AccountDto Account { get; set; }
 
 		[DataMember]
 		public byte State { get; set; }

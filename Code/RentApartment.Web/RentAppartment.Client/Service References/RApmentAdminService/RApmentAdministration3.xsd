@@ -27,12 +27,12 @@
       <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Gender" nillable="true" type="xs:unsignedByte" />
-      <xs:element minOccurs="0" name="ImageSourceId" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="IsEmailConfirmed" type="xs:boolean" />
       <xs:element minOccurs="0" name="IsValidated" type="xs:boolean" />
       <xs:element minOccurs="0" name="Language" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Mobile" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PictureUrl" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="PostalCode" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Roles" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="id" type="xs:int" />

@@ -56,11 +56,13 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DataAccess\AppartmentsRepository.cs" />
+    <Compile Include="DataAccess\DictionaryRepository.cs" />
     <Compile Include="Service References\RApmentAdminService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Utils\BitmapImageConverter.cs" />
     <Compile Include="Utils\RelayCommand.cs" />
     <Compile Include="Utils\RepositoryFactory.cs" />
     <Compile Include="ViewModel\PropertyListingViewModel.cs" />

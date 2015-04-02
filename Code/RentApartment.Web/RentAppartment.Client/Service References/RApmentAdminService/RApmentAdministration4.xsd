@@ -10,6 +10,7 @@
   <xs:complexType name="PropertyDto">
     <xs:sequence>
       <xs:element minOccurs="0" name="Accommodates" type="xs:unsignedByte" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Response" minOccurs="0" name="Account" nillable="true" type="q1:AccountDto" />
       <xs:element minOccurs="0" name="Address1" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Address2" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Bathroom" type="xs:int" />
@@ -19,7 +20,6 @@
       <xs:element minOccurs="0" name="GreatSummary" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="GreatTitle" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="HomeType" type="xs:unsignedByte" />
-      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Response" minOccurs="0" name="Owner" nillable="true" type="q1:AccountDto" />
       <xs:element minOccurs="0" name="Photos" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="PricePerMonth" nillable="true" type="xs:long" />
       <xs:element minOccurs="0" name="PricePerNight" nillable="true" type="xs:long" />
