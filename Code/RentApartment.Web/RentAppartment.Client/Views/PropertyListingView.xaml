@@ -86,7 +86,7 @@
                     <DataTemplate>
                         
                         <Border BorderThickness="0" Padding="10">
-                            
+
                             <StackPanel Orientation="Vertical">
                                 
                                 <!--<Image DockPanel.Dock="Left" Source="{Binding Account.PictureUrl, Converter={StaticResource BitmapImageConverter}}" Margin="10" />-->
