@@ -132,7 +132,7 @@ namespace RentAppartment.Client.ViewModels
 				}
 			}
 		}
-		//command
+		//commands
 		private ICommand searchCommand;
 		public ICommand SearchCommand
 		{
@@ -140,13 +140,25 @@ namespace RentAppartment.Client.ViewModels
 			{
 				if (this.searchCommand == null)
 				{
-					this.searchCommand = new RelayCommand(o => this.SelectAction());
+					this.searchCommand = new RelayCommand(o => this.SearchAction());
 				}
 				return this.searchCommand;
 			}
 		}
+        private ICommand selectCommand;
+        public ICommand SelectCommand
+        {
+            get
+            {
+                if (this.selectCommand == null)
+                {
+                    this.selectCommand = new RelayCommand(o => this.SelectAction());
+                }
+                return this.selectCommand;
+            }
+        }
 
-		private void SelectAction()
+		private void SearchAction()
 		{
 			
 			//CarViewModel viewModel = this.CreateCarViewModel();
@@ -164,6 +176,10 @@ namespace RentAppartment.Client.ViewModels
 			//ModelCache.Instance.OnRentalOrdersChanged(this, null);
 		}
 
+        private void SelectAction()
+        {
+            // Create view Model and start dialog
+        }
 
 	}
 }

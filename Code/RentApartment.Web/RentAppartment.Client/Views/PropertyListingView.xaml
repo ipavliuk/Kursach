@@ -72,6 +72,15 @@
             </StackPanel>
             <DataGrid Name="dgAppartments" Width="638" Margin="152,10,155,10" SelectionMode="Single" ItemsSource="{Binding ProperyListing}" SelectedItem="{Binding SelectedProperty}">
                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="Info">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Style="{DynamicResource InfoButtonStyle}"
+                                   Command="{Binding SelectCommand}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                   
                     <DataGridTextColumn Header="Prop. Id" Binding="{Binding PropertyId}"/>
                     <DataGridTextColumn Header="Price Per Night" Binding="{Binding PricePerNight}"/>
                     <DataGridTextColumn Header="BedRoom" Binding="{Binding BedRoom}"/>
