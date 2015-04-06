@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RentAppartment.Client.ViewModel
+namespace RentAppartment.Client.ViewModels
 {
     public class ApartmentViewModel : ViewModelBase
     {

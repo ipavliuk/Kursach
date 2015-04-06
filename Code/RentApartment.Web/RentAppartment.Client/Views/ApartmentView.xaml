@@ -13,7 +13,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Місто :" Grid.Row="1" Grid.Column="0"  FontSize="14" VerticalAlignment="Center" Margin="0,7,5,7" Height="21"/>
+        <TextBlock Text="{Binding SelectedAppartment.GreatTitle}" Grid.Row="1" Grid.Column="0"  FontSize="1" VerticalAlignment="Center" Margin="0,7,5,7" Height="21"/>
         
     </Grid>
 </Window>
