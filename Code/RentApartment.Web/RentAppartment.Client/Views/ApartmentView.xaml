@@ -1,0 +1,19 @@
+﻿<Window x:Class="RentAppartment.Client.Views.ApartmentView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="ApartmentView" Height="449" Width="794" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Місто :" Grid.Row="1" Grid.Column="0"  FontSize="14" VerticalAlignment="Center" Margin="0,7,5,7" Height="21"/>
+        
+    </Grid>
+</Window>

@@ -8,6 +8,10 @@
         <DataTemplate DataType="{x:Type viewModels:PropertyListingViewModel}">
             <views:PropertyListingView/>
         </DataTemplate>
+        
+        <DataTemplate DataType="{x:Type viewModels:ApartmentViewModel}">
+            <views:ApartmentView/>
+        </DataTemplate>
 
         <Style x:Key="InfoButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="Width" Value="30" />
