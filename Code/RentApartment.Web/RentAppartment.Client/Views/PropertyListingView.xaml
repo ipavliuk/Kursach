@@ -5,9 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:utils="clr-namespace:RentAppartment.Client.Utils"
              mc:Ignorable="d">
-    <UserControl.Resources>
+    <!--<UserControl.Resources>
         <utils:BitmapImageConverter x:Key="BitmapImageConverter" />
-    </UserControl.Resources>
+    </UserControl.Resources>-->
     <Grid Width="1000">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -70,13 +70,14 @@
             <TextBlock Text="Appartments" FontSize="18" Foreground="#FF0F232F"/>
             <StackPanel Orientation="Vertical">
             </StackPanel>
-            <DataGrid Name="dgAppartments" Width="638" Margin="152,10,155,10" SelectionMode="Single" ItemsSource="{Binding ProperyListing}" SelectedItem="{Binding SelectedProperty}">
+            <DataGrid Name="dgAppartments" Width="638" Margin="152,10,155,10" SelectionMode="Single" 
+                      ItemsSource="{Binding ProperyListing}" SelectedItem="{Binding SelectedProperty}" 
+                       AutoGenerateColumns="False">
                <DataGrid.Columns>
                     <DataGridTemplateColumn Header="Info">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Style="{DynamicResource InfoButtonStyle}"
-                                   Command="{Binding SelectCommand}" />
+                                <Button Style="{DynamicResource InfoButtonStyle}" Command="{Binding DataContext.SelectCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}, Mode=FindAncestor}}" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
@@ -98,7 +99,7 @@
 
                             <StackPanel Orientation="Vertical">
                                 
-                                <!--<Image DockPanel.Dock="Left" Source="{Binding Account.PictureUrl, Converter={StaticResource BitmapImageConverter}}" Margin="10" />-->
+                                <Image DockPanel.Dock="Left" Source="{Binding Account.PictureUrl}" Margin="10" />
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock FontSize="12" Text="Email: " VerticalAlignment="Center" />
                                     <TextBlock FontSize="16" Foreground="MidnightBlue" Text="{Binding Account.Email}" VerticalAlignment="Center" />

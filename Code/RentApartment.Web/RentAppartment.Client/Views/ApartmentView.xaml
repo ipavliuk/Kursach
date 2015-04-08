@@ -4,12 +4,12 @@
         Title="ApartmentView" Height="449" Width="650" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -17,13 +17,14 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Text="{Binding SelectedAppartment.GreatTitle}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" FontSize="1" VerticalAlignment="Center" Margin="0,7,5,7" Height="21"/>
+        <!--<TextBlock Text="Заголовок" Grid.Row="0" Grid.Column="0" FontSize="16" Margin="5"/>-->
+        <TextBlock Text="{Binding SelectedAppartment.GreatTitle}" HorizontalAlignment ="Center" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" FontSize="12" VerticalAlignment="Center" Margin="0,7,5,7" Height="21"/>
         
         <!--HomeType-->
-        <TextBlock Text="Житло" Grid.Row="1" Grid.Column="0" FontSize="16" Margin="10"/>
+        <TextBlock Text="Житло" Grid.Row="1" Grid.Column="0" FontSize="16" Margin="5"/>
         
         <!--Amenities-->
-        <TextBlock Text="Зручності" Grid.Row="2" Grid.Column="0" FontSize="16" Margin="10"/>
+        <TextBlock Text="Зручності" Grid.Row="2" Grid.Column="0" FontSize="16" Margin="5"/>
 
         <StackPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="5">
             <Grid Background="Transparent">
@@ -112,26 +113,30 @@
             </Grid>
             
         </StackPanel>
+        
         <!--Prices-->
-        <TextBlock Text="Ціни" Grid.Row="3" Grid.Column="0" FontSize="16" Margin="10"/>
+        <TextBlock Text="Ціни" Grid.Row="3" Grid.Column="0" FontSize="16" Margin="5"/>
         <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Vertical">
             <StackPanel Orientation="Horizontal" Margin="5">
-                <TextBlock Text="Price per Night:" FontSize="12"/>
+                <TextBlock Text="Price per Night: " FontSize="12"/>
                 <TextBlock Text="{Binding SelectedAppartment.PricePerNight}" FontSize="12" FontWeight="Bold" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="5">
-                <TextBlock Text="Price per Week:" FontSize="12"/>
+                <TextBlock Text="Price per Week: " FontSize="12"/>
                 <TextBlock Text="{Binding SelectedAppartment.PricePerWeek}" FontSize="12" FontWeight="Bold"/>
             </StackPanel>
         </StackPanel>
         <!--PricePerMonth-->
         <StackPanel Grid.Row="3" Grid.Column="2" Orientation="Horizontal" Margin="5">
-            <TextBlock Text="Price per Month:" FontSize="12"/>
+            <TextBlock Text="Price per Month: " FontSize="12"/>
             <TextBlock Text="{Binding SelectedAppartment.PricePerMonth}" FontSize="12" FontWeight="Bold"/>
          </StackPanel>
         <!--Great description-->
-        <TextBlock Text="Опис" Grid.Row="4" Grid.Column="0" FontSize="16" Margin="10"/>
-        <TextBlock Text="{Binding SelectedAppartment.GreatSummary}" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" FontSize="14" Margin="10"/>
-        
+        <TextBlock Text="Опис" Grid.Row="4" Grid.Column="0" FontSize="16" Margin="5"/>
+        <TextBlock Text="{Binding SelectedAppartment.GreatSummary}" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" FontSize="14" Margin="5"/>
+
+        <!--Photos-->
+        <TextBlock Text="Зображення" Grid.Row="5" Grid.Column="0" FontSize="16" Margin="5"/>
     </Grid>
+    
 </Window>

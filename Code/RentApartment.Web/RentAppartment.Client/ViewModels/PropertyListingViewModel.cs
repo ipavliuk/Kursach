@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using RentAppartment.Client.RApmentAdminService;
 using RentAppartment.Client.Utils;
+using RentAppartment.Client.Views;
 
 
 namespace RentAppartment.Client.ViewModels
@@ -180,7 +181,11 @@ namespace RentAppartment.Client.ViewModels
         private void SelectAction()
         {
             // Create view Model and start dialog
-            ApartmentViewModel viewModel = new ApartmentViewModel(selectedProperty);
+			var view = new ApartmentView();
+	        view.DataContext = new ApartmentViewModel(selectedProperty);
+	        
+			view.Show();
+			
             //viewModel.View.ShowDialog();
         }
 
