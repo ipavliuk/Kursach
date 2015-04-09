@@ -70,7 +70,10 @@
             <TextBlock Text="Appartments" FontSize="18" Foreground="#FF0F232F"/>
             <StackPanel Orientation="Vertical">
             </StackPanel>
-            <DataGrid Name="dgAppartments" Width="638" Margin="152,10,155,10" SelectionMode="Single" 
+            <DataGrid Name="dgAppartments" RowStyle="{StaticResource RowStyleWithAlternation}"
+                      ColumnHeaderStyle="{StaticResource HeaderStyle}"
+                      CellStyle="{StaticResource CenterCellStyle}"
+                      Width="500" Margin="152,10,155,10" SelectionMode="Single" 
                       ItemsSource="{Binding ProperyListing}" SelectedItem="{Binding SelectedProperty}" 
                        AutoGenerateColumns="False">
                <DataGrid.Columns>

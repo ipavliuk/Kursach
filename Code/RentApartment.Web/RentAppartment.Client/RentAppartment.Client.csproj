@@ -72,13 +72,23 @@
     <Compile Include="Views\AccountsView.xaml.cs">
       <DependentUpon>AccountsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\AddApartmentView.xaml.cs">
+      <DependentUpon>AddApartmentView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ApartmentView.xaml.cs">
       <DependentUpon>ApartmentView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PropertyListingView.xaml.cs">
       <DependentUpon>PropertyListingView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ReservationsView.xaml.cs">
+      <DependentUpon>ReservationsView.xaml</DependentUpon>
+    </Compile>
     <Page Include="Views\AccountsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddApartmentView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -99,6 +109,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\PropertyListingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ReservationsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

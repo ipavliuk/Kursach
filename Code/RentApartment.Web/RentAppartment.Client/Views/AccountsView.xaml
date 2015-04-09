@@ -31,8 +31,11 @@
                     <TextBlock Text="Account Id :" Grid.Row="1" Grid.Column="0"  FontSize="14" VerticalAlignment="Center" Margin="0,7,5,7" Height="21"/>
                     <TextBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Height="22" Margin="11,4" Text="{Binding Location}"/>
 
-                    <TextBlock Text="Місто:" Grid.Row="1" Grid.Column="2"  FontSize="14" VerticalAlignment="Center" Margin="0,7,5,7" Height="21"/>
-                    <TextBox Grid.Row="1" Grid.Column="3"  Margin=" 11,4" Width="50" />
+                    <TextBlock Text="Name: " Grid.Row="1" Grid.Column="2"  FontSize="14" VerticalAlignment="Center" Margin="0,7,5,7" Height="21"/>
+                    <TextBox Grid.Row="1" Grid.Column="3"  Margin=" 11,4" Height="22" />
+
+                    <TextBlock Text="Місто: " Grid.Row="2" Grid.Column="0"  FontSize="14" VerticalAlignment="Center" Margin="0,7,5,7" Height="21"/>
+                    <TextBox Grid.Row="2" Grid.Column="1"  Margin=" 11,4" Height="22" />
 
                 </Grid>
             </StackPanel>
@@ -57,41 +60,48 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-
-                    <DataGridTextColumn Header="Prop. Id" Binding="{Binding PropertyId}"/>
-                    <DataGridTextColumn Header="Price Per Night" Binding="{Binding PricePerNight}"/>
-                    <DataGridTextColumn Header="BedRoom" Binding="{Binding BedRoom}"/>
-                    <DataGridTextColumn Header="Accomodates" Binding="{Binding Accommodates}"/>
-
-                    <DataGridTextColumn Header="HomeType" Binding="{Binding HomeType}"/>
+                    <DataGridTextColumn Header="Account Id" Binding="{Binding AccountId}"/>
+                    <DataGridTextColumn Header="First Name" Binding="{Binding FirstName}"/>
+                    <DataGridTextColumn Header="Last Name" Binding="{Binding LastName}"/>
+                    <DataGridTextColumn Header="Gender" Binding="{Binding Gender}"/>
+                    <DataGridTextColumn Header="Roles" Binding="{Binding Roles}"/>
+                    <DataGridTextColumn Header="Country" Binding="{Binding Country}"/>
                     <DataGridTextColumn Header="City" Binding="{Binding City}"/>
-
-
                 </DataGrid.Columns>
-                <!--<DataGrid.RowDetailsTemplate>
+                <DataGrid.RowDetailsTemplate>
                     <DataTemplate>
-
                         <Border BorderThickness="0" Padding="10">
-
                             <StackPanel Orientation="Vertical">
-
-                                <Image DockPanel.Dock="Left" Source="{Binding Account.PictureUrl}" Margin="10" />
+                                <Image DockPanel.Dock="Left" Source="{Binding PictureUrl}" Margin="10" />
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock FontSize="12" Text="Email: " VerticalAlignment="Center" />
-                                    <TextBlock FontSize="16" Foreground="MidnightBlue" Text="{Binding Account.Email}" VerticalAlignment="Center" />
+                                    <TextBlock FontSize="16" Foreground="MidnightBlue" Text="{Binding Email}" VerticalAlignment="Center" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontSize="12" Text="Address: " VerticalAlignment="Center" />
+                                    <TextBlock FontSize="16" Foreground="MidnightBlue" Text="{Binding Address}" VerticalAlignment="Center" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontSize="12" Text="City: " VerticalAlignment="Center" />
+                                    <TextBlock FontSize="16" Foreground="MidnightBlue" Text="{Binding City}" VerticalAlignment="Center" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontSize="12" Text="Country: " VerticalAlignment="Center" />
+                                    <TextBlock FontSize="16" Foreground="MidnightBlue" Text="{Binding Country}" VerticalAlignment="Center" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontSize="12" Text="PostalCode: " VerticalAlignment="Center" />
+                                    <TextBlock FontSize="16" Foreground="MidnightBlue" Text="{Binding PostalCode}" VerticalAlignment="Center" />
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock FontSize="12" Text="Phone: " VerticalAlignment="Center" />
-                                    <TextBlock FontSize="16" Foreground="MidnightBlue" Text="{Binding Account.Mobile}" VerticalAlignment="Center" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock FontSize="12" Text="Sales Person: " VerticalAlignment="Center" />
-                                    <TextBlock FontSize="16" Foreground="MidnightBlue" Text="{Binding Account.LastName}" VerticalAlignment="Center" />
+                                    <TextBlock FontSize="16" Foreground="MidnightBlue" Text="{Binding Mobile}" VerticalAlignment="Center" />
                                 </StackPanel>
                             </StackPanel>
+                            
                         </Border>
                     </DataTemplate>
-                </DataGrid.RowDetailsTemplate>-->
+                </DataGrid.RowDetailsTemplate>
             </DataGrid>
         </StackPanel>
     </Grid>

@@ -111,7 +111,6 @@ namespace RentApartment.Service
                 IEnumerable<Account> accounts =
                     RentApartmentManager.Instance.GetAccounts(request.AccountId, request.Name, request.City);
 
-                
                 response.Accounts = Mapper.Map<List<Account>, List<AccountDto>>(accounts.ToList());
 
             }
