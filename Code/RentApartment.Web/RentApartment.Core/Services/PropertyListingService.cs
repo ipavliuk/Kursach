@@ -50,7 +50,21 @@ namespace RentApartment.Core.Infrastructure
 
 			return account;
 		}
-
+        public IEnumerable<Account> GetAccountsByFilter(int? accountId, string name, string city)
+        {
+            try
+            {
+                var acc = _db.Account.Where(a => accountId != null && a.id == accountId)
+                           .Where(a => name != null && a.FirstName == name)
+                           .Where(a => city != null && a.City == city);
+                return acc;
+            }
+            catch (Exception ex)
+            {
+                log.Error("Exception when get accounts => ", ex);
+            }
+            return new List<Account>();
+        }
 		public IEnumerable<PropertyListing> GetPropertyByAccount(int accountId)
 		{
 			try
@@ -154,6 +168,8 @@ namespace RentApartment.Core.Infrastructure
 
             return new List<Reservations>();
 		}
+
+       
 
 		public void Dispose()
 		{

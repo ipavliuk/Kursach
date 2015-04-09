@@ -12,6 +12,7 @@ namespace RentApartment.Core.Infrastructure
 		Account Authenticate(string login, string password);
 
 		Account GetAccountById(int id);
+        IEnumerable<Account> GetAccountsByFilter(int? accountId, string name, string city);
 
 		IEnumerable<PropertyListing> GetPropertyByAccount(int accountId);
 

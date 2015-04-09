@@ -95,6 +95,12 @@ namespace RentApartment.Core.Infrastructure
 	
 		}
 
+        public IEnumerable<Account> GetAccounts(int? accountId, string name, string city)
+        {
+            var service = new PropertyListingService();
+            return service.GetAccountsByFilter(accountId, name, city);
+        }
+
 		private IEnumerable<Reservations> GetReservationsByDate(DateTime startDate, DateTime endDate, int status)
 		{
 			var service = new PropertyListingService();

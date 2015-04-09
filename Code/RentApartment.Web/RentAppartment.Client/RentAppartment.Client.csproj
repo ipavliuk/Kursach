@@ -65,15 +65,23 @@
     <Compile Include="Utils\BitmapImageConverter.cs" />
     <Compile Include="Utils\RelayCommand.cs" />
     <Compile Include="Utils\RepositoryFactory.cs" />
+    <Compile Include="ViewModels\AccountViewModel.cs" />
     <Compile Include="ViewModels\ApartmentViewModel.cs" />
     <Compile Include="ViewModels\PropertyListingViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="Views\AccountsView.xaml.cs">
+      <DependentUpon>AccountsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ApartmentView.xaml.cs">
       <DependentUpon>ApartmentView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PropertyListingView.xaml.cs">
       <DependentUpon>PropertyListingView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\AccountsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ApartmentView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

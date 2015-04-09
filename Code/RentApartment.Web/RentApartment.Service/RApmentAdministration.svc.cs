@@ -93,6 +93,38 @@ namespace RentApartment.Service
 			return response;
 		}
 
+
+        public GetAccountsResponse GetAccounts(GetAccountsRequest request)
+        {
+            var response = new GetAccountsResponse();
+
+
+            if (request == null)
+            {
+                response.ErrorId = (int)RApmentErrors.FailedProceedRequest;
+                return response;
+            }
+
+            try
+            {
+                response.ErrorId = (int)RApmentErrors.Ok;
+                IEnumerable<Account> accounts =
+                    RentApartmentManager.Instance.GetAccounts(request.AccountId, request.Name, request.City);
+
+                
+                response.Accounts = Mapper.Map<List<Account>, List<AccountDto>>(accounts.ToList());
+
+            }
+            catch (Exception ex)
+            {
+                response.ErrorId = (int)RApmentErrors.OperationError;
+                response.ErrorDesc = ex.Message;
+                //Logger.Instance.Error("AuthenticateChatHost - ", ex);
+            }
+
+
+            return response;
+        }
 		//private ReservationDto TranslateReservationEntityToReservation(Reservations reservationEF)
 		//{
 
