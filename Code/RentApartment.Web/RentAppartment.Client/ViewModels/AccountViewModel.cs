@@ -42,7 +42,42 @@ namespace RentAppartment.Client.ViewModels
 				return this.searchCommand;
 			}
 		}
+        private ICommand editAccountCommand;
+        public ICommand EditAccountCommand
+        {
+            get
+            {
+                if (this.editAccountCommand == null)
+                {
+                    this.editAccountCommand = new RelayCommand(o => this.EditItemAction());
+                }
+                return this.editAccountCommand;
+            }
+        }
 
+        private object EditItemAction()
+        {
+            throw new NotImplementedException();
+        }
+
+        private ICommand deleteAccountCommand;
+        public ICommand DeleteAccountCommand
+		{
+			get
+			{
+				if (this.searchCommand == null)
+				{
+					this.searchCommand = new RelayCommand(o => this.DeleteItemAction());
+				}
+				return this.searchCommand;
+			}
+		}
+
+        private object DeleteItemAction()
+        {
+            throw new NotImplementedException();
+        }
+        
 		private object SearchAction()
 		{
 			throw new NotImplementedException();

@@ -36,6 +36,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml" />
@@ -63,6 +64,7 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Utils\BitmapImageConverter.cs" />
+    <Compile Include="Utils\CacheProvider.cs" />
     <Compile Include="Utils\RelayCommand.cs" />
     <Compile Include="Utils\RepositoryFactory.cs" />
     <Compile Include="ViewModels\AccountViewModel.cs" />
@@ -155,6 +157,15 @@
     </None>
     <None Include="Service References\RApmentAdminService\RApmentAdministration4.xsd">
       <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\RApmentAdminService\RApmentAdministration5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\RApmentAdminService\RentAppartment.Client.RApmentAdminService.GetAccountsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\RApmentAdminService\RentAppartment.Client.RApmentAdminService.GetDictionaryDataResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\RApmentAdminService\RentAppartment.Client.RApmentAdminService.GetPropertyListingResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>

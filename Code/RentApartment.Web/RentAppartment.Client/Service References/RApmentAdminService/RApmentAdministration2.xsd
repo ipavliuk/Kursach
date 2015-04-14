@@ -29,4 +29,16 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="GetReservationsRequest" nillable="true" type="tns:GetReservationsRequest" />
+  <xs:complexType name="GetAccountsRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:PaginationRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AccountId" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="City" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetAccountsRequest" nillable="true" type="tns:GetAccountsRequest" />
 </xs:schema>

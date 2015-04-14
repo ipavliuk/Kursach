@@ -35,20 +35,23 @@
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition/>
                         <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition />
+                        <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    
+
                     <TextBlock Text="Виберіть параметри фільтрів :" Grid.Row="0" Grid.ColumnSpan="2" FontSize="16" Foreground="#FF0F232F" Margin="0 10"/>
                     <TextBlock Text="Місто :" Grid.Row="1" Grid.Column="0"  FontSize="14" VerticalAlignment="Center" Margin="0,7,5,7" Height="21"/>
                     <TextBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Height="22" Margin="11,4" Text="{Binding Location}"/>
 
                     <TextBlock Text="Тип помешкання:" Grid.Row="1" Grid.Column="2"  FontSize="14" VerticalAlignment="Center" Margin="0,7,5,7" Height="21"/>
-                    <ComboBox Grid.Row="1" Grid.Column="3"  Margin=" 11,4" Width="50" ItemsSource="{Binding HomeTypes}" SelectedItem ="HomeTypeSelectedItem"/>
+                    <ComboBox Grid.Row="1" Grid.Column="3"  Margin="10.667,0,11.333,3.667" Width="100" 
+                              ItemsSource="{Binding HomeTypes}"
+                              SelectedValuePath="Key" DisplayMemberPath="Value"
+                              SelectedItem ="HomeTypeSelectedItem" Height="27" VerticalAlignment="Bottom"/>
 
                     <TextBlock Text="Кількість кімнат :" Grid.Row="1" Grid.Column="4"  FontSize="14" VerticalAlignment="Center" Margin="0,7,5,7" Height="21"/>
-                    <ComboBox Grid.Row="1" Grid.Column="5"  Margin=" 11,4" Width="50" Height="22" ItemsSource="{Binding RommNumbers}" SelectedItem="{Binding RoomNumberSelectedItem}"/>
+                    <ComboBox Grid.Row="1" Grid.Column="5"  Margin=" 11,4" Width="50" Height="22" ItemsSource="{Binding RoomNumbers}" SelectedItem="{Binding RoomNumberSelectedItem}"/>
 
                     <TextBlock Text="Id Власника:" Grid.Row="2" Grid.Column="0"  FontSize="14" VerticalAlignment="Center" Margin="0,7,5,7" Height="21"/>
                     <TextBox Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Height="22" Margin="11,4" Text="{Binding OwnerId}"/>
@@ -56,11 +59,11 @@
                     <TextBlock Text="Id помешкання:" Grid.Row="2" Grid.Column="2"  FontSize="14" VerticalAlignment="Center" Margin="0,7,5,7" Height="21"/>
                     <TextBox Grid.Row="2" Grid.Column="3" VerticalAlignment="Center" Height="22" Margin="11,4" Text="{Binding PropertyId}"/>
 
-                    
+
                 </Grid>
             </StackPanel>
             <StackPanel Margin="114 20 0 0" Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Left">
-                <Button MinWidth="70" Content="Знайти" FontSize="14" Command="{Binding SearchCommand}" />
+                <Button MinWidth="70" Content="Виконати пошук" FontSize="14" Command="{Binding SearchCommand}" />
             </StackPanel>
         </Grid>
 
@@ -73,10 +76,10 @@
             <DataGrid Name="dgAppartments" RowStyle="{StaticResource RowStyleWithAlternation}"
                       ColumnHeaderStyle="{StaticResource HeaderStyle}"
                       CellStyle="{StaticResource CenterCellStyle}"
-                      Width="500" Margin="152,10,155,10" SelectionMode="Single" 
+                      Width="500" Margin="100,10,155,10" SelectionMode="Single" 
                       ItemsSource="{Binding ProperyListing}" SelectedItem="{Binding SelectedProperty}" 
                        AutoGenerateColumns="False">
-               <DataGrid.Columns>
+                <DataGrid.Columns>
                     <DataGridTemplateColumn Header="Info">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
@@ -84,7 +87,7 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                   
+
                     <DataGridTextColumn Header="Prop. Id" Binding="{Binding PropertyId}"/>
                     <DataGridTextColumn Header="Price Per Night" Binding="{Binding PricePerNight}"/>
                     <DataGridTextColumn Header="BedRoom" Binding="{Binding BedRoom}"/>
@@ -92,16 +95,29 @@
 
                     <DataGridTextColumn Header="HomeType" Binding="{Binding HomeType}"/>
                     <DataGridTextColumn Header="City" Binding="{Binding City}"/>
+                    <DataGridTemplateColumn Header="">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Edit" Command="{Binding DataContext.SelectCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}, Mode=FindAncestor}}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Delete" Command="{Binding DataContext.DeleteAccountCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}, Mode=FindAncestor}}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
 
-                    
                 </DataGrid.Columns>
                 <DataGrid.RowDetailsTemplate>
                     <DataTemplate>
-                        
+
                         <Border BorderThickness="0" Padding="10">
 
                             <StackPanel Orientation="Vertical">
-                                
+
                                 <Image DockPanel.Dock="Left" Source="{Binding Account.PictureUrl}" Margin="10" />
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock FontSize="12" Text="Email: " VerticalAlignment="Center" />

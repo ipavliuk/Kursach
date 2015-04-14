@@ -13,7 +13,14 @@ namespace RentAppartment.Client.ViewModels
 {
 	public class PropertyListingViewModel : ViewModelBase
 	{
+        public PropertyListingViewModel()
+        {
+            //Init combo boxes
+            var repo = RepositoryFactory.Instance.GetApartmentRepository();
+            this.HomeTypes = repo.GetHomeTypes();
 
+            this.RoomNumbers = Enumerable.Range(1, 6).ToList();
+        }
 
 		//Filter data
 		private string location;
@@ -99,6 +106,38 @@ namespace RentAppartment.Client.ViewModels
 				}
 			}
 		}
+        private Dictionary<int,string> homeTypes;
+        public Dictionary<int, string> HomeTypes
+        {
+            get
+            {
+                return this.homeTypes;
+            }
+            set
+            {
+                if (this.homeTypes != value)
+                {
+                    this.homeTypes = value;
+                    OnPropertyChanged("HomeTypes");
+                }
+            }
+        }
+        private List<int> roomNumbers;
+        public List<int> RoomNumbers
+        {
+            get
+            {
+                return this.roomNumbers;
+            }
+            set
+            {
+                if (this.roomNumbers != value)
+                {
+                    this.roomNumbers = value;
+                    OnPropertyChanged("RoomNumbers");
+                }
+            }
+        }
 
 		private List<PropertyDto> properyListing;
 		public List<PropertyDto> ProperyListing

@@ -11,6 +11,7 @@ using RentApartment.Core.Model.EF;
 using RentApartment.Service.DataContract.Entities;
 using RentApartment.Service.DataContract.Request;
 using RentApartment.Service.DataContract.Response;
+using RentApartment.Core.DAL.Enums;
 
 namespace RentApartment.Service
 {
@@ -124,60 +125,61 @@ namespace RentApartment.Service
 
             return response;
         }
-		//private ReservationDto TranslateReservationEntityToReservation(Reservations reservationEF)
-		//{
 
-		//	if (reservationEF == null)
-		//		return new ReservationDto();
 
-		//	ReservationDto acc = new ReservationDto()
-		//	{
-		//		AccountId = reservationEF.FK_Account,
-		//		ReservationId = reservationEF.ReservationId,
-		//		PropertyListingId = reservationEF.FK_PropertyListing,
-		//		Currency = reservationEF.C_Currency.Id,
-		//		ReservationStart = reservationEF.ReservationStart,
-		//		ReservationEnd = reservationEF.ReservationEnd,
-		//		ReservationNote = reservationEF.ReservationNote,
-		//		ReservationStatus = reservationEF.ReservationStatus,
-		//		PropertyItem = TranslatePropertyListingEntityToProperty(reservationEF.PropertyListing)
-		//	};
+        public GetDictionaryDataResponse GetHomeType()
+        {
+            var response = new GetDictionaryDataResponse();
+            try
+            {
+                response.Data = GetDictionary<HomeType>();
+            }
+            catch (Exception ex)
+            {
+                response.ErrorId = (int)RApmentErrors.OperationError;
+                response.ErrorDesc = ex.Message;
+            }
 
-		//	return acc;
-		//}
+            return response;
+        }
 
-		//private PropertyDto TranslatePropertyListingEntityToProperty(PropertyListing propertyEF)
-		//{
+        public GetDictionaryDataResponse GetRoomType()
+        {
+            var response = new GetDictionaryDataResponse();
+            try
+            {
+                response.Data = GetDictionary<RoomType>();
+                
+            }
+            catch (Exception ex)
+            {
+                response.ErrorId = (int)RApmentErrors.OperationError;
+                response.ErrorDesc = ex.Message;
+            }
 
-		//	if (propertyEF == null)
-		//		return new PropertyDto();
+            return response;
+        }
 
-		//	PropertyDto acc = new PropertyDto()
-		//	{
-		//		PropertyId = propertyEF.PropertyId,
-		//		AccountId = propertyEF.FK_Account,
-		//		Accommodates = propertyEF.Accommodates,
-		//		Country = propertyEF.FK__Country,
-		//		City = propertyEF.City,
-		//		Address1 = propertyEF.Address1,
-		//		Address2 = propertyEF.Address2,
-		//		State = propertyEF.State,
-		//		State2 = propertyEF.State2,
-		//		Zip = propertyEF.Zip,
-		//		Bathroom = propertyEF.Bathroom,
-		//		BedRoom = propertyEF.BedRoom,
-		//		GreatSummary = propertyEF.GreatSummary,
-		//		GreatTitle = propertyEF.GreatTitle,
-		//		HomeType = propertyEF.HomeType,
-		//		Photos = propertyEF.Photos,
-		//		PricePerMonth = propertyEF.PricePerMonth,
-		//		PricePerNight = propertyEF.PricePerNight,
-		//		PricePerWeek = propertyEF.PricePerWeek,
-		//		RoomType = propertyEF.RoomType
-		//	};
+        public GetDictionaryDataResponse GetUserRole()
+        {
+            var response = new GetDictionaryDataResponse();
+            try
+            {
+                response.Data = GetDictionary<UserRole>();
+            }
+            catch (Exception ex)
+            {
+                response.ErrorId = (int)RApmentErrors.OperationError;
+                response.ErrorDesc = ex.Message;
+            }
 
-		//	return acc;
-		//}
-
+            return response;
+        }
+        private Dictionary<int, string> GetDictionary<T>() 
+        {
+           return  Enum.GetValues(typeof(T))
+                       .Cast<T>()
+                       .ToDictionary(t => Convert.ToInt32(t), t => t.ToString());
+        }
 	}
 }

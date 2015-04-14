@@ -7,6 +7,7 @@
       <xsd:import schemaLocation="http://localhost:61870/RApmentAdministration.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Request" />
       <xsd:import schemaLocation="http://localhost:61870/RApmentAdministration.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Response" />
       <xsd:import schemaLocation="http://localhost:61870/RApmentAdministration.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Entities" />
+      <xsd:import schemaLocation="http://localhost:61870/RApmentAdministration.svc?xsd=xsd5" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IRApmentAdministration_GetPropertyListing_InputMessage">
@@ -21,6 +22,30 @@
   <wsdl:message name="IRApmentAdministration_GetReservations_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetReservationsResponse" />
   </wsdl:message>
+  <wsdl:message name="IRApmentAdministration_GetAccounts_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAccounts" />
+  </wsdl:message>
+  <wsdl:message name="IRApmentAdministration_GetAccounts_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAccountsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRApmentAdministration_GetHomeType_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetHomeType" />
+  </wsdl:message>
+  <wsdl:message name="IRApmentAdministration_GetHomeType_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetHomeTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRApmentAdministration_GetRoomType_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRoomType" />
+  </wsdl:message>
+  <wsdl:message name="IRApmentAdministration_GetRoomType_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRoomTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRApmentAdministration_GetUserRole_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserRole" />
+  </wsdl:message>
+  <wsdl:message name="IRApmentAdministration_GetUserRole_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserRoleResponse" />
+  </wsdl:message>
   <wsdl:portType name="IRApmentAdministration">
     <wsdl:operation name="GetPropertyListing">
       <wsdl:input wsaw:Action="http://tempuri.org/IRApmentAdministration/GetPropertyListing" message="tns:IRApmentAdministration_GetPropertyListing_InputMessage" />
@@ -29,6 +54,22 @@
     <wsdl:operation name="GetReservations">
       <wsdl:input wsaw:Action="http://tempuri.org/IRApmentAdministration/GetReservations" message="tns:IRApmentAdministration_GetReservations_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IRApmentAdministration/GetReservationsResponse" message="tns:IRApmentAdministration_GetReservations_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAccounts">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRApmentAdministration/GetAccounts" message="tns:IRApmentAdministration_GetAccounts_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRApmentAdministration/GetAccountsResponse" message="tns:IRApmentAdministration_GetAccounts_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetHomeType">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRApmentAdministration/GetHomeType" message="tns:IRApmentAdministration_GetHomeType_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRApmentAdministration/GetHomeTypeResponse" message="tns:IRApmentAdministration_GetHomeType_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRoomType">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRApmentAdministration/GetRoomType" message="tns:IRApmentAdministration_GetRoomType_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRApmentAdministration/GetRoomTypeResponse" message="tns:IRApmentAdministration_GetRoomType_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserRole">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRApmentAdministration/GetUserRole" message="tns:IRApmentAdministration_GetUserRole_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRApmentAdministration/GetUserRoleResponse" message="tns:IRApmentAdministration_GetUserRole_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IRApmentAdministration" type="tns:IRApmentAdministration">
@@ -44,6 +85,42 @@
     </wsdl:operation>
     <wsdl:operation name="GetReservations">
       <soap:operation soapAction="http://tempuri.org/IRApmentAdministration/GetReservations" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAccounts">
+      <soap:operation soapAction="http://tempuri.org/IRApmentAdministration/GetAccounts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHomeType">
+      <soap:operation soapAction="http://tempuri.org/IRApmentAdministration/GetHomeType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRoomType">
+      <soap:operation soapAction="http://tempuri.org/IRApmentAdministration/GetRoomType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserRole">
+      <soap:operation soapAction="http://tempuri.org/IRApmentAdministration/GetUserRole" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

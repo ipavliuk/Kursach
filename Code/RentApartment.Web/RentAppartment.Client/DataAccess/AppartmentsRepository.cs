@@ -1,4 +1,5 @@
 ﻿using RentAppartment.Client.RApmentAdminService;
+using RentAppartment.Client.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -57,9 +58,141 @@ namespace RentAppartment.Client.DataAccess
 
 
 
-        //List<> GetPropertyListing()
-        //{
-        //}
+        public List<AccountDto> GetAccounts(int? accountId, string name, string city)
+        {
+            List<AccountDto> accounts = new List<AccountDto>();
+            try
+            {
+                GetAccountsRequest request = new GetAccountsRequest()
+                {
+                    AccountId = accountId,
+                    Name = name,
+                    City = city
+                };
+
+                GetAccountsResponse response = _service.GetAccounts(request);
+                if (response != null)
+                {
+                    if (response.ErrorId == 0)
+                    {
+                        accounts = response.Accounts.ToList();
+                    }
+                    else
+                    {
+                        //Add to Log message
+                    }
+
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            return accounts;
+        }
+
+        ///Dictionaries
+        ///
+        public Dictionary<int, string> GetHomeTypes()
+        {
+            var dict = new Dictionary<int, string>();
+            try
+            {
+                var cachedItem = CacheProvider.Instance.GetItem("HomeTypes");
+                if (cachedItem != null)
+                {
+                    dict = (Dictionary<int, string>)cachedItem;
+                }
+                else
+                {
+                    GetDictionaryDataResponse response = _service.GetHomeType();
+                    if (response != null)
+                    {
+                        if (response.ErrorId == 0)
+                        {
+                            dict = response.Data;
+                            CacheProvider.Instance.AddItem("HomeTypes", dict);
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+
+            return dict;
+        }
+
+        public Dictionary<int, string> GetRoomTypes()
+        {
+            var dict = new Dictionary<int, string>();
+            try
+            {
+                var cachedItem = CacheProvider.Instance.GetItem("RoomTypes");
+                if (cachedItem != null)
+                {
+                    dict = (Dictionary<int, string>)cachedItem;
+                }
+                else
+                {
+                    GetDictionaryDataResponse response = _service.GetRoomType();
+                    if (response != null)
+                    {
+                        if (response.ErrorId == 0)
+                        {
+                            dict = response.Data;
+                            CacheProvider.Instance.AddItem("RoomTypes", dict);
+                        }
+                    }
+                }
+                
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            return dict;
+        }
+
+        public Dictionary<int, string> GetUserRoles()
+        {
+            var dict = new Dictionary<int, string>();
+            try
+            {
+                var cachedItem = CacheProvider.Instance.GetItem("UserRoles");
+                if (cachedItem != null)
+                {
+                    dict = (Dictionary<int, string>)cachedItem;
+                }
+                else
+                {
+                    GetDictionaryDataResponse response = _service.GetUserRole();
+                    if (response != null)
+                    {
+                        if (response.ErrorId == 0)
+                        {
+                            dict = response.Data;
+                            CacheProvider.Instance.AddItem("UserRoles", dict);
+                        }
+                    }
+                }
+                
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            return dict;
+        }
 
 		public void Dispose()
 		{

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Response" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Response" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:61870/RApmentAdministration.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Entities" />
+  <xs:import schemaLocation="http://localhost:61870/RApmentAdministration.svc?xsd=xsd5" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
   <xs:complexType name="GetPropertyListingResponse">
     <xs:complexContent mixed="false">
       <xs:extension base="tns:BaseResponse">
@@ -69,4 +70,30 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ReservationDto" nillable="true" type="tns:ReservationDto" />
+  <xs:complexType name="GetAccountsResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Accounts" nillable="true" type="tns:ArrayOfAccountDto" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetAccountsResponse" nillable="true" type="tns:GetAccountsResponse" />
+  <xs:complexType name="ArrayOfAccountDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AccountDto" nillable="true" type="tns:AccountDto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAccountDto" nillable="true" type="tns:ArrayOfAccountDto" />
+  <xs:complexType name="GetDictionaryDataResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseResponse">
+        <xs:sequence>
+          <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Data" nillable="true" type="q3:ArrayOfKeyValueOfintstring" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetDictionaryDataResponse" nillable="true" type="tns:GetDictionaryDataResponse" />
 </xs:schema>

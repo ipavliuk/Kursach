@@ -18,5 +18,17 @@ namespace RentApartment.Service
 		[OperationContract]
 		GetReservationsResponse GetReservations(GetReservationsRequest request);
 
+        [OperationContract]
+        GetAccountsResponse GetAccounts(GetAccountsRequest request);
+
+        [OperationContract]
+        GetDictionaryDataResponse GetHomeType();
+
+        [OperationContract]
+        GetDictionaryDataResponse GetRoomType();
+
+        [OperationContract]
+        GetDictionaryDataResponse GetUserRole();
+
 	}
 }

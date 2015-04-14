@@ -28,6 +28,7 @@
     <MetadataFile FileName="RApmentAdministration2.xsd" MetadataType="Schema" ID="7fe474aa-216c-4522-a92a-1b099a2b6c23" SourceId="1" SourceUrl="http://localhost:61870/RApmentAdministration.svc?xsd=xsd2" />
     <MetadataFile FileName="RApmentAdministration3.xsd" MetadataType="Schema" ID="db35f336-96b8-407f-a3c9-ad109b7c691c" SourceId="1" SourceUrl="http://localhost:61870/RApmentAdministration.svc?xsd=xsd3" />
     <MetadataFile FileName="RApmentAdministration4.xsd" MetadataType="Schema" ID="49d84637-a9f4-485d-9276-c827e76f6c00" SourceId="1" SourceUrl="http://localhost:61870/RApmentAdministration.svc?xsd=xsd4" />
+    <MetadataFile FileName="RApmentAdministration5.xsd" MetadataType="Schema" ID="f04ab0d1-df2b-4ce0-89c8-85c47b031aaa" SourceId="1" SourceUrl="http://localhost:61870/RApmentAdministration.svc?xsd=xsd5" />
     <MetadataFile FileName="RApmentAdministration.wsdl" MetadataType="Wsdl" ID="16aa178e-6ba1-4668-b319-0b43c7283db0" SourceId="1" SourceUrl="http://localhost:61870/RApmentAdministration.svc?wsdl" />
   </Metadata>
   <Extensions>
