@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,27 @@ namespace RentAppartment.Client.ViewModels
 {
 	public class AddApartmentViewModel : ViewModelBase
 	{
+		public class Url
+		{
+			public string Value { get; set; }
+		}
 
+		private List<Url> imagesUrl;
+		public List<Url> ImagesUrl
+		{
+			get
+			{
+				return this.imagesUrl;
+			}
+			set
+			{
+				if (this.imagesUrl != value)
+				{
+					this.imagesUrl = value;
+					OnPropertyChanged("ImagesUrl");
+				}
+			}
+		}
 
 		private ICommand loadImagesCommand;
 		public ICommand LoadImagesCommand
@@ -37,11 +58,16 @@ namespace RentAppartment.Client.ViewModels
 				if (openFileDialog.ShowDialog() == true)
 				{
 					//add items to image list
+
+					var list = new List<Url>();
 					foreach (string filename in openFileDialog.FileNames)
 					{
-						//lbFiles.Items.Add(Path.GetFileName(filename));
+						var url = new Url();
+						url.Value = filename;
+
+						list.Add(url);
 					}
-						
+					ImagesUrl = list;
 
 				}
 			}

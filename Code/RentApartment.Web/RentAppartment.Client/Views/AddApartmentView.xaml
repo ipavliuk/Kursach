@@ -155,6 +155,24 @@
                 <TextBlock Text="Завантажити.." VerticalAlignment="Center" Margin="5"/>
             </StackPanel>
         </Button>
+        <DataGrid Grid.Row="6" Grid.Column="1" 
+                  ItemsSource="{Binding ImagesUrl}" SelectedItem="{Binding selectedImagesUrl}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Image " Binding="{Binding ImagesUrl}"/>
+                    
+                        <DataGridTemplateColumn Header="">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Grid.Row="5" Grid.Column="1" FontSize="12" Margin="10" Command="{Binding Value}" >
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="../Images/remove-sign-128.png" Width="30" Height="30" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                  </DataGrid.Columns>
+            </DataGrid>
         
     </Grid>
     </ScrollViewer>
