@@ -199,6 +199,28 @@ namespace RentAppartment.Client.ViewModels
             }
         }
 
+		private ICommand addApartmentCommand;
+		public ICommand AddApartmentCommand
+		{
+			get
+			{
+				if (this.addApartmentCommand == null)
+				{
+					this.addApartmentCommand = new RelayCommand(o => this.AddApartmentCommandAction());
+				}
+				return this.addApartmentCommand;
+			}
+		}
+
+		private void AddApartmentCommandAction()
+		{
+			// Create view Model and start dialog
+			var view = new AddApartmentView();
+			view.DataContext = new AddApartmentViewModel();
+
+			view.Show();
+		}
+
 		private void SearchAction()
 		{
 			

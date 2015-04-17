@@ -21,10 +21,10 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="1*" />
+                <!--<RowDefinition Height="50" />-->
             </Grid.RowDefinitions>
-            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left"
-                        Orientation="Horizontal" Width="638" Margin="80 30 0 0">
+            <StackPanel Grid.Row="0" VerticalAlignment="Top" HorizontalAlignment="Left"
+                        Orientation="Horizontal" Width="638" Margin="10 30 0 0">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition />
@@ -62,23 +62,39 @@
 
                 </Grid>
             </StackPanel>
-            <StackPanel Margin="114 20 0 0" Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Left">
-                <Button MinWidth="70" Content="Виконати пошук" FontSize="14" Command="{Binding SearchCommand}" />
+            <StackPanel Grid.Row="1" Margin="15 15 0 5" Orientation="Horizontal" HorizontalAlignment="Left">
+                <Button MinWidth="70"  FontSize="12" Margin="10"  Command="{Binding SearchCommand}" >
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="../Images/_search.png" Width="30" Height="30" VerticalAlignment="Center"/>
+                        <TextBlock Text="Виконати пошук" VerticalAlignment="Center" Margin="5"/>
+                    </StackPanel>
+                </Button>
+                <Button MinWidth="70" FontSize="12" Margin="10" Command="{Binding AddApartmentCommand}" >
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="../Images/_add.png" Width="30" Height="30" VerticalAlignment="Center"/>
+                        <TextBlock Text="Створити запис" VerticalAlignment="Center" Margin="5"/>
+                    </StackPanel>
+                </Button>
+                
             </StackPanel>
         </Grid>
 
-
         <!--Search Results Data grid-->
-        <StackPanel Grid.Row="1" HorizontalAlignment="Stretch" Margin="55 0 0 0" Orientation="Vertical">
+        <StackPanel Grid.Row="1" HorizontalAlignment="Stretch" Margin="25 0 0 0" Orientation="Vertical">
             <TextBlock Text="Appartments" FontSize="18" Foreground="#FF0F232F"/>
-            <StackPanel Orientation="Vertical">
-            </StackPanel>
-            <DataGrid Name="dgAppartments" RowStyle="{StaticResource RowStyleWithAlternation}"
+           
+            <!--<DataGrid Name="dgAppartments" RowStyle="{StaticResource RowStyleWithAlternation}"
                       ColumnHeaderStyle="{StaticResource HeaderStyle}"
                       CellStyle="{StaticResource CenterCellStyle}"
                       Width="500" Margin="100,10,155,10" SelectionMode="Single" 
                       ItemsSource="{Binding ProperyListing}" SelectedItem="{Binding SelectedProperty}" 
-                       AutoGenerateColumns="False">
+                       AutoGenerateColumns="False">-->
+            <DataGrid Name="dgAppartments"
+                      HorizontalAlignment="Left"
+                      Width="550" Margin="15,10,155,10" SelectionMode="Single" 
+                      ItemsSource="{Binding ProperyListing}" SelectedItem="{Binding SelectedProperty}" 
+                       AutoGenerateColumns="False"
+                      >
                 <DataGrid.Columns>
                     <DataGridTemplateColumn Header="Info">
                         <DataGridTemplateColumn.CellTemplate>
@@ -98,14 +114,27 @@
                     <DataGridTemplateColumn Header="">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Content="Edit" Command="{Binding DataContext.SelectCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}, Mode=FindAncestor}}" />
+                                <Button  Style="{DynamicResource EditButtonStyle}"  Command="{Binding DataContext.SelectCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}, Mode=FindAncestor}}" 
+                                         ToolTip="Edit record">
+                                    <!--<StackPanel Orientation="Horizontal">
+                                        --><!--<TextBlock Text="Edit" />--><!--
+                                        <Image Source="../Images/edit-128.png" Width="24" Height="24" VerticalAlignment="Center"/>
+                                    </StackPanel>-->
+                                   </Button>
+                                
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                     <DataGridTemplateColumn Header="">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Content="Delete" Command="{Binding DataContext.DeleteAccountCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}, Mode=FindAncestor}}" />
+                                <Button Style="{DynamicResource DeleteButtonStyle}" Command="{Binding DataContext.DeleteAccountCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}, Mode=FindAncestor}}" 
+                                        ToolTip="Delete item">
+                                    <!--<StackPanel Orientation="Horizontal">
+                                        --><!--<TextBlock Text="Delete" />--><!--
+                                        <Image Source="../Images/_Modify.png" Width="24" Height="24" VerticalAlignment="Center"/>
+                                    </StackPanel>-->
+                                </Button>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>

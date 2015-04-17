@@ -3,9 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:utils="clr-namespace:RentAppartment.Client.Utils"
         Title="MainWindow" Height="800" Width="1000">
-    <Window.Resources>
+    <!--<Window.Resources>
         <utils:BitmapImageConverter x:Key="BitmapImageConverter" />
-    </Window.Resources>
+    </Window.Resources>-->
+    
     <Grid x:Name="LayoutRoot">
         <ContentControl Content="{Binding}" />
     </Grid>

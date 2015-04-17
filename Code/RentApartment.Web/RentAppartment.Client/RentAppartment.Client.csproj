@@ -68,6 +68,7 @@
     <Compile Include="Utils\RelayCommand.cs" />
     <Compile Include="Utils\RepositoryFactory.cs" />
     <Compile Include="ViewModels\AccountViewModel.cs" />
+    <Compile Include="ViewModels\AddApartmentViewModel.cs" />
     <Compile Include="ViewModels\ApartmentViewModel.cs" />
     <Compile Include="ViewModels\PropertyListingViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
@@ -200,9 +201,24 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Resource Include="Images\info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\_add.png" />
+    <Resource Include="Images\_search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\edit-128.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\remove-sign-128.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\_Modify.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\brouse.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

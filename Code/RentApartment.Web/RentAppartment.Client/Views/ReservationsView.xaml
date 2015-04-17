@@ -5,7 +5,111 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-            
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <StackPanel>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Виберіть параметри фільтрів :" Grid.Row="0" Grid.ColumnSpan="3" FontSize="16" Foreground="#FF0F232F" Margin="0 10"/>
+
+                    <TextBlock Text="Місто: " Grid.Row="1" Grid.Column="0"  FontSize="14" VerticalAlignment="Center" Margin="0,7,5,7" Height="21"/>
+                    <TextBox Grid.Row="2" Grid.Column="1"  Margin=" 11,4" Height="22" />
+                    
+                    <TextBlock Text="Start Date: " Grid.Row="2" Grid.Column="0"  FontSize="14" VerticalAlignment="Center" Margin="0,7,5,7" Height="21"/>
+                    <TextBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Height="22" Margin="11,4" Text="{Binding Location}"/>
+
+                    <TextBlock Text="End Date: " Grid.Row="1" Grid.Column="2"  FontSize="14" VerticalAlignment="Center" Margin="0,7,5,7" Height="21"/>
+                    <TextBox Grid.Row="1" Grid.Column="3"  Margin=" 11,4" Height="22" />
+
+                    
+
+                </Grid>
+            </StackPanel>
+            <StackPanel Margin="114 20 0 0" Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Left">
+                <Button MinWidth="70" Content="Знайти" FontSize="14" Command="{Binding SearchCommand}" />
+            </StackPanel>
+        </Grid>
+
+        <!--Search Results Data grid-->
+        <StackPanel Grid.Row="1" HorizontalAlignment="Stretch" Margin="10" Orientation="Vertical">
+            <TextBlock Text="Accounts" FontSize="16" Margin="10 0" Foreground="#FF0F232F"/>
+            <StackPanel Orientation="Vertical">
+            </StackPanel>
+            <DataGrid Name="dgAccounts" Margin="10" SelectionMode="Single" 
+                      ItemsSource="{Binding Accounts}"  
+                       AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="Info">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Style="{DynamicResource InfoButtonStyle}" Command="{Binding DataContext.SelectCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}, Mode=FindAncestor}}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="Account Id" Binding="{Binding AccountId}"/>
+                    <DataGridTextColumn Header="First Name" Binding="{Binding FirstName}"/>
+                    <DataGridTextColumn Header="Last Name" Binding="{Binding LastName}"/>
+                    <DataGridTextColumn Header="Gender" Binding="{Binding Gender}"/>
+                    <DataGridTextColumn Header="Roles" Binding="{Binding Roles}"/>
+                    <DataGridTextColumn Header="Country" Binding="{Binding Country}"/>
+                    <DataGridTextColumn Header="City" Binding="{Binding City}"/>
+                </DataGrid.Columns>
+                <DataGrid.RowDetailsTemplate>
+                    <DataTemplate>
+                        <Border BorderThickness="0" Padding="10">
+                            <StackPanel Orientation="Vertical">
+                                <Image DockPanel.Dock="Left" Source="{Binding PictureUrl}" Margin="10" />
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontSize="12" Text="Email: " VerticalAlignment="Center" />
+                                    <TextBlock FontSize="16" Foreground="MidnightBlue" Text="{Binding Email}" VerticalAlignment="Center" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontSize="12" Text="Address: " VerticalAlignment="Center" />
+                                    <TextBlock FontSize="16" Foreground="MidnightBlue" Text="{Binding Address}" VerticalAlignment="Center" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontSize="12" Text="City: " VerticalAlignment="Center" />
+                                    <TextBlock FontSize="16" Foreground="MidnightBlue" Text="{Binding City}" VerticalAlignment="Center" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontSize="12" Text="Country: " VerticalAlignment="Center" />
+                                    <TextBlock FontSize="16" Foreground="MidnightBlue" Text="{Binding Country}" VerticalAlignment="Center" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontSize="12" Text="PostalCode: " VerticalAlignment="Center" />
+                                    <TextBlock FontSize="16" Foreground="MidnightBlue" Text="{Binding PostalCode}" VerticalAlignment="Center" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontSize="12" Text="Phone: " VerticalAlignment="Center" />
+                                    <TextBlock FontSize="16" Foreground="MidnightBlue" Text="{Binding Mobile}" VerticalAlignment="Center" />
+                                </StackPanel>
+                            </StackPanel>
+
+                        </Border>
+                    </DataTemplate>
+                </DataGrid.RowDetailsTemplate>
+            </DataGrid>
+        </StackPanel>
     </Grid>
+
 </UserControl>
