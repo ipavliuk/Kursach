@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Request" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Request" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:61870/RApmentAdministration.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Entities" />
   <xs:complexType name="GetPropertyListingRequest">
     <xs:complexContent mixed="false">
       <xs:extension base="tns:PaginationRequest">
@@ -23,9 +24,10 @@
   <xs:element name="PaginationRequest" nillable="true" type="tns:PaginationRequest" />
   <xs:complexType name="GetReservationsRequest">
     <xs:sequence>
+      <xs:element minOccurs="0" name="City" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ReservationEnd" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="ReservationStart" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="ReservationStatus" type="xs:int" />
+      <xs:element minOccurs="0" name="ReservationStatus" nillable="true" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="GetReservationsRequest" nillable="true" type="tns:GetReservationsRequest" />
@@ -41,4 +43,10 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:element name="GetAccountsRequest" nillable="true" type="tns:GetAccountsRequest" />
+  <xs:complexType name="ChangedPropertyRequest">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Entities" minOccurs="0" name="Property" nillable="true" type="q1:PropertyDto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ChangedPropertyRequest" nillable="true" type="tns:ChangedPropertyRequest" />
 </xs:schema>

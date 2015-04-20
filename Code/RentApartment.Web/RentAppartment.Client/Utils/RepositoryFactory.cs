@@ -30,5 +30,7 @@ namespace RentAppartment.Client.Utils
         {
             return new AppartmentsRepository(Service);
         }
+
+        
     }
 }

@@ -26,4 +26,14 @@ namespace RentApartment.Core.DAL.Enums
         Owner = 1,
         Client
     }
+
+    public enum ReservationStatus
+    {
+        Open = 1,
+        Queued,
+        Closed,
+        Approved,
+    }
+
+   
 }

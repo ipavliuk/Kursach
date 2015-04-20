@@ -1,4 +1,5 @@
-﻿using RentApartment.Service.DataContract.Response;
+﻿using RentApartment.Core.Model.EF;
+using RentApartment.Service.DataContract.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -58,5 +59,7 @@ namespace RentApartment.Service.DataContract.Entities
 		public string Zip { get; set; }
 		[DataMember]
 		public int Country { get; set; }
+        [DataMember]
+        public List<AmenityDto> C_Amenities { get; set; }
 	}
 }

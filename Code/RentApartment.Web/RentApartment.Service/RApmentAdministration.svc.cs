@@ -22,6 +22,9 @@ namespace RentApartment.Service
 			Mapper.CreateMap<PropertyListing, PropertyDto>();
 			Mapper.CreateMap<Reservations, ReservationDto>();
             Mapper.CreateMap<Account, AccountDto>();
+            Mapper.CreateMap<C_Amenities, AmenityDto>();
+            Mapper.CreateMap<PropertyDto, PropertyListing>();
+            Mapper.CreateMap<AmenityDto, C_Amenities>();
 		}
 
 		public GetPropertyListingResponse GetPropertyListing(GetPropertyListingRequest request)
@@ -73,7 +76,7 @@ namespace RentApartment.Service
 				response.ErrorId = (int)RApmentErrors.Ok;
 				IEnumerable<Reservations> reservations = 
 					RentApartmentManager.Instance.GetReservations(request.AccountId, request.ReservationStart, 
-															request.ReservationEnd, request.ReservationStatus);
+															request.ReservationEnd, request.ReservationStatus, request.City);
 
 				//foreach (var item in reservations)
 				//{
@@ -94,6 +97,137 @@ namespace RentApartment.Service
 			return response;
 		}
 
+        public GetApartmentReservationsResponse GetApartmentReservation(int propertyId)
+        {
+            var response = new GetApartmentReservationsResponse();
+
+
+            //if (request == null)
+            //{
+            //    response.ErrorId = (int)RApmentErrors.FailedProceedRequest;
+            //    return response;
+            //}
+
+            try
+            {
+                response.ErrorId = (int)RApmentErrors.Ok;
+
+                List<DateTime> blackouts =
+                    RentApartmentManager.Instance.GetApartmentReservations(propertyId).ToList();
+
+
+                response.BlackOutDates = blackouts;
+
+            }
+            catch (Exception ex)
+            {
+                response.ErrorId = (int)RApmentErrors.OperationError;
+                response.ErrorDesc = ex.Message;
+                //Logger.Instance.Error("AuthenticateChatHost - ", ex);
+            }
+
+            return response;
+        }
+
+        public BaseResponse MakeApartmentReservation(int accountId, int propertyId, DateTime startDate, DateTime endDate, string note)
+        {
+            var response = new BaseResponse();
+
+
+            if (propertyId == 0)
+            {
+                response.ErrorId = (int)RApmentErrors.FailedProceedRequest;
+                return response;
+            }
+            if (startDate > endDate)
+            {
+                response.ErrorId = (int)RApmentErrors.FailedProceedRequest;
+                return response;
+            }
+            try
+            {
+                response.ErrorId = (int)RApmentErrors.Ok;
+
+                bool result =
+                    RentApartmentManager.Instance.MakeApartmentReservation(accountId, propertyId, startDate, endDate, note);
+
+
+                
+
+            }
+            catch (Exception ex)
+            {
+                response.ErrorId = (int)RApmentErrors.OperationError;
+                response.ErrorDesc = ex.Message;
+                //Logger.Instance.Error("AuthenticateChatHost - ", ex);
+            }
+
+            return response;
+        }
+
+
+        public BaseResponse CreateProperty(ChangedPropertyRequest request)
+        {
+            var response = new BaseResponse();
+
+
+            if (request.Property == null)
+            {
+                response.ErrorId = (int)RApmentErrors.FailedProceedRequest;
+                return response;
+            }
+           
+            try
+            {
+                response.ErrorId = (int)RApmentErrors.Ok;
+
+                PropertyListing property = Mapper.Map<PropertyDto, PropertyListing>(request.Property);
+                bool result =
+                    RentApartmentManager.Instance.CreateProperty(property);
+                    //MakeApartmentReservation(accountId, propertyId, startDate, endDate, note);
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+                response.ErrorId = (int)RApmentErrors.OperationError;
+                response.ErrorDesc = ex.Message;
+                //Logger.Instance.Error("AuthenticateChatHost - ", ex);
+            }
+
+            return response;
+        }
+        public BaseResponse UpdateProperty(ChangedPropertyRequest request)
+        {
+            var response = new BaseResponse();
+
+
+            if (request.Property == null)
+            {
+                response.ErrorId = (int)RApmentErrors.FailedProceedRequest;
+                return response;
+            }
+
+            try
+            {
+                response.ErrorId = (int)RApmentErrors.Ok;
+
+                PropertyListing property = Mapper.Map<PropertyDto, PropertyListing>(request.Property);
+                bool result =
+                    RentApartmentManager.Instance.UpdateProperty(property);
+                
+            }
+            catch (Exception ex)
+            {
+                response.ErrorId = (int)RApmentErrors.OperationError;
+                response.ErrorDesc = ex.Message;
+                //Logger.Instance.Error("AuthenticateChatHost - ", ex);
+            }
+
+            return response;
+        }
 
         public GetAccountsResponse GetAccounts(GetAccountsRequest request)
         {
@@ -127,6 +261,40 @@ namespace RentApartment.Service
         }
 
 
+
+        public AmenitiesResponse GetAmenities()
+        {
+            var response = new AmenitiesResponse();
+
+            try
+            {
+                response.ErrorId = (int)RApmentErrors.Ok;
+
+                IEnumerable<C_Amenities> amenities = RentApartmentManager.Instance.GetAmenities();
+
+                //foreach (var item in amenities)
+                //{
+                //	var amenity = new AmenityDto()
+                //	{
+                //		id = item.id,
+                //		Name = item.Name,
+                //		Description = item.Description,
+                //		IsActive = item.IsActive
+                //	};
+                //	response.Amenities.Add(amenity);
+                //}
+                List<AmenityDto> amenitiesDto = Mapper.Map<List<C_Amenities>, List<AmenityDto>>(amenities.ToList());
+                response.Amenities = amenitiesDto;
+            }
+            catch (Exception ex)
+            {
+                response.ErrorId = (int)RApmentErrors.OperationError;
+                response.ErrorDesc = ex.Message;
+                //Logger.Instance.Error("AuthenticateChatHost - ", ex);
+            }
+
+            return response;
+        }
         public GetDictionaryDataResponse GetHomeType()
         {
             var response = new GetDictionaryDataResponse();

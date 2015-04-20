@@ -1,0 +1,58 @@
+﻿<Window x:Class="RentAppartment.Client.Views.ScheduleView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:viewModel="clr-namespace:RentAppartment.Client.ViewModels"
+         Title="Reservation" Height="300" Width="300" >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="2.5*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0">
+            
+            <TextBlock Text="Оберіть дати резервування."/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical">
+            <TextBlock Text="Початкова дата:"/>
+            <DatePicker viewModel:BlackOutDatesAdapter.BlackOutDates="{Binding BlackOutDates}"
+                    DisplayDate="{Binding StartDate}" Margin="10" />
+            
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical">
+            <TextBlock Text="Кінцева дата:"/>
+            <DatePicker  viewModel:BlackOutDatesAdapter.BlackOutDates="{Binding BlackOutDates}"
+                    DisplayDate="{Binding EndDate}" Margin="10" />
+        </StackPanel>
+        <!--Great description-->
+        <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+            <TextBlock Text="Опис" FontSize="16" Margin="5"/>
+            <TextBox Text="{Binding ReservationNotes}" FontSize="12" Margin="5"
+                 TextWrapping="Wrap"
+                 AcceptsReturn="True"
+                 Height="100"/>
+        </StackPanel>
+        
+        
+        <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" Orientation="Horizontal">
+            <Button Width="105" HorizontalAlignment="Right" FontSize="12" Margin="10" Command="{Binding SaveCommand}" >
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="../Images/_save-24.png" Width="24" Height="24" VerticalAlignment="Center"/>
+                    <TextBlock Text="Резервувати" VerticalAlignment="Center" Margin="5"/>
+                </StackPanel>
+            </Button>
+            <Button Width="100" HorizontalAlignment="Left" FontSize="12" Margin="10" Command="{Binding CancelCommand}" >
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="../Images/_Cancel.png" Width="24" Height="24" VerticalAlignment="Center"/>
+                    <TextBlock Text="Вийти" VerticalAlignment="Center" Margin="5"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+
+    </Grid>
+</Window>

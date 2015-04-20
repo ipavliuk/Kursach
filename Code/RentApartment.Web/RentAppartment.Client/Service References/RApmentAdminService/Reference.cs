@@ -229,6 +229,8 @@ namespace RentAppartment.Client.RApmentAdminService {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(RentAppartment.Client.RApmentAdminService.GetReservationsResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(RentAppartment.Client.RApmentAdminService.GetAccountsResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(RentAppartment.Client.RApmentAdminService.GetDictionaryDataResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(RentAppartment.Client.RApmentAdminService.AmenitiesResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(RentAppartment.Client.RApmentAdminService.GetApartmentReservationsResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(RentAppartment.Client.RApmentAdminService.GetPropertyListingResponse))]
     public partial class BaseResponse : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -361,6 +363,54 @@ namespace RentAppartment.Client.RApmentAdminService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AmenitiesResponse", Namespace="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Respon" +
+        "se")]
+    [System.SerializableAttribute()]
+    public partial class AmenitiesResponse : RentAppartment.Client.RApmentAdminService.BaseResponse {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private RentAppartment.Client.RApmentAdminService.AmenityDto[] AmenitiesField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public RentAppartment.Client.RApmentAdminService.AmenityDto[] Amenities {
+            get {
+                return this.AmenitiesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AmenitiesField, value) != true)) {
+                    this.AmenitiesField = value;
+                    this.RaisePropertyChanged("Amenities");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="GetApartmentReservationsResponse", Namespace="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Respon" +
+        "se")]
+    [System.SerializableAttribute()]
+    public partial class GetApartmentReservationsResponse : RentAppartment.Client.RApmentAdminService.BaseResponse {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime[] BlackOutDatesField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime[] BlackOutDates {
+            get {
+                return this.BlackOutDatesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.BlackOutDatesField, value) != true)) {
+                    this.BlackOutDatesField = value;
+                    this.RaisePropertyChanged("BlackOutDates");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="GetPropertyListingResponse", Namespace="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Respon" +
         "se")]
     [System.SerializableAttribute()]
@@ -410,6 +460,9 @@ namespace RentAppartment.Client.RApmentAdminService {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private byte BedRoomField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private RentAppartment.Client.RApmentAdminService.AmenityDto[] C_AmenitiesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string CityField;
@@ -537,6 +590,19 @@ namespace RentAppartment.Client.RApmentAdminService {
                 if ((this.BedRoomField.Equals(value) != true)) {
                     this.BedRoomField = value;
                     this.RaisePropertyChanged("BedRoom");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public RentAppartment.Client.RApmentAdminService.AmenityDto[] C_Amenities {
+            get {
+                return this.C_AmenitiesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.C_AmenitiesField, value) != true)) {
+                    this.C_AmenitiesField = value;
+                    this.RaisePropertyChanged("C_Amenities");
                 }
             }
         }
@@ -1195,6 +1261,100 @@ namespace RentAppartment.Client.RApmentAdminService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AmenityDto", Namespace="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Entiti" +
+        "es")]
+    [System.SerializableAttribute()]
+    public partial class AmenityDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IsActiveField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int idField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Description {
+            get {
+                return this.DescriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
+                    this.DescriptionField = value;
+                    this.RaisePropertyChanged("Description");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsActive {
+            get {
+                return this.IsActiveField;
+            }
+            set {
+                if ((this.IsActiveField.Equals(value) != true)) {
+                    this.IsActiveField = value;
+                    this.RaisePropertyChanged("IsActive");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int id {
+            get {
+                return this.idField;
+            }
+            set {
+                if ((this.idField.Equals(value) != true)) {
+                    this.idField = value;
+                    this.RaisePropertyChanged("id");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="GetReservationsRequest", Namespace="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Reques" +
         "t")]
     [System.SerializableAttribute()]
@@ -1204,13 +1364,16 @@ namespace RentAppartment.Client.RApmentAdminService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CityField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<System.DateTime> ReservationEndField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<System.DateTime> ReservationStartField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ReservationStatusField;
+        private System.Nullable<int> ReservationStatusField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -1219,6 +1382,19 @@ namespace RentAppartment.Client.RApmentAdminService {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string City {
+            get {
+                return this.CityField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CityField, value) != true)) {
+                    this.CityField = value;
+                    this.RaisePropertyChanged("City");
+                }
             }
         }
         
@@ -1249,7 +1425,7 @@ namespace RentAppartment.Client.RApmentAdminService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ReservationStatus {
+        public System.Nullable<int> ReservationStatus {
             get {
                 return this.ReservationStatusField;
             }
@@ -1257,6 +1433,52 @@ namespace RentAppartment.Client.RApmentAdminService {
                 if ((this.ReservationStatusField.Equals(value) != true)) {
                     this.ReservationStatusField = value;
                     this.RaisePropertyChanged("ReservationStatus");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ChangedPropertyRequest", Namespace="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Reques" +
+        "t")]
+    [System.SerializableAttribute()]
+    public partial class ChangedPropertyRequest : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private RentAppartment.Client.RApmentAdminService.PropertyDto PropertyField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public RentAppartment.Client.RApmentAdminService.PropertyDto Property {
+            get {
+                return this.PropertyField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PropertyField, value) != true)) {
+                    this.PropertyField = value;
+                    this.RaisePropertyChanged("Property");
                 }
             }
         }
@@ -1310,6 +1532,30 @@ namespace RentAppartment.Client.RApmentAdminService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRApmentAdministration/GetUserRole", ReplyAction="http://tempuri.org/IRApmentAdministration/GetUserRoleResponse")]
         System.Threading.Tasks.Task<RentAppartment.Client.RApmentAdminService.GetDictionaryDataResponse> GetUserRoleAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRApmentAdministration/GetAmenities", ReplyAction="http://tempuri.org/IRApmentAdministration/GetAmenitiesResponse")]
+        RentAppartment.Client.RApmentAdminService.AmenitiesResponse GetAmenities();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRApmentAdministration/GetAmenities", ReplyAction="http://tempuri.org/IRApmentAdministration/GetAmenitiesResponse")]
+        System.Threading.Tasks.Task<RentAppartment.Client.RApmentAdminService.AmenitiesResponse> GetAmenitiesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRApmentAdministration/GetApartmentReservation", ReplyAction="http://tempuri.org/IRApmentAdministration/GetApartmentReservationResponse")]
+        RentAppartment.Client.RApmentAdminService.GetApartmentReservationsResponse GetApartmentReservation(int propertyId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRApmentAdministration/GetApartmentReservation", ReplyAction="http://tempuri.org/IRApmentAdministration/GetApartmentReservationResponse")]
+        System.Threading.Tasks.Task<RentAppartment.Client.RApmentAdminService.GetApartmentReservationsResponse> GetApartmentReservationAsync(int propertyId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRApmentAdministration/MakeApartmentReservation", ReplyAction="http://tempuri.org/IRApmentAdministration/MakeApartmentReservationResponse")]
+        RentAppartment.Client.RApmentAdminService.BaseResponse MakeApartmentReservation(int accountId, int propertyId, System.DateTime startDate, System.DateTime endDate, string note);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRApmentAdministration/MakeApartmentReservation", ReplyAction="http://tempuri.org/IRApmentAdministration/MakeApartmentReservationResponse")]
+        System.Threading.Tasks.Task<RentAppartment.Client.RApmentAdminService.BaseResponse> MakeApartmentReservationAsync(int accountId, int propertyId, System.DateTime startDate, System.DateTime endDate, string note);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRApmentAdministration/CreateProperty", ReplyAction="http://tempuri.org/IRApmentAdministration/CreatePropertyResponse")]
+        RentAppartment.Client.RApmentAdminService.BaseResponse CreateProperty(RentAppartment.Client.RApmentAdminService.ChangedPropertyRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRApmentAdministration/CreateProperty", ReplyAction="http://tempuri.org/IRApmentAdministration/CreatePropertyResponse")]
+        System.Threading.Tasks.Task<RentAppartment.Client.RApmentAdminService.BaseResponse> CreatePropertyAsync(RentAppartment.Client.RApmentAdminService.ChangedPropertyRequest request);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1385,6 +1631,38 @@ namespace RentAppartment.Client.RApmentAdminService {
         
         public System.Threading.Tasks.Task<RentAppartment.Client.RApmentAdminService.GetDictionaryDataResponse> GetUserRoleAsync() {
             return base.Channel.GetUserRoleAsync();
+        }
+        
+        public RentAppartment.Client.RApmentAdminService.AmenitiesResponse GetAmenities() {
+            return base.Channel.GetAmenities();
+        }
+        
+        public System.Threading.Tasks.Task<RentAppartment.Client.RApmentAdminService.AmenitiesResponse> GetAmenitiesAsync() {
+            return base.Channel.GetAmenitiesAsync();
+        }
+        
+        public RentAppartment.Client.RApmentAdminService.GetApartmentReservationsResponse GetApartmentReservation(int propertyId) {
+            return base.Channel.GetApartmentReservation(propertyId);
+        }
+        
+        public System.Threading.Tasks.Task<RentAppartment.Client.RApmentAdminService.GetApartmentReservationsResponse> GetApartmentReservationAsync(int propertyId) {
+            return base.Channel.GetApartmentReservationAsync(propertyId);
+        }
+        
+        public RentAppartment.Client.RApmentAdminService.BaseResponse MakeApartmentReservation(int accountId, int propertyId, System.DateTime startDate, System.DateTime endDate, string note) {
+            return base.Channel.MakeApartmentReservation(accountId, propertyId, startDate, endDate, note);
+        }
+        
+        public System.Threading.Tasks.Task<RentAppartment.Client.RApmentAdminService.BaseResponse> MakeApartmentReservationAsync(int accountId, int propertyId, System.DateTime startDate, System.DateTime endDate, string note) {
+            return base.Channel.MakeApartmentReservationAsync(accountId, propertyId, startDate, endDate, note);
+        }
+        
+        public RentAppartment.Client.RApmentAdminService.BaseResponse CreateProperty(RentAppartment.Client.RApmentAdminService.ChangedPropertyRequest request) {
+            return base.Channel.CreateProperty(request);
+        }
+        
+        public System.Threading.Tasks.Task<RentAppartment.Client.RApmentAdminService.BaseResponse> CreatePropertyAsync(RentAppartment.Client.RApmentAdminService.ChangedPropertyRequest request) {
+            return base.Channel.CreatePropertyAsync(request);
         }
     }
 }

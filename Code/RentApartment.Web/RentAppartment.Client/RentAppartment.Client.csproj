@@ -64,13 +64,17 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Utils\BitmapImageConverter.cs" />
+    <Compile Include="ViewModels\BlackOutDatesAdapter.cs" />
     <Compile Include="Utils\CacheProvider.cs" />
     <Compile Include="Utils\RelayCommand.cs" />
     <Compile Include="Utils\RepositoryFactory.cs" />
     <Compile Include="ViewModels\AccountViewModel.cs" />
     <Compile Include="ViewModels\AddApartmentViewModel.cs" />
+    <Compile Include="Utils\AmenitiesProvider.cs" />
     <Compile Include="ViewModels\ApartmentViewModel.cs" />
+    <Compile Include="ViewModels\DialogBox.cs" />
     <Compile Include="ViewModels\PropertyListingViewModel.cs" />
+    <Compile Include="ViewModels\ScheduleViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\AccountsView.xaml.cs">
       <DependentUpon>AccountsView.xaml</DependentUpon>
@@ -83,6 +87,9 @@
     </Compile>
     <Compile Include="Views\PropertyListingView.xaml.cs">
       <DependentUpon>PropertyListingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ScheduleView.xaml.cs">
+      <DependentUpon>ScheduleView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ReservationsView.xaml.cs">
       <DependentUpon>ReservationsView.xaml</DependentUpon>
@@ -112,6 +119,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\PropertyListingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ScheduleView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -162,7 +173,16 @@
     <None Include="Service References\RApmentAdminService\RApmentAdministration5.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\RApmentAdminService\RentAppartment.Client.RApmentAdminService.AmenitiesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\RApmentAdminService\RentAppartment.Client.RApmentAdminService.BaseResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\RApmentAdminService\RentAppartment.Client.RApmentAdminService.GetAccountsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\RApmentAdminService\RentAppartment.Client.RApmentAdminService.GetApartmentReservationsResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\RApmentAdminService\RentAppartment.Client.RApmentAdminService.GetDictionaryDataResponse.datasource">
@@ -219,6 +239,14 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\brouse.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\folder_32.png" />
+    <Resource Include="Images\_DeleteRed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\_Cancel.png" />
+    <Resource Include="Images\_save-24.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

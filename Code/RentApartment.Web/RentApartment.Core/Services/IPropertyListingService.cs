@@ -20,7 +20,7 @@ namespace RentApartment.Core.Infrastructure
 
 		//IEnumerable<PropertyListing> GetPropertyListings();
 
-		IEnumerable<Reservations> GetReservationsByDate(DateTime startDate, DateTime endDate, int status);
+        IEnumerable<Reservations> GetReservationsByDate(DateTime startDate, DateTime endDate, int? status, string city);
 
 		IEnumerable<Reservations> GetReservationsByAccount(int accountId);
         IEnumerable<PropertyListing> GetPropertyListingByFilter(string city, int? homeType, int? roomNumbers);
@@ -28,5 +28,11 @@ namespace RentApartment.Core.Infrastructure
 		IEnumerable<C_Roles> GetRoles();
 		IEnumerable<C_Currency> GetCurrencies();
 		IEnumerable<C_Amenities> GetAmenities();
-	}
+
+        IEnumerable<DateTime> GetApartmentReservationDates(int apartmentId);
+
+        bool MakeApartmentReservation(int accountId, int propertyId, DateTime startDate, DateTime endDate, string note);
+        bool CreateProperty(PropertyListing property);
+        bool UpdateProperty(PropertyListing property);
+    }
 }

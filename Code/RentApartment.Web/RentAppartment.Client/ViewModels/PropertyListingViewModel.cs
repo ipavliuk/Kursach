@@ -9,7 +9,7 @@ using RentAppartment.Client.Utils;
 using RentAppartment.Client.Views;
 
 
-namespace RentAppartment.Client.ViewModels
+namespace RentAppartment.Client.Views
 {
 	public class PropertyListingViewModel : ViewModelBase
 	{
@@ -212,12 +212,110 @@ namespace RentAppartment.Client.ViewModels
 			}
 		}
 
+        private ICommand editCommand;
+        public ICommand EditCommand
+		{
+			get
+			{
+                if (this.editCommand == null)
+				{
+                    this.editCommand = new RelayCommand(o => this.EditCommandAction());
+				}
+                return this.editCommand;
+			}
+		}
+
+        
+        private ICommand deletePropertyCommand;
+        public ICommand DeletePropertyCommand
+		{
+			get
+			{
+                if (this.deletePropertyCommand == null)
+				{
+                    this.deletePropertyCommand = new RelayCommand(o => this.DeletePropertyCommandAction());
+				}
+                return this.deletePropertyCommand;
+			}
+		}
+
+       
+
+        private ICommand scheduleApartmentCommand;
+        public ICommand ScheduleApartmentCommand
+		{
+			get
+			{
+                if (this.scheduleApartmentCommand == null)
+				{
+                    this.scheduleApartmentCommand = new RelayCommand(o => this.ScheduleApartmentCommandAction());
+				}
+                return this.scheduleApartmentCommand;
+			}
+		}
+
+        private void DeletePropertyCommandAction()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void EditCommandAction()
+        {
+            
+            var view = new AddApartmentView();
+            var vm = new AddApartmentViewModel(this.SelectedProperty);
+
+            view.DataContext = vm;
+            if (vm.CloseAction == null)
+                vm.CloseAction = new Action(() => view.Close());
+
+           
+			view.Show();
+        }
+
+        private void ScheduleApartmentCommandAction()
+        {
+            if (SelectedProperty == null)
+            {
+                //TODO - add to log
+                return;
+            }
+                
+            try
+            {
+                var repo = RepositoryFactory.Instance.GetApartmentRepository();
+                List<DateTime> reservations = repo.GetApartmentReervations(SelectedProperty.PropertyId);
+
+                var view = new ScheduleView();
+                var vm = new ScheduleViewModel(reservations, SelectedProperty.PropertyId, 1);
+                view.DataContext = vm;
+
+                if (vm.CloseAction == null)
+                    vm.CloseAction = new Action(() => view.Close());
+
+                view.Show();
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+            
+        }
+        
 		private void AddApartmentCommandAction()
 		{
 			// Create view Model and start dialog
-			var view = new AddApartmentView();
-			view.DataContext = new AddApartmentViewModel();
+           
 
+            var view = new AddApartmentView();
+            var vm = new AddApartmentViewModel();
+
+            view.DataContext = vm;
+            if (vm.CloseAction == null)
+                vm.CloseAction = new Action(() => view.Close());
+
+           
 			view.Show();
 		}
 

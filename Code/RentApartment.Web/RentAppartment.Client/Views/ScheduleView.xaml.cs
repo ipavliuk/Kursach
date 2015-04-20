@@ -10,27 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using RentAppartment.Client.Views;
 
-namespace RentAppartment.Client
+namespace RentAppartment.Client.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Reservation.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ScheduleView : Window
     {
-        public MainWindow()
+        public ScheduleView()
         {
             InitializeComponent();
         }
-
-		public override void OnApplyTemplate()
-		{
-			base.OnApplyTemplate();
-			//Create MainViewModel
-			DataContext = new PropertyListingViewModel();
-		}
     }
 }

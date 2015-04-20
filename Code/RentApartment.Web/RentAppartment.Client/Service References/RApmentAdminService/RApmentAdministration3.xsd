@@ -96,4 +96,24 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:element name="GetDictionaryDataResponse" nillable="true" type="tns:GetDictionaryDataResponse" />
+  <xs:complexType name="AmenitiesResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseResponse">
+        <xs:sequence>
+          <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Entities" minOccurs="0" name="Amenities" nillable="true" type="q4:ArrayOfAmenityDto" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AmenitiesResponse" nillable="true" type="tns:AmenitiesResponse" />
+  <xs:complexType name="GetApartmentReservationsResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseResponse">
+        <xs:sequence>
+          <xs:element xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="BlackOutDates" nillable="true" type="q5:ArrayOfdateTime" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetApartmentReservationsResponse" nillable="true" type="tns:GetApartmentReservationsResponse" />
 </xs:schema>

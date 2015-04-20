@@ -16,12 +16,15 @@ namespace RentApartment.Service.DataContract.Request
 		//public int? PropertyListingId { get; set; }
 
 		[DataMember]
-		public int ReservationStatus { get; set; }
+		public int? ReservationStatus { get; set; }
 
 		[DataMember]
 		public System.DateTime? ReservationStart { get; set; }
 
 		[DataMember]
 		public System.DateTime? ReservationEnd { get; set; }
+
+        [DataMember]
+        public string City { get; set; }
 	}
 }

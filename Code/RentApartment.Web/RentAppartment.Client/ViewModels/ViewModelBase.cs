@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RentAppartment.Client.ViewModels
+namespace RentAppartment.Client.Views
 {
 	public class ViewModelBase : INotifyPropertyChanged
 	{

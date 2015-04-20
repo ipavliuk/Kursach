@@ -7,7 +7,7 @@ using System.Windows.Input;
 using RentAppartment.Client.RApmentAdminService;
 using RentAppartment.Client.Utils;
 
-namespace RentAppartment.Client.ViewModels
+namespace RentAppartment.Client.Views
 {
     public class AccountViewModel : ViewModelBase
     {
@@ -65,11 +65,11 @@ namespace RentAppartment.Client.ViewModels
 		{
 			get
 			{
-				if (this.searchCommand == null)
+                if (this.deleteAccountCommand == null)
 				{
-					this.searchCommand = new RelayCommand(o => this.DeleteItemAction());
+                    this.deleteAccountCommand = new RelayCommand(o => this.DeleteItemAction());
 				}
-				return this.searchCommand;
+                return this.deleteAccountCommand;
 			}
 		}
 

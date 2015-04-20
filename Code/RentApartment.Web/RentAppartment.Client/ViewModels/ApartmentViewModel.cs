@@ -1,5 +1,5 @@
 ﻿using RentAppartment.Client.RApmentAdminService;
-using RentAppartment.Client.ViewModels;
+using RentAppartment.Client.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using RentAppartment.Client.Utils;
 
-namespace RentAppartment.Client.ViewModels
+namespace RentAppartment.Client.Views
 {
     public class ApartmentViewModel : ViewModelBase
     {

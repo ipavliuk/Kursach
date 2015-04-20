@@ -83,15 +83,15 @@ namespace RentApartment.Core.Infrastructure
 
         }
 
-		public IEnumerable<Reservations> GetReservations(int? accountId, DateTime? startDate, DateTime? endDate, int status)
+		public IEnumerable<Reservations> GetReservations(int? accountId, DateTime? startDate, DateTime? endDate, int? status, string city)
 		{
 			var service = new PropertyListingService();
 			
 			
 
-			return (accountId != null && accountId != 0) 
-				? service.GetReservationsByDate(startDate?? DateTime.MinValue, endDate ?? DateTime.UtcNow, status)
-				:service.GetReservationsByAccount((int)accountId);
+			return (accountId != null && accountId != 0)
+                ? service.GetReservationsByDate(startDate ?? DateTime.UtcNow.AddMonths(-1), endDate ?? DateTime.UtcNow, status, city)
+				: service.GetReservationsByAccount((int)accountId);
 	
 		}
 
@@ -101,11 +101,11 @@ namespace RentApartment.Core.Infrastructure
             return service.GetAccountsByFilter(accountId, name, city);
         }
 
-		private IEnumerable<Reservations> GetReservationsByDate(DateTime startDate, DateTime endDate, int status)
+		private IEnumerable<Reservations> GetReservationsByDate(DateTime startDate, DateTime endDate, int? status, string city)
 		{
 			var service = new PropertyListingService();
 
-			return service.GetReservationsByDate(startDate, endDate, status);
+			return service.GetReservationsByDate(startDate, endDate, status, city);
 		}
 
 		private IEnumerable<Reservations> GetReservationsByAccount(int accountId)
@@ -143,5 +143,33 @@ namespace RentApartment.Core.Infrastructure
 
 			return service.GetAmenities();
 		}
-	}
+
+        public IEnumerable<DateTime> GetApartmentReservations(int propertyId)
+        {
+            var service = new PropertyListingService();
+
+            return service.GetApartmentReservationDates(propertyId);
+        }
+
+        public bool MakeApartmentReservation(int accountId, int propertyId, DateTime startDate, DateTime endDate, string note)
+        {
+            var service = new PropertyListingService();
+
+            return service.MakeApartmentReservation(accountId, propertyId, startDate, endDate, note);
+        }
+        
+        public bool CreateProperty(PropertyListing property)
+        {
+            var service = new PropertyListingService();
+
+            return service.CreateProperty(property);   
+        }
+
+        public bool UpdateProperty(PropertyListing property)
+        {
+            var service = new PropertyListingService();
+
+            return service.UpdateProperty(property);   
+        }
+    }
 }

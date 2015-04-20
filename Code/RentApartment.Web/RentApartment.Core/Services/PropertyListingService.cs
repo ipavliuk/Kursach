@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using log4net;
 using log4net.Repository.Hierarchy;
 using RentApartment.Core.Model.EF;
+using RentApartment.Core.DAL.Enums;
 
 namespace RentApartment.Core.Infrastructure
 {
@@ -54,9 +55,9 @@ namespace RentApartment.Core.Infrastructure
         {
             try
             {
-                var acc = _db.Account.Where(a => accountId != null && a.id == accountId)
-                           .Where(a => name != null && a.FirstName == name)
-                           .Where(a => city != null && a.City == city);
+                var acc = _db.Account.Where(a => accountId != null && a.id == accountId || accountId == null)
+                                    .Where(a => a.FirstName == name)
+                                    .Where(a => a.City == city);
                 return acc;
             }
             catch (Exception ex)
@@ -142,11 +143,11 @@ namespace RentApartment.Core.Infrastructure
 		}*/
 
 		//For now in UTC
-		public IEnumerable<Reservations> GetReservationsByDate(DateTime startDate, DateTime endDate, int status)
+		public IEnumerable<Reservations> GetReservationsByDate(DateTime startDate, DateTime endDate, int? status, string city)
 		{
 			try
 			{
-				return _db.Reservations.Where(res => res.ReservationStart >= startDate && res.ReservationEnd <= endDate && res.ReservationStatus == status);
+                return _db.Reservations.Where(res => res.ReservationStart >= startDate && res.ReservationEnd <= endDate && (status != null && res.ReservationStatus == status) && res.PropertyListing.City == city);
 			}
 			catch (Exception ex)
 			{
@@ -169,7 +170,27 @@ namespace RentApartment.Core.Infrastructure
             return new List<Reservations>();
 		}
 
-       
+        public IEnumerable<DateTime> GetApartmentReservationDates(int apartmentId)
+        {
+            try
+            {
+                 var reservations = _db.Reservations.Where(res => res.FK_PropertyListing == apartmentId).ToList();
+                 return reservations.SelectMany(r =>
+                    {
+                        var start = r.ReservationStart;
+                        var end = r.ReservationEnd;
+                        return Enumerable.Range(0, 1 + end.Subtract(start).Days)
+                        .Select(offset => start.AddDays(offset));
+                    });
+                 
+            }
+            catch (Exception ex)
+            {
+                log.Error("Exception when get reservation dates by apartment  => ", ex);
+            }
+
+            return new List<DateTime>();
+        }
 
 		public void Dispose()
 		{
@@ -197,5 +218,75 @@ namespace RentApartment.Core.Infrastructure
 		{
 			return _db.C_Amenities;
 		}
-	}
+
+        public bool MakeApartmentReservation(int accountId, int propertyId, DateTime startDate, DateTime endDate, string note)
+        {
+            bool result = true;
+            try 
+	        {
+                var reservation = new Reservations
+                                         {
+                                             FK_PropertyListing = propertyId,
+                                             FK_Account = accountId,
+                                             ReservationStart = startDate,
+                                             ReservationEnd = endDate,
+                                             ReservationNote = note,
+                                             ReservationStatus = (int)ReservationStatus.Open,
+                                             FK__Currency = 3
+                                         };
+
+                _db.Reservations.Add(reservation);
+                int id = _db.SaveChanges();
+                result = id == 0 ? false : true;
+
+
+	        }
+	        catch (Exception)
+	        {
+		
+		        throw;
+	        }
+            return result;
+        }
+
+        public bool CreateProperty(PropertyListing property)
+        {
+            bool result = true;
+            try
+            {
+               
+
+                _db.PropertyListing.Add(property);
+                int id = _db.SaveChanges();
+                result = id == 0 ? false : true;
+
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return result;
+        }
+
+        public bool UpdateProperty(PropertyListing property)
+        {
+            bool result = true;
+            try
+            {
+                _db.PropertyListing.Add(property);
+                int id = _db.SaveChanges();
+                result = id == 0 ? false : true;
+
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return result;
+        }
+    }
 }

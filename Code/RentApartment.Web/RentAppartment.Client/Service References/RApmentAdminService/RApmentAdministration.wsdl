@@ -46,6 +46,30 @@
   <wsdl:message name="IRApmentAdministration_GetUserRole_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetUserRoleResponse" />
   </wsdl:message>
+  <wsdl:message name="IRApmentAdministration_GetAmenities_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAmenities" />
+  </wsdl:message>
+  <wsdl:message name="IRApmentAdministration_GetAmenities_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAmenitiesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRApmentAdministration_GetApartmentReservation_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetApartmentReservation" />
+  </wsdl:message>
+  <wsdl:message name="IRApmentAdministration_GetApartmentReservation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetApartmentReservationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRApmentAdministration_MakeApartmentReservation_InputMessage">
+    <wsdl:part name="parameters" element="tns:MakeApartmentReservation" />
+  </wsdl:message>
+  <wsdl:message name="IRApmentAdministration_MakeApartmentReservation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MakeApartmentReservationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRApmentAdministration_CreateProperty_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateProperty" />
+  </wsdl:message>
+  <wsdl:message name="IRApmentAdministration_CreateProperty_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreatePropertyResponse" />
+  </wsdl:message>
   <wsdl:portType name="IRApmentAdministration">
     <wsdl:operation name="GetPropertyListing">
       <wsdl:input wsaw:Action="http://tempuri.org/IRApmentAdministration/GetPropertyListing" message="tns:IRApmentAdministration_GetPropertyListing_InputMessage" />
@@ -70,6 +94,22 @@
     <wsdl:operation name="GetUserRole">
       <wsdl:input wsaw:Action="http://tempuri.org/IRApmentAdministration/GetUserRole" message="tns:IRApmentAdministration_GetUserRole_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IRApmentAdministration/GetUserRoleResponse" message="tns:IRApmentAdministration_GetUserRole_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAmenities">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRApmentAdministration/GetAmenities" message="tns:IRApmentAdministration_GetAmenities_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRApmentAdministration/GetAmenitiesResponse" message="tns:IRApmentAdministration_GetAmenities_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetApartmentReservation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRApmentAdministration/GetApartmentReservation" message="tns:IRApmentAdministration_GetApartmentReservation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRApmentAdministration/GetApartmentReservationResponse" message="tns:IRApmentAdministration_GetApartmentReservation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MakeApartmentReservation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRApmentAdministration/MakeApartmentReservation" message="tns:IRApmentAdministration_MakeApartmentReservation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRApmentAdministration/MakeApartmentReservationResponse" message="tns:IRApmentAdministration_MakeApartmentReservation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateProperty">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRApmentAdministration/CreateProperty" message="tns:IRApmentAdministration_CreateProperty_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRApmentAdministration/CreatePropertyResponse" message="tns:IRApmentAdministration_CreateProperty_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IRApmentAdministration" type="tns:IRApmentAdministration">
@@ -121,6 +161,42 @@
     </wsdl:operation>
     <wsdl:operation name="GetUserRole">
       <soap:operation soapAction="http://tempuri.org/IRApmentAdministration/GetUserRole" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAmenities">
+      <soap:operation soapAction="http://tempuri.org/IRApmentAdministration/GetAmenities" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetApartmentReservation">
+      <soap:operation soapAction="http://tempuri.org/IRApmentAdministration/GetApartmentReservation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MakeApartmentReservation">
+      <soap:operation soapAction="http://tempuri.org/IRApmentAdministration/MakeApartmentReservation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateProperty">
+      <soap:operation soapAction="http://tempuri.org/IRApmentAdministration/CreateProperty" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

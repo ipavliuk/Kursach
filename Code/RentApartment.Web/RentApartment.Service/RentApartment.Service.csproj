@@ -78,6 +78,7 @@
     <Compile Include="DataContract\Entities\Country.cs" />
     <Compile Include="DataContract\Entities\Currency.cs" />
     <Compile Include="DataContract\Entities\Role.cs" />
+    <Compile Include="DataContract\Request\ChangedPropertyRequest.cs" />
     <Compile Include="DataContract\Request\GetAccountsRequest.cs" />
     <Compile Include="DataContract\Request\PaginationRequest.cs" />
     <Compile Include="DataContract\Response\AmenitiesResponse.cs" />
@@ -93,6 +94,7 @@
     <Compile Include="DataContract\Response\CurrenciesResponse.cs" />
     <Compile Include="DataContract\Response\GetAccountProfileResponce.cs" />
     <Compile Include="DataContract\Response\GetAccountsResponse.cs" />
+    <Compile Include="DataContract\Response\GetApartmentReservations.cs" />
     <Compile Include="DataContract\Response\GetDictionaryDataResponse.cs" />
     <Compile Include="DataContract\Response\GetPropertyListingResponse.cs" />
     <Compile Include="DataContract\Response\GetReservationsResponse.cs" />

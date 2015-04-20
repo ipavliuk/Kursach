@@ -30,5 +30,16 @@ namespace RentApartment.Service
         [OperationContract]
         GetDictionaryDataResponse GetUserRole();
 
-	}
+        [OperationContract]
+        AmenitiesResponse GetAmenities();
+
+        [OperationContract]
+        GetApartmentReservationsResponse GetApartmentReservation(int propertyId);
+
+        [OperationContract]
+        BaseResponse MakeApartmentReservation(int accountId, int propertyId, DateTime startDate, DateTime endDate, string note);
+
+        [OperationContract]
+        BaseResponse CreateProperty(ChangedPropertyRequest request);
+    }
 }

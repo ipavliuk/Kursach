@@ -4,18 +4,24 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid >
+             d:DesignHeight="600" d:DesignWidth="600">
+    <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
-            <StackPanel>
+            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left"
+                        Orientation="Horizontal" Width="638" Margin="80 30 0 0">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition />
@@ -111,5 +117,4 @@
             </DataGrid>
         </StackPanel>
     </Grid>
-
 </UserControl>

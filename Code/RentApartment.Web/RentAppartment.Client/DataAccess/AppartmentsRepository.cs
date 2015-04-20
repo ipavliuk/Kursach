@@ -56,6 +56,32 @@ namespace RentAppartment.Client.DataAccess
             return properties;
         }
 
+        public bool UpdateProperty(PropertyDto apartment)
+        {
+            bool result = true;
+            try
+            {
+                var request = new ChangedPropertyRequest();
+                request.Property = apartment;
+                BaseResponse response = _service.CreateProperty(request);
+                if (response != null)
+                {
+                    if (response.ErrorId != 0)
+                    {
+                        result = false;//Add to Log message
+                    }
+
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            return result;
+        }
 
 
         public List<AccountDto> GetAccounts(int? accountId, string name, string city)
@@ -92,6 +118,90 @@ namespace RentAppartment.Client.DataAccess
             }
 
             return accounts;
+        }
+
+        public List<AmenityDto> GetAmenitites()
+        {
+            List<AmenityDto> amenities = new List<AmenityDto>();
+            try
+            {
+               
+
+                AmenitiesResponse response = _service.GetAmenities();
+                if (response != null)
+                {
+                    if (response.ErrorId == 0)
+                    {
+                        amenities = response.Amenities.ToList();
+                    }
+                    else
+                    {
+                        //Add to Log message
+                    }
+
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return amenities;
+        }
+        public List<DateTime> GetApartmentReervations(int propertyId)
+        {
+            var reservations = new List<DateTime>();
+            try
+            {
+
+
+                GetApartmentReservationsResponse response = _service.GetApartmentReservation(propertyId);
+                if (response != null)
+                {
+                    if (response.ErrorId == 0)
+                    {
+                        reservations = response.BlackOutDates.ToList();
+                    }
+                    else
+                    {
+                        //Add to Log message
+                    }
+
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return reservations;
+        }
+
+        public bool MakeReservation(int accountId, int propertyId, DateTime startDate, DateTime endDate, string note)
+        {
+            bool result = true; 
+            try
+            {
+                BaseResponse response = _service.MakeApartmentReservation(accountId, propertyId, startDate, endDate, note);
+                if (response != null)
+                {
+                    if (response.ErrorId != 0)
+                    {
+                        result = false;//Add to Log message
+                    }
+
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            return result;
         }
 
         ///Dictionaries
@@ -198,5 +308,7 @@ namespace RentAppartment.Client.DataAccess
 		{
 			
 		}
-	}
+
+        
+    }
 }
