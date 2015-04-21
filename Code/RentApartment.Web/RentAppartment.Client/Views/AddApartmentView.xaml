@@ -31,6 +31,8 @@
             <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical">
                 <StackPanel Orientation="Horizontal" Margin="5">
                     <TextBlock Text="Кількість спалень: " FontSize="12" VerticalAlignment="Center"/>
+                    <!--<ComboBox Grid.Row="1" Grid.Column="5"  Margin=" 11,4" Width="50" Height="22" ItemsSource="{Binding RoomNumbers}" 
+                              SelectedItem="{Binding RoomNumberSelectedItem}"/>-->
                     <TextBox Text="{Binding Appartment.BedRoom, UpdateSourceTrigger=PropertyChanged}" Margin="37 0" FontSize="12" Width="80" Height="20" 
                          HorizontalAlignment="Center"  
                          VerticalAlignment="Center"/>
@@ -50,10 +52,17 @@
                          VerticalAlignment="Center"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="5">
-                    <TextBlock Text="Тип розміщення: " FontSize="12" VerticalAlignment="Center"/>
-                    <TextBox Text="{Binding Appartment.HomeType}" Margin="35 0" FontSize="12" Width="85" Height="20" 
+                    <TextBlock Text="Тип помешкання: " FontSize="12" VerticalAlignment="Center"/>
+
+                    <ComboBox Grid.Row="1" Grid.Column="3"  Margin="30 0" FontSize="12" Width="85" Height="20"
+                              ItemsSource="{Binding HomeTypes}"
+                              DisplayMemberPath="Value"
+                              SelectedValuePath="Key"
+                              IsSynchronizedWithCurrentItem="True"
+                              SelectedItem ="{Binding HomeTypeSelectedItem}" VerticalAlignment="Bottom"/>
+                    <!--<TextBox Text="{Binding Appartment.HomeType}" Margin="30 0" FontSize="12" Width="85" Height="20" 
                          HorizontalAlignment="Center"  
-                         VerticalAlignment="Center"/>
+                         VerticalAlignment="Center"/>-->
                 </StackPanel>
             </StackPanel>
 
@@ -92,8 +101,8 @@
         <TextBlock Text="Власник" Grid.Row="3" Grid.Column="0" FontSize="16" Margin="5"/>
         <ComboBox Grid.Row="3" Grid.Column="1"  Margin="10 0" Width="210" IsEnabled="{Binding CanOwnerEnable}"
                               ItemsSource="{Binding Owners}"
-                              SelectedValuePath="Key" DisplayMemberPath="Value"
-                              SelectedItem ="OwnerSelectedItem" Height="20" VerticalAlignment="Center"/>
+                              DisplayMemberPath="ShowedInfo"
+                              SelectedItem ="{Binding OwnerSelectedItem}" Height="20" VerticalAlignment="Center"/>
             <!--Amenities-->
         <TextBlock Text="Зручності" Grid.Row="4" Grid.Column="0" FontSize="16" Margin="5"/>
 

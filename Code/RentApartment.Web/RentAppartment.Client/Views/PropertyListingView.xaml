@@ -47,11 +47,16 @@
                     <TextBlock Text="Тип помешкання:" Grid.Row="1" Grid.Column="2"  FontSize="14" VerticalAlignment="Center" Margin="0,7,5,7" Height="21"/>
                     <ComboBox Grid.Row="1" Grid.Column="3"  Margin="10.667,0,11.333,3.667" Width="100" 
                               ItemsSource="{Binding HomeTypes}"
-                              SelectedValuePath="Key" DisplayMemberPath="Value"
-                              SelectedItem ="HomeTypeSelectedItem" Height="27" VerticalAlignment="Bottom"/>
-
+                              DisplayMemberPath="Value"
+                              SelectedValuePath="Key"
+                              IsSynchronizedWithCurrentItem="True"
+                              SelectedItem ="{Binding HomeTypeSelectedItem}" Height="27" VerticalAlignment="Bottom"/>
+                    
+                    <!--IsSynchronizedWithCurrentItem="True"-->
+                    
                     <TextBlock Text="Кількість кімнат :" Grid.Row="1" Grid.Column="4"  FontSize="14" VerticalAlignment="Center" Margin="0,7,5,7" Height="21"/>
-                    <ComboBox Grid.Row="1" Grid.Column="5"  Margin=" 11,4" Width="50" Height="22" ItemsSource="{Binding RoomNumbers}" SelectedItem="{Binding RoomNumberSelectedItem}"/>
+                    <ComboBox Grid.Row="1" Grid.Column="5"  Margin=" 11,4" Width="50" Height="22" ItemsSource="{Binding RoomNumbers}" 
+                              SelectedItem="{Binding RoomNumberSelectedItem}"/>
 
                     <TextBlock Text="Id Власника:" Grid.Row="2" Grid.Column="0"  FontSize="14" VerticalAlignment="Center" Margin="0,7,5,7" Height="21"/>
                     <TextBox Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Height="22" Margin="11,4" Text="{Binding OwnerId}"/>

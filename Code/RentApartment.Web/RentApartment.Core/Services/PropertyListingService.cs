@@ -56,8 +56,8 @@ namespace RentApartment.Core.Infrastructure
             try
             {
                 var acc = _db.Account.Where(a => accountId != null && a.id == accountId || accountId == null)
-                                    .Where(a => a.FirstName == name)
-                                    .Where(a => a.City == city);
+										.Where(a => a.FirstName == name || string.IsNullOrEmpty(name))
+										.Where(a => a.City == city || string.IsNullOrEmpty(city));
                 return acc;
             }
             catch (Exception ex)

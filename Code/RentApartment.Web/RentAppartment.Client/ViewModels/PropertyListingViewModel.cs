@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,11 +14,23 @@ namespace RentAppartment.Client.Views
 {
 	public class PropertyListingViewModel : ViewModelBase
 	{
-        public PropertyListingViewModel()
+		public class DictItem
+		{
+			public int Id { get; set; }
+
+			public string Value { get; set; }
+		}
+
+		public PropertyListingViewModel()
         {
             //Init combo boxes
             var repo = RepositoryFactory.Instance.GetApartmentRepository();
-            this.HomeTypes = repo.GetHomeTypes();
+
+			this.HomeTypes = new ObservableCollection<DictItem>(repo.GetHomeTypes().Select(item => new DictItem()
+																{
+																	Id = item.Key,
+																	Value = item.Value
+																}).ToList());
 
             this.RoomNumbers = Enumerable.Range(1, 6).ToList();
         }
@@ -40,6 +53,77 @@ namespace RentAppartment.Client.Views
 			}
 		}
 
+		
+		private int? ownerId;
+		public int? OwnerId
+		{
+			get
+			{
+				return this.ownerId;
+			}
+			set
+			{
+				if (this.ownerId != value)
+				{
+					this.ownerId = value;
+					OnPropertyChanged("OwnerId");
+				}
+			}
+		}
+		private int? propertyId;
+		public int? PropertyId
+		{
+			get
+			{
+				return this.propertyId;
+			}
+			set
+			{
+				if (this.propertyId != value)
+				{
+					this.propertyId = value;
+					OnPropertyChanged("PropertyId");
+				}
+			}
+		}
+
+		private DictItem homeTypeSelectedItem;
+		public DictItem HomeTypeSelectedItem
+		{
+			get
+			{
+				return this.homeTypeSelectedItem;
+			}
+			set
+			{
+				if (this.homeTypeSelectedItem != value)
+				{
+					this.homeTypeSelectedItem = value;
+					OnPropertyChanged("HomeTypeSelectedItem");
+				}
+			}
+		}
+
+		public ObservableCollection<DictItem> HomeTypes { get; private set; }
+		
+
+        private List<int> roomNumbers;
+        public List<int> RoomNumbers
+        {
+            get
+            {
+                return this.roomNumbers;
+            }
+            set
+            {
+                if (this.roomNumbers != value)
+                {
+                    this.roomNumbers = value;
+                    OnPropertyChanged("RoomNumbers");
+                }
+            }
+        }
+
 		private int? roomNumberSelectedItem;
 		public int? RoomNumberSelectedItem
 		{
@@ -57,87 +141,6 @@ namespace RentAppartment.Client.Views
 			}
 		}
 
-		private int? ownerId;
-		public int? OwnerId
-		{
-			get
-			{
-				return this.ownerId;
-			}
-			set
-			{
-				if (this.ownerId != value)
-				{
-					this.ownerId = value;
-					OnPropertyChanged("OwnerId");
-				}
-			}
-		}
-		private int? homeTypeSelectedItem;
-		public int? HomeTypeSelectedItem
-		{
-			get
-			{
-				return this.homeTypeSelectedItem;
-			}
-			set
-			{
-				if (this.homeTypeSelectedItem != value)
-				{
-					this.homeTypeSelectedItem = value;
-					OnPropertyChanged("HomeTypeSelectedItem");
-				}
-			}
-		}
-
-		private int? propertyId;
-		public int? PropertyId
-		{
-			get
-			{
-				return this.propertyId;
-			}
-			set
-			{
-				if (this.propertyId != value)
-				{
-					this.propertyId = value;
-					OnPropertyChanged("PropertyId");
-				}
-			}
-		}
-        private Dictionary<int,string> homeTypes;
-        public Dictionary<int, string> HomeTypes
-        {
-            get
-            {
-                return this.homeTypes;
-            }
-            set
-            {
-                if (this.homeTypes != value)
-                {
-                    this.homeTypes = value;
-                    OnPropertyChanged("HomeTypes");
-                }
-            }
-        }
-        private List<int> roomNumbers;
-        public List<int> RoomNumbers
-        {
-            get
-            {
-                return this.roomNumbers;
-            }
-            set
-            {
-                if (this.roomNumbers != value)
-                {
-                    this.roomNumbers = value;
-                    OnPropertyChanged("RoomNumbers");
-                }
-            }
-        }
 
 		private List<PropertyDto> properyListing;
 		public List<PropertyDto> ProperyListing
@@ -326,7 +329,7 @@ namespace RentAppartment.Client.Views
 
 			
 			var repo = RepositoryFactory.Instance.GetApartmentRepository();
-			this.ProperyListing = repo.GetPropertyListings(location, ownerId, propertyId, homeTypeSelectedItem, roomNumberSelectedItem);
+			this.ProperyListing = repo.GetPropertyListings(location, ownerId, propertyId, this.HomeTypeSelectedItem.Id, roomNumberSelectedItem);
 			
 			//viewModel.Appointments = AppointmentsHelper.Instance.LoadAppointments(rentalOrders);
 

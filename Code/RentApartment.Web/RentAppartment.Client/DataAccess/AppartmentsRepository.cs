@@ -223,7 +223,7 @@ namespace RentAppartment.Client.DataAccess
                     {
                         if (response.ErrorId == 0)
                         {
-                            dict = response.Data;
+							dict = response.Data;
                             CacheProvider.Instance.AddItem("HomeTypes", dict);
                         }
                     }

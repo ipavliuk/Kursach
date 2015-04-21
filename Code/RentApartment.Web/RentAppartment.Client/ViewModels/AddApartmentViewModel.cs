@@ -14,23 +14,115 @@ namespace RentAppartment.Client.Views
 {
 	public class AddApartmentViewModel : ViewModelBase
 	{
-        public AddApartmentViewModel(PropertyDto property)
+		public class AccountDtoLite
+		{
+			public int AccountId { get; set; }
+
+			public string ShowedInfo { get; set; }
+		}
+
+		public AddApartmentViewModel(PropertyDto property)
         {
             this.Appartment = property;
             var repo = RepositoryFactory.Instance.GetApartmentRepository();
             Amenities = new AmenitiesProvider(repo.GetAmenitites());
             Amenities.SetAmenitiesModel(property.C_Amenities.ToList());
-            this.Owners = repo.GetAccounts(property.Account.id, "", "");
+			_accounts = repo.GetAccounts(property.Account.id, "", "");
+			this.HomeTypes = new ObservableCollection<DictItem>(repo.GetHomeTypes().Select(item => new DictItem()
+			{
+				Id = item.Key,
+				Value = item.Value
+			}).ToList());
+			this.Owners = GenerateSimpleAccount(_accounts);
             this.CanOwnerEnable = false;
         }
+
         public AddApartmentViewModel()
         {
             this.Appartment = new PropertyDto();
             var repo = RepositoryFactory.Instance.GetApartmentRepository();
             Amenities = new AmenitiesProvider(repo.GetAmenitites());
-            this.Owners = repo.GetAccounts(null, "", "");
+	        _accounts = repo.GetAccounts(null, "", "");
+			this.HomeTypes = new ObservableCollection<DictItem>(repo.GetHomeTypes().Select(item => new DictItem()
+			{
+				Id = item.Key,
+				Value = item.Value
+			}).ToList());
+
+			this.Owners = GenerateSimpleAccount(_accounts);
             this.CanOwnerEnable = true;
         }
+
+		private List<AccountDtoLite> GenerateSimpleAccount(List<AccountDto> accounts)
+		{
+			var generatedAccount = new List<AccountDtoLite>();
+
+			if (accounts == null)
+				return generatedAccount;
+			try
+			{
+				generatedAccount = accounts.Select(acc => new AccountDtoLite
+											{
+												AccountId = acc.id,
+												ShowedInfo = string.Format("Name: {0}  {1}; Addres: {2}", acc.FirstName, acc.LastName, acc.City)
+											}).ToList();
+			}
+			catch (Exception)
+			{
+				
+			}
+
+			return generatedAccount;
+		}
+
+		private AccountDto GetAccountFromSimple()
+		{
+			var account = new AccountDto();
+			try
+			{
+				//if (OwnerSelectedItem != null)
+				{
+					account = _accounts.Where(acc => acc.id == OwnerSelectedItem.AccountId).FirstOrDefault();
+				}
+					
+				
+			}
+			catch (Exception)
+			{
+				
+				throw;
+			}
+
+			return account;
+		}
+
+		public class DictItem
+		{
+			public int Id { get; set; }
+
+			public string Value { get; set; }
+		}
+		private DictItem homeTypeSelectedItem;
+		public DictItem HomeTypeSelectedItem
+		{
+			get
+			{
+				return this.homeTypeSelectedItem;
+			}
+			set
+			{
+				if (this.homeTypeSelectedItem != value)
+				{
+					this.homeTypeSelectedItem = value;
+					OnPropertyChanged("HomeTypeSelectedItem");
+				}
+			}
+		}
+
+		public ObservableCollection<DictItem> HomeTypes { get; private set; }
+
+		private List<AccountDto> _accounts;
+
 		public class ImageData
 		{
             public string Id { get; set; }
@@ -55,8 +147,8 @@ namespace RentAppartment.Client.Views
                 }
             }
         }
-        private List<AccountDto> owners;
-        public List<AccountDto> Owners
+		private List<AccountDtoLite> owners;
+		public List<AccountDtoLite> Owners
         {
             get
             {
@@ -71,7 +163,25 @@ namespace RentAppartment.Client.Views
                 }
             }
         }
+
+		private AccountDtoLite ownerSelectedItem;
+		public AccountDtoLite OwnerSelectedItem
+        {
+            get
+            {
+				return this.ownerSelectedItem;
+            }
+            set
+            {
+				if (this.ownerSelectedItem != value)
+                {
+					this.ownerSelectedItem = value;
+					OnPropertyChanged("OwnerSelectedItem");
+                }
+            }
+        }
         
+
         private AmenitiesProvider amenities;
         public AmenitiesProvider Amenities
         {
@@ -208,6 +318,7 @@ namespace RentAppartment.Client.Views
                 {
                     ap.C_Amenities = this.Amenities.GetSelectedAmenitites().ToArray();
                     var repo = RepositoryFactory.Instance.GetApartmentRepository();
+	                ap.Account = GetAccountFromSimple();
                     repo.UpdateProperty(ap);
 
                     CloseAction(); 
