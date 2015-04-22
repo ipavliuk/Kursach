@@ -14,6 +14,11 @@ namespace RentApartment.Service.DataContract.Entities
 		[DataMember]
 		public int PropertyId { get; set; }
 
+        [DataMember]
+        public int FK_Account { get; set; }
+
+        [DataMember]
+        public int FK__Country { get; set; }
 
 		[DataMember]
         public AccountDto Account { get; set; }

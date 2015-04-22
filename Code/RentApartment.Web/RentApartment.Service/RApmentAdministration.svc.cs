@@ -180,8 +180,37 @@ namespace RentApartment.Service
             try
             {
                 response.ErrorId = (int)RApmentErrors.Ok;
+                PropertyDto dto = request.Property;
 
-                PropertyListing property = Mapper.Map<PropertyDto, PropertyListing>(request.Property);
+                Account acc = RentApartmentManager.Instance.GetAccountById(dto.Account.id);
+
+                PropertyListing property = new PropertyListing()
+                {
+                    
+                    FK_Account = dto.Account.id,
+                    State = dto.State,
+                    PricePerNight = dto.PricePerNight,
+                    PricePerMonth = dto.PricePerMonth,
+                    PricePerWeek = dto.PricePerWeek,
+                    Photos = dto.Photos,
+                    GreatTitle = dto.GreatTitle,
+                    GreatSummary = dto.GreatSummary,
+                    BedRoom = dto.BedRoom,
+                    Bathroom = dto.Bathroom,
+                    HomeType = dto.HomeType,
+                    RoomType = dto.RoomType,
+                    Accommodates = dto.Accommodates,
+                    Address1 = dto.Address1,
+                    Address2 = dto.Address2,
+                    City = dto.City,
+                    State2 = dto.State2,
+                    Zip = dto.Zip,
+                    FK__Country = dto.Country,
+                   // Currency = dto.Currency
+                   C_Amenities = Mapper.Map<List<AmenityDto>, List<C_Amenities>>(dto.C_Amenities),
+                   Account = acc
+                };
+
                 bool result =
                     RentApartmentManager.Instance.CreateProperty(property);
                     //MakeApartmentReservation(accountId, propertyId, startDate, endDate, note);
