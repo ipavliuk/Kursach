@@ -47,7 +47,7 @@ namespace RentApartment.Service
                                                     request.PropertyId, request.HomeType, request.RoomNumbers).ToList();
 
 			
-				response.PropertListing = Mapper.Map<List<PropertyListing>, List<PropertyDto>>(propertyListings.ToList());
+				response.PropertListing = Mapper.Map<List<PropertyListing>, List<PropertyDto>>(propertyListings);
 
 			}
 			catch (Exception ex)
@@ -207,12 +207,14 @@ namespace RentApartment.Service
                     Zip = dto.Zip,
                     FK__Country = dto.Country,
                    // Currency = dto.Currency
-                   C_Amenities = Mapper.Map<List<AmenityDto>, List<C_Amenities>>(dto.C_Amenities),
-                   Account = acc
+                   //C_Amenities = Mapper.Map<List<AmenityDto>, List<C_Amenities>>(dto.C_Amenities)//,
+                   //Account = acc
                 };
 
+	            var amenities = Mapper.Map<List<AmenityDto>, List<C_Amenities>>(dto.C_Amenities);
+
                 bool result =
-                    RentApartmentManager.Instance.CreateProperty(property);
+                    RentApartmentManager.Instance.CreateProperty(property, amenities );
                     //MakeApartmentReservation(accountId, propertyId, startDate, endDate, note);
 
 

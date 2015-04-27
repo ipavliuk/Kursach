@@ -284,6 +284,105 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="f_AmenitiesGetById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="_AmenitiesGetById">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="f_CountryGetById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="_CountryGetById">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="f_CurrencyGetById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="_CurrencyGetById">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="f_RolesGetById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="_RolesGetById">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="AddAmenitiesToProperty" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PropertyListingId" Type="int" Mode="In" />
+          <Parameter Name="AmenityId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PropertyListingCreate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AccountId" Type="int" Mode="In" />
+          <Parameter Name="State" Type="tinyint" Mode="In" />
+          <Parameter Name="PricePerNight" Type="bigint" Mode="In" />
+          <Parameter Name="PricePerMonth" Type="bigint" Mode="In" />
+          <Parameter Name="PricePerWeek" Type="bigint" Mode="In" />
+          <Parameter Name="Photos" Type="nvarchar" Mode="In" />
+          <Parameter Name="GreatTitle" Type="nvarchar" Mode="In" />
+          <Parameter Name="GreatSummary" Type="nvarchar" Mode="In" />
+          <Parameter Name="BedRoom" Type="tinyint" Mode="In" />
+          <Parameter Name="Bathroom" Type="int" Mode="In" />
+          <Parameter Name="HomeType" Type="tinyint" Mode="In" />
+          <Parameter Name="RoomType" Type="tinyint" Mode="In" />
+          <Parameter Name="Accommodates" Type="tinyint" Mode="In" />
+          <Parameter Name="Address1" Type="nvarchar" Mode="In" />
+          <Parameter Name="Address2" Type="nvarchar" Mode="In" />
+          <Parameter Name="City" Type="nvarchar" Mode="In" />
+          <Parameter Name="State2" Type="nvarchar" Mode="In" />
+          <Parameter Name="Zip" Type="nvarchar" Mode="In" />
+          <Parameter Name="Country" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PropertyListingDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PropertyId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PropertyListingGetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="PropertyListingGetByAccountId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AccId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PropertyListingGetByPropertyId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PropertyId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PropertyListingUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PropertyId" Type="int" Mode="In" />
+          <Parameter Name="State" Type="tinyint" Mode="In" />
+          <Parameter Name="PricePerNight" Type="bigint" Mode="In" />
+          <Parameter Name="PricePerMonth" Type="bigint" Mode="In" />
+          <Parameter Name="PricePerWeek" Type="bigint" Mode="In" />
+          <Parameter Name="Photos" Type="nvarchar" Mode="In" />
+          <Parameter Name="GreatTitle" Type="nvarchar" Mode="In" />
+          <Parameter Name="GreatSummary" Type="nvarchar" Mode="In" />
+          <Parameter Name="BedRoom" Type="tinyint" Mode="In" />
+          <Parameter Name="Bathroom" Type="int" Mode="In" />
+          <Parameter Name="HomeType" Type="tinyint" Mode="In" />
+          <Parameter Name="RoomType" Type="tinyint" Mode="In" />
+          <Parameter Name="Accommodates" Type="tinyint" Mode="In" />
+          <Parameter Name="Address1" Type="nvarchar" Mode="In" />
+          <Parameter Name="Address2" Type="nvarchar" Mode="In" />
+          <Parameter Name="City" Type="nvarchar" Mode="In" />
+          <Parameter Name="State2" Type="nvarchar" Mode="In" />
+          <Parameter Name="Zip" Type="nvarchar" Mode="In" />
+          <Parameter Name="Country" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ReservationsCreate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AccountId" Type="int" Mode="In" />
+          <Parameter Name="PropertyListingId" Type="int" Mode="In" />
+          <Parameter Name="ReservationStatus" Type="int" Mode="In" />
+          <Parameter Name="ReservationStart" Type="datetime" Mode="In" />
+          <Parameter Name="ReservationEnd" Type="datetime" Mode="In" />
+          <Parameter Name="ReservationNote" Type="nvarchar" Mode="In" />
+          <Parameter Name="CurrencyId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ReservationsDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ReservationId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ReservationsGetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="ReservationsGetByAccId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AccId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ReservationsGetById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ReservationId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ReservationsGetByPropertyId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PropertyId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ReservationsUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ReservationId" Type="int" Mode="In" />
+          <Parameter Name="PropertyListingId" Type="int" Mode="In" />
+          <Parameter Name="ReservationStatus" Type="int" Mode="In" />
+          <Parameter Name="ReservationStart" Type="datetime" Mode="In" />
+          <Parameter Name="ReservationEnd" Type="datetime" Mode="In" />
+          <Parameter Name="ReservationNote" Type="nvarchar" Mode="In" />
+          <Parameter Name="CurrencyId" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="RentApartmentsModelStoreContainer">
           <EntitySet Name="_Amenities" EntityType="Self._Amenities" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="_Country" EntityType="Self._Country" Schema="dbo" store:Type="Tables" />
@@ -673,6 +772,105 @@
             <End Role="C_Currency" EntitySet="C_Currency" />
             <End Role="PropertyListing" EntitySet="PropertyListing" />
           </AssociationSet>
+          <FunctionImport Name="f_AmenitiesGetById" ReturnType="Collection(RentApartmentsModel.f_AmenitiesGetById_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="f_CountryGetById" ReturnType="Collection(RentApartmentsModel.f_CountryGetById_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="f_CurrencyGetById" ReturnType="Collection(RentApartmentsModel.f_CurrencyGetById_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="f_RolesGetById" ReturnType="Collection(RentApartmentsModel.f_RolesGetById_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="AddAmenitiesToProperty">
+            <Parameter Name="PropertyListingId" Mode="In" Type="Int32" />
+            <Parameter Name="AmenityId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PropertyListingCreate">
+            <Parameter Name="AccountId" Mode="In" Type="Int32" />
+            <Parameter Name="State" Mode="In" Type="Byte" />
+            <Parameter Name="PricePerNight" Mode="In" Type="Int64" />
+            <Parameter Name="PricePerMonth" Mode="In" Type="Int64" />
+            <Parameter Name="PricePerWeek" Mode="In" Type="Int64" />
+            <Parameter Name="Photos" Mode="In" Type="String" />
+            <Parameter Name="GreatTitle" Mode="In" Type="String" />
+            <Parameter Name="GreatSummary" Mode="In" Type="String" />
+            <Parameter Name="BedRoom" Mode="In" Type="Byte" />
+            <Parameter Name="Bathroom" Mode="In" Type="Int32" />
+            <Parameter Name="HomeType" Mode="In" Type="Byte" />
+            <Parameter Name="RoomType" Mode="In" Type="Byte" />
+            <Parameter Name="Accommodates" Mode="In" Type="Byte" />
+            <Parameter Name="Address1" Mode="In" Type="String" />
+            <Parameter Name="Address2" Mode="In" Type="String" />
+            <Parameter Name="City" Mode="In" Type="String" />
+            <Parameter Name="State2" Mode="In" Type="String" />
+            <Parameter Name="Zip" Mode="In" Type="String" />
+            <Parameter Name="Country" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PropertyListingDelete">
+            <Parameter Name="PropertyId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PropertyListingGetAll" ReturnType="Collection(RentApartmentsModel.PropertyListingGetAll_Result)" />
+          <FunctionImport Name="PropertyListingGetByAccountId" ReturnType="Collection(RentApartmentsModel.PropertyListingGetByAccountId_Result)">
+            <Parameter Name="AccId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PropertyListingGetByPropertyId" ReturnType="Collection(RentApartmentsModel.PropertyListingGetByPropertyId_Result)">
+            <Parameter Name="PropertyId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PropertyListingUpdate">
+            <Parameter Name="PropertyId" Mode="In" Type="Int32" />
+            <Parameter Name="State" Mode="In" Type="Byte" />
+            <Parameter Name="PricePerNight" Mode="In" Type="Int64" />
+            <Parameter Name="PricePerMonth" Mode="In" Type="Int64" />
+            <Parameter Name="PricePerWeek" Mode="In" Type="Int64" />
+            <Parameter Name="Photos" Mode="In" Type="String" />
+            <Parameter Name="GreatTitle" Mode="In" Type="String" />
+            <Parameter Name="GreatSummary" Mode="In" Type="String" />
+            <Parameter Name="BedRoom" Mode="In" Type="Byte" />
+            <Parameter Name="Bathroom" Mode="In" Type="Int32" />
+            <Parameter Name="HomeType" Mode="In" Type="Byte" />
+            <Parameter Name="RoomType" Mode="In" Type="Byte" />
+            <Parameter Name="Accommodates" Mode="In" Type="Byte" />
+            <Parameter Name="Address1" Mode="In" Type="String" />
+            <Parameter Name="Address2" Mode="In" Type="String" />
+            <Parameter Name="City" Mode="In" Type="String" />
+            <Parameter Name="State2" Mode="In" Type="String" />
+            <Parameter Name="Zip" Mode="In" Type="String" />
+            <Parameter Name="Country" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ReservationsCreate">
+            <Parameter Name="AccountId" Mode="In" Type="Int32" />
+            <Parameter Name="PropertyListingId" Mode="In" Type="Int32" />
+            <Parameter Name="ReservationStatus" Mode="In" Type="Int32" />
+            <Parameter Name="ReservationStart" Mode="In" Type="DateTime" />
+            <Parameter Name="ReservationEnd" Mode="In" Type="DateTime" />
+            <Parameter Name="ReservationNote" Mode="In" Type="String" />
+            <Parameter Name="CurrencyId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ReservationsDelete">
+            <Parameter Name="ReservationId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ReservationsGetAll" ReturnType="Collection(RentApartmentsModel.ReservationsGetAll_Result)" />
+          <FunctionImport Name="ReservationsGetByAccId" ReturnType="Collection(RentApartmentsModel.ReservationsGetByAccId_Result)">
+            <Parameter Name="AccId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ReservationsGetById" ReturnType="Collection(RentApartmentsModel.ReservationsGetById_Result)">
+            <Parameter Name="ReservationId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ReservationsGetByPropertyId" ReturnType="Collection(RentApartmentsModel.ReservationsGetByPropertyId_Result)">
+            <Parameter Name="PropertyId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ReservationsUpdate">
+            <Parameter Name="ReservationId" Mode="In" Type="Int32" />
+            <Parameter Name="PropertyListingId" Mode="In" Type="Int32" />
+            <Parameter Name="ReservationStatus" Mode="In" Type="Int32" />
+            <Parameter Name="ReservationStart" Mode="In" Type="DateTime" />
+            <Parameter Name="ReservationEnd" Mode="In" Type="DateTime" />
+            <Parameter Name="ReservationNote" Mode="In" Type="String" />
+            <Parameter Name="CurrencyId" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <Association Name="FKPropertyLi101343">
           <End Type="RentApartmentsModel.C_Currency" Role="C_Currency" Multiplicity="0..1" />
@@ -686,6 +884,135 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="f_AmenitiesGetById_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="255" />
+          <Property Type="Boolean" Name="IsActive" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="f_CountryGetById_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="IsoCode" Nullable="false" MaxLength="2" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="f_CurrencyGetById_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Country" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Currency" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Code" Nullable="false" MaxLength="3" />
+          <Property Type="String" Name="Symbol" Nullable="false" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="f_RolesGetById_Result">
+          <Property Type="Byte" Name="RoleId" Nullable="false" />
+          <Property Type="String" Name="RoleName" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="RoleDescription" Nullable="true" MaxLength="40" />
+        </ComplexType>
+        <ComplexType Name="PropertyListingGetAll_Result">
+          <Property Type="Int32" Name="PropertyId" Nullable="false" />
+          <Property Type="Int32" Name="FK_Account" Nullable="false" />
+          <Property Type="Byte" Name="State" Nullable="false" />
+          <Property Type="Int64" Name="PricePerNight" Nullable="true" />
+          <Property Type="Int64" Name="PricePerMonth" Nullable="true" />
+          <Property Type="Int64" Name="PricePerWeek" Nullable="true" />
+          <Property Type="String" Name="Photos" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="GreatTitle" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="GreatSummary" Nullable="true" MaxLength="255" />
+          <Property Type="Byte" Name="BedRoom" Nullable="false" />
+          <Property Type="Int32" Name="Bathroom" Nullable="false" />
+          <Property Type="Byte" Name="HomeType" Nullable="false" />
+          <Property Type="Byte" Name="RoomType" Nullable="false" />
+          <Property Type="Byte" Name="Accommodates" Nullable="false" />
+          <Property Type="String" Name="Address1" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Address2" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="City" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="State2" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Zip" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="FK__Country" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="PropertyListingGetByAccountId_Result">
+          <Property Type="Int32" Name="PropertyId" Nullable="false" />
+          <Property Type="Int32" Name="FK_Account" Nullable="false" />
+          <Property Type="Byte" Name="State" Nullable="false" />
+          <Property Type="Int64" Name="PricePerNight" Nullable="true" />
+          <Property Type="Int64" Name="PricePerMonth" Nullable="true" />
+          <Property Type="Int64" Name="PricePerWeek" Nullable="true" />
+          <Property Type="String" Name="Photos" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="GreatTitle" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="GreatSummary" Nullable="true" MaxLength="255" />
+          <Property Type="Byte" Name="BedRoom" Nullable="false" />
+          <Property Type="Int32" Name="Bathroom" Nullable="false" />
+          <Property Type="Byte" Name="HomeType" Nullable="false" />
+          <Property Type="Byte" Name="RoomType" Nullable="false" />
+          <Property Type="Byte" Name="Accommodates" Nullable="false" />
+          <Property Type="String" Name="Address1" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Address2" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="City" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="State2" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Zip" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="FK__Country" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="PropertyListingGetByPropertyId_Result">
+          <Property Type="Int32" Name="PropertyId" Nullable="false" />
+          <Property Type="Int32" Name="FK_Account" Nullable="false" />
+          <Property Type="Byte" Name="State" Nullable="false" />
+          <Property Type="Int64" Name="PricePerNight" Nullable="true" />
+          <Property Type="Int64" Name="PricePerMonth" Nullable="true" />
+          <Property Type="Int64" Name="PricePerWeek" Nullable="true" />
+          <Property Type="String" Name="Photos" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="GreatTitle" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="GreatSummary" Nullable="true" MaxLength="255" />
+          <Property Type="Byte" Name="BedRoom" Nullable="false" />
+          <Property Type="Int32" Name="Bathroom" Nullable="false" />
+          <Property Type="Byte" Name="HomeType" Nullable="false" />
+          <Property Type="Byte" Name="RoomType" Nullable="false" />
+          <Property Type="Byte" Name="Accommodates" Nullable="false" />
+          <Property Type="String" Name="Address1" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Address2" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="City" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="State2" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Zip" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="FK__Country" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="ReservationsGetAll_Result">
+          <Property Type="Int32" Name="ReservationId" Nullable="false" />
+          <Property Type="Int32" Name="FK_Account" Nullable="false" />
+          <Property Type="Int32" Name="FK_PropertyListing" Nullable="false" />
+          <Property Type="Int32" Name="ReservationStatus" Nullable="false" />
+          <Property Type="DateTime" Name="ReservationStart" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="ReservationEnd" Nullable="false" Precision="23" />
+          <Property Type="String" Name="ReservationNote" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="FK__Currency" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="ReservationsGetByAccId_Result">
+          <Property Type="Int32" Name="ReservationId" Nullable="false" />
+          <Property Type="Int32" Name="FK_Account" Nullable="false" />
+          <Property Type="Int32" Name="FK_PropertyListing" Nullable="false" />
+          <Property Type="Int32" Name="ReservationStatus" Nullable="false" />
+          <Property Type="DateTime" Name="ReservationStart" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="ReservationEnd" Nullable="false" Precision="23" />
+          <Property Type="String" Name="ReservationNote" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="FK__Currency" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="ReservationsGetById_Result">
+          <Property Type="Int32" Name="ReservationId" Nullable="false" />
+          <Property Type="Int32" Name="FK_Account" Nullable="false" />
+          <Property Type="Int32" Name="FK_PropertyListing" Nullable="false" />
+          <Property Type="Int32" Name="ReservationStatus" Nullable="false" />
+          <Property Type="DateTime" Name="ReservationStart" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="ReservationEnd" Nullable="false" Precision="23" />
+          <Property Type="String" Name="ReservationNote" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="FK__Currency" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="ReservationsGetByPropertyId_Result">
+          <Property Type="Int32" Name="ReservationId" Nullable="false" />
+          <Property Type="Int32" Name="FK_Account" Nullable="false" />
+          <Property Type="Int32" Name="FK_PropertyListing" Nullable="false" />
+          <Property Type="Int32" Name="ReservationStatus" Nullable="false" />
+          <Property Type="DateTime" Name="ReservationStart" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="ReservationEnd" Nullable="false" Precision="23" />
+          <Property Type="String" Name="ReservationNote" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="FK__Currency" Nullable="false" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -824,6 +1151,186 @@
               <ScalarProperty Name="PropertyId" ColumnName="FK_PropertyListing" />
             </EndProperty>
           </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="f_AmenitiesGetById" FunctionName="RentApartmentsModel.Store.f_AmenitiesGetById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RentApartmentsModel.f_AmenitiesGetById_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="f_CountryGetById" FunctionName="RentApartmentsModel.Store.f_CountryGetById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RentApartmentsModel.f_CountryGetById_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="IsoCode" ColumnName="IsoCode" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="f_CurrencyGetById" FunctionName="RentApartmentsModel.Store.f_CurrencyGetById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RentApartmentsModel.f_CurrencyGetById_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Currency" ColumnName="Currency" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Symbol" ColumnName="Symbol" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="f_RolesGetById" FunctionName="RentApartmentsModel.Store.f_RolesGetById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RentApartmentsModel.f_RolesGetById_Result">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="RoleDescription" ColumnName="RoleDescription" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="AddAmenitiesToProperty" FunctionName="RentApartmentsModel.Store.AddAmenitiesToProperty" />
+          <FunctionImportMapping FunctionImportName="PropertyListingCreate" FunctionName="RentApartmentsModel.Store.PropertyListingCreate" />
+          <FunctionImportMapping FunctionImportName="PropertyListingDelete" FunctionName="RentApartmentsModel.Store.PropertyListingDelete" />
+          <FunctionImportMapping FunctionImportName="PropertyListingGetAll" FunctionName="RentApartmentsModel.Store.PropertyListingGetAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RentApartmentsModel.PropertyListingGetAll_Result">
+                <ScalarProperty Name="PropertyId" ColumnName="PropertyId" />
+                <ScalarProperty Name="FK_Account" ColumnName="FK_Account" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="PricePerNight" ColumnName="PricePerNight" />
+                <ScalarProperty Name="PricePerMonth" ColumnName="PricePerMonth" />
+                <ScalarProperty Name="PricePerWeek" ColumnName="PricePerWeek" />
+                <ScalarProperty Name="Photos" ColumnName="Photos" />
+                <ScalarProperty Name="GreatTitle" ColumnName="GreatTitle" />
+                <ScalarProperty Name="GreatSummary" ColumnName="GreatSummary" />
+                <ScalarProperty Name="BedRoom" ColumnName="BedRoom" />
+                <ScalarProperty Name="Bathroom" ColumnName="Bathroom" />
+                <ScalarProperty Name="HomeType" ColumnName="HomeType" />
+                <ScalarProperty Name="RoomType" ColumnName="RoomType" />
+                <ScalarProperty Name="Accommodates" ColumnName="Accommodates" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State2" ColumnName="State2" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="FK__Country" ColumnName="FK__Country" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PropertyListingGetByAccountId" FunctionName="RentApartmentsModel.Store.PropertyListingGetByAccountId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RentApartmentsModel.PropertyListingGetByAccountId_Result">
+                <ScalarProperty Name="PropertyId" ColumnName="PropertyId" />
+                <ScalarProperty Name="FK_Account" ColumnName="FK_Account" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="PricePerNight" ColumnName="PricePerNight" />
+                <ScalarProperty Name="PricePerMonth" ColumnName="PricePerMonth" />
+                <ScalarProperty Name="PricePerWeek" ColumnName="PricePerWeek" />
+                <ScalarProperty Name="Photos" ColumnName="Photos" />
+                <ScalarProperty Name="GreatTitle" ColumnName="GreatTitle" />
+                <ScalarProperty Name="GreatSummary" ColumnName="GreatSummary" />
+                <ScalarProperty Name="BedRoom" ColumnName="BedRoom" />
+                <ScalarProperty Name="Bathroom" ColumnName="Bathroom" />
+                <ScalarProperty Name="HomeType" ColumnName="HomeType" />
+                <ScalarProperty Name="RoomType" ColumnName="RoomType" />
+                <ScalarProperty Name="Accommodates" ColumnName="Accommodates" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State2" ColumnName="State2" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="FK__Country" ColumnName="FK__Country" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PropertyListingGetByPropertyId" FunctionName="RentApartmentsModel.Store.PropertyListingGetByPropertyId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RentApartmentsModel.PropertyListingGetByPropertyId_Result">
+                <ScalarProperty Name="PropertyId" ColumnName="PropertyId" />
+                <ScalarProperty Name="FK_Account" ColumnName="FK_Account" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="PricePerNight" ColumnName="PricePerNight" />
+                <ScalarProperty Name="PricePerMonth" ColumnName="PricePerMonth" />
+                <ScalarProperty Name="PricePerWeek" ColumnName="PricePerWeek" />
+                <ScalarProperty Name="Photos" ColumnName="Photos" />
+                <ScalarProperty Name="GreatTitle" ColumnName="GreatTitle" />
+                <ScalarProperty Name="GreatSummary" ColumnName="GreatSummary" />
+                <ScalarProperty Name="BedRoom" ColumnName="BedRoom" />
+                <ScalarProperty Name="Bathroom" ColumnName="Bathroom" />
+                <ScalarProperty Name="HomeType" ColumnName="HomeType" />
+                <ScalarProperty Name="RoomType" ColumnName="RoomType" />
+                <ScalarProperty Name="Accommodates" ColumnName="Accommodates" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State2" ColumnName="State2" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="FK__Country" ColumnName="FK__Country" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PropertyListingUpdate" FunctionName="RentApartmentsModel.Store.PropertyListingUpdate" />
+          <FunctionImportMapping FunctionImportName="ReservationsCreate" FunctionName="RentApartmentsModel.Store.ReservationsCreate" />
+          <FunctionImportMapping FunctionImportName="ReservationsDelete" FunctionName="RentApartmentsModel.Store.ReservationsDelete" />
+          <FunctionImportMapping FunctionImportName="ReservationsGetAll" FunctionName="RentApartmentsModel.Store.ReservationsGetAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RentApartmentsModel.ReservationsGetAll_Result">
+                <ScalarProperty Name="ReservationId" ColumnName="ReservationId" />
+                <ScalarProperty Name="FK_Account" ColumnName="FK_Account" />
+                <ScalarProperty Name="FK_PropertyListing" ColumnName="FK_PropertyListing" />
+                <ScalarProperty Name="ReservationStatus" ColumnName="ReservationStatus" />
+                <ScalarProperty Name="ReservationStart" ColumnName="ReservationStart" />
+                <ScalarProperty Name="ReservationEnd" ColumnName="ReservationEnd" />
+                <ScalarProperty Name="ReservationNote" ColumnName="ReservationNote" />
+                <ScalarProperty Name="FK__Currency" ColumnName="FK__Currency" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ReservationsGetByAccId" FunctionName="RentApartmentsModel.Store.ReservationsGetByAccId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RentApartmentsModel.ReservationsGetByAccId_Result">
+                <ScalarProperty Name="ReservationId" ColumnName="ReservationId" />
+                <ScalarProperty Name="FK_Account" ColumnName="FK_Account" />
+                <ScalarProperty Name="FK_PropertyListing" ColumnName="FK_PropertyListing" />
+                <ScalarProperty Name="ReservationStatus" ColumnName="ReservationStatus" />
+                <ScalarProperty Name="ReservationStart" ColumnName="ReservationStart" />
+                <ScalarProperty Name="ReservationEnd" ColumnName="ReservationEnd" />
+                <ScalarProperty Name="ReservationNote" ColumnName="ReservationNote" />
+                <ScalarProperty Name="FK__Currency" ColumnName="FK__Currency" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ReservationsGetById" FunctionName="RentApartmentsModel.Store.ReservationsGetById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RentApartmentsModel.ReservationsGetById_Result">
+                <ScalarProperty Name="ReservationId" ColumnName="ReservationId" />
+                <ScalarProperty Name="FK_Account" ColumnName="FK_Account" />
+                <ScalarProperty Name="FK_PropertyListing" ColumnName="FK_PropertyListing" />
+                <ScalarProperty Name="ReservationStatus" ColumnName="ReservationStatus" />
+                <ScalarProperty Name="ReservationStart" ColumnName="ReservationStart" />
+                <ScalarProperty Name="ReservationEnd" ColumnName="ReservationEnd" />
+                <ScalarProperty Name="ReservationNote" ColumnName="ReservationNote" />
+                <ScalarProperty Name="FK__Currency" ColumnName="FK__Currency" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ReservationsGetByPropertyId" FunctionName="RentApartmentsModel.Store.ReservationsGetByPropertyId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RentApartmentsModel.ReservationsGetByPropertyId_Result">
+                <ScalarProperty Name="ReservationId" ColumnName="ReservationId" />
+                <ScalarProperty Name="FK_Account" ColumnName="FK_Account" />
+                <ScalarProperty Name="FK_PropertyListing" ColumnName="FK_PropertyListing" />
+                <ScalarProperty Name="ReservationStatus" ColumnName="ReservationStatus" />
+                <ScalarProperty Name="ReservationStart" ColumnName="ReservationStart" />
+                <ScalarProperty Name="ReservationEnd" ColumnName="ReservationEnd" />
+                <ScalarProperty Name="ReservationNote" ColumnName="ReservationNote" />
+                <ScalarProperty Name="FK__Currency" ColumnName="FK__Currency" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ReservationsUpdate" FunctionName="RentApartmentsModel.Store.ReservationsUpdate" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

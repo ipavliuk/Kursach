@@ -66,7 +66,7 @@
             <StackPanel Orientation="Vertical">
             </StackPanel>
             <DataGrid Name="dgAccounts" Margin="10" SelectionMode="Single" 
-                      ItemsSource="{Binding Accounts}"  
+                      ItemsSource="{Binding Reservations}"  
                        AutoGenerateColumns="False">
                 <DataGrid.Columns>
                     <!--<DataGridTemplateColumn Header="Info">
@@ -78,19 +78,23 @@
                     </DataGridTemplateColumn>-->
                     <DataGridTextColumn Header="Id" Binding="{Binding ReservationId}"/>
                     <DataGridTextColumn Header="Status" Binding="{Binding ReservationStatus}"/>
-                    <DataGridTextColumn Header="Check-In date" Binding="{Binding StartDate}"/>
+                    <DataGridTextColumn Header="Check-In date" Binding="{Binding ReservationStart}"/>
                     <DataGridTextColumn Header="Staying days" Binding="{Binding ReservationDates}"/>
-                    <DataGridTextColumn Header="Price per Night" Binding="{Binding PricePerNight}"/>
+                    <DataGridTextColumn Header="Price per Night" Binding="{Binding PropertyItem.PricePerNight}"/>
                     <DataGridTextColumn Header="Total amount" Binding="{Binding TotalAmount}"/>
                 </DataGrid.Columns>
                 <DataGrid.RowDetailsTemplate>
                     <DataTemplate>
                         <Border BorderThickness="0" Padding="10">
                             <StackPanel Orientation="Vertical">
-                                <Image DockPanel.Dock="Left" Source="{Binding PictureUrl}" Margin="10" />
+                                
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock FontSize="12" Text="Email: " VerticalAlignment="Center" />
-                                    <TextBlock FontSize="16" Foreground="MidnightBlue" Text="{Binding Email}" VerticalAlignment="Center" />
+                                    <TextBlock FontSize="12" Text="Reservation notes: " VerticalAlignment="Center" />
+                                    <TextBlock FontSize="16" Foreground="MidnightBlue" Text="{Binding ReservationNote}" VerticalAlignment="Center" />
+                                </StackPanel>
+                                <!--<StackPanel Orientation="Horizontal">
+                                    <TextBlock FontSize="12" Text="Owner: " VerticalAlignment="Center" />
+                                    <TextBlock FontSize="16" Foreground="MidnightBlue" Text="{Binding PropertyItem.}" VerticalAlignment="Center" />
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock FontSize="12" Text="Address: " VerticalAlignment="Center" />
@@ -111,7 +115,7 @@
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock FontSize="12" Text="Phone: " VerticalAlignment="Center" />
                                     <TextBlock FontSize="16" Foreground="MidnightBlue" Text="{Binding Mobile}" VerticalAlignment="Center" />
-                                </StackPanel>
+                                </StackPanel>-->
                             </StackPanel>
 
                         </Border>

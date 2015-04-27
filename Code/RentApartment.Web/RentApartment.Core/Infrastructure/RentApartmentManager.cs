@@ -33,7 +33,7 @@ namespace RentApartment.Core.Infrastructure
 		}
 
 
-        public IEnumerable<PropertyListing> LoadPropertyListingByFilter(string city, int? ownerId, 
+        public List<PropertyListing> LoadPropertyListingByFilter(string city, int? ownerId, 
                                                                int? propertyId, int? homeType, int? roomNumbers )
         {
             var service = new PropertyListingService();
@@ -61,21 +61,21 @@ namespace RentApartment.Core.Infrastructure
 		}
 
 
-		public IEnumerable<PropertyListing> GetPropertyByAccount(int accountId)
+		public List<PropertyListing> GetPropertyByAccount(int accountId)
 		{
 			var service = new PropertyListingService();
 
 			return service.GetPropertyByAccount(accountId);
 		}
 
-		public IEnumerable<PropertyListing> GetPropertyByCityCountry(string city, int country)
+		public List<PropertyListing> GetPropertyByCityCountry(string city, int country)
 		{
 			var service = new PropertyListingService();
 
 			return service.GetPropertyByCityCountry(city, country);
 
 		}
-        public IEnumerable<PropertyListing> GetPropertyByCity(string city)
+        public List<PropertyListing> GetPropertyByCity(string city)
         {
             var service = new PropertyListingService();
 
@@ -83,7 +83,7 @@ namespace RentApartment.Core.Infrastructure
 
         }
 
-		public IEnumerable<Reservations> GetReservations(int? accountId, DateTime? startDate, DateTime? endDate, int? status, string city)
+		public List<Reservations> GetReservations(int? accountId, DateTime? startDate, DateTime? endDate, int? status, string city)
 		{
 			var service = new PropertyListingService();
 			
@@ -95,20 +95,20 @@ namespace RentApartment.Core.Infrastructure
 	
 		}
 
-        public IEnumerable<Account> GetAccounts(int? accountId, string name, string city)
+        public List<Account> GetAccounts(int? accountId, string name, string city)
         {
             var service = new PropertyListingService();
             return service.GetAccountsByFilter(accountId, name, city);
         }
 
-		private IEnumerable<Reservations> GetReservationsByDate(DateTime startDate, DateTime endDate, int? status, string city)
+		private List<Reservations> GetReservationsByDate(DateTime startDate, DateTime endDate, int? status, string city)
 		{
 			var service = new PropertyListingService();
 
 			return service.GetReservationsByDate(startDate, endDate, status, city);
 		}
 
-		private IEnumerable<Reservations> GetReservationsByAccount(int accountId)
+		private List<Reservations> GetReservationsByAccount(int accountId)
 		{
 			var service = new PropertyListingService();
 
@@ -116,35 +116,35 @@ namespace RentApartment.Core.Infrastructure
 
 		}
 
-		public IEnumerable<C_Country> GetCountries()
+		public List<C_Country> GetCountries()
 		{
 			var service = new PropertyListingService();
 
 			return service.GetCountries();
 		}
 
-		public IEnumerable<C_Roles> GetRoles()
+		public List<C_Roles> GetRoles()
 		{
 			var service = new PropertyListingService();
 
 			return service.GetRoles();
 		}
 
-		public IEnumerable<C_Currency> GetCurrencies()
+		public List<C_Currency> GetCurrencies()
 		{
 			var service = new PropertyListingService();
 
 			return service.GetCurrencies();
 		}
 
-		public IEnumerable<C_Amenities> GetAmenities()
+		public List<C_Amenities> GetAmenities()
 		{
 			var service = new PropertyListingService();
 
 			return service.GetAmenities();
 		}
 
-        public IEnumerable<DateTime> GetApartmentReservations(int propertyId)
+        public List<DateTime> GetApartmentReservations(int propertyId)
         {
             var service = new PropertyListingService();
 
@@ -158,11 +158,11 @@ namespace RentApartment.Core.Infrastructure
             return service.MakeApartmentReservation(accountId, propertyId, startDate, endDate, note);
         }
         
-        public bool CreateProperty(PropertyListing property)
+        public bool CreateProperty(PropertyListing property, List<C_Amenities> amenities)
         {
             var service = new PropertyListingService();
 
-            return service.CreateProperty(property);   
+			return service.CreateProperty(property, amenities);   
         }
 
         public bool UpdateProperty(PropertyListing property)

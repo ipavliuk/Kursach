@@ -329,7 +329,7 @@ namespace RentAppartment.Client.Views
 
 			
 			var repo = RepositoryFactory.Instance.GetApartmentRepository();
-			this.ProperyListing = repo.GetPropertyListings(location, ownerId, propertyId, this.HomeTypeSelectedItem.Id, roomNumberSelectedItem);
+			this.ProperyListing = repo.GetPropertyListings(location, ownerId, propertyId, HomeTypeSelectedItem != null ? (int?)HomeTypeSelectedItem.Id : null , roomNumberSelectedItem);
 			
 			//viewModel.Appointments = AppointmentsHelper.Instance.LoadAppointments(rentalOrders);
 

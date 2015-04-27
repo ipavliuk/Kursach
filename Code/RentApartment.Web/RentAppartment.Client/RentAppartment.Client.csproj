@@ -74,6 +74,7 @@
     <Compile Include="ViewModels\ApartmentViewModel.cs" />
     <Compile Include="ViewModels\DialogBox.cs" />
     <Compile Include="ViewModels\PropertyListingViewModel.cs" />
+    <Compile Include="ViewModels\ReservationsViewModel.cs" />
     <Compile Include="ViewModels\ScheduleViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\AccountsView.xaml.cs">

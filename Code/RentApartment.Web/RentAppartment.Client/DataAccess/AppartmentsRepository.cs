@@ -204,7 +204,42 @@ namespace RentAppartment.Client.DataAccess
             return result;
         }
 
-        ///Dictionaries
+		public List<ReservationDto> GetReservations(string city, DateTime? start, DateTime? end)
+		{
+			var reservations = new List<ReservationDto>();
+			try
+			{
+				var request = new GetReservationsRequest()
+				{
+					City = city,
+					ReservationStart = start,
+					ReservationEnd = end
+				};
+
+				GetReservationsResponse response = _service.GetReservations(request);
+				if (response != null)
+				{
+					if (response.ErrorId == 0)
+					{
+						reservations = response.Reservation.ToList();
+					}
+					else
+					{
+						//Add to Log message
+					}
+
+				}
+
+			}
+			catch (Exception)
+			{
+
+				throw;
+			}
+			return reservations;
+		}
+
+		///Dictionaries
         ///
         public Dictionary<int, string> GetHomeTypes()
         {

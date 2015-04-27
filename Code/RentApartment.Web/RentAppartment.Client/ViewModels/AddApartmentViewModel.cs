@@ -35,6 +35,7 @@ namespace RentAppartment.Client.Views
 			}).ToList());
 			this.Owners = GenerateSimpleAccount(_accounts);
             this.CanOwnerEnable = false;
+			isUpdate = true;
         }
 
         public AddApartmentViewModel()
@@ -318,7 +319,7 @@ namespace RentAppartment.Client.Views
                 {
                     ap.C_Amenities = this.Amenities.GetSelectedAmenitites().ToArray();
                     var repo = RepositoryFactory.Instance.GetApartmentRepository();
-	                ap.Account = GetAccountFromSimple();
+					ap.Account = isUpdate == true ? this.Appartment.Account : GetAccountFromSimple();
                     repo.UpdateProperty(ap);
 
                     CloseAction(); 

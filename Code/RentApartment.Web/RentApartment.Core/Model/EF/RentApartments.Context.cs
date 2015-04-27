@@ -12,6 +12,8 @@ namespace RentApartment.Core.Model.EF
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class RentApartmentsContext : DbContext
     {
@@ -34,5 +36,355 @@ namespace RentApartment.Core.Model.EF
         public virtual DbSet<Messages> Messages { get; set; }
         public virtual DbSet<PropertyListing> PropertyListing { get; set; }
         public virtual DbSet<Reservations> Reservations { get; set; }
+    
+        public virtual ObjectResult<f_AmenitiesGetById_Result> f_AmenitiesGetById(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<f_AmenitiesGetById_Result>("f_AmenitiesGetById", idParameter);
+        }
+    
+        public virtual ObjectResult<f_CountryGetById_Result> f_CountryGetById(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<f_CountryGetById_Result>("f_CountryGetById", idParameter);
+        }
+    
+        public virtual ObjectResult<f_CurrencyGetById_Result> f_CurrencyGetById(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<f_CurrencyGetById_Result>("f_CurrencyGetById", idParameter);
+        }
+    
+        public virtual ObjectResult<f_RolesGetById_Result> f_RolesGetById(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<f_RolesGetById_Result>("f_RolesGetById", idParameter);
+        }
+    
+        public virtual int AddAmenitiesToProperty(Nullable<int> propertyListingId, Nullable<int> amenityId)
+        {
+            var propertyListingIdParameter = propertyListingId.HasValue ?
+                new ObjectParameter("PropertyListingId", propertyListingId) :
+                new ObjectParameter("PropertyListingId", typeof(int));
+    
+            var amenityIdParameter = amenityId.HasValue ?
+                new ObjectParameter("AmenityId", amenityId) :
+                new ObjectParameter("AmenityId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddAmenitiesToProperty", propertyListingIdParameter, amenityIdParameter);
+        }
+    
+        public virtual int PropertyListingCreate(Nullable<int> accountId, Nullable<byte> state, Nullable<long> pricePerNight, Nullable<long> pricePerMonth, Nullable<long> pricePerWeek, string photos, string greatTitle, string greatSummary, Nullable<byte> bedRoom, Nullable<int> bathroom, Nullable<byte> homeType, Nullable<byte> roomType, Nullable<byte> accommodates, string address1, string address2, string city, string state2, string zip, Nullable<int> country)
+        {
+            var accountIdParameter = accountId.HasValue ?
+                new ObjectParameter("AccountId", accountId) :
+                new ObjectParameter("AccountId", typeof(int));
+    
+            var stateParameter = state.HasValue ?
+                new ObjectParameter("State", state) :
+                new ObjectParameter("State", typeof(byte));
+    
+            var pricePerNightParameter = pricePerNight.HasValue ?
+                new ObjectParameter("PricePerNight", pricePerNight) :
+                new ObjectParameter("PricePerNight", typeof(long));
+    
+            var pricePerMonthParameter = pricePerMonth.HasValue ?
+                new ObjectParameter("PricePerMonth", pricePerMonth) :
+                new ObjectParameter("PricePerMonth", typeof(long));
+    
+            var pricePerWeekParameter = pricePerWeek.HasValue ?
+                new ObjectParameter("PricePerWeek", pricePerWeek) :
+                new ObjectParameter("PricePerWeek", typeof(long));
+    
+            var photosParameter = photos != null ?
+                new ObjectParameter("Photos", photos) :
+                new ObjectParameter("Photos", typeof(string));
+    
+            var greatTitleParameter = greatTitle != null ?
+                new ObjectParameter("GreatTitle", greatTitle) :
+                new ObjectParameter("GreatTitle", typeof(string));
+    
+            var greatSummaryParameter = greatSummary != null ?
+                new ObjectParameter("GreatSummary", greatSummary) :
+                new ObjectParameter("GreatSummary", typeof(string));
+    
+            var bedRoomParameter = bedRoom.HasValue ?
+                new ObjectParameter("BedRoom", bedRoom) :
+                new ObjectParameter("BedRoom", typeof(byte));
+    
+            var bathroomParameter = bathroom.HasValue ?
+                new ObjectParameter("Bathroom", bathroom) :
+                new ObjectParameter("Bathroom", typeof(int));
+    
+            var homeTypeParameter = homeType.HasValue ?
+                new ObjectParameter("HomeType", homeType) :
+                new ObjectParameter("HomeType", typeof(byte));
+    
+            var roomTypeParameter = roomType.HasValue ?
+                new ObjectParameter("RoomType", roomType) :
+                new ObjectParameter("RoomType", typeof(byte));
+    
+            var accommodatesParameter = accommodates.HasValue ?
+                new ObjectParameter("Accommodates", accommodates) :
+                new ObjectParameter("Accommodates", typeof(byte));
+    
+            var address1Parameter = address1 != null ?
+                new ObjectParameter("Address1", address1) :
+                new ObjectParameter("Address1", typeof(string));
+    
+            var address2Parameter = address2 != null ?
+                new ObjectParameter("Address2", address2) :
+                new ObjectParameter("Address2", typeof(string));
+    
+            var cityParameter = city != null ?
+                new ObjectParameter("City", city) :
+                new ObjectParameter("City", typeof(string));
+    
+            var state2Parameter = state2 != null ?
+                new ObjectParameter("State2", state2) :
+                new ObjectParameter("State2", typeof(string));
+    
+            var zipParameter = zip != null ?
+                new ObjectParameter("Zip", zip) :
+                new ObjectParameter("Zip", typeof(string));
+    
+            var countryParameter = country.HasValue ?
+                new ObjectParameter("Country", country) :
+                new ObjectParameter("Country", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PropertyListingCreate", accountIdParameter, stateParameter, pricePerNightParameter, pricePerMonthParameter, pricePerWeekParameter, photosParameter, greatTitleParameter, greatSummaryParameter, bedRoomParameter, bathroomParameter, homeTypeParameter, roomTypeParameter, accommodatesParameter, address1Parameter, address2Parameter, cityParameter, state2Parameter, zipParameter, countryParameter);
+        }
+    
+        public virtual int PropertyListingDelete(Nullable<int> propertyId)
+        {
+            var propertyIdParameter = propertyId.HasValue ?
+                new ObjectParameter("PropertyId", propertyId) :
+                new ObjectParameter("PropertyId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PropertyListingDelete", propertyIdParameter);
+        }
+    
+        public virtual ObjectResult<PropertyListingGetAll_Result> PropertyListingGetAll()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PropertyListingGetAll_Result>("PropertyListingGetAll");
+        }
+    
+        public virtual ObjectResult<PropertyListingGetByAccountId_Result> PropertyListingGetByAccountId(Nullable<int> accId)
+        {
+            var accIdParameter = accId.HasValue ?
+                new ObjectParameter("AccId", accId) :
+                new ObjectParameter("AccId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PropertyListingGetByAccountId_Result>("PropertyListingGetByAccountId", accIdParameter);
+        }
+    
+        public virtual ObjectResult<PropertyListingGetByPropertyId_Result> PropertyListingGetByPropertyId(Nullable<int> propertyId)
+        {
+            var propertyIdParameter = propertyId.HasValue ?
+                new ObjectParameter("PropertyId", propertyId) :
+                new ObjectParameter("PropertyId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PropertyListingGetByPropertyId_Result>("PropertyListingGetByPropertyId", propertyIdParameter);
+        }
+    
+        public virtual int PropertyListingUpdate(Nullable<int> propertyId, Nullable<byte> state, Nullable<long> pricePerNight, Nullable<long> pricePerMonth, Nullable<long> pricePerWeek, string photos, string greatTitle, string greatSummary, Nullable<byte> bedRoom, Nullable<int> bathroom, Nullable<byte> homeType, Nullable<byte> roomType, Nullable<byte> accommodates, string address1, string address2, string city, string state2, string zip, Nullable<int> country)
+        {
+            var propertyIdParameter = propertyId.HasValue ?
+                new ObjectParameter("PropertyId", propertyId) :
+                new ObjectParameter("PropertyId", typeof(int));
+    
+            var stateParameter = state.HasValue ?
+                new ObjectParameter("State", state) :
+                new ObjectParameter("State", typeof(byte));
+    
+            var pricePerNightParameter = pricePerNight.HasValue ?
+                new ObjectParameter("PricePerNight", pricePerNight) :
+                new ObjectParameter("PricePerNight", typeof(long));
+    
+            var pricePerMonthParameter = pricePerMonth.HasValue ?
+                new ObjectParameter("PricePerMonth", pricePerMonth) :
+                new ObjectParameter("PricePerMonth", typeof(long));
+    
+            var pricePerWeekParameter = pricePerWeek.HasValue ?
+                new ObjectParameter("PricePerWeek", pricePerWeek) :
+                new ObjectParameter("PricePerWeek", typeof(long));
+    
+            var photosParameter = photos != null ?
+                new ObjectParameter("Photos", photos) :
+                new ObjectParameter("Photos", typeof(string));
+    
+            var greatTitleParameter = greatTitle != null ?
+                new ObjectParameter("GreatTitle", greatTitle) :
+                new ObjectParameter("GreatTitle", typeof(string));
+    
+            var greatSummaryParameter = greatSummary != null ?
+                new ObjectParameter("GreatSummary", greatSummary) :
+                new ObjectParameter("GreatSummary", typeof(string));
+    
+            var bedRoomParameter = bedRoom.HasValue ?
+                new ObjectParameter("BedRoom", bedRoom) :
+                new ObjectParameter("BedRoom", typeof(byte));
+    
+            var bathroomParameter = bathroom.HasValue ?
+                new ObjectParameter("Bathroom", bathroom) :
+                new ObjectParameter("Bathroom", typeof(int));
+    
+            var homeTypeParameter = homeType.HasValue ?
+                new ObjectParameter("HomeType", homeType) :
+                new ObjectParameter("HomeType", typeof(byte));
+    
+            var roomTypeParameter = roomType.HasValue ?
+                new ObjectParameter("RoomType", roomType) :
+                new ObjectParameter("RoomType", typeof(byte));
+    
+            var accommodatesParameter = accommodates.HasValue ?
+                new ObjectParameter("Accommodates", accommodates) :
+                new ObjectParameter("Accommodates", typeof(byte));
+    
+            var address1Parameter = address1 != null ?
+                new ObjectParameter("Address1", address1) :
+                new ObjectParameter("Address1", typeof(string));
+    
+            var address2Parameter = address2 != null ?
+                new ObjectParameter("Address2", address2) :
+                new ObjectParameter("Address2", typeof(string));
+    
+            var cityParameter = city != null ?
+                new ObjectParameter("City", city) :
+                new ObjectParameter("City", typeof(string));
+    
+            var state2Parameter = state2 != null ?
+                new ObjectParameter("State2", state2) :
+                new ObjectParameter("State2", typeof(string));
+    
+            var zipParameter = zip != null ?
+                new ObjectParameter("Zip", zip) :
+                new ObjectParameter("Zip", typeof(string));
+    
+            var countryParameter = country.HasValue ?
+                new ObjectParameter("Country", country) :
+                new ObjectParameter("Country", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PropertyListingUpdate", propertyIdParameter, stateParameter, pricePerNightParameter, pricePerMonthParameter, pricePerWeekParameter, photosParameter, greatTitleParameter, greatSummaryParameter, bedRoomParameter, bathroomParameter, homeTypeParameter, roomTypeParameter, accommodatesParameter, address1Parameter, address2Parameter, cityParameter, state2Parameter, zipParameter, countryParameter);
+        }
+    
+        public virtual int ReservationsCreate(Nullable<int> accountId, Nullable<int> propertyListingId, Nullable<int> reservationStatus, Nullable<System.DateTime> reservationStart, Nullable<System.DateTime> reservationEnd, string reservationNote, Nullable<int> currencyId)
+        {
+            var accountIdParameter = accountId.HasValue ?
+                new ObjectParameter("AccountId", accountId) :
+                new ObjectParameter("AccountId", typeof(int));
+    
+            var propertyListingIdParameter = propertyListingId.HasValue ?
+                new ObjectParameter("PropertyListingId", propertyListingId) :
+                new ObjectParameter("PropertyListingId", typeof(int));
+    
+            var reservationStatusParameter = reservationStatus.HasValue ?
+                new ObjectParameter("ReservationStatus", reservationStatus) :
+                new ObjectParameter("ReservationStatus", typeof(int));
+    
+            var reservationStartParameter = reservationStart.HasValue ?
+                new ObjectParameter("ReservationStart", reservationStart) :
+                new ObjectParameter("ReservationStart", typeof(System.DateTime));
+    
+            var reservationEndParameter = reservationEnd.HasValue ?
+                new ObjectParameter("ReservationEnd", reservationEnd) :
+                new ObjectParameter("ReservationEnd", typeof(System.DateTime));
+    
+            var reservationNoteParameter = reservationNote != null ?
+                new ObjectParameter("ReservationNote", reservationNote) :
+                new ObjectParameter("ReservationNote", typeof(string));
+    
+            var currencyIdParameter = currencyId.HasValue ?
+                new ObjectParameter("CurrencyId", currencyId) :
+                new ObjectParameter("CurrencyId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ReservationsCreate", accountIdParameter, propertyListingIdParameter, reservationStatusParameter, reservationStartParameter, reservationEndParameter, reservationNoteParameter, currencyIdParameter);
+        }
+    
+        public virtual int ReservationsDelete(Nullable<int> reservationId)
+        {
+            var reservationIdParameter = reservationId.HasValue ?
+                new ObjectParameter("ReservationId", reservationId) :
+                new ObjectParameter("ReservationId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ReservationsDelete", reservationIdParameter);
+        }
+    
+        public virtual ObjectResult<ReservationsGetAll_Result> ReservationsGetAll()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ReservationsGetAll_Result>("ReservationsGetAll");
+        }
+    
+        public virtual ObjectResult<ReservationsGetByAccId_Result> ReservationsGetByAccId(Nullable<int> accId)
+        {
+            var accIdParameter = accId.HasValue ?
+                new ObjectParameter("AccId", accId) :
+                new ObjectParameter("AccId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ReservationsGetByAccId_Result>("ReservationsGetByAccId", accIdParameter);
+        }
+    
+        public virtual ObjectResult<ReservationsGetById_Result> ReservationsGetById(Nullable<int> reservationId)
+        {
+            var reservationIdParameter = reservationId.HasValue ?
+                new ObjectParameter("ReservationId", reservationId) :
+                new ObjectParameter("ReservationId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ReservationsGetById_Result>("ReservationsGetById", reservationIdParameter);
+        }
+    
+        public virtual ObjectResult<ReservationsGetByPropertyId_Result> ReservationsGetByPropertyId(Nullable<int> propertyId)
+        {
+            var propertyIdParameter = propertyId.HasValue ?
+                new ObjectParameter("PropertyId", propertyId) :
+                new ObjectParameter("PropertyId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ReservationsGetByPropertyId_Result>("ReservationsGetByPropertyId", propertyIdParameter);
+        }
+    
+        public virtual int ReservationsUpdate(Nullable<int> reservationId, Nullable<int> propertyListingId, Nullable<int> reservationStatus, Nullable<System.DateTime> reservationStart, Nullable<System.DateTime> reservationEnd, string reservationNote, Nullable<int> currencyId)
+        {
+            var reservationIdParameter = reservationId.HasValue ?
+                new ObjectParameter("ReservationId", reservationId) :
+                new ObjectParameter("ReservationId", typeof(int));
+    
+            var propertyListingIdParameter = propertyListingId.HasValue ?
+                new ObjectParameter("PropertyListingId", propertyListingId) :
+                new ObjectParameter("PropertyListingId", typeof(int));
+    
+            var reservationStatusParameter = reservationStatus.HasValue ?
+                new ObjectParameter("ReservationStatus", reservationStatus) :
+                new ObjectParameter("ReservationStatus", typeof(int));
+    
+            var reservationStartParameter = reservationStart.HasValue ?
+                new ObjectParameter("ReservationStart", reservationStart) :
+                new ObjectParameter("ReservationStart", typeof(System.DateTime));
+    
+            var reservationEndParameter = reservationEnd.HasValue ?
+                new ObjectParameter("ReservationEnd", reservationEnd) :
+                new ObjectParameter("ReservationEnd", typeof(System.DateTime));
+    
+            var reservationNoteParameter = reservationNote != null ?
+                new ObjectParameter("ReservationNote", reservationNote) :
+                new ObjectParameter("ReservationNote", typeof(string));
+    
+            var currencyIdParameter = currencyId.HasValue ?
+                new ObjectParameter("CurrencyId", currencyId) :
+                new ObjectParameter("CurrencyId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ReservationsUpdate", reservationIdParameter, propertyListingIdParameter, reservationStatusParameter, reservationStartParameter, reservationEndParameter, reservationNoteParameter, currencyIdParameter);
+        }
     }
 }

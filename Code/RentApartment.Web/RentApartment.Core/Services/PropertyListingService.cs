@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
@@ -17,15 +18,19 @@ namespace RentApartment.Core.Infrastructure
 	{
 		private static readonly ILog log = LogManager.GetLogger(typeof(PropertyListingService));
 
-		private readonly RentApartmentsContext _db = new RentApartmentsContext();
+		//private readonly RentApartmentsContext _db = new RentApartmentsContext();
 
 		public Account Authenticate(string login, string password)
 		{
 			Account account = null;
 			try
 			{
-				string hash = password.ToSha256("");
-				account = _db.Account.FirstOrDefault(a => login == a.Email && a.PasswordHash == hash);
+				using (var _db = new RentApartmentsContext())
+				{
+					string hash = password.ToSha256("");
+					account = _db.Account.FirstOrDefault(a => login == a.Email && a.PasswordHash == hash);
+				}
+				
 
 			}
 			catch (Exception ex)
@@ -41,7 +46,11 @@ namespace RentApartment.Core.Infrastructure
 			Account account = null;
 			try
 			{
-				account = _db.Account.FirstOrDefault(a => a.id == id);
+				using (var _db = new RentApartmentsContext())
+				{
+					account = _db.Account.FirstOrDefault(a => a.id == id);
+				}
+				
 
 			}
 			catch (Exception ex)
@@ -51,14 +60,18 @@ namespace RentApartment.Core.Infrastructure
 
 			return account;
 		}
-        public IEnumerable<Account> GetAccountsByFilter(int? accountId, string name, string city)
+        public List<Account> GetAccountsByFilter(int? accountId, string name, string city)
         {
             try
             {
-                var acc = _db.Account.Where(a => accountId != null && a.id == accountId || accountId == null)
+	            using (var _db = new RentApartmentsContext())
+	            {
+					var acc = _db.Account.Where(a => accountId != null && a.id == accountId || accountId == null)
 										.Where(a => a.FirstName == name || string.IsNullOrEmpty(name))
-										.Where(a => a.City == city || string.IsNullOrEmpty(city));
-                return acc;
+										.Where(a => a.City == city || string.IsNullOrEmpty(city)).ToList();
+					return acc;
+	            }
+                
             }
             catch (Exception ex)
             {
@@ -66,11 +79,15 @@ namespace RentApartment.Core.Infrastructure
             }
             return new List<Account>();
         }
-		public IEnumerable<PropertyListing> GetPropertyByAccount(int accountId)
+		public List<PropertyListing> GetPropertyByAccount(int accountId)
 		{
 			try
 			{
-				return _db.PropertyListing.Where(prop => prop.FK_Account == accountId);
+				using (var _db = new RentApartmentsContext())
+				{
+					return _db.PropertyListing.Where(prop => prop.FK_Account == accountId).ToList();
+				}
+				
 			}
 			catch (Exception ex)
 			{
@@ -79,11 +96,15 @@ namespace RentApartment.Core.Infrastructure
 
             return new List<PropertyListing>();
 		}
-        public IEnumerable<PropertyListing> GetPropertyByPropertyId(int propertyId)
+        public List<PropertyListing> GetPropertyByPropertyId(int propertyId)
         {
             try
             {
-                return _db.PropertyListing.Where(prop => prop.PropertyId == propertyId);
+	            using (var _db = new RentApartmentsContext())
+	            {
+					return _db.PropertyListing.Where(prop => prop.PropertyId == propertyId).ToList();
+	            }
+                
             }
             catch (Exception ex)
             {
@@ -93,14 +114,20 @@ namespace RentApartment.Core.Infrastructure
             return new List<PropertyListing>();
         }
 
-        public IEnumerable<PropertyListing> GetPropertyListingByFilter(string city, int? homeType, int? roomNumbers)
+        public List<PropertyListing> GetPropertyListingByFilter(string city, int? homeType, int? roomNumbers)
         {
             try
             {
-                var loc = _db.PropertyListing.Where(prop => prop.City == city)
+	            using (var _db = new RentApartmentsContext())
+	            {
+					var loc = _db.PropertyListing.Include(p => p.Account)
+							.Include(p => p.C_Amenities).Include(p => p.Reservations)
+							.Where(prop => prop.City == city)
 							.Where(p => homeType != null && p.HomeType == homeType || homeType == null)
-							.Where(p=> roomNumbers != null && p.BedRoom == roomNumbers || roomNumbers ==null);
-				return loc;
+							.Where(p => roomNumbers != null && p.BedRoom == roomNumbers || roomNumbers == null).ToList();
+					return loc;
+	            }
+               
             }	
             catch (Exception ex)
             {
@@ -109,11 +136,15 @@ namespace RentApartment.Core.Infrastructure
 
             return new List<PropertyListing>();
         }
-		public IEnumerable<PropertyListing> GetPropertyByCityCountry(string city, int country)
+		public List<PropertyListing> GetPropertyByCityCountry(string city, int country)
 		{
 			try
 			{
-				return _db.PropertyListing.Where(prop => prop.FK__Country == country && prop.City == city);
+				using (var _db = new RentApartmentsContext())
+				{
+					return _db.PropertyListing.Where(prop => prop.FK__Country == country && prop.City == city).ToList();
+				}
+				
 			}
 			catch (Exception ex)
 			{
@@ -123,11 +154,15 @@ namespace RentApartment.Core.Infrastructure
             return new List<PropertyListing>();
 
 		}
-        public IEnumerable<PropertyListing> GetPropertyByCity(string city)
+        public List<PropertyListing> GetPropertyByCity(string city)
         {
             try
             {
-                return _db.PropertyListing.Where(prop => prop.City == city);
+	            using (var _db = new RentApartmentsContext())
+	            {
+					return _db.PropertyListing.Where(prop => prop.City == city).ToList();
+	            }
+                
             }
             catch (Exception ex)
             {
@@ -137,17 +172,23 @@ namespace RentApartment.Core.Infrastructure
             return new List<PropertyListing>();
 
         }
-		/*public IEnumerable<PropertyListing> GetPropertyListings()
+		/*public List<PropertyListing> GetPropertyListings()
 		{
 
 		}*/
 
 		//For now in UTC
-		public IEnumerable<Reservations> GetReservationsByDate(DateTime startDate, DateTime endDate, int? status, string city)
+		public List<Reservations> GetReservationsByDate(DateTime startDate, DateTime endDate, int? status, string city)
 		{
 			try
 			{
-                return _db.Reservations.Where(res => res.ReservationStart >= startDate && res.ReservationEnd <= endDate && (status != null && res.ReservationStatus == status) && res.PropertyListing.City == city);
+				using (var _db = new RentApartmentsContext())
+				{
+					return _db.Reservations.Where(res => res.ReservationStart >= startDate 
+								&& res.ReservationEnd <= endDate && (status != null && res.ReservationStatus == status)
+								&& res.PropertyListing.City == city).ToList();
+				}
+                
 			}
 			catch (Exception ex)
 			{
@@ -156,11 +197,15 @@ namespace RentApartment.Core.Infrastructure
             return new List<Reservations>();
 		}
 
-		public IEnumerable<Reservations> GetReservationsByAccount(int accountId)
+		public List<Reservations> GetReservationsByAccount(int accountId)
 		{
 			try
 			{
-				return _db.Reservations.Where(res => res.FK_Account == accountId);
+				using (var _db = new RentApartmentsContext())
+				{
+					return _db.Reservations.Where(res => res.FK_Account == accountId).ToList();
+				}
+			
 			}
 			catch (Exception ex)
 			{
@@ -170,18 +215,22 @@ namespace RentApartment.Core.Infrastructure
             return new List<Reservations>();
 		}
 
-        public IEnumerable<DateTime> GetApartmentReservationDates(int apartmentId)
+        public List<DateTime> GetApartmentReservationDates(int apartmentId)
         {
             try
             {
-                 var reservations = _db.Reservations.Where(res => res.FK_PropertyListing == apartmentId).ToList();
-                 return reservations.SelectMany(r =>
-                    {
-                        var start = r.ReservationStart;
-                        var end = r.ReservationEnd;
-                        return Enumerable.Range(0, 1 + end.Subtract(start).Days)
-                        .Select(offset => start.AddDays(offset));
-                    });
+	            using (var _db = new RentApartmentsContext())
+	            {
+					var reservations = _db.Reservations.Where(res => res.FK_PropertyListing == apartmentId).ToList();
+					return reservations.SelectMany(r =>
+					{
+						var start = r.ReservationStart;
+						var end = r.ReservationEnd;
+						return Enumerable.Range(0, 1 + end.Subtract(start).Days)
+						.Select(offset => start.AddDays(offset));
+					}).ToList();
+	            }
+                
                  
             }
             catch (Exception ex)
@@ -192,31 +241,66 @@ namespace RentApartment.Core.Infrastructure
             return new List<DateTime>();
         }
 
+		//public void Dispose()
+		//{
+		//	_db.Dispose();
+		//}
+
+		private bool disposed = false;
+
+		//protected virtual void Dispose(bool disposing)
+		//{
+		//	if (!this.disposed)
+		//	{
+		//		if (disposing)
+		//		{
+		//			_db.Dispose();
+		//		}
+		//	}
+		//	this.disposed = true;
+		//}
+
 		public void Dispose()
 		{
-			_db.Dispose();
+			//Dispose(true);
+			GC.SuppressFinalize(this);
 		}
 
 
-
-		public IEnumerable<C_Country> GetCountries()
+		public List<C_Country> GetCountries()
 		{
-			return _db.C_Country;
+			using (var _db = new RentApartmentsContext())
+			{
+				return _db.C_Country.ToList();
+			}
+			
 		}
 
-		public IEnumerable<C_Roles> GetRoles()
+		public List<C_Roles> GetRoles()
 		{
-			return _db.C_Roles;
+			using (var _db = new RentApartmentsContext())
+			{
+				return _db.C_Roles.ToList();
+			}
+			
 		}
 
-		public IEnumerable<C_Currency> GetCurrencies()
+		public List<C_Currency> GetCurrencies()
 		{
-			return _db.C_Currency;
+			using (var _db = new RentApartmentsContext())
+			{
+				return _db.C_Currency.ToList();
+			}
+			
 		}
 
-		public IEnumerable<C_Amenities> GetAmenities()
+		public List<C_Amenities> GetAmenities()
 		{
-			return _db.C_Amenities;
+			using (var _db = new RentApartmentsContext())
+			{
+				return _db.C_Amenities.ToList();
+			}
+			
 		}
 
         public bool MakeApartmentReservation(int accountId, int propertyId, DateTime startDate, DateTime endDate, string note)
@@ -224,23 +308,24 @@ namespace RentApartment.Core.Infrastructure
             bool result = true;
             try 
 	        {
-                var reservation = new Reservations
-                                         {
-                                             FK_PropertyListing = propertyId,
-                                             FK_Account = accountId,
-                                             ReservationStart = startDate,
-                                             ReservationEnd = endDate,
-                                             ReservationNote = note,
-                                             ReservationStatus = (int)ReservationStatus.Open,
-                                             FK__Currency = 3
-                                         };
+		        using (var _db = new RentApartmentsContext())
+		        {
+					var reservation = new Reservations
+					{
+						FK_PropertyListing = propertyId,
+						FK_Account = accountId,
+						ReservationStart = startDate,
+						ReservationEnd = endDate,
+						ReservationNote = note,
+						ReservationStatus = (int)ReservationStatus.Open,
+						FK__Currency = 3
+					};
 
-                _db.Reservations.Add(reservation);
-                int id = _db.SaveChanges();
-                result = id == 0 ? false : true;
-
-
-	        }
+					_db.Reservations.Add(reservation);
+					int id = _db.SaveChanges();
+					result = id == 0 ? false : true;
+		        }
+            }
 	        catch (Exception)
 	        {
 		
@@ -249,18 +334,34 @@ namespace RentApartment.Core.Infrastructure
             return result;
         }
 
-        public bool CreateProperty(PropertyListing property)
+        public bool CreateProperty(PropertyListing property, List<C_Amenities> amenities)
         {
             bool result = true;
             try
             {
-               
+	            using (var _db = new RentApartmentsContext())
+	            {
+		            property.Currency = 1;
+					_db.PropertyListing.Add(property);
 
-                _db.PropertyListing.Add(property);
-                int id = _db.SaveChanges();
-                result = id == 0 ? false : true;
+					foreach (var cAmenitiese in amenities)
+					{
+						var amenity = _db.C_Amenities.SingleOrDefault(a => a.id == cAmenitiese.id);
+						if (amenity == null)
+						{
+							amenity = cAmenitiese;
+						}
+
+						property.C_Amenities.Add(amenity);
+
+					}
 
 
+					int id = _db.SaveChanges();
+
+					result = id == 0 ? false : true;
+	            }
+				
             }
             catch (Exception)
             {
@@ -275,11 +376,12 @@ namespace RentApartment.Core.Infrastructure
             bool result = true;
             try
             {
-                _db.PropertyListing.Add(property);
-                int id = _db.SaveChanges();
-                result = id == 0 ? false : true;
-
-
+	            using (var _db = new RentApartmentsContext())
+	            {
+					_db.PropertyListing.Add(property);
+					int id = _db.SaveChanges();
+					result = id == 0 ? false : true;
+	            }
             }
             catch (Exception)
             {

@@ -12,27 +12,27 @@ namespace RentApartment.Core.Infrastructure
 		Account Authenticate(string login, string password);
 
 		Account GetAccountById(int id);
-        IEnumerable<Account> GetAccountsByFilter(int? accountId, string name, string city);
+        List<Account> GetAccountsByFilter(int? accountId, string name, string city);
 
-		IEnumerable<PropertyListing> GetPropertyByAccount(int accountId);
+		List<PropertyListing> GetPropertyByAccount(int accountId);
 
-		IEnumerable<PropertyListing> GetPropertyByCityCountry(string city, int country);
+		List<PropertyListing> GetPropertyByCityCountry(string city, int country);
 
-		//IEnumerable<PropertyListing> GetPropertyListings();
+		//List<PropertyListing> GetPropertyListings();
 
-        IEnumerable<Reservations> GetReservationsByDate(DateTime startDate, DateTime endDate, int? status, string city);
+        List<Reservations> GetReservationsByDate(DateTime startDate, DateTime endDate, int? status, string city);
 
-		IEnumerable<Reservations> GetReservationsByAccount(int accountId);
-        IEnumerable<PropertyListing> GetPropertyListingByFilter(string city, int? homeType, int? roomNumbers);
-		IEnumerable<C_Country> GetCountries();
-		IEnumerable<C_Roles> GetRoles();
-		IEnumerable<C_Currency> GetCurrencies();
-		IEnumerable<C_Amenities> GetAmenities();
+		List<Reservations> GetReservationsByAccount(int accountId);
+        List<PropertyListing> GetPropertyListingByFilter(string city, int? homeType, int? roomNumbers);
+		List<C_Country> GetCountries();
+		List<C_Roles> GetRoles();
+		List<C_Currency> GetCurrencies();
+		List<C_Amenities> GetAmenities();
 
-        IEnumerable<DateTime> GetApartmentReservationDates(int apartmentId);
+        List<DateTime> GetApartmentReservationDates(int apartmentId);
 
         bool MakeApartmentReservation(int accountId, int propertyId, DateTime startDate, DateTime endDate, string note);
-        bool CreateProperty(PropertyListing property);
+		bool CreateProperty(PropertyListing property, List<C_Amenities> amenities);
         bool UpdateProperty(PropertyListing property);
     }
 }
