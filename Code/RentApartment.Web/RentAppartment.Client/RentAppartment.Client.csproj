@@ -64,6 +64,10 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Utils\BitmapImageConverter.cs" />
+    <Compile Include="Utils\DictItem.cs" />
+    <Compile Include="Utils\ImageData.cs" />
+    <Compile Include="Utils\UserManager.cs" />
+    <Compile Include="ViewModels\AddAccountViewModel.cs" />
     <Compile Include="ViewModels\BlackOutDatesAdapter.cs" />
     <Compile Include="Utils\CacheProvider.cs" />
     <Compile Include="Utils\RelayCommand.cs" />
@@ -73,6 +77,8 @@
     <Compile Include="Utils\AmenitiesProvider.cs" />
     <Compile Include="ViewModels\ApartmentViewModel.cs" />
     <Compile Include="ViewModels\DialogBox.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\PropertyListingViewModel.cs" />
     <Compile Include="ViewModels\ReservationsViewModel.cs" />
     <Compile Include="ViewModels\ScheduleViewModel.cs" />
@@ -80,11 +86,20 @@
     <Compile Include="Views\AccountsView.xaml.cs">
       <DependentUpon>AccountsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\AddAccountView.xaml.cs">
+      <DependentUpon>AddAccountView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AddApartmentView.xaml.cs">
       <DependentUpon>AddApartmentView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ApartmentView.xaml.cs">
       <DependentUpon>ApartmentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoginView.xaml.cs">
+      <DependentUpon>LoginView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PropertyListingView.xaml.cs">
       <DependentUpon>PropertyListingView.xaml</DependentUpon>
@@ -99,11 +114,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\AddAccountView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AddApartmentView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ApartmentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -248,6 +275,25 @@
   <ItemGroup>
     <Resource Include="Images\_Cancel.png" />
     <Resource Include="Images\_save-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\scheduled-tasks-icon.png" />
+    <Resource Include="Images\_Apartment-128.png" />
+    <Resource Include="Images\_property.png" />
+    <Resource Include="Images\_schedule.png" />
+    <Resource Include="Images\_user_accounts.png" />
+    <Resource Include="Images\_vcalendar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\_free-18-128.png" />
+    <Resource Include="Images\_preferences-contact-list.png" />
+    <Resource Include="Images\_sign-up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\_login-128.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\_logout-128.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using RentAppartment.Client.Views;
+using RentAppartment.Client.ViewModels;
 
 namespace RentAppartment.Client
 {
@@ -30,7 +31,8 @@ namespace RentAppartment.Client
 		{
 			base.OnApplyTemplate();
 			//Create MainViewModel
-			DataContext = new PropertyListingViewModel();
+            DataContext = new MainViewModel();
+			//DataContext = new PropertyListingViewModel();
 		}
     }
 }

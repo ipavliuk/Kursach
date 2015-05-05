@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:viewModels="clr-namespace:RentAppartment.Client.Views"
              xmlns:views="clr-namespace:RentAppartment.Client.Views"
-             StartupUri="Views/MainWindow.xaml">
+             StartupUri="Views/MainView.xaml">
     <Application.Resources>
         <DataTemplate DataType="{x:Type viewModels:PropertyListingViewModel}">
             <views:PropertyListingView/>
@@ -13,6 +13,16 @@
             <views:ApartmentView />
         </DataTemplate>
 
+        <DataTemplate DataType="{x:Type viewModels:MainViewModel}">
+            <views:MainView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:AccountViewModel}">
+            <views:AccountsView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:ReservationsViewModel}">
+            <views:ReservationsView />
+        </DataTemplate>
+        
         <Style x:Key="ListBoxImages" TargetType="{x:Type ListBox}">
            <Setter Property="ItemTemplate">
                 <Setter.Value>
@@ -41,6 +51,17 @@
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Grid>
                             <Image Source="Images/remove-sign-128.png" Width="24" Height="24" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ScheduleButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <Image Source="Images/scheduled-tasks-icon.png" Width="24" Height="24" />
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>

@@ -215,10 +215,7 @@ namespace RentApartment.Service
 
                 bool result =
                     RentApartmentManager.Instance.CreateProperty(property, amenities );
-                    //MakeApartmentReservation(accountId, propertyId, startDate, endDate, note);
-
-
-
+                    //MakeApartmentReservation(accountId, propertyId, startDate, endDate, note)
 
             }
             catch (Exception ex)
@@ -259,6 +256,23 @@ namespace RentApartment.Service
 
             return response;
         }
+        public BaseResponse RemoveProperty(int propertyId)
+        {
+            var response = new BaseResponse();
+            try
+            {
+                response.ErrorId = (int)RApmentErrors.Ok;
+                bool result =
+                    RentApartmentManager.Instance.RemoveProperty(propertyId);
+            }
+            catch (Exception ex)
+            {
+                response.ErrorId = (int)RApmentErrors.OperationError;
+                response.ErrorDesc = ex.Message;
+            }
+
+            return response;
+        }
 
         public GetAccountsResponse GetAccounts(GetAccountsRequest request)
         {
@@ -290,8 +304,125 @@ namespace RentApartment.Service
 
             return response;
         }
+        public BaseResponse CreateAccount(ChangeAccountRequest request)
+        {
+            var response = new BaseResponse();
 
 
+            if (request.Account == null)
+            {
+                response.ErrorId = (int)RApmentErrors.FailedProceedRequest;
+                return response;
+            }
+
+            try
+            {
+                response.ErrorId = (int)RApmentErrors.Ok;
+                AccountDto dto = request.Account;
+                Account account = new Account
+                {
+                    AccountId = dto.AccountId,
+                    FirstName = dto.FirstName,
+                    LastName = dto.LastName,
+                    Email = dto.Email,
+                    IsEmailConfirmed = false,
+                   // C_Country = dto.Country,
+                   //C_Roles = dto.Roles,
+                    City = dto.City,
+                    Address = dto.Address,
+                    Mobile = dto.Mobile,
+                    Gender = dto.Gender,
+                    PostalCode = dto.PostalCode,
+                    //Language = dto.Language
+                    PictureUrl = dto.PictureUrl,
+                    PasswordHash="",
+                    FK__Roles = 1,
+                    FK__Country = 1
+                    
+
+                };
+               
+
+                bool result =
+                    RentApartmentManager.Instance.CreateAccount(account);
+                
+            }
+            catch (Exception ex)
+            {
+                response.ErrorId = (int)RApmentErrors.OperationError;
+                response.ErrorDesc = ex.Message;
+                //Logger.Instance.Error("AuthenticateChatHost - ", ex);
+            }
+
+            return response;
+        }
+
+        public BaseResponse UpdateAccount(ChangeAccountRequest request)
+        {
+            var response = new BaseResponse();
+
+
+            if (request.Account == null)
+            {
+                response.ErrorId = (int)RApmentErrors.FailedProceedRequest;
+                return response;
+            }
+
+            try
+            {
+                response.ErrorId = (int)RApmentErrors.Ok;
+                AccountDto dto = request.Account;
+                Account account = new Account
+                {
+                    AccountId = dto.AccountId,
+                    FirstName = dto.FirstName,
+                    LastName = dto.LastName,
+                    Email = dto.Email,
+                    IsEmailConfirmed = false,
+                    // C_Country = dto.Country,
+                    // C_Roles = dto.Roles,
+                    City = dto.City,
+                    Address = dto.Address,
+                    Mobile = dto.Mobile,
+                    Gender = dto.Gender,
+                    PostalCode = dto.PostalCode,
+                    //Language = dto.Language
+                    PictureUrl = dto.PictureUrl
+
+                };
+
+
+                bool result =
+                    RentApartmentManager.Instance.UpdateAccount(account);
+            }
+            catch (Exception ex)
+            {
+                response.ErrorId = (int)RApmentErrors.OperationError;
+                response.ErrorDesc = ex.Message;
+                //Logger.Instance.Error("AuthenticateChatHost - ", ex);
+            }
+
+            return response;
+        }
+        public BaseResponse RemoveAccount(int accountId)
+        {
+            var response = new BaseResponse();
+
+            try
+            {
+                response.ErrorId = (int)RApmentErrors.Ok;
+                bool result =
+                    RentApartmentManager.Instance.RemoveAccount(accountId);
+
+            }
+            catch (Exception ex)
+            {
+                response.ErrorId = (int)RApmentErrors.OperationError;
+                response.ErrorDesc = ex.Message;
+            }
+
+            return response;
+        }
 
         public AmenitiesResponse GetAmenities()
         {
@@ -374,6 +505,24 @@ namespace RentApartment.Service
 
             return response;
         }
+
+        public GetDictionaryDataResponse GetGender()
+        {
+            var response = new GetDictionaryDataResponse();
+            try
+            {
+                response.Data = GetDictionary<GenderType>();
+
+            }
+            catch (Exception ex)
+            {
+                response.ErrorId = (int)RApmentErrors.OperationError;
+                response.ErrorDesc = ex.Message;
+            }
+
+            return response;
+        }
+
         private Dictionary<int, string> GetDictionary<T>() 
         {
            return  Enum.GetValues(typeof(T))

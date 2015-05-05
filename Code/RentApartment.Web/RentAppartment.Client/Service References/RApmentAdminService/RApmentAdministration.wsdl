@@ -28,6 +28,24 @@
   <wsdl:message name="IRApmentAdministration_GetAccounts_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAccountsResponse" />
   </wsdl:message>
+  <wsdl:message name="IRApmentAdministration_CreateAccount_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateAccount" />
+  </wsdl:message>
+  <wsdl:message name="IRApmentAdministration_CreateAccount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateAccountResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRApmentAdministration_UpdateAccount_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateAccount" />
+  </wsdl:message>
+  <wsdl:message name="IRApmentAdministration_UpdateAccount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateAccountResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRApmentAdministration_RemoveAccount_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveAccount" />
+  </wsdl:message>
+  <wsdl:message name="IRApmentAdministration_RemoveAccount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveAccountResponse" />
+  </wsdl:message>
   <wsdl:message name="IRApmentAdministration_GetHomeType_InputMessage">
     <wsdl:part name="parameters" element="tns:GetHomeType" />
   </wsdl:message>
@@ -45,6 +63,12 @@
   </wsdl:message>
   <wsdl:message name="IRApmentAdministration_GetUserRole_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetUserRoleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRApmentAdministration_GetGender_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetGender" />
+  </wsdl:message>
+  <wsdl:message name="IRApmentAdministration_GetGender_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetGenderResponse" />
   </wsdl:message>
   <wsdl:message name="IRApmentAdministration_GetAmenities_InputMessage">
     <wsdl:part name="parameters" element="tns:GetAmenities" />
@@ -70,6 +94,18 @@
   <wsdl:message name="IRApmentAdministration_CreateProperty_OutputMessage">
     <wsdl:part name="parameters" element="tns:CreatePropertyResponse" />
   </wsdl:message>
+  <wsdl:message name="IRApmentAdministration_UpdateProperty_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateProperty" />
+  </wsdl:message>
+  <wsdl:message name="IRApmentAdministration_UpdateProperty_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePropertyResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRApmentAdministration_RemoveProperty_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveProperty" />
+  </wsdl:message>
+  <wsdl:message name="IRApmentAdministration_RemoveProperty_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemovePropertyResponse" />
+  </wsdl:message>
   <wsdl:portType name="IRApmentAdministration">
     <wsdl:operation name="GetPropertyListing">
       <wsdl:input wsaw:Action="http://tempuri.org/IRApmentAdministration/GetPropertyListing" message="tns:IRApmentAdministration_GetPropertyListing_InputMessage" />
@@ -83,6 +119,18 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IRApmentAdministration/GetAccounts" message="tns:IRApmentAdministration_GetAccounts_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IRApmentAdministration/GetAccountsResponse" message="tns:IRApmentAdministration_GetAccounts_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="CreateAccount">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRApmentAdministration/CreateAccount" message="tns:IRApmentAdministration_CreateAccount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRApmentAdministration/CreateAccountResponse" message="tns:IRApmentAdministration_CreateAccount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAccount">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRApmentAdministration/UpdateAccount" message="tns:IRApmentAdministration_UpdateAccount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRApmentAdministration/UpdateAccountResponse" message="tns:IRApmentAdministration_UpdateAccount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveAccount">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRApmentAdministration/RemoveAccount" message="tns:IRApmentAdministration_RemoveAccount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRApmentAdministration/RemoveAccountResponse" message="tns:IRApmentAdministration_RemoveAccount_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetHomeType">
       <wsdl:input wsaw:Action="http://tempuri.org/IRApmentAdministration/GetHomeType" message="tns:IRApmentAdministration_GetHomeType_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IRApmentAdministration/GetHomeTypeResponse" message="tns:IRApmentAdministration_GetHomeType_OutputMessage" />
@@ -94,6 +142,10 @@
     <wsdl:operation name="GetUserRole">
       <wsdl:input wsaw:Action="http://tempuri.org/IRApmentAdministration/GetUserRole" message="tns:IRApmentAdministration_GetUserRole_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IRApmentAdministration/GetUserRoleResponse" message="tns:IRApmentAdministration_GetUserRole_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGender">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRApmentAdministration/GetGender" message="tns:IRApmentAdministration_GetGender_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRApmentAdministration/GetGenderResponse" message="tns:IRApmentAdministration_GetGender_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetAmenities">
       <wsdl:input wsaw:Action="http://tempuri.org/IRApmentAdministration/GetAmenities" message="tns:IRApmentAdministration_GetAmenities_InputMessage" />
@@ -110,6 +162,14 @@
     <wsdl:operation name="CreateProperty">
       <wsdl:input wsaw:Action="http://tempuri.org/IRApmentAdministration/CreateProperty" message="tns:IRApmentAdministration_CreateProperty_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IRApmentAdministration/CreatePropertyResponse" message="tns:IRApmentAdministration_CreateProperty_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateProperty">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRApmentAdministration/UpdateProperty" message="tns:IRApmentAdministration_UpdateProperty_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRApmentAdministration/UpdatePropertyResponse" message="tns:IRApmentAdministration_UpdateProperty_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveProperty">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRApmentAdministration/RemoveProperty" message="tns:IRApmentAdministration_RemoveProperty_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRApmentAdministration/RemovePropertyResponse" message="tns:IRApmentAdministration_RemoveProperty_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IRApmentAdministration" type="tns:IRApmentAdministration">
@@ -141,6 +201,33 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="CreateAccount">
+      <soap:operation soapAction="http://tempuri.org/IRApmentAdministration/CreateAccount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAccount">
+      <soap:operation soapAction="http://tempuri.org/IRApmentAdministration/UpdateAccount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveAccount">
+      <soap:operation soapAction="http://tempuri.org/IRApmentAdministration/RemoveAccount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetHomeType">
       <soap:operation soapAction="http://tempuri.org/IRApmentAdministration/GetHomeType" style="document" />
       <wsdl:input>
@@ -161,6 +248,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetUserRole">
       <soap:operation soapAction="http://tempuri.org/IRApmentAdministration/GetUserRole" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGender">
+      <soap:operation soapAction="http://tempuri.org/IRApmentAdministration/GetGender" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -197,6 +293,24 @@
     </wsdl:operation>
     <wsdl:operation name="CreateProperty">
       <soap:operation soapAction="http://tempuri.org/IRApmentAdministration/CreateProperty" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateProperty">
+      <soap:operation soapAction="http://tempuri.org/IRApmentAdministration/UpdateProperty" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveProperty">
+      <soap:operation soapAction="http://tempuri.org/IRApmentAdministration/RemoveProperty" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

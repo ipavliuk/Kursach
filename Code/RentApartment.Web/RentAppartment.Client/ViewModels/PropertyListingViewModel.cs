@@ -259,7 +259,24 @@ namespace RentAppartment.Client.Views
 
         private void DeletePropertyCommandAction()
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (this.SelectedProperty == null)
+                {
+                    //Add logs
+                }
+
+                var repo = RepositoryFactory.Instance.GetApartmentRepository();
+                if (repo.RemoveProperty(this.SelectedProperty.PropertyId))
+                {
+                    this.ProperyListing.Remove(this.SelectedProperty);
+                }
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         private void EditCommandAction()
@@ -287,7 +304,7 @@ namespace RentAppartment.Client.Views
             try
             {
                 var repo = RepositoryFactory.Instance.GetApartmentRepository();
-                List<DateTime> reservations = repo.GetApartmentReervations(SelectedProperty.PropertyId);
+                List<DateTime> reservations = repo.GetApartmentReservations(SelectedProperty.PropertyId);
 
                 var view = new ScheduleView();
                 var vm = new ScheduleViewModel(reservations, SelectedProperty.PropertyId, 1);
@@ -329,7 +346,7 @@ namespace RentAppartment.Client.Views
 
 			
 			var repo = RepositoryFactory.Instance.GetApartmentRepository();
-			this.ProperyListing = repo.GetPropertyListings(location, ownerId, propertyId, HomeTypeSelectedItem != null ? (int?)HomeTypeSelectedItem.Id : null , roomNumberSelectedItem);
+			this.ProperyListing = repo.GetPropertyListings(Location, OwnerId, PropertyId, HomeTypeSelectedItem != null ? (int?)HomeTypeSelectedItem.Id : null , roomNumberSelectedItem);
 			
 			//viewModel.Appointments = AppointmentsHelper.Instance.LoadAppointments(rentalOrders);
 

@@ -35,5 +35,10 @@ namespace RentApartment.Core.DAL.Enums
         Approved,
     }
 
+    public enum GenderType
+    {
+        Male = 1,
+        Female
+    }
    
 }

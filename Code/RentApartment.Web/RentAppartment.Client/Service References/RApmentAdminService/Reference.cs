@@ -471,6 +471,12 @@ namespace RentAppartment.Client.RApmentAdminService {
         private int CountryField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int FK_AccountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int FK__CountryField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string GreatSummaryField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -629,6 +635,32 @@ namespace RentAppartment.Client.RApmentAdminService {
                 if ((this.CountryField.Equals(value) != true)) {
                     this.CountryField = value;
                     this.RaisePropertyChanged("Country");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int FK_Account {
+            get {
+                return this.FK_AccountField;
+            }
+            set {
+                if ((this.FK_AccountField.Equals(value) != true)) {
+                    this.FK_AccountField = value;
+                    this.RaisePropertyChanged("FK_Account");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int FK__Country {
+            get {
+                return this.FK__CountryField;
+            }
+            set {
+                if ((this.FK__CountryField.Equals(value) != true)) {
+                    this.FK__CountryField = value;
+                    this.RaisePropertyChanged("FK__Country");
                 }
             }
         }
@@ -1449,6 +1481,52 @@ namespace RentAppartment.Client.RApmentAdminService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ChangeAccountRequest", Namespace="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Reques" +
+        "t")]
+    [System.SerializableAttribute()]
+    public partial class ChangeAccountRequest : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private RentAppartment.Client.RApmentAdminService.AccountDto AccountField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public RentAppartment.Client.RApmentAdminService.AccountDto Account {
+            get {
+                return this.AccountField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AccountField, value) != true)) {
+                    this.AccountField = value;
+                    this.RaisePropertyChanged("Account");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="ChangedPropertyRequest", Namespace="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Reques" +
         "t")]
     [System.SerializableAttribute()]
@@ -1515,6 +1593,24 @@ namespace RentAppartment.Client.RApmentAdminService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRApmentAdministration/GetAccounts", ReplyAction="http://tempuri.org/IRApmentAdministration/GetAccountsResponse")]
         System.Threading.Tasks.Task<RentAppartment.Client.RApmentAdminService.GetAccountsResponse> GetAccountsAsync(RentAppartment.Client.RApmentAdminService.GetAccountsRequest request);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRApmentAdministration/CreateAccount", ReplyAction="http://tempuri.org/IRApmentAdministration/CreateAccountResponse")]
+        RentAppartment.Client.RApmentAdminService.BaseResponse CreateAccount(RentAppartment.Client.RApmentAdminService.ChangeAccountRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRApmentAdministration/CreateAccount", ReplyAction="http://tempuri.org/IRApmentAdministration/CreateAccountResponse")]
+        System.Threading.Tasks.Task<RentAppartment.Client.RApmentAdminService.BaseResponse> CreateAccountAsync(RentAppartment.Client.RApmentAdminService.ChangeAccountRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRApmentAdministration/UpdateAccount", ReplyAction="http://tempuri.org/IRApmentAdministration/UpdateAccountResponse")]
+        RentAppartment.Client.RApmentAdminService.BaseResponse UpdateAccount(RentAppartment.Client.RApmentAdminService.ChangeAccountRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRApmentAdministration/UpdateAccount", ReplyAction="http://tempuri.org/IRApmentAdministration/UpdateAccountResponse")]
+        System.Threading.Tasks.Task<RentAppartment.Client.RApmentAdminService.BaseResponse> UpdateAccountAsync(RentAppartment.Client.RApmentAdminService.ChangeAccountRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRApmentAdministration/RemoveAccount", ReplyAction="http://tempuri.org/IRApmentAdministration/RemoveAccountResponse")]
+        RentAppartment.Client.RApmentAdminService.BaseResponse RemoveAccount(int accountId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRApmentAdministration/RemoveAccount", ReplyAction="http://tempuri.org/IRApmentAdministration/RemoveAccountResponse")]
+        System.Threading.Tasks.Task<RentAppartment.Client.RApmentAdminService.BaseResponse> RemoveAccountAsync(int accountId);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRApmentAdministration/GetHomeType", ReplyAction="http://tempuri.org/IRApmentAdministration/GetHomeTypeResponse")]
         RentAppartment.Client.RApmentAdminService.GetDictionaryDataResponse GetHomeType();
         
@@ -1532,6 +1628,12 @@ namespace RentAppartment.Client.RApmentAdminService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRApmentAdministration/GetUserRole", ReplyAction="http://tempuri.org/IRApmentAdministration/GetUserRoleResponse")]
         System.Threading.Tasks.Task<RentAppartment.Client.RApmentAdminService.GetDictionaryDataResponse> GetUserRoleAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRApmentAdministration/GetGender", ReplyAction="http://tempuri.org/IRApmentAdministration/GetGenderResponse")]
+        RentAppartment.Client.RApmentAdminService.GetDictionaryDataResponse GetGender();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRApmentAdministration/GetGender", ReplyAction="http://tempuri.org/IRApmentAdministration/GetGenderResponse")]
+        System.Threading.Tasks.Task<RentAppartment.Client.RApmentAdminService.GetDictionaryDataResponse> GetGenderAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRApmentAdministration/GetAmenities", ReplyAction="http://tempuri.org/IRApmentAdministration/GetAmenitiesResponse")]
         RentAppartment.Client.RApmentAdminService.AmenitiesResponse GetAmenities();
@@ -1556,6 +1658,18 @@ namespace RentAppartment.Client.RApmentAdminService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRApmentAdministration/CreateProperty", ReplyAction="http://tempuri.org/IRApmentAdministration/CreatePropertyResponse")]
         System.Threading.Tasks.Task<RentAppartment.Client.RApmentAdminService.BaseResponse> CreatePropertyAsync(RentAppartment.Client.RApmentAdminService.ChangedPropertyRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRApmentAdministration/UpdateProperty", ReplyAction="http://tempuri.org/IRApmentAdministration/UpdatePropertyResponse")]
+        RentAppartment.Client.RApmentAdminService.BaseResponse UpdateProperty(RentAppartment.Client.RApmentAdminService.ChangedPropertyRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRApmentAdministration/UpdateProperty", ReplyAction="http://tempuri.org/IRApmentAdministration/UpdatePropertyResponse")]
+        System.Threading.Tasks.Task<RentAppartment.Client.RApmentAdminService.BaseResponse> UpdatePropertyAsync(RentAppartment.Client.RApmentAdminService.ChangedPropertyRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRApmentAdministration/RemoveProperty", ReplyAction="http://tempuri.org/IRApmentAdministration/RemovePropertyResponse")]
+        RentAppartment.Client.RApmentAdminService.BaseResponse RemoveProperty(int propertyId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRApmentAdministration/RemoveProperty", ReplyAction="http://tempuri.org/IRApmentAdministration/RemovePropertyResponse")]
+        System.Threading.Tasks.Task<RentAppartment.Client.RApmentAdminService.BaseResponse> RemovePropertyAsync(int propertyId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1609,6 +1723,30 @@ namespace RentAppartment.Client.RApmentAdminService {
             return base.Channel.GetAccountsAsync(request);
         }
         
+        public RentAppartment.Client.RApmentAdminService.BaseResponse CreateAccount(RentAppartment.Client.RApmentAdminService.ChangeAccountRequest request) {
+            return base.Channel.CreateAccount(request);
+        }
+        
+        public System.Threading.Tasks.Task<RentAppartment.Client.RApmentAdminService.BaseResponse> CreateAccountAsync(RentAppartment.Client.RApmentAdminService.ChangeAccountRequest request) {
+            return base.Channel.CreateAccountAsync(request);
+        }
+        
+        public RentAppartment.Client.RApmentAdminService.BaseResponse UpdateAccount(RentAppartment.Client.RApmentAdminService.ChangeAccountRequest request) {
+            return base.Channel.UpdateAccount(request);
+        }
+        
+        public System.Threading.Tasks.Task<RentAppartment.Client.RApmentAdminService.BaseResponse> UpdateAccountAsync(RentAppartment.Client.RApmentAdminService.ChangeAccountRequest request) {
+            return base.Channel.UpdateAccountAsync(request);
+        }
+        
+        public RentAppartment.Client.RApmentAdminService.BaseResponse RemoveAccount(int accountId) {
+            return base.Channel.RemoveAccount(accountId);
+        }
+        
+        public System.Threading.Tasks.Task<RentAppartment.Client.RApmentAdminService.BaseResponse> RemoveAccountAsync(int accountId) {
+            return base.Channel.RemoveAccountAsync(accountId);
+        }
+        
         public RentAppartment.Client.RApmentAdminService.GetDictionaryDataResponse GetHomeType() {
             return base.Channel.GetHomeType();
         }
@@ -1631,6 +1769,14 @@ namespace RentAppartment.Client.RApmentAdminService {
         
         public System.Threading.Tasks.Task<RentAppartment.Client.RApmentAdminService.GetDictionaryDataResponse> GetUserRoleAsync() {
             return base.Channel.GetUserRoleAsync();
+        }
+        
+        public RentAppartment.Client.RApmentAdminService.GetDictionaryDataResponse GetGender() {
+            return base.Channel.GetGender();
+        }
+        
+        public System.Threading.Tasks.Task<RentAppartment.Client.RApmentAdminService.GetDictionaryDataResponse> GetGenderAsync() {
+            return base.Channel.GetGenderAsync();
         }
         
         public RentAppartment.Client.RApmentAdminService.AmenitiesResponse GetAmenities() {
@@ -1663,6 +1809,22 @@ namespace RentAppartment.Client.RApmentAdminService {
         
         public System.Threading.Tasks.Task<RentAppartment.Client.RApmentAdminService.BaseResponse> CreatePropertyAsync(RentAppartment.Client.RApmentAdminService.ChangedPropertyRequest request) {
             return base.Channel.CreatePropertyAsync(request);
+        }
+        
+        public RentAppartment.Client.RApmentAdminService.BaseResponse UpdateProperty(RentAppartment.Client.RApmentAdminService.ChangedPropertyRequest request) {
+            return base.Channel.UpdateProperty(request);
+        }
+        
+        public System.Threading.Tasks.Task<RentAppartment.Client.RApmentAdminService.BaseResponse> UpdatePropertyAsync(RentAppartment.Client.RApmentAdminService.ChangedPropertyRequest request) {
+            return base.Channel.UpdatePropertyAsync(request);
+        }
+        
+        public RentAppartment.Client.RApmentAdminService.BaseResponse RemoveProperty(int propertyId) {
+            return base.Channel.RemoveProperty(propertyId);
+        }
+        
+        public System.Threading.Tasks.Task<RentAppartment.Client.RApmentAdminService.BaseResponse> RemovePropertyAsync(int propertyId) {
+            return base.Channel.RemovePropertyAsync(propertyId);
         }
     }
 }

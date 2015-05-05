@@ -76,13 +76,116 @@ namespace RentAppartment.Client.DataAccess
             }
             catch (Exception)
             {
-
-                throw;
+                result = false;
+                //throw;
             }
 
             return result;
         }
 
+        public bool RemoveProperty(int propertyId)
+        {
+            bool result = true;
+            try
+            {
+
+                BaseResponse response = _service.RemoveProperty(propertyId);
+                if (response != null)
+                {
+                    if (response.ErrorId != 0)
+                    {
+                        result = false;//Add to Log message
+                    }
+
+                }
+
+            }
+            catch (Exception)
+            {
+                result = false;
+                //throw;
+            }
+
+            return result;
+        }
+
+        public bool CreateAccount(AccountDto account)
+        {
+            bool result = true;
+            try
+            {
+                var request = new ChangeAccountRequest();
+                request.Account = account;
+                BaseResponse response = _service.CreateAccount(request);
+                if (response != null)
+                {
+                    if (response.ErrorId != 0)
+                    {
+                        result = false;//Add to Log message
+                    }
+
+                }
+
+            }
+            catch (Exception)
+            {
+                result = false;
+                //throw;
+            }
+
+            return result;
+        }
+        public bool RemoveAccount(int accountId)
+        {
+            bool result = true;
+            try
+            {
+                
+                BaseResponse response = _service.RemoveAccount(accountId);
+                if (response != null)
+                {
+                    if (response.ErrorId != 0)
+                    {
+                        result = false;//Add to Log message
+                    }
+
+                }
+
+            }
+            catch (Exception)
+            {
+                result = false;
+                //throw;
+            }
+
+            return result;
+        }
+        public bool UpdateAccount(AccountDto account)
+        {
+            bool result = true;
+            try
+            {
+                var request = new ChangeAccountRequest();
+                request.Account = account;
+                BaseResponse response = _service.CreateAccount(request);
+                if (response != null)
+                {
+                    if (response.ErrorId != 0)
+                    {
+                        result = false;//Add to Log message
+                    }
+
+                }
+
+            }
+            catch (Exception)
+            {
+                result = false;
+                //throw;
+            }
+
+            return result;
+        }
 
         public List<AccountDto> GetAccounts(int? accountId, string name, string city)
         {
@@ -149,7 +252,7 @@ namespace RentAppartment.Client.DataAccess
             }
             return amenities;
         }
-        public List<DateTime> GetApartmentReervations(int propertyId)
+        public List<DateTime> GetApartmentReservations(int propertyId)
         {
             var reservations = new List<DateTime>();
             try
@@ -239,8 +342,9 @@ namespace RentAppartment.Client.DataAccess
 			return reservations;
 		}
 
-		///Dictionaries
+		///
         ///
+        #region Dictionaries
         public Dictionary<int, string> GetHomeTypes()
         {
             var dict = new Dictionary<int, string>();
@@ -339,11 +443,42 @@ namespace RentAppartment.Client.DataAccess
             return dict;
         }
 
+        public Dictionary<int, string> GetGenderTypes()
+        {
+            var dict = new Dictionary<int, string>();
+            try
+            {
+                var cachedItem = CacheProvider.Instance.GetItem("GenderTypes");
+                if (cachedItem != null)
+                {
+                    dict = (Dictionary<int, string>)cachedItem;
+                }
+                else
+                {
+                    GetDictionaryDataResponse response = _service.GetGender();
+                    if (response != null)
+                    {
+                        if (response.ErrorId == 0)
+                        {
+                            dict = response.Data;
+                            CacheProvider.Instance.AddItem("GenderTypes", dict);
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            return dict;
+        }
 		public void Dispose()
 		{
-			
-		}
 
-        
+        }
+        #endregion
+
     }
 }

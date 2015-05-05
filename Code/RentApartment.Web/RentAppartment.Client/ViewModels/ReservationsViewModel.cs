@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using RentAppartment.Client.RApmentAdminService;
 
-namespace RentAppartment.Client.ViewModels
+namespace RentAppartment.Client.Views
 {
     public class ReservationsViewModel : ViewModelBase
     {

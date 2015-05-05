@@ -18,6 +18,8 @@
       <xs:element minOccurs="0" name="C_Amenities" nillable="true" type="tns:ArrayOfAmenityDto" />
       <xs:element minOccurs="0" name="City" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Country" type="xs:int" />
+      <xs:element minOccurs="0" name="FK_Account" type="xs:int" />
+      <xs:element minOccurs="0" name="FK__Country" type="xs:int" />
       <xs:element minOccurs="0" name="GreatSummary" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="GreatTitle" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="HomeType" type="xs:unsignedByte" />

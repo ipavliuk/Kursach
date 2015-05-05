@@ -1,0 +1,74 @@
+﻿<Window x:Class="RentAppartment.Client.Views.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Height="500" Width="850">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.2*"/>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="0.8*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <GridSplitter HorizontalAlignment="Left" Width="5" 
+                      Grid.Column="1" 
+                      Grid.Row="1" BorderBrush="Black" />
+        <StatusBar Margin="0" 
+                   VerticalAlignment="Bottom" 
+                   Height="23" 
+                   Grid.ColumnSpan="3" 
+                   Grid.Row="2"/>
+        <Menu Margin="0" Height="23" Grid.Row="0" Grid.ColumnSpan="3">
+            <MenuItem Header="Менеджери" ToolTip="Оберіть операції">
+                <MenuItem Header="Пошук житла" Command="{Binding Path=NavigatePropertyListCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="../Images/_property.png" Width="24" Height="24"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Kористувачi" Command="{Binding Path=NavigateAccountsCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="../Images/_user_accounts.png" Width="24" Height="24"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Резервування" Command="{Binding Path=NavigateReservationsCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="../Images/_schedule.png" Width="24" Height="24"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="Допомога">
+                <MenuItem Header="Допомога користувачу" Command="{Binding Path=UserGuideCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="../Images/_free-18-128.png" Width="24" Height="24"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Про застосування.." Command="{Binding Path=AboutCommand}"/>
+            </MenuItem>
+        </Menu>
+        <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical" MaxWidth="200">
+            <Button Width="120" HorizontalAlignment="Right" FontSize="12" Margin="10" Command="{Binding NavigatePropertyListCommand}" >
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="../Images/_property.png" Width="24" Height="24" VerticalAlignment="Center"/>
+                    <TextBlock Text="Пошук житла" VerticalAlignment="Center" Margin="10 0"/>
+                </StackPanel>
+            </Button>
+            <Button Width="120" HorizontalAlignment="Right" FontSize="12" Margin="10" Command="{Binding NavigateAccountsCommand}" >
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="../Images/_user_accounts.png" Width="24" Height="24" VerticalAlignment="Center"/>
+                    <TextBlock Text="Kористувачi" VerticalAlignment="Center" Margin="13 0"/>
+                </StackPanel>
+            </Button>
+            <Button Width="120" HorizontalAlignment="Right" FontSize="12" Margin="10" Command="{Binding NavigateReservationsCommand}" >
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="../Images/_schedule.png" Width="24" Height="24" VerticalAlignment="Center"/>
+                    <TextBlock Text="Резервування" VerticalAlignment="Center" Margin="10 0"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+        <ContentControl Grid.Row="1" Grid.Column="2"
+         Content="{Binding Path=CurrentView}" />
+    </Grid>
+</Window>

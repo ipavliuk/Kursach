@@ -8,7 +8,7 @@
     <!--<UserControl.Resources>
         <utils:BitmapImageConverter x:Key="BitmapImageConverter" />
     </UserControl.Resources>-->
-    <Grid Width="1000">
+    <Grid Width="700">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -96,10 +96,10 @@
                        AutoGenerateColumns="False">-->
             <DataGrid Name="dgAppartments"
                       HorizontalAlignment="Left"
-                      Width="550" Margin="15,10,155,10" SelectionMode="Single" 
+                      Width="650" Margin="15,10,100,10" SelectionMode="Single" 
                       ItemsSource="{Binding ProperyListing}" SelectedItem="{Binding SelectedProperty}" 
-                       AutoGenerateColumns="False"
-                      >
+                      AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True" 
+                      ScrollViewer.VerticalScrollBarVisibility="Auto" CanUserAddRows="False">
                 <DataGrid.Columns>
                     <DataGridTemplateColumn Header="Info">
                         <DataGridTemplateColumn.CellTemplate>
@@ -146,7 +146,7 @@
                     <DataGridTemplateColumn Header="">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Command="{Binding DataContext.ScheduleApartmentCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}, Mode=FindAncestor}}" 
+                                <Button Style="{DynamicResource ScheduleButtonStyle}" Command="{Binding DataContext.ScheduleApartmentCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}, Mode=FindAncestor}}" 
                                         ToolTip="Schedule">
                                     <!--<StackPanel Orientation="Horizontal">
                                         -->

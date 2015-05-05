@@ -20,6 +20,15 @@ namespace RentApartment.Service
 
         [OperationContract]
         GetAccountsResponse GetAccounts(GetAccountsRequest request);
+        
+        [OperationContract]
+        BaseResponse CreateAccount(ChangeAccountRequest request);
+
+        [OperationContract]
+        BaseResponse UpdateAccount(ChangeAccountRequest request);
+
+        [OperationContract]
+        BaseResponse RemoveAccount(int accountId);
 
         [OperationContract]
         GetDictionaryDataResponse GetHomeType();
@@ -29,6 +38,9 @@ namespace RentApartment.Service
 
         [OperationContract]
         GetDictionaryDataResponse GetUserRole();
+
+        [OperationContract]
+        GetDictionaryDataResponse GetGender();
 
         [OperationContract]
         AmenitiesResponse GetAmenities();
@@ -41,5 +53,9 @@ namespace RentApartment.Service
 
         [OperationContract]
         BaseResponse CreateProperty(ChangedPropertyRequest request);
+        [OperationContract]
+        BaseResponse UpdateProperty(ChangedPropertyRequest request);
+        [OperationContract]
+        BaseResponse RemoveProperty(int propertyId);
     }
 }

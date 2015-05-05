@@ -34,5 +34,10 @@ namespace RentApartment.Core.Infrastructure
         bool MakeApartmentReservation(int accountId, int propertyId, DateTime startDate, DateTime endDate, string note);
 		bool CreateProperty(PropertyListing property, List<C_Amenities> amenities);
         bool UpdateProperty(PropertyListing property);
+        bool RemoveProperty(int propertyId);
+
+        bool CreateAccount(Account account);
+        bool UpdateAccount(Account account);
+        bool RemoveAccount(int accountId);
     }
 }

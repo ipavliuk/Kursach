@@ -78,6 +78,7 @@
     <Compile Include="DataContract\Entities\Country.cs" />
     <Compile Include="DataContract\Entities\Currency.cs" />
     <Compile Include="DataContract\Entities\Role.cs" />
+    <Compile Include="DataContract\Request\ChangeAccountRequest.cs" />
     <Compile Include="DataContract\Request\ChangedPropertyRequest.cs" />
     <Compile Include="DataContract\Request\GetAccountsRequest.cs" />
     <Compile Include="DataContract\Request\PaginationRequest.cs" />

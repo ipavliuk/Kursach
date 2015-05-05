@@ -184,9 +184,11 @@ namespace RentApartment.Core.Infrastructure
 			{
 				using (var _db = new RentApartmentsContext())
 				{
-					return _db.Reservations.Where(res => res.ReservationStart >= startDate 
-								&& res.ReservationEnd <= endDate && (status != null && res.ReservationStatus == status)
-								&& res.PropertyListing.City == city).ToList();
+                    //return _db.Reservations.Where(res => res.ReservationStart >= startDate 
+                    //            && res.ReservationEnd <= endDate && (status != null && res.ReservationStatus == status)
+                    //            && res.PropertyListing.City == city).ToList();
+                    var l = _db.Reservations.Include(r => r.PropertyListing).Where(res => res.PropertyListing.City == city).ToList();
+                    return l;
 				}
                 
 			}
@@ -388,6 +390,92 @@ namespace RentApartment.Core.Infrastructure
 
                 throw;
             }
+            return result;
+        }
+
+        public bool CreateAccount(Account account)
+        {
+            bool result = true;
+            try
+            {
+                using (var _db = new RentApartmentsContext())
+                {
+                    
+                    _db.Account.Add(account);
+                     int id = _db.SaveChanges();
+
+                    result = id == 0 ? false : true;
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return result;
+        }
+
+        public bool UpdateAccount(Account account)
+        {
+            bool result = true;
+            try
+            {
+                using (var _db = new RentApartmentsContext())
+                {
+                    _db.Account.Add(account);
+                    int id = _db.SaveChanges();
+                    result = id == 0 ? false : true;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return result;
+        }
+        public bool RemoveProperty(int propertyId)
+        {
+            bool result = true;
+            try
+            {
+                using(var _db = new RentApartmentsContext())
+                {
+                    var prop = _db.PropertyListing.Single(p => p.PropertyId == propertyId);
+                    _db.PropertyListing.Remove(prop);
+                    int id = _db.SaveChanges();
+                    result = id == 0 ? false : true;
+                }
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+
+            return result;
+        }
+
+        public bool RemoveAccount(int accountId)
+        {
+            bool result = true;
+            try
+            {
+                using (var _db = new RentApartmentsContext())
+                {
+                    var account = _db.Account.Single(a => a.id == accountId);
+                    _db.Account.Remove(account);
+                    int id = _db.SaveChanges();
+                    result = id == 0 ? false : true;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
             return result;
         }
     }

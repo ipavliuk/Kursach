@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace RentAppartment.Client.Views
 {
     /// <summary>
-    /// Interaction logic for AccountsView.xaml
+    /// Interaction logic for AddAccountView.xaml
     /// </summary>
-    public partial class AccountsView : UserControl
+    public partial class AddAccountView : Window
     {
-        public AccountsView()
+        public AddAccountView()
         {
             InitializeComponent();
         }

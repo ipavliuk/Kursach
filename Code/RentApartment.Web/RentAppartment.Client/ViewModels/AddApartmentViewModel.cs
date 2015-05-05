@@ -59,7 +59,11 @@ namespace RentAppartment.Client.Views
 			var generatedAccount = new List<AccountDtoLite>();
 
 			if (accounts == null)
-				return generatedAccount;
+            {
+                return generatedAccount;
+            }
+				
+
 			try
 			{
 				generatedAccount = accounts.Select(acc => new AccountDtoLite
@@ -97,12 +101,7 @@ namespace RentAppartment.Client.Views
 			return account;
 		}
 
-		public class DictItem
-		{
-			public int Id { get; set; }
-
-			public string Value { get; set; }
-		}
+		
 		private DictItem homeTypeSelectedItem;
 		public DictItem HomeTypeSelectedItem
 		{
@@ -124,13 +123,7 @@ namespace RentAppartment.Client.Views
 
 		private List<AccountDto> _accounts;
 
-		public class ImageData
-		{
-            public string Id { get; set; }
-			public string Value { get; set; }
-		}
-
-        private bool isUpdate = false;
+		private bool isUpdate = false;
 
         private bool canOwnerEnable;
         public bool CanOwnerEnable

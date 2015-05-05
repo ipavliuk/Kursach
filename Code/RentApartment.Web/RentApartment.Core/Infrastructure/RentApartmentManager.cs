@@ -90,8 +90,8 @@ namespace RentApartment.Core.Infrastructure
 			
 
 			return (accountId != null && accountId != 0)
-                ? service.GetReservationsByDate(startDate ?? DateTime.UtcNow.AddMonths(-1), endDate ?? DateTime.UtcNow, status, city)
-				: service.GetReservationsByAccount((int)accountId);
+                ? service.GetReservationsByAccount(accountId ?? 0)
+				: service.GetReservationsByDate(startDate ?? DateTime.UtcNow.AddMonths(-1), endDate ?? DateTime.UtcNow, status, city);
 	
 		}
 
@@ -170,6 +170,36 @@ namespace RentApartment.Core.Infrastructure
             var service = new PropertyListingService();
 
             return service.UpdateProperty(property);   
+        }
+
+
+
+        public bool CreateAccount(Account account)
+        {
+            var service = new PropertyListingService();
+
+            return service.CreateAccount(account);   
+        }
+
+        public bool UpdateAccount(Account account)
+        {
+            var service = new PropertyListingService();
+
+            return service.UpdateAccount(account); 
+        }
+
+        public bool RemoveAccount(int accountId)
+        {
+            var service = new PropertyListingService();
+
+            return service.RemoveAccount(accountId); 
+        }
+
+        public bool RemoveProperty(int propertyId)
+        {
+            var service = new PropertyListingService();
+
+            return service.RemoveProperty(propertyId); 
         }
     }
 }
