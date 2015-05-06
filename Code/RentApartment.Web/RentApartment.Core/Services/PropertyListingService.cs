@@ -96,6 +96,27 @@ namespace RentApartment.Core.Infrastructure
 
             return new List<PropertyListing>();
 		}
+
+		public List<PropertyListing> GetBookedPropertyByAccount(int accountId)
+		{
+			try
+			{
+				using (var _db = new RentApartmentsContext())
+				{
+					var reservations = _db.Reservations.Where(res => res.FK_Account == accountId).Select(res => res.FK_PropertyListing);
+					
+					return _db.PropertyListing.Where(prop => reservations.All(r => r == prop.PropertyId)).ToList();
+				}
+
+			}
+			catch (Exception ex)
+			{
+				log.Error("Exception when get booked property by account Id => ", ex);
+			}
+
+			return new List<PropertyListing>();
+		}
+
         public List<PropertyListing> GetPropertyByPropertyId(int propertyId)
         {
             try
@@ -478,5 +499,7 @@ namespace RentApartment.Core.Infrastructure
 
             return result;
         }
-    }
+
+		
+	}
 }

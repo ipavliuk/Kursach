@@ -60,6 +60,12 @@ namespace RentApartment.Core.Infrastructure
 			return service.GetAccountById(id);
 		}
 
+		public List<PropertyListing> GetBookedPropertyByAccount(int accountId)
+		{
+			var service = new PropertyListingService();
+
+			return service.GetBookedPropertyByAccount(accountId);
+		}
 
 		public List<PropertyListing> GetPropertyByAccount(int accountId)
 		{
@@ -201,5 +207,7 @@ namespace RentApartment.Core.Infrastructure
 
             return service.RemoveProperty(propertyId); 
         }
-    }
+
+		
+	}
 }

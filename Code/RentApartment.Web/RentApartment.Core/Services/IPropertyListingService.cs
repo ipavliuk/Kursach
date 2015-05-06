@@ -15,6 +15,7 @@ namespace RentApartment.Core.Infrastructure
         List<Account> GetAccountsByFilter(int? accountId, string name, string city);
 
 		List<PropertyListing> GetPropertyByAccount(int accountId);
+	    List<PropertyListing> GetBookedPropertyByAccount(int accountId);
 
 		List<PropertyListing> GetPropertyByCityCountry(string city, int country);
 

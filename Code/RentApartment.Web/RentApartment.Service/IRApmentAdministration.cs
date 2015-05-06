@@ -57,5 +57,11 @@ namespace RentApartment.Service
         BaseResponse UpdateProperty(ChangedPropertyRequest request);
         [OperationContract]
         BaseResponse RemoveProperty(int propertyId);
-    }
+
+		[OperationContract]
+		GetPropertyListingResponse GetBookedPropertyByAccount(int accountId);
+
+		[OperationContract]
+		GetPropertyListingResponse GetPropertyByAccount(int accountId);
+	}
 }

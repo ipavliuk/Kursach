@@ -56,6 +56,67 @@ namespace RentAppartment.Client.DataAccess
             return properties;
         }
 
+		internal List<PropertyDto> GetPropertyByAccount(int accountId)
+		{
+			List<PropertyDto> properties = new List<PropertyDto>();
+			try
+			{
+
+				GetPropertyListingResponse response = _service.GetPropertyByAccount(accountId);
+				if (response != null)
+				{
+					if (response.ErrorId == 0)
+					{
+						properties = response.PropertListing.ToList();
+					}
+					else
+					{
+						//Add to Log message
+					}
+
+				}
+
+			}
+			catch (Exception)
+			{
+
+				throw;
+			}
+
+			return properties;
+		}
+
+
+		internal List<PropertyDto> GetUserBookedProperties(int accountId)
+		{
+			List<PropertyDto> properties = new List<PropertyDto>();
+			try
+			{
+
+				GetPropertyListingResponse response = _service.GetBookedPropertyByAccount(accountId);
+				if (response != null)
+				{
+					if (response.ErrorId == 0)
+					{
+						properties = response.PropertListing.ToList();
+					}
+					else
+					{
+						//Add to Log message
+					}
+
+				}
+
+			}
+			catch (Exception)
+			{
+
+				throw;
+			}
+
+			return properties;
+		}
+
         public bool UpdateProperty(PropertyDto apartment)
         {
             bool result = true;
@@ -342,6 +403,7 @@ namespace RentAppartment.Client.DataAccess
 			return reservations;
 		}
 
+	
 		///
         ///
         #region Dictionaries
@@ -480,5 +542,7 @@ namespace RentAppartment.Client.DataAccess
         }
         #endregion
 
-    }
+
+		
+	}
 }

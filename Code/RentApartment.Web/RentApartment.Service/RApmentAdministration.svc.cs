@@ -60,6 +60,71 @@ namespace RentApartment.Service
 			return response;
 		}
 
+		public GetPropertyListingResponse GetBookedPropertyByAccount(int accountId)
+		{
+			var response = new GetPropertyListingResponse();
+
+
+			if (accountId == 0)
+			{
+				response.ErrorId = (int)RApmentErrors.FailedProceedRequest;
+				return response;
+			}
+
+			try
+			{
+				response.ErrorId = (int)RApmentErrors.Ok;
+
+				List<PropertyListing> propertyListings =
+					RentApartmentManager.Instance.GetBookedPropertyByAccount(accountId).ToList();
+
+
+				response.PropertListing = Mapper.Map<List<PropertyListing>, List<PropertyDto>>(propertyListings);
+
+			}
+			catch (Exception ex)
+			{
+				response.ErrorId = (int)RApmentErrors.OperationError;
+				response.ErrorDesc = ex.Message;
+				//Logger.Instance.Error("AuthenticateChatHost - ", ex);
+			}
+
+			return response;
+		}
+		
+		public GetPropertyListingResponse GetPropertyByAccount(int accountId)
+		{
+			var response = new GetPropertyListingResponse();
+
+
+			if (accountId == 0)
+			{
+				response.ErrorId = (int)RApmentErrors.FailedProceedRequest;
+				return response;
+			}
+
+			try
+			{
+				response.ErrorId = (int)RApmentErrors.Ok;
+
+				List<PropertyListing> propertyListings =
+					RentApartmentManager.Instance.GetPropertyByAccount(accountId).ToList();
+
+
+				response.PropertListing = Mapper.Map<List<PropertyListing>, List<PropertyDto>>(propertyListings);
+
+			}
+			catch (Exception ex)
+			{
+				response.ErrorId = (int)RApmentErrors.OperationError;
+				response.ErrorDesc = ex.Message;
+				//Logger.Instance.Error("AuthenticateChatHost - ", ex);
+			}
+
+			return response;
+		}
+		
+
 		public GetReservationsResponse GetReservations(GetReservationsRequest request)
 		{
 			var response = new GetReservationsResponse();
