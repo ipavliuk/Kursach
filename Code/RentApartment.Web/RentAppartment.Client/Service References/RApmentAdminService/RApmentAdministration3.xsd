@@ -2,16 +2,17 @@
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Response" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Response" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:61870/RApmentAdministration.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Entities" />
   <xs:import schemaLocation="http://localhost:61870/RApmentAdministration.svc?xsd=xsd5" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
-  <xs:complexType name="GetPropertyListingResponse">
+  <xs:complexType name="AuthenticationResponse">
     <xs:complexContent mixed="false">
       <xs:extension base="tns:BaseResponse">
         <xs:sequence>
-          <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Entities" minOccurs="0" name="PropertListing" nillable="true" type="q1:ArrayOfPropertyDto" />
+          <xs:element minOccurs="0" name="AccountProfile" nillable="true" type="tns:AccountDto" />
+          <xs:element minOccurs="0" name="AuthenticationResult" type="xs:boolean" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="GetPropertyListingResponse" nillable="true" type="tns:GetPropertyListingResponse" />
+  <xs:element name="AuthenticationResponse" nillable="true" type="tns:AuthenticationResponse" />
   <xs:complexType name="BaseResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="ErrorDesc" nillable="true" type="xs:string" />
@@ -32,7 +33,9 @@
       <xs:element minOccurs="0" name="IsValidated" type="xs:boolean" />
       <xs:element minOccurs="0" name="Language" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Login" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Mobile" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PasswordHash" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="PictureUrl" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="PostalCode" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Roles" nillable="true" type="xs:string" />
@@ -40,6 +43,16 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="AccountDto" nillable="true" type="tns:AccountDto" />
+  <xs:complexType name="GetPropertyListingResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseResponse">
+        <xs:sequence>
+          <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Entities" minOccurs="0" name="PropertListing" nillable="true" type="q1:ArrayOfPropertyDto" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetPropertyListingResponse" nillable="true" type="tns:GetPropertyListingResponse" />
   <xs:complexType name="GetReservationsResponse">
     <xs:complexContent mixed="false">
       <xs:extension base="tns:BaseResponse">

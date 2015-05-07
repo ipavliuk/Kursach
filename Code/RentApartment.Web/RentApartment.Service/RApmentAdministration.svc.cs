@@ -27,6 +27,35 @@ namespace RentApartment.Service
             Mapper.CreateMap<AmenityDto, C_Amenities>();
 		}
 
+		public AuthenticationResponse Authenticate(AuthenticationRequest request)
+		{
+			var response = new AuthenticationResponse();
+
+
+			if (request == null)
+			{
+				response.ErrorId = (int)RApmentErrors.FailedProceedRequest;
+				return response;
+			}
+
+			try
+			{
+				response.ErrorId = (int)RApmentErrors.Ok;
+
+				Account acc = RentApartmentManager.Instance.Authenticate(request.Login, request.Password);
+
+				response.AuthenticationResult = acc != null && acc.id > 0;
+				response.AccountProfile = Mapper.Map<AccountDto>(acc);
+			}
+			catch (Exception ex)
+			{
+				response.ErrorId = (int)RApmentErrors.OperationError;
+				response.ErrorDesc = ex.Message;
+				//Logger.Instance.Error("AuthenticateChatHost - ", ex);
+			}
+
+			return response;
+		}
 		public GetPropertyListingResponse GetPropertyListing(GetPropertyListingRequest request)
 		{
 			var response = new GetPropertyListingResponse();
@@ -391,6 +420,8 @@ namespace RentApartment.Service
                     LastName = dto.LastName,
                     Email = dto.Email,
                     IsEmailConfirmed = false,
+					Login = dto.Login,
+					PasswordHash = dto.PasswordHash,
                    // C_Country = dto.Country,
                    //C_Roles = dto.Roles,
                     City = dto.City,
@@ -400,7 +431,6 @@ namespace RentApartment.Service
                     PostalCode = dto.PostalCode,
                     //Language = dto.Language
                     PictureUrl = dto.PictureUrl,
-                    PasswordHash="",
                     FK__Roles = 1,
                     FK__Country = 1
                     
@@ -444,6 +474,8 @@ namespace RentApartment.Service
                     LastName = dto.LastName,
                     Email = dto.Email,
                     IsEmailConfirmed = false,
+					Login = dto.Login,
+					PasswordHash = dto.PasswordHash,
                     // C_Country = dto.Country,
                     // C_Roles = dto.Roles,
                     City = dto.City,

@@ -26,11 +26,12 @@ namespace RentAppartment.Client.Utils
 
         public IRApmentAdministration Service { get; set; }
 
+
         public AppartmentsRepository GetApartmentRepository()
         {
-            return new AppartmentsRepository(Service);
+			return new AppartmentsRepository(Service);
         }
 
-        
+	   
     }
 }

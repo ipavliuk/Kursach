@@ -13,6 +13,9 @@ namespace RentApartment.Service
 	public interface IRApmentAdministration
 	{
 		[OperationContract]
+		AuthenticationResponse Authenticate(AuthenticationRequest request);
+
+		[OperationContract]
 		GetPropertyListingResponse GetPropertyListing(GetPropertyListingRequest request);
 
 		[OperationContract]

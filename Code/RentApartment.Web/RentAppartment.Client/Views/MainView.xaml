@@ -21,33 +21,57 @@
                    Height="23" 
                    Grid.ColumnSpan="3" 
                    Grid.Row="2"/>
-        <Menu Margin="0" Height="23" Grid.Row="0" Grid.ColumnSpan="3">
-            <MenuItem Header="Менеджери" ToolTip="Оберіть операції">
-                <MenuItem Header="Пошук житла" Command="{Binding Path=NavigatePropertyListCommand}">
-                    <MenuItem.Icon>
-                        <Image Source="../Images/_property.png" Width="24" Height="24"/>
-                    </MenuItem.Icon>
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="3" Orientation="Horizontal">
+            <Menu Margin="0" Height="23" >
+                <MenuItem Header="Менеджери" ToolTip="Оберіть операції">
+                    <MenuItem Header="Пошук житла" Command="{Binding Path=NavigatePropertyListCommand}">
+                        <MenuItem.Icon>
+                            <Image Source="../Images/_property.png" Width="24" Height="24"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Kористувачi" Command="{Binding Path=NavigateAccountsCommand}">
+                        <MenuItem.Icon>
+                            <Image Source="../Images/_user_accounts.png" Width="24" Height="24"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Резервування" Command="{Binding Path=NavigateReservationsCommand}">
+                        <MenuItem.Icon>
+                            <Image Source="../Images/_schedule.png" Width="24" Height="24"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
                 </MenuItem>
-                <MenuItem Header="Kористувачi" Command="{Binding Path=NavigateAccountsCommand}">
-                    <MenuItem.Icon>
-                        <Image Source="../Images/_user_accounts.png" Width="24" Height="24"/>
-                    </MenuItem.Icon>
+                <MenuItem Header="Допомога">
+                    <MenuItem Header="Допомога користувачу" Command="{Binding Path=UserGuideCommand}">
+                        <MenuItem.Icon>
+                            <Image Source="../Images/_free-18-128.png" Width="24" Height="24"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Про застосування.." Command="{Binding Path=AboutCommand}"/>
                 </MenuItem>
-                <MenuItem Header="Резервування" Command="{Binding Path=NavigateReservationsCommand}">
-                    <MenuItem.Icon>
-                        <Image Source="../Images/_schedule.png" Width="24" Height="24"/>
-                    </MenuItem.Icon>
-                </MenuItem>
-            </MenuItem>
-            <MenuItem Header="Допомога">
-                <MenuItem Header="Допомога користувачу" Command="{Binding Path=UserGuideCommand}">
-                    <MenuItem.Icon>
-                        <Image Source="../Images/_free-18-128.png" Width="24" Height="24"/>
-                    </MenuItem.Icon>
-                </MenuItem>
-                <MenuItem Header="Про застосування.." Command="{Binding Path=AboutCommand}"/>
-            </MenuItem>
-        </Menu>
+            </Menu>
+            <Button Command="{Binding SignInOutCommand}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Width="24" Height="24" VerticalAlignment="Center">
+                        <Image.Style>
+                            <Style TargetType="{x:Type Image}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsLogedIn}" Value="False">
+                                            <Setter Property="Source" Value="../Images/_login-128.png" />
+                                    </DataTrigger>
+                                        <DataTrigger Binding="{Binding IsLogedIn}" Value="True">
+                                            <Setter Property="Source" Value="../Images/_logout-128.png" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                       </Image.Style>
+                    </Image>
+                    <TextBlock Text="{Binding SignInOutText}" VerticalAlignment="Center" Margin="10 0"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+       
+        
+        
         <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical" MaxWidth="200">
             <Button Width="120" HorizontalAlignment="Right" FontSize="12" Margin="10" Command="{Binding NavigatePropertyListCommand}" >
                 <StackPanel Orientation="Horizontal">

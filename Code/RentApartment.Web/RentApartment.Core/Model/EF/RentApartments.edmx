@@ -60,6 +60,7 @@
           <Property Name="PostalCode" Type="nvarchar" MaxLength="255" />
           <Property Name="IsValidated" Type="bit" Nullable="false" />
           <Property Name="PictureUrl" Type="nvarchar" MaxLength="255" />
+          <Property Name="Login" Type="nvarchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="GuestReviews">
           <Key>
@@ -518,6 +519,7 @@
           <NavigationProperty Name="PropertyListing" Relationship="Self.FKPropertyLi96721" FromRole="Account" ToRole="PropertyListing" />
           <NavigationProperty Name="Reservations" Relationship="Self.FKReservatio820773" FromRole="Account" ToRole="Reservations" />
           <Property Name="PictureUrl" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Login" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="GuestReviews">
           <Key>
@@ -773,16 +775,16 @@
             <End Role="PropertyListing" EntitySet="PropertyListing" />
           </AssociationSet>
           <FunctionImport Name="f_AmenitiesGetById" ReturnType="Collection(RentApartmentsModel.f_AmenitiesGetById_Result)">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="f_CountryGetById" ReturnType="Collection(RentApartmentsModel.f_CountryGetById_Result)">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="f_CurrencyGetById" ReturnType="Collection(RentApartmentsModel.f_CurrencyGetById_Result)">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="f_RolesGetById" ReturnType="Collection(RentApartmentsModel.f_RolesGetById_Result)">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="AddAmenitiesToProperty">
             <Parameter Name="PropertyListingId" Mode="In" Type="Int32" />
@@ -810,14 +812,14 @@
             <Parameter Name="Country" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="PropertyListingDelete">
-            <Parameter Name="PropertyId" Mode="In" Type="Int32" />
+          <Parameter Name="PropertyId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="PropertyListingGetAll" ReturnType="Collection(RentApartmentsModel.PropertyListingGetAll_Result)" />
           <FunctionImport Name="PropertyListingGetByAccountId" ReturnType="Collection(RentApartmentsModel.PropertyListingGetByAccountId_Result)">
-            <Parameter Name="AccId" Mode="In" Type="Int32" />
+          <Parameter Name="AccId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="PropertyListingGetByPropertyId" ReturnType="Collection(RentApartmentsModel.PropertyListingGetByPropertyId_Result)">
-            <Parameter Name="PropertyId" Mode="In" Type="Int32" />
+          <Parameter Name="PropertyId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="PropertyListingUpdate">
             <Parameter Name="PropertyId" Mode="In" Type="Int32" />
@@ -850,17 +852,17 @@
             <Parameter Name="CurrencyId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="ReservationsDelete">
-            <Parameter Name="ReservationId" Mode="In" Type="Int32" />
+          <Parameter Name="ReservationId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="ReservationsGetAll" ReturnType="Collection(RentApartmentsModel.ReservationsGetAll_Result)" />
           <FunctionImport Name="ReservationsGetByAccId" ReturnType="Collection(RentApartmentsModel.ReservationsGetByAccId_Result)">
-            <Parameter Name="AccId" Mode="In" Type="Int32" />
+          <Parameter Name="AccId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="ReservationsGetById" ReturnType="Collection(RentApartmentsModel.ReservationsGetById_Result)">
-            <Parameter Name="ReservationId" Mode="In" Type="Int32" />
+          <Parameter Name="ReservationId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="ReservationsGetByPropertyId" ReturnType="Collection(RentApartmentsModel.ReservationsGetByPropertyId_Result)">
-            <Parameter Name="PropertyId" Mode="In" Type="Int32" />
+          <Parameter Name="PropertyId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="ReservationsUpdate">
             <Parameter Name="ReservationId" Mode="In" Type="Int32" />
@@ -1061,6 +1063,7 @@
           <EntitySetMapping Name="Account">
             <EntityTypeMapping TypeName="RentApartmentsModel.Account">
               <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="Login" ColumnName="Login" />
                 <ScalarProperty Name="PictureUrl" ColumnName="PictureUrl" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="AccountId" ColumnName="AccountId" />

@@ -10,25 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
-using RentAppartment.Client.Utils;
 
 namespace RentAppartment.Client.Views
 {
-    /// <summary>
-    /// Interaction logic for LoginView.xaml
-    /// </summary>
-	public partial class LoginView : Window, IPasswordSupplier
-    {
-        public LoginView()
-        {
-			this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            InitializeComponent();
-        }
-
-		public string GetPassword()
+	/// <summary>
+	/// Interaction logic for AccountDataView.xaml
+	/// </summary>
+	public partial class AccountDataView : UserControl
+	{
+		public AccountDataView()
 		{
-			return pwdBox.Password;
+			InitializeComponent();
 		}
 	}
 }

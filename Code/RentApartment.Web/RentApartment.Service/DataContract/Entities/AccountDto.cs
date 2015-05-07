@@ -55,5 +55,11 @@ namespace RentApartment.Service.DataContract.Response
 
 		[DataMember]
 		public string PictureUrl { get; set; }
+
+		[DataMember]
+		public string Login { get; set; }
+
+		[DataMember]
+		public string PasswordHash { get; set; }
 	}
 }

@@ -22,8 +22,8 @@ namespace RentAppartment.Client.ViewModels
 			try
 			{
 				var repo = RepositoryFactory.Instance.GetApartmentRepository();
-				this.OwnedProperyListing = repo.GetPropertyByAccount(account.id);
-				this.BookedProperyListing = repo.GetUserBookedProperties(account.id);
+				this.ProperyListing = repo.GetPropertyByAccount(account.id);
+				this.Reservations = repo.GetUserBookedProperties(account.id);
 			}
 			catch (Exception ex)
 			{
@@ -32,7 +32,7 @@ namespace RentAppartment.Client.ViewModels
 		}
 
 		private List<PropertyDto> ownedProperyListing;
-		public List<PropertyDto> OwnedProperyListing
+		public List<PropertyDto> ProperyListing
 		{
 			get
 			{
@@ -43,13 +43,13 @@ namespace RentAppartment.Client.ViewModels
 				if (this.ownedProperyListing != value)
 				{
 					this.ownedProperyListing = value;
-					OnPropertyChanged("OwnedProperyListing");
+					OnPropertyChanged("ProperyListing");
 				}
 			}
 		}
 
 		private List<PropertyDto> bookedProperyListing;
-		public List<PropertyDto> BookedProperyListing
+		public List<PropertyDto> Reservations
 		{
 			get
 			{
@@ -60,7 +60,7 @@ namespace RentAppartment.Client.ViewModels
 				if (this.bookedProperyListing != value)
 				{
 					this.bookedProperyListing = value;
-					OnPropertyChanged("BookedProperyListing");
+					OnPropertyChanged("Reservations");
 				}
 			}
 		}

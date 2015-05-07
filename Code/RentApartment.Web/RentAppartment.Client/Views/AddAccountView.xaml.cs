@@ -11,17 +11,23 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using RentAppartment.Client.Utils;
 
 namespace RentAppartment.Client.Views
 {
     /// <summary>
     /// Interaction logic for AddAccountView.xaml
     /// </summary>
-    public partial class AddAccountView : Window
+	public partial class AddAccountView : Window, IPasswordSupplier
     {
         public AddAccountView()
         {
             InitializeComponent();
         }
-    }
+
+		public string GetPassword()
+		{
+			return (pwdBox.Password == pwdBoxConfirm.Password) ? pwdBox.Password : null;
+		}
+	}
 }

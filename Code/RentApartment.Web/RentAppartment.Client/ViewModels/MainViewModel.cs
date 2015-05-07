@@ -12,11 +12,36 @@ namespace RentAppartment.Client.Views
 {
     public class MainViewModel : ViewModelBase
     {
+	    private const string LOG_IN = "Log In";
+		private const string LOG_OUT = "Log Out";
 
-        public MainViewModel()
+		public MainViewModel()
+		{
+			this.SignInOutText = LOG_IN;
+		}
+
+
+		private bool isLogedIn;
+		public bool IsLogedIn
         {
-           
+			get { return isLogedIn; }
+            private set
+            {
+				isLogedIn = value;
+				OnPropertyChanged("IsLogedIn");
+            }
         }
+
+		private string signInOutText;
+		public string SignInOutText
+		{
+			get { return signInOutText; }
+			private set
+			{
+				signInOutText = value;
+				OnPropertyChanged("SignInOutText");
+			}
+		}
 
         private object currentView;
         public object CurrentView
@@ -120,7 +145,55 @@ namespace RentAppartment.Client.Views
         {
             //Show About dialog 
         }
-        
-    }
+
+		private ICommand signInOutCommand;
+		 public ICommand SignInOutCommand
+        {
+            get
+            {
+				if (this.signInOutCommand == null)
+                {
+					this.signInOutCommand = new RelayCommand(o => this.SignInOutCommandAction());
+                }
+				return this.signInOutCommand;
+            }
+        }
+
+		 private void SignInOutCommandAction()
+		 {
+			 if (this.IsLogedIn)
+			 {
+				 AuthenticateUserManager.Instance.Logout();
+				 this.SignInOutText = LOG_IN;
+				 return;
+			 }
+			 
+
+			var view = new LoginView();
+			var vm = new LoginViewModel(view);
+
+			view.DataContext = vm;
+			if (vm.CloseAction == null)
+				 vm.CloseAction = new Action(() => view.Close());
+
+			view.Show();
+
+			
+
+			if (AuthenticateUserManager.Instance.IsLogedIn)
+			{
+				this.SignInOutText = LOG_OUT;
+
+			}
+			else
+			{
+				
+
+			}
+		}
+		
+
+	}
 
 }
+

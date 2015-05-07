@@ -2,73 +2,87 @@
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:61870/RApmentAdministration.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Request" />
   <xs:import schemaLocation="http://localhost:61870/RApmentAdministration.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Response" />
+  <xs:element name="Authenticate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Request" minOccurs="0" name="request" nillable="true" type="q1:AuthenticationRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AuthenticateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Response" minOccurs="0" name="AuthenticateResult" nillable="true" type="q2:AuthenticationResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetPropertyListing">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Request" minOccurs="0" name="request" nillable="true" type="q1:GetPropertyListingRequest" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Request" minOccurs="0" name="request" nillable="true" type="q3:GetPropertyListingRequest" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetPropertyListingResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Response" minOccurs="0" name="GetPropertyListingResult" nillable="true" type="q2:GetPropertyListingResponse" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Response" minOccurs="0" name="GetPropertyListingResult" nillable="true" type="q4:GetPropertyListingResponse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetReservations">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Request" minOccurs="0" name="request" nillable="true" type="q3:GetReservationsRequest" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Request" minOccurs="0" name="request" nillable="true" type="q5:GetReservationsRequest" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetReservationsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Response" minOccurs="0" name="GetReservationsResult" nillable="true" type="q4:GetReservationsResponse" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Response" minOccurs="0" name="GetReservationsResult" nillable="true" type="q6:GetReservationsResponse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetAccounts">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Request" minOccurs="0" name="request" nillable="true" type="q5:GetAccountsRequest" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Request" minOccurs="0" name="request" nillable="true" type="q7:GetAccountsRequest" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetAccountsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Response" minOccurs="0" name="GetAccountsResult" nillable="true" type="q6:GetAccountsResponse" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Response" minOccurs="0" name="GetAccountsResult" nillable="true" type="q8:GetAccountsResponse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="CreateAccount">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Request" minOccurs="0" name="request" nillable="true" type="q7:ChangeAccountRequest" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Request" minOccurs="0" name="request" nillable="true" type="q9:ChangeAccountRequest" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="CreateAccountResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Response" minOccurs="0" name="CreateAccountResult" nillable="true" type="q8:BaseResponse" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Response" minOccurs="0" name="CreateAccountResult" nillable="true" type="q10:BaseResponse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="UpdateAccount">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Request" minOccurs="0" name="request" nillable="true" type="q9:ChangeAccountRequest" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Request" minOccurs="0" name="request" nillable="true" type="q11:ChangeAccountRequest" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="UpdateAccountResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Response" minOccurs="0" name="UpdateAccountResult" nillable="true" type="q10:BaseResponse" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Response" minOccurs="0" name="UpdateAccountResult" nillable="true" type="q12:BaseResponse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -82,7 +96,7 @@
   <xs:element name="RemoveAccountResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Response" minOccurs="0" name="RemoveAccountResult" nillable="true" type="q11:BaseResponse" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Response" minOccurs="0" name="RemoveAccountResult" nillable="true" type="q13:BaseResponse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -94,7 +108,7 @@
   <xs:element name="GetHomeTypeResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Response" minOccurs="0" name="GetHomeTypeResult" nillable="true" type="q12:GetDictionaryDataResponse" />
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Response" minOccurs="0" name="GetHomeTypeResult" nillable="true" type="q14:GetDictionaryDataResponse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -106,7 +120,7 @@
   <xs:element name="GetRoomTypeResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Response" minOccurs="0" name="GetRoomTypeResult" nillable="true" type="q13:GetDictionaryDataResponse" />
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Response" minOccurs="0" name="GetRoomTypeResult" nillable="true" type="q15:GetDictionaryDataResponse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -118,7 +132,7 @@
   <xs:element name="GetUserRoleResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Response" minOccurs="0" name="GetUserRoleResult" nillable="true" type="q14:GetDictionaryDataResponse" />
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Response" minOccurs="0" name="GetUserRoleResult" nillable="true" type="q16:GetDictionaryDataResponse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -130,7 +144,7 @@
   <xs:element name="GetGenderResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Response" minOccurs="0" name="GetGenderResult" nillable="true" type="q15:GetDictionaryDataResponse" />
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Response" minOccurs="0" name="GetGenderResult" nillable="true" type="q17:GetDictionaryDataResponse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -142,7 +156,7 @@
   <xs:element name="GetAmenitiesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Response" minOccurs="0" name="GetAmenitiesResult" nillable="true" type="q16:AmenitiesResponse" />
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Response" minOccurs="0" name="GetAmenitiesResult" nillable="true" type="q18:AmenitiesResponse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -156,7 +170,7 @@
   <xs:element name="GetApartmentReservationResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Response" minOccurs="0" name="GetApartmentReservationResult" nillable="true" type="q17:GetApartmentReservationsResponse" />
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Response" minOccurs="0" name="GetApartmentReservationResult" nillable="true" type="q19:GetApartmentReservationsResponse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -174,35 +188,35 @@
   <xs:element name="MakeApartmentReservationResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Response" minOccurs="0" name="MakeApartmentReservationResult" nillable="true" type="q18:BaseResponse" />
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Response" minOccurs="0" name="MakeApartmentReservationResult" nillable="true" type="q20:BaseResponse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="CreateProperty">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Request" minOccurs="0" name="request" nillable="true" type="q19:ChangedPropertyRequest" />
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Request" minOccurs="0" name="request" nillable="true" type="q21:ChangedPropertyRequest" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="CreatePropertyResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Response" minOccurs="0" name="CreatePropertyResult" nillable="true" type="q20:BaseResponse" />
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Response" minOccurs="0" name="CreatePropertyResult" nillable="true" type="q22:BaseResponse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="UpdateProperty">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Request" minOccurs="0" name="request" nillable="true" type="q21:ChangedPropertyRequest" />
+        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Request" minOccurs="0" name="request" nillable="true" type="q23:ChangedPropertyRequest" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="UpdatePropertyResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Response" minOccurs="0" name="UpdatePropertyResult" nillable="true" type="q22:BaseResponse" />
+        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Response" minOccurs="0" name="UpdatePropertyResult" nillable="true" type="q24:BaseResponse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -216,7 +230,7 @@
   <xs:element name="RemovePropertyResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Response" minOccurs="0" name="RemovePropertyResult" nillable="true" type="q23:BaseResponse" />
+        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Response" minOccurs="0" name="RemovePropertyResult" nillable="true" type="q25:BaseResponse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -230,7 +244,7 @@
   <xs:element name="GetBookedPropertyByAccountResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Response" minOccurs="0" name="GetBookedPropertyByAccountResult" nillable="true" type="q24:GetPropertyListingResponse" />
+        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Response" minOccurs="0" name="GetBookedPropertyByAccountResult" nillable="true" type="q26:GetPropertyListingResponse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -244,7 +258,7 @@
   <xs:element name="GetPropertyByAccountResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Response" minOccurs="0" name="GetPropertyByAccountResult" nillable="true" type="q25:GetPropertyListingResponse" />
+        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Response" minOccurs="0" name="GetPropertyByAccountResult" nillable="true" type="q27:GetPropertyListingResponse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

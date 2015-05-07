@@ -49,6 +49,7 @@ namespace TestDataHelper
                         City = (string)user["location"]["city"],
                         PostalCode = (string)user["location"]["zip"],
                         Mobile = (string)user["cell"],
+						Login = (string)user["username"],
                         PasswordHash = (string)user["md5"],
 						PictureUrl = (string)user["picture"]["medium"],
                         FK__Roles = 1,

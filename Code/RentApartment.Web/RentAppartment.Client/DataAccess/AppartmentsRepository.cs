@@ -16,6 +16,36 @@ namespace RentAppartment.Client.DataAccess
             _service = service;
         }
 
+		public AccountDto Authenticate(string login, string pwd)
+		{
+			AccountDto profile = null;
+			try
+			{
+
+				var request = new AuthenticationRequest()
+				{
+					Login = login,
+					Password = CryptoHelper.CreateMD5Hash(pwd)
+				};
+				var response = _service.Authenticate(request);
+				if (response != null)
+				{
+					if (response.ErrorId == 0)
+					{
+						profile = response.AuthenticationResult == true ? response.AccountProfile : null;
+					}
+
+
+				}
+			}
+			catch (Exception)
+			{
+
+			}
+
+			return profile;
+		}
+
         public List<PropertyDto> GetPropertyListings(string city, int? ownerId, 
                                                 int? propertyId, int? homeType, int? roomNumbers )
         {

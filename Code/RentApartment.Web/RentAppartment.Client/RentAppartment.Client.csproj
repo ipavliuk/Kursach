@@ -66,9 +66,11 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Utils\BitmapImageConverter.cs" />
+    <Compile Include="Utils\CryptoHelper.cs" />
     <Compile Include="Utils\DictItem.cs" />
     <Compile Include="Utils\ImageData.cs" />
-    <Compile Include="Utils\UserManager.cs" />
+    <Compile Include="Utils\AuthenticateUserManager.cs" />
+    <Compile Include="Utils\IPasswordSupplier.cs" />
     <Compile Include="ViewModels\AddAccountViewModel.cs" />
     <Compile Include="ViewModels\BlackOutDatesAdapter.cs" />
     <Compile Include="Utils\CacheProvider.cs" />
@@ -86,6 +88,9 @@
     <Compile Include="ViewModels\ReservationsViewModel.cs" />
     <Compile Include="ViewModels\ScheduleViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="Views\AccountDataView.xaml.cs">
+      <DependentUpon>AccountDataView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AccountsView.xaml.cs">
       <DependentUpon>AccountsView.xaml</DependentUpon>
     </Compile>
@@ -116,6 +121,10 @@
     <Compile Include="Views\ReservationsView.xaml.cs">
       <DependentUpon>ReservationsView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\AccountDataView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AccountsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -212,6 +221,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\RApmentAdminService\RentAppartment.Client.RApmentAdminService.AmenitiesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\RApmentAdminService\RentAppartment.Client.RApmentAdminService.AuthenticationResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\RApmentAdminService\RentAppartment.Client.RApmentAdminService.BaseResponse.datasource">

@@ -133,7 +133,7 @@ namespace RentAppartment.Client.Views
         private void AddAccountCommandAction()
         {
             var view = new AddAccountView();
-            var vm = new AddAccountViewModel();
+            var vm = new AddAccountViewModel(view);
 
             view.DataContext = vm;
             if (vm.CloseAction == null)
@@ -159,7 +159,7 @@ namespace RentAppartment.Client.Views
         private void EditItemAction()
         {
             var view = new AddAccountView();
-            var vm = new AddAccountViewModel(this.SelectedAccount);
+            var vm = new AddAccountViewModel(this.SelectedAccount, view);
 
             view.DataContext = vm;
             if (vm.CloseAction == null)

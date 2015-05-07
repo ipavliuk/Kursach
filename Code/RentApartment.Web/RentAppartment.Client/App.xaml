@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:viewModels="clr-namespace:RentAppartment.Client.Views"
              xmlns:views="clr-namespace:RentAppartment.Client.Views"
+             xmlns:viewModels1="clr-namespace:RentAppartment.Client.ViewModels"
              StartupUri="Views/MainView.xaml">
     <Application.Resources>
         <DataTemplate DataType="{x:Type viewModels:PropertyListingViewModel}">
@@ -21,6 +22,10 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewModels:ReservationsViewModel}">
             <views:ReservationsView />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModels1:PersonalPageViewModel}">
+            <views:PersonalPageView />
         </DataTemplate>
         
         <Style x:Key="ListBoxImages" TargetType="{x:Type ListBox}">

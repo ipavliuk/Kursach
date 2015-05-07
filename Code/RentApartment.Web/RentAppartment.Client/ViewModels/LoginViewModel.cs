@@ -11,6 +11,14 @@ namespace RentAppartment.Client.ViewModels
 {
     public class LoginViewModel : ViewModelBase
     {
+		private readonly IPasswordSupplier _pwdSupplier;
+
+		public LoginViewModel(IPasswordSupplier pwdSupplier)
+		{
+			_pwdSupplier = pwdSupplier;
+		}
+
+	    
 
         private string logIn;
         public string LogIn
@@ -29,21 +37,13 @@ namespace RentAppartment.Client.ViewModels
             }
         }
 
-        private string password;
         public string Password
         {
             get
             {
-                return this.password;
+				return _pwdSupplier.GetPassword();
             }
-            set
-            {
-                if (this.password != value)
-                {
-                    this.password = value;
-                    OnPropertyChanged("Password");
-                }
-            }
+            
         }
 
         #region Commands
@@ -60,9 +60,10 @@ namespace RentAppartment.Client.ViewModels
             }
         }
 
-        private object LoginCommandAction()
+        private void LoginCommandAction()
         {
-            throw new NotImplementedException();
+
+			AuthenticateUserManager.Instance.SignIn(this.LogIn, this.Password);
         }
 
         private ICommand cancelCommand;

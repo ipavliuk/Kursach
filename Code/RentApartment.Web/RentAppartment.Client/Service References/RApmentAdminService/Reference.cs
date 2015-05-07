@@ -15,21 +15,19 @@ namespace RentAppartment.Client.RApmentAdminService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="PaginationRequest", Namespace="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Reques" +
+    [System.Runtime.Serialization.DataContractAttribute(Name="AuthenticationRequest", Namespace="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Reques" +
         "t")]
     [System.SerializableAttribute()]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(RentAppartment.Client.RApmentAdminService.GetAccountsRequest))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(RentAppartment.Client.RApmentAdminService.GetPropertyListingRequest))]
-    public partial class PaginationRequest : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class AuthenticationRequest : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int PageIndexField;
+        private string LoginField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int PageSizeField;
+        private string PasswordField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -42,27 +40,27 @@ namespace RentAppartment.Client.RApmentAdminService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int PageIndex {
+        public string Login {
             get {
-                return this.PageIndexField;
+                return this.LoginField;
             }
             set {
-                if ((this.PageIndexField.Equals(value) != true)) {
-                    this.PageIndexField = value;
-                    this.RaisePropertyChanged("PageIndex");
+                if ((object.ReferenceEquals(this.LoginField, value) != true)) {
+                    this.LoginField = value;
+                    this.RaisePropertyChanged("Login");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int PageSize {
+        public string Password {
             get {
-                return this.PageSizeField;
+                return this.PasswordField;
             }
             set {
-                if ((this.PageSizeField.Equals(value) != true)) {
-                    this.PageSizeField = value;
-                    this.RaisePropertyChanged("PageSize");
+                if ((object.ReferenceEquals(this.PasswordField, value) != true)) {
+                    this.PasswordField = value;
+                    this.RaisePropertyChanged("Password");
                 }
             }
         }
@@ -79,159 +77,16 @@ namespace RentAppartment.Client.RApmentAdminService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="GetAccountsRequest", Namespace="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Reques" +
-        "t")]
-    [System.SerializableAttribute()]
-    public partial class GetAccountsRequest : RentAppartment.Client.RApmentAdminService.PaginationRequest {
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> AccountIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CityField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> AccountId {
-            get {
-                return this.AccountIdField;
-            }
-            set {
-                if ((this.AccountIdField.Equals(value) != true)) {
-                    this.AccountIdField = value;
-                    this.RaisePropertyChanged("AccountId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string City {
-            get {
-                return this.CityField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CityField, value) != true)) {
-                    this.CityField = value;
-                    this.RaisePropertyChanged("City");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="GetPropertyListingRequest", Namespace="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Reques" +
-        "t")]
-    [System.SerializableAttribute()]
-    public partial class GetPropertyListingRequest : RentAppartment.Client.RApmentAdminService.PaginationRequest {
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CityField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> HomeTypeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> OwnerIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> PropertyIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> RoomNumbersField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string City {
-            get {
-                return this.CityField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CityField, value) != true)) {
-                    this.CityField = value;
-                    this.RaisePropertyChanged("City");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> HomeType {
-            get {
-                return this.HomeTypeField;
-            }
-            set {
-                if ((this.HomeTypeField.Equals(value) != true)) {
-                    this.HomeTypeField = value;
-                    this.RaisePropertyChanged("HomeType");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> OwnerId {
-            get {
-                return this.OwnerIdField;
-            }
-            set {
-                if ((this.OwnerIdField.Equals(value) != true)) {
-                    this.OwnerIdField = value;
-                    this.RaisePropertyChanged("OwnerId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> PropertyId {
-            get {
-                return this.PropertyIdField;
-            }
-            set {
-                if ((this.PropertyIdField.Equals(value) != true)) {
-                    this.PropertyIdField = value;
-                    this.RaisePropertyChanged("PropertyId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> RoomNumbers {
-            get {
-                return this.RoomNumbersField;
-            }
-            set {
-                if ((this.RoomNumbersField.Equals(value) != true)) {
-                    this.RoomNumbersField = value;
-                    this.RaisePropertyChanged("RoomNumbers");
-                }
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="BaseResponse", Namespace="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Respon" +
         "se")]
     [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(RentAppartment.Client.RApmentAdminService.GetPropertyListingResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(RentAppartment.Client.RApmentAdminService.GetReservationsResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(RentAppartment.Client.RApmentAdminService.GetAccountsResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(RentAppartment.Client.RApmentAdminService.GetDictionaryDataResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(RentAppartment.Client.RApmentAdminService.AmenitiesResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(RentAppartment.Client.RApmentAdminService.GetApartmentReservationsResponse))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(RentAppartment.Client.RApmentAdminService.GetPropertyListingResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(RentAppartment.Client.RApmentAdminService.AuthenticationResponse))]
     public partial class BaseResponse : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
@@ -285,6 +140,30 @@ namespace RentAppartment.Client.RApmentAdminService {
             System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
             if ((propertyChanged != null)) {
                 propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="GetPropertyListingResponse", Namespace="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Respon" +
+        "se")]
+    [System.SerializableAttribute()]
+    public partial class GetPropertyListingResponse : RentAppartment.Client.RApmentAdminService.BaseResponse {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private RentAppartment.Client.RApmentAdminService.PropertyDto[] PropertListingField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public RentAppartment.Client.RApmentAdminService.PropertyDto[] PropertListing {
+            get {
+                return this.PropertListingField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PropertListingField, value) != true)) {
+                    this.PropertListingField = value;
+                    this.RaisePropertyChanged("PropertListing");
+                }
             }
         }
     }
@@ -411,24 +290,358 @@ namespace RentAppartment.Client.RApmentAdminService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="GetPropertyListingResponse", Namespace="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Respon" +
+    [System.Runtime.Serialization.DataContractAttribute(Name="AuthenticationResponse", Namespace="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Respon" +
         "se")]
     [System.SerializableAttribute()]
-    public partial class GetPropertyListingResponse : RentAppartment.Client.RApmentAdminService.BaseResponse {
+    public partial class AuthenticationResponse : RentAppartment.Client.RApmentAdminService.BaseResponse {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private RentAppartment.Client.RApmentAdminService.PropertyDto[] PropertListingField;
+        private RentAppartment.Client.RApmentAdminService.AccountDto AccountProfileField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool AuthenticationResultField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public RentAppartment.Client.RApmentAdminService.PropertyDto[] PropertListing {
+        public RentAppartment.Client.RApmentAdminService.AccountDto AccountProfile {
             get {
-                return this.PropertListingField;
+                return this.AccountProfileField;
             }
             set {
-                if ((object.ReferenceEquals(this.PropertListingField, value) != true)) {
-                    this.PropertListingField = value;
-                    this.RaisePropertyChanged("PropertListing");
+                if ((object.ReferenceEquals(this.AccountProfileField, value) != true)) {
+                    this.AccountProfileField = value;
+                    this.RaisePropertyChanged("AccountProfile");
                 }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool AuthenticationResult {
+            get {
+                return this.AuthenticationResultField;
+            }
+            set {
+                if ((this.AuthenticationResultField.Equals(value) != true)) {
+                    this.AuthenticationResultField = value;
+                    this.RaisePropertyChanged("AuthenticationResult");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AccountDto", Namespace="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Respon" +
+        "se")]
+    [System.SerializableAttribute()]
+    public partial class AccountDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AccountIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AddressField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CityField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CountryField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string EmailField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FirstNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<byte> GenderField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IsEmailConfirmedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IsValidatedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> LanguageField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string LastNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string LoginField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MobileField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PasswordHashField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PictureUrlField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PostalCodeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string RolesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int idField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string AccountId {
+            get {
+                return this.AccountIdField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AccountIdField, value) != true)) {
+                    this.AccountIdField = value;
+                    this.RaisePropertyChanged("AccountId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Address {
+            get {
+                return this.AddressField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AddressField, value) != true)) {
+                    this.AddressField = value;
+                    this.RaisePropertyChanged("Address");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string City {
+            get {
+                return this.CityField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CityField, value) != true)) {
+                    this.CityField = value;
+                    this.RaisePropertyChanged("City");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Country {
+            get {
+                return this.CountryField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CountryField, value) != true)) {
+                    this.CountryField = value;
+                    this.RaisePropertyChanged("Country");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Email {
+            get {
+                return this.EmailField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EmailField, value) != true)) {
+                    this.EmailField = value;
+                    this.RaisePropertyChanged("Email");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FirstName {
+            get {
+                return this.FirstNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FirstNameField, value) != true)) {
+                    this.FirstNameField = value;
+                    this.RaisePropertyChanged("FirstName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<byte> Gender {
+            get {
+                return this.GenderField;
+            }
+            set {
+                if ((this.GenderField.Equals(value) != true)) {
+                    this.GenderField = value;
+                    this.RaisePropertyChanged("Gender");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsEmailConfirmed {
+            get {
+                return this.IsEmailConfirmedField;
+            }
+            set {
+                if ((this.IsEmailConfirmedField.Equals(value) != true)) {
+                    this.IsEmailConfirmedField = value;
+                    this.RaisePropertyChanged("IsEmailConfirmed");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsValidated {
+            get {
+                return this.IsValidatedField;
+            }
+            set {
+                if ((this.IsValidatedField.Equals(value) != true)) {
+                    this.IsValidatedField = value;
+                    this.RaisePropertyChanged("IsValidated");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> Language {
+            get {
+                return this.LanguageField;
+            }
+            set {
+                if ((this.LanguageField.Equals(value) != true)) {
+                    this.LanguageField = value;
+                    this.RaisePropertyChanged("Language");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string LastName {
+            get {
+                return this.LastNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.LastNameField, value) != true)) {
+                    this.LastNameField = value;
+                    this.RaisePropertyChanged("LastName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Login {
+            get {
+                return this.LoginField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.LoginField, value) != true)) {
+                    this.LoginField = value;
+                    this.RaisePropertyChanged("Login");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Mobile {
+            get {
+                return this.MobileField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MobileField, value) != true)) {
+                    this.MobileField = value;
+                    this.RaisePropertyChanged("Mobile");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PasswordHash {
+            get {
+                return this.PasswordHashField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PasswordHashField, value) != true)) {
+                    this.PasswordHashField = value;
+                    this.RaisePropertyChanged("PasswordHash");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PictureUrl {
+            get {
+                return this.PictureUrlField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PictureUrlField, value) != true)) {
+                    this.PictureUrlField = value;
+                    this.RaisePropertyChanged("PictureUrl");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PostalCode {
+            get {
+                return this.PostalCodeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PostalCodeField, value) != true)) {
+                    this.PostalCodeField = value;
+                    this.RaisePropertyChanged("PostalCode");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Roles {
+            get {
+                return this.RolesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RolesField, value) != true)) {
+                    this.RolesField = value;
+                    this.RaisePropertyChanged("Roles");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int id {
+            get {
+                return this.idField;
+            }
+            set {
+                if ((this.idField.Equals(value) != true)) {
+                    this.idField = value;
+                    this.RaisePropertyChanged("id");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
             }
         }
     }
@@ -833,6 +1046,100 @@ namespace RentAppartment.Client.RApmentAdminService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AmenityDto", Namespace="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Entiti" +
+        "es")]
+    [System.SerializableAttribute()]
+    public partial class AmenityDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IsActiveField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int idField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Description {
+            get {
+                return this.DescriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
+                    this.DescriptionField = value;
+                    this.RaisePropertyChanged("Description");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsActive {
+            get {
+                return this.IsActiveField;
+            }
+            set {
+                if ((this.IsActiveField.Equals(value) != true)) {
+                    this.IsActiveField = value;
+                    this.RaisePropertyChanged("IsActive");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int id {
+            get {
+                return this.idField;
+            }
+            set {
+                if ((this.idField.Equals(value) != true)) {
+                    this.idField = value;
+                    this.RaisePropertyChanged("id");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="ReservationDto", Namespace="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Respon" +
         "se")]
     [System.SerializableAttribute()]
@@ -1007,61 +1314,21 @@ namespace RentAppartment.Client.RApmentAdminService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="AccountDto", Namespace="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Respon" +
-        "se")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PaginationRequest", Namespace="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Reques" +
+        "t")]
     [System.SerializableAttribute()]
-    public partial class AccountDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(RentAppartment.Client.RApmentAdminService.GetAccountsRequest))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(RentAppartment.Client.RApmentAdminService.GetPropertyListingRequest))]
+    public partial class PaginationRequest : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string AccountIdField;
+        private int PageIndexField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string AddressField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CityField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CountryField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string EmailField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string FirstNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<byte> GenderField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool IsEmailConfirmedField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool IsValidatedField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> LanguageField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string LastNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string MobileField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string PictureUrlField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string PostalCodeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string RolesField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int idField;
+        private int PageSizeField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -1074,27 +1341,66 @@ namespace RentAppartment.Client.RApmentAdminService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string AccountId {
+        public int PageIndex {
             get {
-                return this.AccountIdField;
+                return this.PageIndexField;
             }
             set {
-                if ((object.ReferenceEquals(this.AccountIdField, value) != true)) {
-                    this.AccountIdField = value;
-                    this.RaisePropertyChanged("AccountId");
+                if ((this.PageIndexField.Equals(value) != true)) {
+                    this.PageIndexField = value;
+                    this.RaisePropertyChanged("PageIndex");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Address {
+        public int PageSize {
             get {
-                return this.AddressField;
+                return this.PageSizeField;
             }
             set {
-                if ((object.ReferenceEquals(this.AddressField, value) != true)) {
-                    this.AddressField = value;
-                    this.RaisePropertyChanged("Address");
+                if ((this.PageSizeField.Equals(value) != true)) {
+                    this.PageSizeField = value;
+                    this.RaisePropertyChanged("PageSize");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="GetAccountsRequest", Namespace="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Reques" +
+        "t")]
+    [System.SerializableAttribute()]
+    public partial class GetAccountsRequest : RentAppartment.Client.RApmentAdminService.PaginationRequest {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> AccountIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CityField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> AccountId {
+            get {
+                return this.AccountIdField;
+            }
+            set {
+                if ((this.AccountIdField.Equals(value) != true)) {
+                    this.AccountIdField = value;
+                    this.RaisePropertyChanged("AccountId");
                 }
             }
         }
@@ -1113,243 +1419,6 @@ namespace RentAppartment.Client.RApmentAdminService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Country {
-            get {
-                return this.CountryField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CountryField, value) != true)) {
-                    this.CountryField = value;
-                    this.RaisePropertyChanged("Country");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Email {
-            get {
-                return this.EmailField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.EmailField, value) != true)) {
-                    this.EmailField = value;
-                    this.RaisePropertyChanged("Email");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string FirstName {
-            get {
-                return this.FirstNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.FirstNameField, value) != true)) {
-                    this.FirstNameField = value;
-                    this.RaisePropertyChanged("FirstName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<byte> Gender {
-            get {
-                return this.GenderField;
-            }
-            set {
-                if ((this.GenderField.Equals(value) != true)) {
-                    this.GenderField = value;
-                    this.RaisePropertyChanged("Gender");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool IsEmailConfirmed {
-            get {
-                return this.IsEmailConfirmedField;
-            }
-            set {
-                if ((this.IsEmailConfirmedField.Equals(value) != true)) {
-                    this.IsEmailConfirmedField = value;
-                    this.RaisePropertyChanged("IsEmailConfirmed");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool IsValidated {
-            get {
-                return this.IsValidatedField;
-            }
-            set {
-                if ((this.IsValidatedField.Equals(value) != true)) {
-                    this.IsValidatedField = value;
-                    this.RaisePropertyChanged("IsValidated");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> Language {
-            get {
-                return this.LanguageField;
-            }
-            set {
-                if ((this.LanguageField.Equals(value) != true)) {
-                    this.LanguageField = value;
-                    this.RaisePropertyChanged("Language");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string LastName {
-            get {
-                return this.LastNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.LastNameField, value) != true)) {
-                    this.LastNameField = value;
-                    this.RaisePropertyChanged("LastName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Mobile {
-            get {
-                return this.MobileField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.MobileField, value) != true)) {
-                    this.MobileField = value;
-                    this.RaisePropertyChanged("Mobile");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string PictureUrl {
-            get {
-                return this.PictureUrlField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.PictureUrlField, value) != true)) {
-                    this.PictureUrlField = value;
-                    this.RaisePropertyChanged("PictureUrl");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string PostalCode {
-            get {
-                return this.PostalCodeField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.PostalCodeField, value) != true)) {
-                    this.PostalCodeField = value;
-                    this.RaisePropertyChanged("PostalCode");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Roles {
-            get {
-                return this.RolesField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.RolesField, value) != true)) {
-                    this.RolesField = value;
-                    this.RaisePropertyChanged("Roles");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int id {
-            get {
-                return this.idField;
-            }
-            set {
-                if ((this.idField.Equals(value) != true)) {
-                    this.idField = value;
-                    this.RaisePropertyChanged("id");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="AmenityDto", Namespace="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Entiti" +
-        "es")]
-    [System.SerializableAttribute()]
-    public partial class AmenityDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string DescriptionField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool IsActiveField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int idField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Description {
-            get {
-                return this.DescriptionField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
-                    this.DescriptionField = value;
-                    this.RaisePropertyChanged("Description");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool IsActive {
-            get {
-                return this.IsActiveField;
-            }
-            set {
-                if ((this.IsActiveField.Equals(value) != true)) {
-                    this.IsActiveField = value;
-                    this.RaisePropertyChanged("IsActive");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
         public string Name {
             get {
                 return this.NameField;
@@ -1361,26 +1430,92 @@ namespace RentAppartment.Client.RApmentAdminService {
                 }
             }
         }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="GetPropertyListingRequest", Namespace="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Reques" +
+        "t")]
+    [System.SerializableAttribute()]
+    public partial class GetPropertyListingRequest : RentAppartment.Client.RApmentAdminService.PaginationRequest {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CityField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> HomeTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> OwnerIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> PropertyIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> RoomNumbersField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int id {
+        public string City {
             get {
-                return this.idField;
+                return this.CityField;
             }
             set {
-                if ((this.idField.Equals(value) != true)) {
-                    this.idField = value;
-                    this.RaisePropertyChanged("id");
+                if ((object.ReferenceEquals(this.CityField, value) != true)) {
+                    this.CityField = value;
+                    this.RaisePropertyChanged("City");
                 }
             }
         }
         
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> HomeType {
+            get {
+                return this.HomeTypeField;
+            }
+            set {
+                if ((this.HomeTypeField.Equals(value) != true)) {
+                    this.HomeTypeField = value;
+                    this.RaisePropertyChanged("HomeType");
+                }
+            }
+        }
         
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> OwnerId {
+            get {
+                return this.OwnerIdField;
+            }
+            set {
+                if ((this.OwnerIdField.Equals(value) != true)) {
+                    this.OwnerIdField = value;
+                    this.RaisePropertyChanged("OwnerId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> PropertyId {
+            get {
+                return this.PropertyIdField;
+            }
+            set {
+                if ((this.PropertyIdField.Equals(value) != true)) {
+                    this.PropertyIdField = value;
+                    this.RaisePropertyChanged("PropertyId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> RoomNumbers {
+            get {
+                return this.RoomNumbersField;
+            }
+            set {
+                if ((this.RoomNumbersField.Equals(value) != true)) {
+                    this.RoomNumbersField = value;
+                    this.RaisePropertyChanged("RoomNumbers");
+                }
             }
         }
     }
@@ -1575,6 +1710,12 @@ namespace RentAppartment.Client.RApmentAdminService {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="RApmentAdminService.IRApmentAdministration")]
     public interface IRApmentAdministration {
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRApmentAdministration/Authenticate", ReplyAction="http://tempuri.org/IRApmentAdministration/AuthenticateResponse")]
+        RentAppartment.Client.RApmentAdminService.AuthenticationResponse Authenticate(RentAppartment.Client.RApmentAdminService.AuthenticationRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRApmentAdministration/Authenticate", ReplyAction="http://tempuri.org/IRApmentAdministration/AuthenticateResponse")]
+        System.Threading.Tasks.Task<RentAppartment.Client.RApmentAdminService.AuthenticationResponse> AuthenticateAsync(RentAppartment.Client.RApmentAdminService.AuthenticationRequest request);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRApmentAdministration/GetPropertyListing", ReplyAction="http://tempuri.org/IRApmentAdministration/GetPropertyListingResponse")]
         RentAppartment.Client.RApmentAdminService.GetPropertyListingResponse GetPropertyListing(RentAppartment.Client.RApmentAdminService.GetPropertyListingRequest request);
         
@@ -1709,6 +1850,14 @@ namespace RentAppartment.Client.RApmentAdminService {
         
         public RApmentAdministrationClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
+        }
+        
+        public RentAppartment.Client.RApmentAdminService.AuthenticationResponse Authenticate(RentAppartment.Client.RApmentAdminService.AuthenticationRequest request) {
+            return base.Channel.Authenticate(request);
+        }
+        
+        public System.Threading.Tasks.Task<RentAppartment.Client.RApmentAdminService.AuthenticationResponse> AuthenticateAsync(RentAppartment.Client.RApmentAdminService.AuthenticationRequest request) {
+            return base.Channel.AuthenticateAsync(request);
         }
         
         public RentAppartment.Client.RApmentAdminService.GetPropertyListingResponse GetPropertyListing(RentAppartment.Client.RApmentAdminService.GetPropertyListingRequest request) {

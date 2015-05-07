@@ -14,6 +14,95 @@
                     </StackPanel>
                   </TabItem.Header>
                 <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Vertical">
+                        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
+                            <StackPanel Orientation="Horizontal" Margin="5" Width="225">
+                                <TextBlock Text="Ім'я: " FontSize="12" VerticalAlignment="Center"/>
+                                <TextBox Text="{Binding Account.FirstName, UpdateSourceTrigger=PropertyChanged}" Margin="113 0" FontSize="12" Width="80" Height="20" 
+                         HorizontalAlignment="Center"  
+                         VerticalAlignment="Center"
+                             IsEnabled="False"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="5" Width="230">
+                                <TextBlock Text="Прізвище: " Margin="5 0" FontSize="12" VerticalAlignment="Center"/>
+                                <TextBox Text="{Binding Account.LastName}" Margin="50 0" FontSize="12" Width="100" Height="20" 
+                         HorizontalAlignment="Center"  
+                         VerticalAlignment="Center"
+                             IsEnabled="False"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="5">
+                            <TextBlock Text="Email: " FontSize="12" VerticalAlignment="Center"/>
+                            <TextBox Text="{Binding Account.Email}" Margin="103 0" FontSize="12" Width="315" Height="20" 
+                         HorizontalAlignment="Center"  
+                         VerticalAlignment="Center"
+                         IsEnabled="False"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="5">
+                            <TextBlock Text="Телефон: " FontSize="12" VerticalAlignment="Center"/>
+                            <TextBox Text="{Binding Account.Mobile}" Margin="85 0" FontSize="12" Width="315" Height="20" 
+                         HorizontalAlignment="Center"  
+                         VerticalAlignment="Center"
+                         IsEnabled="False"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="5">
+                            <TextBlock Text="Стать: " FontSize="12" VerticalAlignment="Center"/>
+
+                            <ComboBox Grid.Row="1" Grid.Column="3"  Margin="105 0" FontSize="12" Width="85" Height="20"
+                              ItemsSource="{Binding GenderTypes}"
+                              DisplayMemberPath="Value"
+                              SelectedValuePath="Key"
+                              IsSynchronizedWithCurrentItem="True"
+                              SelectedItem ="{Binding GenderTypeSelectedItem}" VerticalAlignment="Bottom"
+                          IsEnabled="False"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="1" Grid.Column="0"  Grid.ColumnSpan="2" Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal" Margin="5">
+                            <TextBlock Text="Адреса: " FontSize="12" VerticalAlignment="Center"/>
+                            <TextBox Text="{Binding Account.Address, UpdateSourceTrigger=PropertyChanged}" Margin="92 0" FontSize="12" Width="315" Height="20" 
+                         HorizontalAlignment="Center"  
+                         VerticalAlignment="Center"
+                         IsEnabled="False"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="5">
+                            <TextBlock Text="Місто: " FontSize="12" VerticalAlignment="Center"/>
+                            <TextBox Text="{Binding Account.City}" Margin="100 0" FontSize="12" Width="315" Height="20" 
+                         HorizontalAlignment="Center"  
+                         VerticalAlignment="Center"
+                         IsEnabled="False"/>
+                        </StackPanel>
+                        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
+                            <StackPanel Orientation="Horizontal" Margin="5" Width="225">
+                                <TextBlock Text="Zip: " FontSize="12" VerticalAlignment="Center"/>
+                                <TextBox Text="{Binding Account.PostalCode, UpdateSourceTrigger=PropertyChanged}" Margin="115 0" FontSize="12" Width="80" Height="20" 
+                         HorizontalAlignment="Center"  
+                         VerticalAlignment="Center"
+                             IsEnabled="False"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="5">
+                                <TextBlock Text="Країна: " Margin="5 0" FontSize="12" VerticalAlignment="Center"/>
+                                <TextBox Text="{Binding Account.Country}" Margin="65 0" FontSize="12" Width="100" Height="20" 
+                         HorizontalAlignment="Center"  
+                         VerticalAlignment="Center"
+                             IsEnabled="False"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <!--Photo-->
+                    <Image Source="{Binding SelectedImagePath.Value}" Grid.Row="2" Grid.Column="0" Width="100" Height="100"/>
                     
                 </Grid>
             </TabItem>
@@ -23,6 +112,43 @@
                         <TextBlock Text="Бронювання" Foreground="Blue" />
                     </StackPanel>
                 </TabItem.Header>
+                <Grid>
+                    <GroupBox Header="Історія бронювань" Margin="10,10,10,10">
+                        <StackPanel Grid.Row="1" HorizontalAlignment="Stretch" Margin="10" Orientation="Vertical">
+                            <TextBlock Text="Reservations" FontSize="16" Margin="10 0" Foreground="#FF0F232F"/>
+                            <StackPanel Orientation="Vertical">
+                            </StackPanel>
+                            <DataGrid Name="dgAccounts" Margin="10" SelectionMode="Single" 
+                              ItemsSource="{Binding Reservations}"  
+                               AutoGenerateColumns="False">
+                                        <DataGrid.Columns>
+                                   
+                                    <DataGridTextColumn Header="Id" Binding="{Binding ReservationId}"/>
+                                    <DataGridTextColumn Header="Status" Binding="{Binding ReservationStatus}"/>
+                                    <DataGridTextColumn Header="Check-In date" Binding="{Binding ReservationStart}"/>
+                                    <DataGridTextColumn Header="Staying days" Binding="{Binding ReservationDates}"/>
+                                    <DataGridTextColumn Header="Price per Night" Binding="{Binding PropertyItem.PricePerNight}"/>
+                                    <DataGridTextColumn Header="Total amount" Binding="{Binding TotalAmount}"/>
+                                </DataGrid.Columns>
+                                <DataGrid.RowDetailsTemplate>
+                                    <DataTemplate>
+                                        <Border BorderThickness="0" Padding="10">
+                                            <StackPanel Orientation="Vertical">
+
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock FontSize="12" Text="Reservation notes: " VerticalAlignment="Center" />
+                                                    <TextBlock FontSize="16" Foreground="MidnightBlue" Text="{Binding ReservationNote}" VerticalAlignment="Center" />
+                                                </StackPanel>
+                                               
+                                            </StackPanel>
+
+                                        </Border>
+                                    </DataTemplate>
+                                </DataGrid.RowDetailsTemplate>
+                            </DataGrid>
+                        </StackPanel>
+                    </GroupBox>
+                </Grid>
             </TabItem>
             <TabItem>
                 <TabItem.Header>
@@ -30,6 +156,92 @@
                         <TextBlock Text="Житлові пропозиції" Foreground="Blue" />
                     </StackPanel>
                 </TabItem.Header>
+                <Grid>
+                    <GroupBox Header="Пропозиції користувача" Margin="10,10,10,10">
+                        <StackPanel Grid.Row="1" HorizontalAlignment="Stretch" Margin="25 0 0 0" Orientation="Vertical">
+                            <TextBlock Text="Appartments" FontSize="18" Foreground="#FF0F232F"/>
+
+                          <DataGrid Name="dgAppartments"
+                                  HorizontalAlignment="Left"
+                                  Width="550" Margin="15,10,10,10" SelectionMode="Single" 
+                                  ItemsSource="{Binding ProperyListing}" SelectedItem="{Binding SelectedProperty}" 
+                                  AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True" 
+                                  ScrollViewer.VerticalScrollBarVisibility="Auto" CanUserAddRows="False">
+                                   <DataGrid.Columns>
+                                    <DataGridTemplateColumn Header="Info">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Button Style="{DynamicResource InfoButtonStyle}" Command="{Binding DataContext.SelectCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}, Mode=FindAncestor}}" />
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+
+                                    <DataGridTextColumn Header="Prop. Id" Binding="{Binding PropertyId}"/>
+                                    <DataGridTextColumn Header="Price Per Night" Binding="{Binding PricePerNight}"/>
+                                    <DataGridTextColumn Header="BedRoom" Binding="{Binding BedRoom}"/>
+                                    <DataGridTextColumn Header="Accomodates" Binding="{Binding Accommodates}"/>
+
+                                    <DataGridTextColumn Header="HomeType" Binding="{Binding HomeType}"/>
+                                    <DataGridTextColumn Header="City" Binding="{Binding City}"/>
+                                    <DataGridTemplateColumn Header="">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Button  Style="{DynamicResource EditButtonStyle}"  Command="{Binding DataContext.EditCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}, Mode=FindAncestor}}" 
+                                         ToolTip="Edit record">
+                                                </Button>
+
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTemplateColumn Header="">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Button Style="{DynamicResource DeleteButtonStyle}" Command="{Binding DataContext.DeletePropertyCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}, Mode=FindAncestor}}" 
+                                        ToolTip="Delete item">
+                                                 
+                                                </Button>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTemplateColumn Header="">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Button Style="{DynamicResource ScheduleButtonStyle}" Command="{Binding DataContext.ScheduleApartmentCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}, Mode=FindAncestor}}" 
+                                        ToolTip="Schedule">
+                                                  
+                                                </Button>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                </DataGrid.Columns>
+                                <DataGrid.RowDetailsTemplate>
+                                    <DataTemplate>
+
+                                        <Border BorderThickness="0" Padding="10">
+
+                                            <StackPanel Orientation="Vertical">
+
+                                                <Image DockPanel.Dock="Left" Source="{Binding Account.PictureUrl}" Margin="10" />
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock FontSize="12" Text="Email: " VerticalAlignment="Center" />
+                                                    <TextBlock FontSize="16" Foreground="MidnightBlue" Text="{Binding Account.Email}" VerticalAlignment="Center" />
+                                                </StackPanel>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock FontSize="12" Text="Phone: " VerticalAlignment="Center" />
+                                                    <TextBlock FontSize="16" Foreground="MidnightBlue" Text="{Binding Account.Mobile}" VerticalAlignment="Center" />
+                                                </StackPanel>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock FontSize="12" Text="Sales Person: " VerticalAlignment="Center" />
+                                                    <TextBlock FontSize="16" Foreground="MidnightBlue" Text="{Binding Account.LastName}" VerticalAlignment="Center" />
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </Border>
+                                    </DataTemplate>
+                                </DataGrid.RowDetailsTemplate>
+                            </DataGrid>
+                        </StackPanel>
+                    </GroupBox>
+                </Grid>
             </TabItem>
         </TabControl>
     </Grid>

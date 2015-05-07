@@ -24,6 +24,7 @@ namespace RentApartment.Core.Model.EF
     
         public int id { get; set; }
         public string AccountId { get; set; }
+		public string Login { get; set; }
         public string PasswordHash { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -38,6 +39,7 @@ namespace RentApartment.Core.Model.EF
         public string PostalCode { get; set; }
         public bool IsValidated { get; set; }
         public string PictureUrl { get; set; }
+        
     
         public virtual C_Country C_Country { get; set; }
         public virtual C_Roles C_Roles { get; set; }

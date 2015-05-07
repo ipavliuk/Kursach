@@ -21,10 +21,13 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="5" >
                 <TextBlock Text="Password: " FontSize="12" VerticalAlignment="Center"/>
-                <TextBox Text="{Binding Password}" Margin="30 0" FontSize="12" Width="250" Height="20" 
+                <!--<TextBox Text="{Binding Password}" Margin="30 0" FontSize="12" Width="250" Height="20" 
+                             HorizontalAlignment="Center"  
+                             VerticalAlignment="Center"/>-->
+                    <PasswordBox Name="pwdBox"  Margin="30 0" FontSize="12" Width="250" Height="20" 
                              HorizontalAlignment="Center"  
                              VerticalAlignment="Center"/>
-            </StackPanel>
+                </StackPanel>
         </StackPanel>   
         
         </Border>

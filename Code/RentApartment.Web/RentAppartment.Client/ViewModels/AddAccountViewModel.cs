@@ -14,15 +14,19 @@ namespace RentAppartment.Client.ViewModels
 {
     public class AddAccountViewModel : ViewModelBase
     {
-        public AddAccountViewModel()
+		private readonly IPasswordSupplier _pwdSupplier;
+
+        public AddAccountViewModel(IPasswordSupplier pwdSupplier)
         {
             this.Account = new AccountDto();
+	        _pwdSupplier = pwdSupplier;
             Init();
         }
 
-        public AddAccountViewModel(AccountDto acc)
+		public AddAccountViewModel(AccountDto acc, IPasswordSupplier pwdSupplier)
         {
             this.Account = acc;
+			_pwdSupplier = pwdSupplier;
             Init();
             isUpdate = true;
             
@@ -132,6 +136,15 @@ namespace RentAppartment.Client.ViewModels
                     acc.Gender = (byte?)GenderTypeSelectedItem.Id;
                     acc.PictureUrl = SelectedImagePath.Value;
                     acc.AccountId = Guid.NewGuid().ToString("d");
+	                string pwd = _pwdSupplier.GetPassword();
+	                if (pwd == null)
+	                {
+						//[TODO] :Show message
+	                }
+					
+						
+					acc.PasswordHash = CryptoHelper.CreateMD5Hash(pwd);
+
                     var repo = RepositoryFactory.Instance.GetApartmentRepository();
                     
                     repo.CreateAccount(acc);
