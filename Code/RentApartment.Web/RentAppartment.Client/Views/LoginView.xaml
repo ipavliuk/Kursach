@@ -33,7 +33,8 @@
         
         </Border>
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Width="100" HorizontalAlignment="Right" FontSize="12" Margin="10" Command="{Binding LoginCommand}" >
+            <Button Width="100" HorizontalAlignment="Right" FontSize="12" Margin="10" 
+                    Command="{Binding LoginCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}}">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="../Images/_login-128.png" Width="24" Height="24" VerticalAlignment="Center"/>
                     <TextBlock Text="Log In" VerticalAlignment="Center" Margin="5"/>

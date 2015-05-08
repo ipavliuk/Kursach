@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace RentAppartment.Client.ViewModels
@@ -52,6 +53,23 @@ namespace RentAppartment.Client.ViewModels
                 }
             }
         }
+
+		private Window thisView;
+		public Window ThisView
+        {
+            get
+            {
+				return this.thisView;
+            }
+            set
+            {
+				if (this.thisView != value)
+                {
+					this.thisView = value;
+					OnPropertyChanged("ThisView");
+                }
+            }
+        }
         
 
         public string Password
@@ -63,6 +81,8 @@ namespace RentAppartment.Client.ViewModels
             
         }
 
+
+
         #region Commands
         private ICommand loginCommand;
         public ICommand LoginCommand
@@ -71,23 +91,25 @@ namespace RentAppartment.Client.ViewModels
             {
                 if (this.loginCommand == null)
                 {
-                    this.loginCommand = new RelayCommand(o => this.LoginCommandAction(), null);
+					this.loginCommand = new RelayCommand(o => this.LoginCommandAction((Window)o));
                 }
                 return this.loginCommand;
             }
         }
+		
 
-        private bool LoginCommandAction()
-        {
-
+		private void LoginCommandAction(Window view)
+		{
 			bool result = AuthenticateUserManager.Instance.SignIn(this.LogIn, this.Password);
-            if (!result)
-            {
-                this.LoginMessage = "Користувач не ідентифікований, введіть дані знову";
-     
-            }
-            return result;
-        }
+			if (!result)
+			{
+				this.LoginMessage = "Користувач не ідентифікований, введіть дані знову";
+			}
+			else
+			{
+				view.Close();
+			}
+		}
 
         private ICommand cancelCommand;
         public ICommand CancelCommand
