@@ -20,15 +20,14 @@ namespace RentApartment.Core.Infrastructure
 
 		//private readonly RentApartmentsContext _db = new RentApartmentsContext();
 
-		public Account Authenticate(string login, string password)
+		public Account Authenticate(string login, string hash)
 		{
 			Account account = null;
 			try
 			{
 				using (var _db = new RentApartmentsContext())
 				{
-					string hash = password.ToSha256("");
-					account = _db.Account.FirstOrDefault(a => login == a.Email && a.PasswordHash == hash);
+					account = _db.Account.FirstOrDefault(a => a.Login == login && a.PasswordHash == hash);
 				}
 				
 

@@ -36,6 +36,23 @@ namespace RentAppartment.Client.ViewModels
                 }
             }
         }
+        private string loginMessage;
+        public string LoginMessage
+        {
+            get
+            {
+                return this.loginMessage;
+            }
+            set
+            {
+                if (this.loginMessage != value)
+                {
+                    this.loginMessage = value;
+                    OnPropertyChanged("LoginMessage");
+                }
+            }
+        }
+        
 
         public string Password
         {
@@ -54,16 +71,22 @@ namespace RentAppartment.Client.ViewModels
             {
                 if (this.loginCommand == null)
                 {
-                    this.loginCommand = new RelayCommand(o => this.LoginCommandAction());
+                    this.loginCommand = new RelayCommand(o => this.LoginCommandAction(), null);
                 }
                 return this.loginCommand;
             }
         }
 
-        private void LoginCommandAction()
+        private bool LoginCommandAction()
         {
 
-			AuthenticateUserManager.Instance.SignIn(this.LogIn, this.Password);
+			bool result = AuthenticateUserManager.Instance.SignIn(this.LogIn, this.Password);
+            if (!result)
+            {
+                this.LoginMessage = "Користувач не ідентифікований, введіть дані знову";
+     
+            }
+            return result;
         }
 
         private ICommand cancelCommand;

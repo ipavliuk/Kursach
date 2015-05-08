@@ -176,7 +176,7 @@ namespace RentAppartment.Client.Views
 			if (vm.CloseAction == null)
 				 vm.CloseAction = new Action(() => view.Close());
 
-			view.Show();
+			view.ShowDialog();
 
 			
 
