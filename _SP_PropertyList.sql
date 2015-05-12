@@ -219,8 +219,37 @@ CREATE PROCEDURE dbo.PropertyListingDelete
 	@PropertyId int
 AS
 begin
-	DELETE FROM PropertyListing
-	 WHERE PropertyId = @PropertyId
+	BEGIN TRANSACTION
+		DELETE FROM PropertyListing
+		WHERE PropertyId = @PropertyId
+
+		 -- Rollback the transaction if there were any errors
+		IF @@ERROR <> 0
+		 BEGIN
+			-- Rollback the transaction
+			ROLLBACK
+
+			-- Raise an error and return
+			RAISERROR ('Error in deleting Apartment in PropertyListing.', 16, 1)
+			RETURN
+		 END
+
+		 --Delete all reservation
+		DELETE FROM Reservations
+		WHERE FK_PropertyListing = @PropertyId
+
+		-- Rollback the transaction if there were any errors
+		IF @@ERROR <> 0
+		 BEGIN
+			-- Rollback the transaction
+			ROLLBACK
+
+			-- Raise an error and return
+			RAISERROR ('Error in deleting reservations in Reservations.', 16, 1)
+			RETURN
+		 END
+	--         Commit the transaction....
+	COMMIT
 end
 go
 
