@@ -24,7 +24,7 @@
         
             <!--GreatTitle-->
         <TextBlock Text="Заголовок" Grid.Row="0" Grid.Column="0" FontSize="16" Margin="5"/>
-        <TextBox Text="{Binding Appartment.GreatTitle}" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" FontSize="12" VerticalAlignment="Center" Margin="0,7,5,7" Height="21" Width="450"/>
+        <TextBox Text="{Binding Appartment.GreatTitle}" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" FontSize="12" VerticalAlignment="Center" Margin="0,7,5,7" Height="22" Width="450"/>
 
         <!--HomeType-->
         <TextBlock Text="Житло" Grid.Row="1" Grid.Column="0" FontSize="16" Margin="5"/>
@@ -71,26 +71,26 @@
             <StackPanel Grid.Row="2" Grid.Column="1"  Grid.ColumnSpan="2" Orientation="Vertical">
                 <StackPanel Orientation="Horizontal" Margin="5">
                     <TextBlock Text="Адреса: " FontSize="12" VerticalAlignment="Center"/>
-                    <TextBox Text="{Binding Appartment.Address1, UpdateSourceTrigger=PropertyChanged}" Margin="92 0" FontSize="12" Width="315" Height="20" 
+                    <TextBox Text="{Binding Appartment.Address1, UpdateSourceTrigger=PropertyChanged}" Margin="92 0" FontSize="12" Width="315" Height="22" 
                          HorizontalAlignment="Center"  
                          VerticalAlignment="Center"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="5">
                     <TextBlock Text="Місто: " FontSize="12" VerticalAlignment="Center"/>
-                    <TextBox Text="{Binding Appartment.City}" Margin="100 0" FontSize="12" Width="315" Height="20" 
+                    <TextBox Text="{Binding Appartment.City}" Margin="100 0" FontSize="12" Width="315" Height="22" 
                          HorizontalAlignment="Center"  
                          VerticalAlignment="Center"/>
                 </StackPanel>
                 <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
                     <StackPanel Orientation="Horizontal" Margin="5" Width="225">
                         <TextBlock Text="Zip: " FontSize="12" VerticalAlignment="Center"/>
-                        <TextBox Text="{Binding Appartment.Zip, UpdateSourceTrigger=PropertyChanged}" Margin="116 0" FontSize="12" Width="80" Height="20" 
+                        <TextBox Text="{Binding Appartment.Zip, UpdateSourceTrigger=PropertyChanged}" Margin="116 0" FontSize="12" Width="80" Height="22" 
                          HorizontalAlignment="Center"  
                          VerticalAlignment="Center"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="5">
                         <TextBlock Text="Країна: " Margin="5 0" FontSize="12" VerticalAlignment="Center"/>
-                        <TextBox Text="{Binding Appartment.Country}" Margin="85 0" FontSize="12" Width="80" Height="20" 
+                        <TextBox Text="{Binding Appartment.Country}" Margin="85 0" FontSize="12" Width="80" Height="22" 
                          HorizontalAlignment="Center"  
                          VerticalAlignment="Center"/>
                     </StackPanel>
@@ -199,13 +199,13 @@
         <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Vertical">
             <StackPanel Orientation="Horizontal" Margin="5">
                 <TextBlock Text="Price per Night: " FontSize="12" VerticalAlignment="Center"/>
-                    <TextBox Text="{Binding Appartment.PricePerNight, UpdateSourceTrigger=PropertyChanged}" Margin="55 0" FontSize="12" Width="80" Height="20" 
+                    <TextBox Text="{Binding Appartment.PricePerNight, UpdateSourceTrigger=PropertyChanged}" Margin="55 0" FontSize="12" Width="80" Height="22" 
                          HorizontalAlignment="Center"  
                          VerticalAlignment="Center"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="5">
                 <TextBlock Text="Price per Week: " FontSize="12" VerticalAlignment="Center"/>
-                <TextBox Text="{Binding Appartment.PricePerWeek}" Margin="55 0" FontSize="12" Width="80" Height="20" 
+                <TextBox Text="{Binding Appartment.PricePerWeek}" Margin="55 0" FontSize="12" Width="80" Height="22" 
                          HorizontalAlignment="Center"  
                          VerticalAlignment="Center"/>
             </StackPanel>
@@ -213,7 +213,7 @@
         <!--PricePerMonth-->
         <StackPanel Grid.Row="5" Grid.Column="2" Orientation="Horizontal" Margin="5">
             <TextBlock Text="Price per Month: " FontSize="12"/>
-            <TextBox Text="{Binding Binding Appartment.PricePerMonth}" Margin="40 0" FontSize="12" Width="80" Height="20" 
+            <TextBox Text="{Binding Binding Appartment.PricePerMonth}" Margin="40 0" FontSize="12" Width="80" Height="22" 
                          HorizontalAlignment="Center" 
                          VerticalAlignment="Top"/>
         </StackPanel>

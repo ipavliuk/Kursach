@@ -22,6 +22,7 @@ namespace RentAppartment.Client.Views
 			this.SignInOutText = LOG_IN;
             this.LoginText = LOG_IN_Text;
             this.CurrentView = new WelcomePageView();
+			AccessManager.Instance.Load();
        }
 
 
@@ -245,6 +246,7 @@ namespace RentAppartment.Client.Views
                 this.IsAdmin = AuthenticateUserManager.Instance.IsAdmin();
                 this.IsLogedIn = true;
                 this.LoginText = string.Format(Welcome_Text, AuthenticateUserManager.Instance.GetUserNickName());
+				
 			}
 			else
 			{

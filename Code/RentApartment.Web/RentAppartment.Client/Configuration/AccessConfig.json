@@ -1,0 +1,60 @@
+//Role: God, Admin, Client, Owner (Client == Owner)
+//Access type : Read, ReadWrite, Disabled 
+//
+
+{
+	"AccesTypesSpec" : [
+		{
+		  "FullAccess" : {
+  			"Views"  : {
+  				"PropertyListingView" : "ReadWrite",
+  				"AccountViews" : "ReadWrite",
+  				"Reservation" : "ReadWrite",
+  				"PersonalPage" : "ReadWrite"
+  			}
+		  }
+		},
+		{"AdminAccess" : {
+  			"Views" : {
+  				"PropertyListingView" : "ReadWrite",
+  				"AccountViews" : "ReadWrite",
+  				"Reservation" : "ReadWrite",
+  				"PersonalPage" : "Disabled"
+  			}
+		  }
+		},
+		{"ClientAccess" : {
+  			"Views" : {
+  				"PropertyListingView" : "Read",
+  				"AccountViews" : "Disabled",
+  				"Reservation" : "ReadWrite",
+  				"PersonalPage" : "ReadWrite"
+  			}
+		  }
+	  }
+	],
+	"UserRole" : [
+	  {"God" : "FullAccess"},
+		{"Admin" : {
+			"AccessType":"AdminAccess"
+		  }
+		},
+		{"Client" : 
+  		{
+  			"AccessType":"ClientAccess",
+  			"PropertyListingView" : {
+  				"Controls" : {
+  					"txtCity": "ReadWrite",
+  					"txtIdOwner": "Disabled" ,
+  					"txtIdProperty": "Disabled",
+  					"apartmentType": "Read",
+  					"roomNumber": "Read",
+  					"gridPropertyList": "Read"
+  				}
+  				
+  			}
+  		}
+		}
+	]		
+		
+}

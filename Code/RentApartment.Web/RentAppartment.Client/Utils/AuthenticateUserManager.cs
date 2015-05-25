@@ -29,7 +29,6 @@ namespace RentAppartment.Client.Utils
                                 {
                                     return Account != null; 
                                 } 
-                                
                               }
 
 	    public bool SignIn(string login, string password)

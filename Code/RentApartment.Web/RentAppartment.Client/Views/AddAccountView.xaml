@@ -17,51 +17,51 @@
             <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
                 <StackPanel Orientation="Horizontal" Margin="5" Width="225">
                     <TextBlock Text="Ім'я: " FontSize="12" VerticalAlignment="Center"/>
-                    <TextBox Text="{Binding Account.FirstName, UpdateSourceTrigger=PropertyChanged}" Margin="113 0" FontSize="12" Width="80" Height="20" 
+                    <TextBox Text="{Binding Account.FirstName, UpdateSourceTrigger=PropertyChanged}" Margin="113 0" FontSize="12" Width="80" Height="22" 
                          HorizontalAlignment="Center"  
                          VerticalAlignment="Center"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="5" Width="230">
                     <TextBlock Text="Прізвище: " Margin="5 0" FontSize="12" VerticalAlignment="Center"/>
-                    <TextBox Text="{Binding Account.LastName}" Margin="50 0" FontSize="12" Width="100" Height="20" 
+                    <TextBox Text="{Binding Account.LastName}" Margin="19 0" FontSize="12" Width="130" Height="22" 
                          HorizontalAlignment="Center"  
                          VerticalAlignment="Center"/>
                 </StackPanel>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="5">
                 <TextBlock Text="Email: " FontSize="12" VerticalAlignment="Center"/>
-                <TextBox Text="{Binding Account.Email}" Margin="105 0" FontSize="12" Width="315" Height="20" 
+                <TextBox Text="{Binding Account.Email}" Margin="105 0" FontSize="12" Width="315" Height="22" 
                          HorizontalAlignment="Center"  
                          VerticalAlignment="Center"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="5">
                 <TextBlock Text="Login: " FontSize="12" VerticalAlignment="Center"/>
-                <TextBox Text="{Binding Account.Login}" Margin="103 0" FontSize="12" Width="315" Height="20" 
+                <TextBox Text="{Binding Account.Login}" Margin="103 0" FontSize="12" Width="315" Height="22" 
                          HorizontalAlignment="Center"  
                          VerticalAlignment="Center"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="5">
                 <TextBlock Text="Пароль: " FontSize="12" VerticalAlignment="Center"/>
-                <PasswordBox Name="pwdBox" Margin="92 0" FontSize="12" Width="315" Height="20" 
+                <PasswordBox Name="pwdBox" Margin="92 0" FontSize="12" Width="315" Height="22" 
                          HorizontalAlignment="Center"  
                          VerticalAlignment="Center"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="5">
                 <TextBlock Text="Підтвердити пароль: " FontSize="12" VerticalAlignment="Center"/>
-                <PasswordBox Name="pwdBoxConfirm" Margin="22 0" FontSize="12" Width="315" Height="20" 
+                <PasswordBox Name="pwdBoxConfirm" Margin="22 0" FontSize="12" Width="315" Height="22" 
                          HorizontalAlignment="Center"  
                          VerticalAlignment="Center"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="5">
                 <TextBlock Text="Телефон: " FontSize="12" VerticalAlignment="Center"/>
-                <TextBox Text="{Binding Account.Mobile}" Margin="85 0" FontSize="12" Width="315" Height="20" 
+                <TextBox Text="{Binding Account.Mobile}" Margin="85 0" FontSize="12" Width="315" Height="22" 
                          HorizontalAlignment="Center"  
                          VerticalAlignment="Center"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="5">
                 <TextBlock Text="Стать: " FontSize="12" VerticalAlignment="Center"/>
 
-                <ComboBox Grid.Row="1" Grid.Column="3"  Margin="105 0" FontSize="12" Width="85" Height="20"
+                <ComboBox Grid.Row="1" Grid.Column="3"  Margin="105 0" FontSize="12" Width="85" Height="22"
                               ItemsSource="{Binding GenderTypes}"
                               DisplayMemberPath="Value"
                               SelectedValuePath="Key"
@@ -73,26 +73,26 @@
         <StackPanel Grid.Row="1" Grid.Column="0"  Grid.ColumnSpan="2" Orientation="Vertical">
             <StackPanel Orientation="Horizontal" Margin="5">
                 <TextBlock Text="Адреса: " FontSize="12" VerticalAlignment="Center"/>
-                <TextBox Text="{Binding Account.Address, UpdateSourceTrigger=PropertyChanged}" Margin="92 0" FontSize="12" Width="315" Height="20" 
+                <TextBox Text="{Binding Account.Address, UpdateSourceTrigger=PropertyChanged}" Margin="92 0" FontSize="12" Width="315" Height="22" 
                          HorizontalAlignment="Center"  
                          VerticalAlignment="Center"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="5">
                 <TextBlock Text="Місто: " FontSize="12" VerticalAlignment="Center"/>
-                <TextBox Text="{Binding Account.City}" Margin="100 0" FontSize="12" Width="315" Height="20" 
+                <TextBox Text="{Binding Account.City}" Margin="100 0" FontSize="12" Width="315" Height="22" 
                          HorizontalAlignment="Center"  
                          VerticalAlignment="Center"/>
             </StackPanel>
             <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
                 <StackPanel Orientation="Horizontal" Margin="5" Width="225">
                     <TextBlock Text="Zip: " FontSize="12" VerticalAlignment="Center"/>
-                    <TextBox Text="{Binding Account.PostalCode, UpdateSourceTrigger=PropertyChanged}" Margin="115 0" FontSize="12" Width="80" Height="20" 
+                    <TextBox Text="{Binding Account.PostalCode, UpdateSourceTrigger=PropertyChanged}" Margin="115 0" FontSize="12" Width="80" Height="22" 
                          HorizontalAlignment="Center"  
                          VerticalAlignment="Center"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="5">
                     <TextBlock Text="Країна: " Margin="5 0" FontSize="12" VerticalAlignment="Center"/>
-                    <TextBox Text="{Binding Account.Country}" Margin="65 0" FontSize="12" Width="100" Height="20" 
+                    <TextBox Text="{Binding Account.Country}" Margin="65 0" FontSize="12" Width="100" Height="22" 
                          HorizontalAlignment="Center"  
                          VerticalAlignment="Center"/>
                 </StackPanel>

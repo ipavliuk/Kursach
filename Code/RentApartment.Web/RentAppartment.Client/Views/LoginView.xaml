@@ -15,7 +15,7 @@
                 <TextBlock Text="Введіть логін та пароль:" />
                 <StackPanel Orientation="Horizontal" Margin="5" >
                 <TextBlock Text="Login: " FontSize="12" VerticalAlignment="Center"/>
-                    <TextBox Text="{Binding LogIn}" Margin="50 0" FontSize="12" Width="250" Height="20" 
+                    <TextBox Text="{Binding LogIn}" Margin="50 0" FontSize="12" Width="250" Height="22" 
                              HorizontalAlignment="Center"  
                              VerticalAlignment="Center"/>
             </StackPanel>
@@ -24,7 +24,7 @@
                 <!--<TextBox Text="{Binding Password}" Margin="30 0" FontSize="12" Width="250" Height="20" 
                              HorizontalAlignment="Center"  
                              VerticalAlignment="Center"/>-->
-                    <PasswordBox Name="pwdBox"  Margin="30 0" FontSize="12" Width="250" Height="20" 
+                    <PasswordBox Name="pwdBox"  Margin="30 0" FontSize="12" Width="250" Height="22" 
                              HorizontalAlignment="Center"  
                              VerticalAlignment="Center"/>
              </StackPanel>

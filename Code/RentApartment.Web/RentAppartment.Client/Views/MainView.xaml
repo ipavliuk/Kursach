@@ -1,10 +1,10 @@
 ﻿<Window x:Class="RentAppartment.Client.Views.MainView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Height="500" Width="850">
+        Height="750" Width="1100" Title="RentApartment system">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.2*"/>
+            <ColumnDefinition Width="0.2*" MaxWidth="150" MinWidth="150"/>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="0.8*"/>
         </Grid.ColumnDefinitions>
@@ -21,7 +21,7 @@
                    Height="23" 
                    Grid.ColumnSpan="3" 
                    Grid.Row="2"/>
-        <DockPanel Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Stretch">
+        <DockPanel Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" >
             <Menu Margin="0" Height="23" Width="Auto" DockPanel.Dock="Left">
                 <MenuItem Header="Менеджери" ToolTip="Оберіть операції">
                     <MenuItem Header="Пошук житла" Command="{Binding Path=NavigatePropertyListCommand}">
@@ -51,6 +51,7 @@
             </Menu>
             <StackPanel DockPanel.Dock="Right" HorizontalAlignment="Right" Orientation="Horizontal">
                 <TextBlock Text="{Binding LoginText}" Margin="5 0" VerticalAlignment="Center" />
+                <Image Source="../Images/_user.png" Width="30" Height="30" VerticalAlignment="Center"/>
                 <Button Command="{Binding SignInOutCommand}" Width="100" HorizontalAlignment="Right" DockPanel.Dock="Right">
                     <StackPanel Orientation="Horizontal">
                         <Image Width="24" Height="24" VerticalAlignment="Center">
@@ -73,10 +74,12 @@
             </StackPanel>
             
         </DockPanel>
-       
-        
-        
         <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical" MaxWidth="150">
+            <HeaderedContentControl
+              ContentTemplate="{StaticResource CommandsTemplate}"
+              Header="Control Panel"
+              Style="{StaticResource MainHCCStyle}"
+                Width="150" />
            <Button Width="120" HorizontalAlignment="Right" FontSize="12" Margin="10" Command="{Binding NavigatePropertyListCommand}" >
                 <Button.Style>
                     <Style TargetType="{x:Type Button}" >
