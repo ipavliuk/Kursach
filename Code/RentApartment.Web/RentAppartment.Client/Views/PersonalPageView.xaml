@@ -10,7 +10,7 @@
             <TabItem>
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Особиста інформація" Foreground="Blue" />
+                        <TextBlock Text="Профіль" Foreground="Blue" />
                     </StackPanel>
                   </TabItem.Header>
                 <Grid>

@@ -59,5 +59,26 @@ namespace RentAppartment.Client.Utils
             Account = null;
 
         }
+
+        public bool IsAdmin()
+        {
+            return true;
+            if (Account != null && Account.Roles == "Admin")
+            {
+                return true;
+            }
+
+            return false;
+           // Account.Roles == 
+        }
+
+        public string GetUserNickName()
+        {
+            if (Account != null)
+            {
+                return Account.Login;
+            }
+            return null;
+        }
     }
 }

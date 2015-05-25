@@ -14,12 +14,28 @@ namespace RentAppartment.Client.Views
     {
 	    private const string LOG_IN = "Log In";
 		private const string LOG_OUT = "Log Out";
+        private const string LOG_IN_Text = "Увійдіть у систему...";
+        private const string Welcome_Text = "Вітаємо користувача, {0}";
 
 		public MainViewModel()
 		{
 			this.SignInOutText = LOG_IN;
-		}
+            this.LoginText = LOG_IN_Text;
+            this.CurrentView = new WelcomePageView();
+       }
 
+
+
+        private string loginText;
+        public string LoginText
+        {
+            get { return loginText; }
+            private set
+            {
+                loginText = value;
+                OnPropertyChanged("LoginText");
+            }
+        }
 
 		private bool isLogedIn;
 		public bool IsLogedIn
@@ -29,6 +45,17 @@ namespace RentAppartment.Client.Views
             {
 				isLogedIn = value;
 				OnPropertyChanged("IsLogedIn");
+            }
+        }
+
+        private bool isAdmin;
+        public bool IsAdmin
+        {
+            get { return isAdmin; }
+            private set
+            {
+                isAdmin = value;
+                OnPropertyChanged("IsAdmin");
             }
         }
 
@@ -109,7 +136,35 @@ namespace RentAppartment.Client.Views
         {
             this.CurrentView = new ReservationsViewModel();
         }
-    
+
+        private ICommand navigatePersonalPageCommand;
+        public ICommand NavigatePersonalPageCommand
+        {
+            get
+            {
+                if (this.navigatePersonalPageCommand == null)
+                {
+                    this.navigatePersonalPageCommand = new RelayCommand(o => this.NavigatePersonalPageCommandAction());
+                }
+                return this.navigatePersonalPageCommand;
+            }
+        }
+
+        private void NavigatePersonalPageCommandAction()
+        {
+            try
+            {
+                this.CurrentView = new PersonalPageViewModel(AuthenticateUserManager.Instance.Account);
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+            
+        }
+
+
         private ICommand userGuideCommand;
         public ICommand UserGuideCommand
         {
@@ -165,6 +220,10 @@ namespace RentAppartment.Client.Views
 			 {
 				 AuthenticateUserManager.Instance.Logout();
 				 this.SignInOutText = LOG_IN;
+                 this.IsLogedIn = false;
+                 this.IsAdmin = false;
+                 this.LoginText = LOG_IN_Text;
+                 this.CurrentView = new WelcomePageViewModel();
 				 return;
 			 }
 			 
@@ -183,15 +242,22 @@ namespace RentAppartment.Client.Views
 			if (AuthenticateUserManager.Instance.IsLogedIn)
 			{
 				this.SignInOutText = LOG_OUT;
-
+                this.IsAdmin = AuthenticateUserManager.Instance.IsAdmin();
+                this.IsLogedIn = true;
+                this.LoginText = string.Format(Welcome_Text, AuthenticateUserManager.Instance.GetUserNickName());
 			}
 			else
 			{
-				
-
+                this.IsLogedIn = false;
+                this.IsAdmin = false;
+                this.LoginText = LOG_IN_Text;
 			}
 		}
-		
+
+        private void SetInitialView()
+        {
+           // this.CurrentView = 
+        }
 
 	}
 
