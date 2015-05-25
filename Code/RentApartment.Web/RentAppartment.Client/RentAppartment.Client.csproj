@@ -88,6 +88,7 @@
     <Compile Include="ViewModels\ReservationsViewModel.cs" />
     <Compile Include="ViewModels\ScheduleViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="ViewModels\WelcomePageViewModel.cs" />
     <Compile Include="Views\AccountDataView.xaml.cs">
       <DependentUpon>AccountDataView.xaml</DependentUpon>
     </Compile>
@@ -120,6 +121,9 @@
     </Compile>
     <Compile Include="Views\ReservationsView.xaml.cs">
       <DependentUpon>ReservationsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WelcomePageView.xaml.cs">
+      <DependentUpon>WelcomePageView.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\AccountDataView.xaml">
       <SubType>Designer</SubType>
@@ -174,6 +178,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ReservationsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WelcomePageView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -316,6 +324,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\_logout-128.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\_user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Welcome.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

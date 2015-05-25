@@ -207,7 +207,10 @@ namespace RentApartment.Core.Infrastructure
                     //return _db.Reservations.Where(res => res.ReservationStart >= startDate 
                     //            && res.ReservationEnd <= endDate && (status != null && res.ReservationStatus == status)
                     //            && res.PropertyListing.City == city).ToList();
-                    var l = _db.Reservations.Include(r => r.PropertyListing).Where(res => res.PropertyListing.City == city).ToList();
+                    var l = _db.Reservations
+                        .Include(r => r.PropertyListing)
+                        .Include(r=>r.Account)
+                        .Where(res => res.PropertyListing.City == city).ToList();
                     return l;
 				}
                 

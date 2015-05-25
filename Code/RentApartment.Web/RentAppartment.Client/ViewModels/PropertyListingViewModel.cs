@@ -307,7 +307,9 @@ namespace RentAppartment.Client.Views
                 List<DateTime> reservations = repo.GetApartmentReservations(SelectedProperty.PropertyId);
 
                 var view = new ScheduleView();
-                var vm = new ScheduleViewModel(reservations, SelectedProperty.PropertyId, 1);
+                var vm = new ScheduleViewModel(reservations, SelectedProperty.PropertyId,
+                    AuthenticateUserManager.Instance.IsLogedIn  ? AuthenticateUserManager.Instance.Account.id
+                                                                : 0); // test only
                 view.DataContext = vm;
 
                 if (vm.CloseAction == null)

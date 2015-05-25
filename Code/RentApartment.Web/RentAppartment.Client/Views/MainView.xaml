@@ -21,8 +21,8 @@
                    Height="23" 
                    Grid.ColumnSpan="3" 
                    Grid.Row="2"/>
-        <StackPanel Grid.Row="0" Grid.ColumnSpan="3" Orientation="Horizontal">
-            <Menu Margin="0" Height="23" >
+        <DockPanel Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Stretch">
+            <Menu Margin="0" Height="23" Width="Auto" DockPanel.Dock="Left">
                 <MenuItem Header="Менеджери" ToolTip="Оберіть операції">
                     <MenuItem Header="Пошук житла" Command="{Binding Path=NavigatePropertyListCommand}">
                         <MenuItem.Icon>
@@ -49,46 +49,112 @@
                     <MenuItem Header="Про застосування.." Command="{Binding Path=AboutCommand}"/>
                 </MenuItem>
             </Menu>
-            <Button Command="{Binding SignInOutCommand}">
-                <StackPanel Orientation="Horizontal">
-                    <Image Width="24" Height="24" VerticalAlignment="Center">
-                        <Image.Style>
-                            <Style TargetType="{x:Type Image}">
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding IsLogedIn}" Value="False">
+            <StackPanel DockPanel.Dock="Right" HorizontalAlignment="Right" Orientation="Horizontal">
+                <TextBlock Text="{Binding LoginText}" Margin="5 0" VerticalAlignment="Center" />
+                <Button Command="{Binding SignInOutCommand}" Width="100" HorizontalAlignment="Right" DockPanel.Dock="Right">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Width="24" Height="24" VerticalAlignment="Center">
+                            <Image.Style>
+                                <Style TargetType="{x:Type Image}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsLogedIn}" Value="False">
                                             <Setter Property="Source" Value="../Images/_login-128.png" />
-                                    </DataTrigger>
+                                        </DataTrigger>
                                         <DataTrigger Binding="{Binding IsLogedIn}" Value="True">
                                             <Setter Property="Source" Value="../Images/_logout-128.png" />
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                       </Image.Style>
-                    </Image>
-                    <TextBlock Text="{Binding SignInOutText}" VerticalAlignment="Center" Margin="10 0"/>
-                </StackPanel>
-            </Button>
-        </StackPanel>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Image.Style>
+                        </Image>
+                        <TextBlock Text="{Binding SignInOutText}" VerticalAlignment="Center" Margin="10 0"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+            
+        </DockPanel>
        
         
         
-        <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical" MaxWidth="200">
-            <Button Width="120" HorizontalAlignment="Right" FontSize="12" Margin="10" Command="{Binding NavigatePropertyListCommand}" >
-                <StackPanel Orientation="Horizontal">
+        <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical" MaxWidth="150">
+           <Button Width="120" HorizontalAlignment="Right" FontSize="12" Margin="10" Command="{Binding NavigatePropertyListCommand}" >
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}" >
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsLogedIn}" Value="False">
+                                <Setter Property="IsEnabled" Value="False" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsLogedIn}" Value="True">
+                                <Setter Property="IsEnabled" Value="True" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+               <StackPanel Orientation="Horizontal">
                     <Image Source="../Images/_property.png" Width="24" Height="24" VerticalAlignment="Center"/>
                     <TextBlock Text="Пошук житла" VerticalAlignment="Center" Margin="10 0"/>
                 </StackPanel>
             </Button>
             <Button Width="120" HorizontalAlignment="Right" FontSize="12" Margin="10" Command="{Binding NavigateAccountsCommand}" >
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}" >
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsLogedIn}" Value="False">
+                                <Setter Property="IsEnabled" Value="False" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsLogedIn}" Value="True">
+                                <Setter Property="IsEnabled" Value="True" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
                 <StackPanel Orientation="Horizontal">
                     <Image Source="../Images/_user_accounts.png" Width="24" Height="24" VerticalAlignment="Center"/>
                     <TextBlock Text="Kористувачi" VerticalAlignment="Center" Margin="13 0"/>
                 </StackPanel>
             </Button>
             <Button Width="120" HorizontalAlignment="Right" FontSize="12" Margin="10" Command="{Binding NavigateReservationsCommand}" >
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}" >
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsLogedIn}" Value="False">
+                                <Setter Property="IsEnabled" Value="False" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsLogedIn}" Value="True">
+                                <Setter Property="IsEnabled" Value="True" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
                 <StackPanel Orientation="Horizontal">
                     <Image Source="../Images/_schedule.png" Width="24" Height="24" VerticalAlignment="Center"/>
                     <TextBlock Text="Резервування" VerticalAlignment="Center" Margin="10 0"/>
+                </StackPanel>
+            </Button>
+            <Button Width="120" HorizontalAlignment="Right" 
+                    FontSize="12" Margin="10" 
+                    Command="{Binding NavigatePersonalPageCommand}">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}" >
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsLogedIn}" Value="False">
+                                <Setter Property="IsEnabled" Value="False" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsLogedIn}" Value="True">
+                                <Setter Property="IsEnabled" Value="True" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsAdmin}" Value="False">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                            <!--<Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </Trigger>-->
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="../Images/_user.png" Width="24" Height="24" VerticalAlignment="Center"/>
+                    <TextBlock Text="Особисті дані" VerticalAlignment="Center" Margin="10 0"/>
                 </StackPanel>
             </Button>
         </StackPanel>
