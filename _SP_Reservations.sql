@@ -35,6 +35,8 @@ GO
 
 ----------------------------------------------------------------
 create procedure dbo.ReservationsUpdate
+	@O_ErrCode						INT					OUTPUT,
+	@O_ErrMsg						NVARCHAR(4000)		OUTPUT,
 	@ReservationId		int,
 	@PropertyListingId	int = null, 
 	@ReservationStatus  int = null, 
@@ -44,15 +46,36 @@ create procedure dbo.ReservationsUpdate
 	@CurrencyId			int = null
 as
 begin	
-	--SET NOCOUNT ON;
-	update Reservations
-	set	FK_PropertyListing = ISNULL(@PropertyListingId,FK_PropertyListing), 
-		ReservationStatus = ISNULL(@ReservationStatus,ReservationStatus), 
-		ReservationStart = ISNULL(@ReservationStart,ReservationStart),  
-		ReservationEnd = ISNULL(@ReservationEnd,ReservationEnd),  
-		ReservationNote = ISNULL(@ReservationNote,ReservationNote),  
-		FK__Currency = ISNULL(@CurrencyId, FK__Currency)
-	where ReservationId = @ReservationId
+	SET NOCOUNT ON;
+	begin try
+		-- Initialization
+		SELECT	 @O_ErrCode	= 0
+				,@O_ErrMsg	= ''
+
+		----------------------------------- Parameters Validation -------------------------------------------
+		
+		IF @ReservationId IS NULL 
+		BEGIN 
+			SET @O_ErrCode = -1
+			SET @O_ErrMsg = '@ReservationId cannot be NULL'		 
+			RAISERROR(@O_ErrMsg, 16, 1)
+		END
+		update Reservations
+		set	FK_PropertyListing = ISNULL(@PropertyListingId,FK_PropertyListing), 
+			ReservationStatus = ISNULL(@ReservationStatus,ReservationStatus), 
+			ReservationStart = ISNULL(@ReservationStart,ReservationStart),  
+			ReservationEnd = ISNULL(@ReservationEnd,ReservationEnd),  
+			ReservationNote = ISNULL(@ReservationNote,ReservationNote),  
+			FK__Currency = ISNULL(@CurrencyId, FK__Currency)
+		where ReservationId = @ReservationId
+	end try
+	begin catch
+		--Handle the error 
+		EXEC [dbo].[sp_HandleSPErrors]
+			 @IO_ErrCode = @O_ErrCode	OUTPUT
+			,@IO_ErrMsg  = @O_ErrMsg	OUTPUT   
+	
+	end catch
 end
 GO
 ----Exec

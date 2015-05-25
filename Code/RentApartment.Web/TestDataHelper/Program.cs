@@ -14,16 +14,20 @@ namespace TestDataHelper
         {
             AccountsCreator creator = new AccountsCreator();
             List<Account> users = creator.GenerateAcounts(5);
-            
-            try
-            {
-                RentApartmentsContext dbEF = new RentApartmentsContext();
-                dbEF.Account.AddRange(users);
-                dbEF.SaveChanges();
-                DataCreator data = new DataCreator();
-                List<PropertyListing> props = data.GenerateProperties(users);
-                dbEF.PropertyListing.AddRange(props);
-                dbEF.SaveChanges();
+
+	        try
+	        {
+		        using (var dbEF = new RentApartmentsContext())
+		        {
+
+					dbEF.Account.AddRange(users);
+					dbEF.SaveChanges();
+					DataCreator data = new DataCreator();
+					List<PropertyListing> props = data.GenerateProperties(users);
+					dbEF.PropertyListing.AddRange(props);
+					dbEF.SaveChanges();
+		        }
+	        
             }
             catch (Exception ex)
             {

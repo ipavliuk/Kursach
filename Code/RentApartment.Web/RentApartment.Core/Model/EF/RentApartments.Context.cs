@@ -36,6 +36,8 @@ namespace RentApartment.Core.Model.EF
         public virtual DbSet<Messages> Messages { get; set; }
         public virtual DbSet<PropertyListing> PropertyListing { get; set; }
         public virtual DbSet<Reservations> Reservations { get; set; }
+        public virtual DbSet<DB_Errors_Log> DB_Errors_Log { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     
         public virtual ObjectResult<f_AmenitiesGetById_Result> f_AmenitiesGetById(Nullable<int> id)
         {
@@ -86,7 +88,7 @@ namespace RentApartment.Core.Model.EF
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddAmenitiesToProperty", propertyListingIdParameter, amenityIdParameter);
         }
     
-        public virtual int PropertyListingCreate(Nullable<int> accountId, Nullable<byte> state, Nullable<long> pricePerNight, Nullable<long> pricePerMonth, Nullable<long> pricePerWeek, string photos, string greatTitle, string greatSummary, Nullable<byte> bedRoom, Nullable<int> bathroom, Nullable<byte> homeType, Nullable<byte> roomType, Nullable<byte> accommodates, string address1, string address2, string city, string state2, string zip, Nullable<int> country)
+        public virtual int PropertyListingCreate(ObjectParameter o_ErrCode, ObjectParameter o_ErrMsg, Nullable<int> accountId, Nullable<byte> state, Nullable<long> pricePerNight, Nullable<long> pricePerMonth, Nullable<long> pricePerWeek, string photos, string greatTitle, string greatSummary, Nullable<byte> bedRoom, Nullable<int> bathroom, Nullable<byte> homeType, Nullable<byte> roomType, Nullable<byte> accommodates, string address1, string address2, string city, string state2, string zip, Nullable<int> country)
         {
             var accountIdParameter = accountId.HasValue ?
                 new ObjectParameter("AccountId", accountId) :
@@ -164,16 +166,16 @@ namespace RentApartment.Core.Model.EF
                 new ObjectParameter("Country", country) :
                 new ObjectParameter("Country", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PropertyListingCreate", accountIdParameter, stateParameter, pricePerNightParameter, pricePerMonthParameter, pricePerWeekParameter, photosParameter, greatTitleParameter, greatSummaryParameter, bedRoomParameter, bathroomParameter, homeTypeParameter, roomTypeParameter, accommodatesParameter, address1Parameter, address2Parameter, cityParameter, state2Parameter, zipParameter, countryParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PropertyListingCreate", o_ErrCode, o_ErrMsg, accountIdParameter, stateParameter, pricePerNightParameter, pricePerMonthParameter, pricePerWeekParameter, photosParameter, greatTitleParameter, greatSummaryParameter, bedRoomParameter, bathroomParameter, homeTypeParameter, roomTypeParameter, accommodatesParameter, address1Parameter, address2Parameter, cityParameter, state2Parameter, zipParameter, countryParameter);
         }
     
-        public virtual int PropertyListingDelete(Nullable<int> propertyId)
+        public virtual int PropertyListingDelete(ObjectParameter o_ErrCode, ObjectParameter o_ErrMsg, Nullable<int> propertyId)
         {
             var propertyIdParameter = propertyId.HasValue ?
                 new ObjectParameter("PropertyId", propertyId) :
                 new ObjectParameter("PropertyId", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PropertyListingDelete", propertyIdParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PropertyListingDelete", o_ErrCode, o_ErrMsg, propertyIdParameter);
         }
     
         public virtual ObjectResult<PropertyListingGetAll_Result> PropertyListingGetAll()
@@ -199,7 +201,7 @@ namespace RentApartment.Core.Model.EF
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PropertyListingGetByPropertyId_Result>("PropertyListingGetByPropertyId", propertyIdParameter);
         }
     
-        public virtual int PropertyListingUpdate(Nullable<int> propertyId, Nullable<byte> state, Nullable<long> pricePerNight, Nullable<long> pricePerMonth, Nullable<long> pricePerWeek, string photos, string greatTitle, string greatSummary, Nullable<byte> bedRoom, Nullable<int> bathroom, Nullable<byte> homeType, Nullable<byte> roomType, Nullable<byte> accommodates, string address1, string address2, string city, string state2, string zip, Nullable<int> country)
+        public virtual int PropertyListingUpdate(ObjectParameter o_ErrCode, ObjectParameter o_ErrMsg, Nullable<int> propertyId, Nullable<byte> state, Nullable<long> pricePerNight, Nullable<long> pricePerMonth, Nullable<long> pricePerWeek, string photos, string greatTitle, string greatSummary, Nullable<byte> bedRoom, Nullable<int> bathroom, Nullable<byte> homeType, Nullable<byte> roomType, Nullable<byte> accommodates, string address1, string address2, string city, string state2, string zip, Nullable<int> country)
         {
             var propertyIdParameter = propertyId.HasValue ?
                 new ObjectParameter("PropertyId", propertyId) :
@@ -277,7 +279,7 @@ namespace RentApartment.Core.Model.EF
                 new ObjectParameter("Country", country) :
                 new ObjectParameter("Country", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PropertyListingUpdate", propertyIdParameter, stateParameter, pricePerNightParameter, pricePerMonthParameter, pricePerWeekParameter, photosParameter, greatTitleParameter, greatSummaryParameter, bedRoomParameter, bathroomParameter, homeTypeParameter, roomTypeParameter, accommodatesParameter, address1Parameter, address2Parameter, cityParameter, state2Parameter, zipParameter, countryParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PropertyListingUpdate", o_ErrCode, o_ErrMsg, propertyIdParameter, stateParameter, pricePerNightParameter, pricePerMonthParameter, pricePerWeekParameter, photosParameter, greatTitleParameter, greatSummaryParameter, bedRoomParameter, bathroomParameter, homeTypeParameter, roomTypeParameter, accommodatesParameter, address1Parameter, address2Parameter, cityParameter, state2Parameter, zipParameter, countryParameter);
         }
     
         public virtual int ReservationsCreate(Nullable<int> accountId, Nullable<int> propertyListingId, Nullable<int> reservationStatus, Nullable<System.DateTime> reservationStart, Nullable<System.DateTime> reservationEnd, string reservationNote, Nullable<int> currencyId)
@@ -385,6 +387,258 @@ namespace RentApartment.Core.Model.EF
                 new ObjectParameter("CurrencyId", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ReservationsUpdate", reservationIdParameter, propertyListingIdParameter, reservationStatusParameter, reservationStartParameter, reservationEndParameter, reservationNoteParameter, currencyIdParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<decimal>> AccountCreate(ObjectParameter o_ErrCode, ObjectParameter o_ErrMsg, string accountId, string passwordHash, string firstName, string lastName, string email, Nullable<int> country, string city, string address, string mobile, Nullable<byte> gender, string postalCode, Nullable<int> language, string imageSourceId)
+        {
+            var accountIdParameter = accountId != null ?
+                new ObjectParameter("AccountId", accountId) :
+                new ObjectParameter("AccountId", typeof(string));
+    
+            var passwordHashParameter = passwordHash != null ?
+                new ObjectParameter("PasswordHash", passwordHash) :
+                new ObjectParameter("PasswordHash", typeof(string));
+    
+            var firstNameParameter = firstName != null ?
+                new ObjectParameter("FirstName", firstName) :
+                new ObjectParameter("FirstName", typeof(string));
+    
+            var lastNameParameter = lastName != null ?
+                new ObjectParameter("LastName", lastName) :
+                new ObjectParameter("LastName", typeof(string));
+    
+            var emailParameter = email != null ?
+                new ObjectParameter("Email", email) :
+                new ObjectParameter("Email", typeof(string));
+    
+            var countryParameter = country.HasValue ?
+                new ObjectParameter("Country", country) :
+                new ObjectParameter("Country", typeof(int));
+    
+            var cityParameter = city != null ?
+                new ObjectParameter("City", city) :
+                new ObjectParameter("City", typeof(string));
+    
+            var addressParameter = address != null ?
+                new ObjectParameter("Address", address) :
+                new ObjectParameter("Address", typeof(string));
+    
+            var mobileParameter = mobile != null ?
+                new ObjectParameter("Mobile", mobile) :
+                new ObjectParameter("Mobile", typeof(string));
+    
+            var genderParameter = gender.HasValue ?
+                new ObjectParameter("Gender", gender) :
+                new ObjectParameter("Gender", typeof(byte));
+    
+            var postalCodeParameter = postalCode != null ?
+                new ObjectParameter("PostalCode", postalCode) :
+                new ObjectParameter("PostalCode", typeof(string));
+    
+            var languageParameter = language.HasValue ?
+                new ObjectParameter("Language", language) :
+                new ObjectParameter("Language", typeof(int));
+    
+            var imageSourceIdParameter = imageSourceId != null ?
+                new ObjectParameter("ImageSourceId", imageSourceId) :
+                new ObjectParameter("ImageSourceId", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("AccountCreate", o_ErrCode, o_ErrMsg, accountIdParameter, passwordHashParameter, firstNameParameter, lastNameParameter, emailParameter, countryParameter, cityParameter, addressParameter, mobileParameter, genderParameter, postalCodeParameter, languageParameter, imageSourceIdParameter);
+        }
+    
+        public virtual int AccountDelete(ObjectParameter o_ErrCode, ObjectParameter o_ErrMsg, Nullable<int> acc_Id)
+        {
+            var acc_IdParameter = acc_Id.HasValue ?
+                new ObjectParameter("Acc_Id", acc_Id) :
+                new ObjectParameter("Acc_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AccountDelete", o_ErrCode, o_ErrMsg, acc_IdParameter);
+        }
+    
+        public virtual int AccountUpdate(ObjectParameter o_ErrCode, ObjectParameter o_ErrMsg, Nullable<int> acc_Id, string passwordHash, string firstName, string lastName, string email, Nullable<bool> isEmailConfirmed, Nullable<int> country, Nullable<byte> roles, string city, string address, string mobile, Nullable<byte> gender, string postalCode, Nullable<int> language, Nullable<bool> isValidated, string imageSourceId)
+        {
+            var acc_IdParameter = acc_Id.HasValue ?
+                new ObjectParameter("Acc_Id", acc_Id) :
+                new ObjectParameter("Acc_Id", typeof(int));
+    
+            var passwordHashParameter = passwordHash != null ?
+                new ObjectParameter("PasswordHash", passwordHash) :
+                new ObjectParameter("PasswordHash", typeof(string));
+    
+            var firstNameParameter = firstName != null ?
+                new ObjectParameter("FirstName", firstName) :
+                new ObjectParameter("FirstName", typeof(string));
+    
+            var lastNameParameter = lastName != null ?
+                new ObjectParameter("LastName", lastName) :
+                new ObjectParameter("LastName", typeof(string));
+    
+            var emailParameter = email != null ?
+                new ObjectParameter("Email", email) :
+                new ObjectParameter("Email", typeof(string));
+    
+            var isEmailConfirmedParameter = isEmailConfirmed.HasValue ?
+                new ObjectParameter("IsEmailConfirmed", isEmailConfirmed) :
+                new ObjectParameter("IsEmailConfirmed", typeof(bool));
+    
+            var countryParameter = country.HasValue ?
+                new ObjectParameter("Country", country) :
+                new ObjectParameter("Country", typeof(int));
+    
+            var rolesParameter = roles.HasValue ?
+                new ObjectParameter("Roles", roles) :
+                new ObjectParameter("Roles", typeof(byte));
+    
+            var cityParameter = city != null ?
+                new ObjectParameter("City", city) :
+                new ObjectParameter("City", typeof(string));
+    
+            var addressParameter = address != null ?
+                new ObjectParameter("Address", address) :
+                new ObjectParameter("Address", typeof(string));
+    
+            var mobileParameter = mobile != null ?
+                new ObjectParameter("Mobile", mobile) :
+                new ObjectParameter("Mobile", typeof(string));
+    
+            var genderParameter = gender.HasValue ?
+                new ObjectParameter("Gender", gender) :
+                new ObjectParameter("Gender", typeof(byte));
+    
+            var postalCodeParameter = postalCode != null ?
+                new ObjectParameter("PostalCode", postalCode) :
+                new ObjectParameter("PostalCode", typeof(string));
+    
+            var languageParameter = language.HasValue ?
+                new ObjectParameter("Language", language) :
+                new ObjectParameter("Language", typeof(int));
+    
+            var isValidatedParameter = isValidated.HasValue ?
+                new ObjectParameter("IsValidated", isValidated) :
+                new ObjectParameter("IsValidated", typeof(bool));
+    
+            var imageSourceIdParameter = imageSourceId != null ?
+                new ObjectParameter("ImageSourceId", imageSourceId) :
+                new ObjectParameter("ImageSourceId", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AccountUpdate", o_ErrCode, o_ErrMsg, acc_IdParameter, passwordHashParameter, firstNameParameter, lastNameParameter, emailParameter, isEmailConfirmedParameter, countryParameter, rolesParameter, cityParameter, addressParameter, mobileParameter, genderParameter, postalCodeParameter, languageParameter, isValidatedParameter, imageSourceIdParameter);
+        }
+    
+        public virtual ObjectResult<PropertyListingGetByCity_Result> PropertyListingGetByCity(ObjectParameter o_ErrCode, ObjectParameter o_ErrMsg, string city)
+        {
+            var cityParameter = city != null ?
+                new ObjectParameter("City", city) :
+                new ObjectParameter("City", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PropertyListingGetByCity_Result>("PropertyListingGetByCity", o_ErrCode, o_ErrMsg, cityParameter);
+        }
+    
+        public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var versionParameter = version.HasValue ?
+                new ObjectParameter("version", version) :
+                new ObjectParameter("version", typeof(int));
+    
+            var definitionParameter = definition != null ?
+                new ObjectParameter("definition", definition) :
+                new ObjectParameter("definition", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_alterdiagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
+        }
+    
+        public virtual int sp_creatediagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var versionParameter = version.HasValue ?
+                new ObjectParameter("version", version) :
+                new ObjectParameter("version", typeof(int));
+    
+            var definitionParameter = definition != null ?
+                new ObjectParameter("definition", definition) :
+                new ObjectParameter("definition", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_creatediagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
+        }
+    
+        public virtual int sp_dropdiagram(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_dropdiagram", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual int sp_HandleSPErrors(ObjectParameter iO_ErrCode, ObjectParameter iO_ErrMsg)
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_HandleSPErrors", iO_ErrCode, iO_ErrMsg);
+        }
+    
+        public virtual ObjectResult<sp_helpdiagramdefinition_Result> sp_helpdiagramdefinition(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagramdefinition_Result>("sp_helpdiagramdefinition", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual ObjectResult<sp_helpdiagrams_Result> sp_helpdiagrams(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagrams_Result>("sp_helpdiagrams", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual int sp_renamediagram(string diagramname, Nullable<int> owner_id, string new_diagramname)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var new_diagramnameParameter = new_diagramname != null ?
+                new ObjectParameter("new_diagramname", new_diagramname) :
+                new ObjectParameter("new_diagramname", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_renamediagram", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
+        }
+    
+        public virtual int sp_upgraddiagrams()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
     }
 }

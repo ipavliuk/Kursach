@@ -24,12 +24,13 @@ namespace TestDataHelper
                     Zip = item.Zip,
                     RoomType = (byte)rand.Next(1, 3),
                     //State = item.Region,//Change to string
-                    PricePerNight = rand.Next(75, 200),
-                    PricePerWeek = rand.Next(750, 1400),
+                    PricePerNight = rand.Next(75, 200) * 100,
+                    PricePerWeek = rand.Next(750, 1400) * 100,
                     HomeType = (byte)rand.Next(1, 4),
                     BedRoom = (byte)rand.Next(1, 4),
-                    Bathroom = (int)rand.Next(0, 2),
-                    //Account = accounts[(int)rand.Next(0, accounts.Count - 1)]
+                    Bathroom = (int)rand.Next(1, 2),
+					Accommodates = (byte)(rand.Next(1, 4) * 2),
+					//Account = accounts[(int)rand.Next(0, accounts.Count - 1)]
                     FK_Account = accounts[(int)rand.Next(0, accounts.Count - 1)].id,
                     FK__Country = 187,//USA
                     GreatTitle = "This is the Great title",

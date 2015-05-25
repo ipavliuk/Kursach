@@ -2,6 +2,8 @@ use [RentApartments]
 Go
 
 create procedure dbo.AccountCreate
+	@O_ErrCode INT OUTPUT,
+	@O_ErrMsg NVARCHAR(4000) OUTPUT,
 	@AccountId nvarchar(255), 
 	@PasswordHash nvarchar(255), 
 	@FirstName nvarchar(255), 
@@ -16,10 +18,27 @@ create procedure dbo.AccountCreate
 	@Language int = NULL, 
 	@ImageSourceId nvarchar(255) = NULL
 as
-begin	
-	INSERT INTO Account(AccountId, PasswordHash, FirstName, LastName, Email, IsEmailConfirmed, FK__Country, FK__Roles, City, Address, Mobile, Gender, PostalCode, Language, IsValidated, ImageSourceId) 
-	VALUES (@AccountId, @PasswordHash, @FirstName, @LastName, @Email, 0, @Country, 1, @City, @Address, @Mobile, @Gender, @PostalCode, @Language, 0, @ImageSourceId);
-	SELECT SCOPE_IDENTITY()
+begin
+	begin try
+		
+		-- Initialization
+		SELECT	 @O_ErrCode	= 0
+				,@O_ErrMsg	= ''
+
+		----------------------------------- Parameters Validation -------------------------------------------
+				
+		INSERT INTO Account(AccountId, PasswordHash, FirstName, LastName, Email, IsEmailConfirmed, FK__Country, FK__Roles, City, Address, Mobile, Gender, PostalCode, IsValidated, PictureUrl) 
+		VALUES (@AccountId, @PasswordHash, @FirstName, @LastName, @Email, 0, @Country, 1, @City, @Address, @Mobile, @Gender, @PostalCode, 0, @ImageSourceId);
+		SELECT SCOPE_IDENTITY()
+	end try
+	BEGIN CATCH
+	
+		--Handle the error 
+		EXEC [dbo].[sp_HandleSPErrors]
+			 @IO_ErrCode = @O_ErrCode	OUTPUT
+			,@IO_ErrMsg  = @O_ErrMsg	OUTPUT   
+	
+	END CATCH
 end
 
 
@@ -48,6 +67,8 @@ GO
 
 ----------------------------------------------------------------
 create procedure dbo.AccountUpdate
+	@O_ErrCode						INT					OUTPUT,
+	@O_ErrMsg						NVARCHAR(4000)		OUTPUT,
 	@Acc_Id int,
 	@PasswordHash nvarchar(255) = null, 
 	@FirstName nvarchar(255) = NULL, 
@@ -66,24 +87,61 @@ create procedure dbo.AccountUpdate
 	@ImageSourceId nvarchar(255) = NULL
 as
 begin	
-	--SET NOCOUNT ON;
-	update Account
-	set PasswordHash = ISNULL(@PasswordHash,PasswordHash), 
-		FirstName = ISNULL(@FirstName,FirstName), 
-		LastName = ISNULL(@LastName,LastName), 
-		Email = ISNULL(@Email, Email), 
-		IsEmailConfirmed = ISNULL(@IsEmailConfirmed, IsEmailConfirmed), 
-		FK__Country = ISNULL(@Country,FK__Country), 
-		FK__Roles = ISNULL(@Roles,FK__Roles), 
-		City = ISNULL(@City, City), 
-		Address = ISNULL(@Address, Address), 
-		Mobile = ISNULL(@Mobile, Mobile), 
-		Gender = ISNULL(@Gender, Gender), 
-		PostalCode = ISNULL(@PostalCode, PostalCode), 
-		Language = ISNULL(@Language, Language), 
-		IsValidated = ISNULL(@IsValidated, IsValidated),
-		ImageSourceId = ISNULL(@ImageSourceId, ImageSourceId)
-	where Id = @Acc_Id
+	SET NOCOUNT ON;
+	begin try
+		
+		-- Initialization
+		SELECT	 @O_ErrCode	= 0
+				,@O_ErrMsg	= ''
+
+		----------------------------------- Parameters Validation -------------------------------------------
+		
+		IF @Acc_Id IS NULL 
+		BEGIN 
+			SET @O_ErrCode = -1
+			SET @O_ErrMsg = '@Acc_Id cannot be NULL'		 
+			RAISERROR(@O_ErrMsg, 16, 1)
+		END
+        IF @Country IS NULL 
+		BEGIN 
+			SET @O_ErrCode = -2
+			SET @O_ErrMsg = '@Country cannot be NULL'		 
+			RAISERROR(@O_ErrMsg, 16, 1)
+		END
+		IF @Roles IS NULL 
+		BEGIN 
+			SET @O_ErrCode = -3
+			SET @O_ErrMsg = '@Roles cannot be NULL'		 
+			RAISERROR(@O_ErrMsg, 16, 1)
+		END
+
+		update Account
+		set PasswordHash = ISNULL(@PasswordHash,PasswordHash), 
+			FirstName = ISNULL(@FirstName,FirstName), 
+			LastName = ISNULL(@LastName,LastName), 
+			Email = ISNULL(@Email, Email), 
+			IsEmailConfirmed = ISNULL(@IsEmailConfirmed, IsEmailConfirmed), 
+			FK__Country = ISNULL(@Country,FK__Country), 
+			FK__Roles = ISNULL(@Roles,FK__Roles), 
+			City = ISNULL(@City, City), 
+			Address = ISNULL(@Address, Address), 
+			Mobile = ISNULL(@Mobile, Mobile), 
+			Gender = ISNULL(@Gender, Gender), 
+			PostalCode = ISNULL(@PostalCode, PostalCode), 
+			--Language = ISNULL(@Language, Language), 
+			IsValidated = ISNULL(@IsValidated, IsValidated),
+			PictureUrl = ISNULL(@ImageSourceId, PictureUrl)
+		where Id = @Acc_Id
+	end try
+	BEGIN CATCH
+	
+		--Handle the error 
+		EXEC [dbo].[sp_HandleSPErrors]
+			 @IO_ErrCode = @O_ErrCode	OUTPUT
+			,@IO_ErrMsg  = @O_ErrMsg	OUTPUT   
+	
+	END CATCH
+
 end
 ---Exec
 --DECLARE	@return_value int
@@ -128,9 +186,8 @@ begin
 		  ,[Mobile]
 		  ,[Gender]
 		  ,[PostalCode]
-		  ,[Language]
 		  ,[IsValidated]
-		  ,[ImageSourceId]
+		  ,[PictureUrl]
 	  FROM [RentApartments].[dbo].[Account]
 	  where PasswordHash = @PwdHash
 end
@@ -161,9 +218,8 @@ begin
 		  ,[Mobile]
 		  ,[Gender]
 		  ,[PostalCode]
-		  ,[Language]
 		  ,[IsValidated]
-		  ,[ImageSourceId]
+		  ,PictureUrl
 	  FROM [RentApartments].[dbo].[Account]
 	  where Email = @Email
 end
@@ -195,9 +251,8 @@ begin
 		  ,[Mobile]
 		  ,[Gender]
 		  ,[PostalCode]
-		  ,[Language]
 		  ,[IsValidated]
-		  ,[ImageSourceId]
+		  ,PictureUrl
 	  FROM [RentApartments].[dbo].[Account]
 	  where id = @Acc_Id
 end
@@ -226,9 +281,8 @@ begin
 		  ,[Mobile]
 		  ,[Gender]
 		  ,[PostalCode]
-		  ,[Language]
 		  ,[IsValidated]
-		  ,[ImageSourceId]
+		  ,PictureUrl
 	  FROM [RentApartments].[dbo].[Account]
 end
 --Exec
@@ -241,40 +295,63 @@ GO
 ----------------------------------------------------------------
 ------Delete
 CREATE PROCEDURE dbo.AccountDelete
-@Acc_Id int
+	@O_ErrCode						INT					OUTPUT,
+	@O_ErrMsg						NVARCHAR(4000)		OUTPUT,
+	@Acc_Id int
 AS
 begin
-	BEGIN TRANSACTION
-		DELETE FROM Account
-		WHERE id = @Acc_Id
+	begin try
+		-- Initialization
+		SELECT	 @O_ErrCode	= 0
+				,@O_ErrMsg	= ''
 
-		 -- Rollback the transaction if there were any errors
-		IF @@ERROR <> 0
-		 BEGIN
-			-- Rollback the transaction
-			ROLLBACK
+		----------------------------------- Parameters Validation -------------------------------------------
+		
+		IF @Acc_Id IS NULL 
+		BEGIN 
+			SET @O_ErrCode = -1
+			SET @O_ErrMsg = '@Acc_Id cannot be NULL'		 
+			RAISERROR(@O_ErrMsg, 16, 1)
+		END
+		BEGIN TRANSACTION
+			DELETE FROM Account
+			WHERE id = @Acc_Id
 
-			-- Raise an error and return
-			RAISERROR ('Error in deleting Account in Accounts.', 16, 1)
-			RETURN
-		 END
+			 -- Rollback the transaction if there were any errors
+			IF @@ERROR <> 0
+			 BEGIN
+				-- Rollback the transaction
+				ROLLBACK
 
-		 --Delete all reservation
-		DELETE FROM Reservations
-		WHERE FK_Account = @Acc_Id
+				-- Raise an error and return
+				RAISERROR ('Error in deleting Account in Accounts.', 16, 1)
+				RETURN
+			 END
 
-		-- Rollback the transaction if there were any errors
-		IF @@ERROR <> 0
-		 BEGIN
-			-- Rollback the transaction
-			ROLLBACK
+			 --Delete all reservation
+			DELETE FROM Reservations
+			WHERE FK_Account = @Acc_Id
 
-			-- Raise an error and return
-			RAISERROR ('Error in deleting reservations in Reservations.', 16, 1)
-			RETURN
-		 END
-	--         Commit the transaction....
-	COMMIT
+			-- Rollback the transaction if there were any errors
+			IF @@ERROR <> 0
+			 BEGIN
+				-- Rollback the transaction
+				ROLLBACK
+
+				-- Raise an error and return
+				RAISERROR ('Error in deleting reservations in Reservations.', 16, 1)
+				RETURN
+			 END
+		--         Commit the transaction....
+		COMMIT
+	end try
+	begin catch
+		--Handle the error 
+		EXEC [dbo].[sp_HandleSPErrors]
+			 @IO_ErrCode = @O_ErrCode	OUTPUT
+			,@IO_ErrMsg  = @O_ErrMsg	OUTPUT   
+	
+	end catch
 end
 go
 

@@ -25,16 +25,18 @@
         <AssociationConnector Association="RentApartmentsModel.FKGuestRevie649365" ManuallyRouted="false" />
         <AssociationConnector Association="RentApartmentsModel.FKReservatio405665" ManuallyRouted="false" />
         <AssociationConnector Association="RentApartmentsModel.PropertyListing__Amenities" ManuallyRouted="true" >
-          <ConnectorPoint PointX="6.625" PointY="4.8026432291666667" />
-          <ConnectorPoint PointX="7.16125" PointY="4.8026432291666667" />
+          <ConnectorPoint PointX="7.375" PointY="5.2302864583333335" />
+          <ConnectorPoint PointX="7.16125" PointY="27.847426890733509" />
           <ConnectorPoint PointX="7.16125" PointY="4.4588932291666667" />
           <ConnectorPoint PointX="7.71375" PointY="4.4588932291666667" />
-          <ConnectorPoint PointX="7.71375" PointY="4.8026432291666667" />
-          <ConnectorPoint PointX="7.916666666666667" PointY="4.8026432291666659" />
-          <ConnectorPoint PointX="8.0833333333333339" PointY="4.8026432291666667" />
-          <ConnectorPoint PointX="8.25" PointY="4.8026432291666667" />
+          <ConnectorPoint PointX="7.71375" PointY="25.623456129964197" />
+          <ConnectorPoint PointX="7.79773564497678" PointY="23.26832822071944" />
+          <ConnectorPoint PointX="7.8036753290232355" PointY="23.101767427219869" />
+          <ConnectorPoint PointX="8.25" PointY="10.58591796875" />
         </AssociationConnector>
         <AssociationConnector Association="RentApartmentsModel.FKPropertyLi101343" />
+        <EntityTypeShape EntityType="RentApartmentsModel.DB_Errors_Log" Width="1.5" PointX="10.75" PointY="0.75" />
+        <EntityTypeShape EntityType="RentApartmentsModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
