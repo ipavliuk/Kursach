@@ -22,21 +22,36 @@ namespace RentAppartment.Client.Views
 			this.SignInOutText = LOG_IN;
             this.LoginText = LOG_IN_Text;
             this.CurrentView = new WelcomePageView();
-			AccessManager.Instance.Load();
-       }
+			AccessManager.Instance.LoadConfig();
+			this.AvatarImage = "../Images/_user.png";
+		}
 
+	    public void SetControls()
+	    {
 
+	    }
 
-        private string loginText;
-        public string LoginText
+	    
+        private string avatarImage;
+		public string AvatarImage
         {
-            get { return loginText; }
+			get { return avatarImage; }
             private set
             {
-                loginText = value;
-                OnPropertyChanged("LoginText");
+				avatarImage = value;
+				OnPropertyChanged("AvatarImage");
             }
         }
+		private string loginText;
+		public string LoginText
+		{
+			get { return loginText; }
+			private set
+			{
+				loginText = value;
+				OnPropertyChanged("LoginText");
+			}
+		}
 
 		private bool isLogedIn;
 		public bool IsLogedIn
@@ -227,18 +242,13 @@ namespace RentAppartment.Client.Views
                  this.CurrentView = new WelcomePageViewModel();
 				 return;
 			 }
-			 
-
 			var view = new LoginView();
 			var vm = new LoginViewModel(view);
-
 			view.DataContext = vm;
 			if (vm.CloseAction == null)
 				 vm.CloseAction = new Action(() => view.Close());
 
 			bool? res = view.ShowDialog();
-
-			
 
 			if (AuthenticateUserManager.Instance.IsLogedIn)
 			{
@@ -246,13 +256,14 @@ namespace RentAppartment.Client.Views
                 this.IsAdmin = AuthenticateUserManager.Instance.IsAdmin();
                 this.IsLogedIn = true;
                 this.LoginText = string.Format(Welcome_Text, AuthenticateUserManager.Instance.GetUserNickName());
-				
+				this.AvatarImage = AuthenticateUserManager.Instance.Account.PictureUrl;
 			}
 			else
 			{
                 this.IsLogedIn = false;
                 this.IsAdmin = false;
                 this.LoginText = LOG_IN_Text;
+				this.AvatarImage = "../Images/_user.png";
 			}
 		}
 

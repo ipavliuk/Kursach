@@ -39,6 +39,7 @@ namespace RentApartment.Core.Model.EF
         public bool IsValidated { get; set; }
         public string PictureUrl { get; set; }
         public string Login { get; set; }
+        public Nullable<System.DateTime> Birthday { get; set; }
     
         public virtual C_Country C_Country { get; set; }
         public virtual C_Roles C_Roles { get; set; }

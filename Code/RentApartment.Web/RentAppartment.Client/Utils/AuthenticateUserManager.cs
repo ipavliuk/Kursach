@@ -62,7 +62,7 @@ namespace RentAppartment.Client.Utils
         public bool IsAdmin()
         {
             return true;
-            if (Account != null && Account.Roles == "Admin")
+            if (Account != null && Account.Roles == 1)
             {
                 return true;
             }

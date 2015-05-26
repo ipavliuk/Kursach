@@ -27,7 +27,9 @@ namespace RentApartment.Core.Infrastructure
 			{
 				using (var _db = new RentApartmentsContext())
 				{
-					account = _db.Account.FirstOrDefault(a => a.Login == login && a.PasswordHash == hash);
+					account = _db.Account
+								.Include(a => a.C_Roles)
+								.FirstOrDefault(a => a.Login == login && a.PasswordHash == hash);
 				}
 				
 
@@ -65,7 +67,8 @@ namespace RentApartment.Core.Infrastructure
             {
 	            using (var _db = new RentApartmentsContext())
 	            {
-					var acc = _db.Account.Where(a => accountId != null && a.id == accountId || accountId == null)
+					var acc = _db.Account.Include(a => a.C_Roles)
+										.Where(a => accountId != null && a.id == accountId || accountId == null)
 										.Where(a => a.FirstName == name || string.IsNullOrEmpty(name))
 										.Where(a => a.City == city || string.IsNullOrEmpty(city)).ToList();
 					return acc;
@@ -141,10 +144,19 @@ namespace RentApartment.Core.Infrastructure
 	            using (var _db = new RentApartmentsContext())
 	            {
 					var loc = _db.PropertyListing.Include(p => p.Account)
-							.Include(p => p.C_Amenities).Include(p => p.Reservations)
-							.Where(prop => prop.City == city)
+							.Include(p => p.Account.C_Roles)
+							.Include(p => p.C_Amenities)
+							.Include(p => p.Reservations)
+							.Include(p => p.GuestReviews)
+							.Include(p => p.Reservations)
+							.Include(p => p.C_Currency)
+							.Where(prop => prop.City == city || string.IsNullOrEmpty(city))
 							.Where(p => homeType != null && p.HomeType == homeType || homeType == null)
 							.Where(p => roomNumbers != null && p.BedRoom == roomNumbers || roomNumbers == null).ToList();
+
+										//.Where(a => accountId != null && a.id == accountId || accountId == null)
+										//.Where(a => a.FirstName == name || string.IsNullOrEmpty(name))
+										//.Where(a => a.City == city || string.IsNullOrEmpty(city)).ToList();
 					return loc;
 	            }
                

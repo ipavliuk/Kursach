@@ -19,9 +19,19 @@ namespace RentApartment.Service
 	{
 		public RApmentAdministration()
 		{
-			Mapper.CreateMap<PropertyListing, PropertyDto>();
+			Mapper.CreateMap<PropertyListing, PropertyDto>()
+				.ForMember(dest => dest.HomeTypeName,
+								opts => opts.MapFrom(src => Enum.GetName(typeof(HomeType), src.HomeType)))
+					.ForMember(dest => dest.RoomTypeName,
+								opts => opts.MapFrom(src => Enum.GetName(typeof(RoomType), src.HomeType)));
+
 			Mapper.CreateMap<Reservations, ReservationDto>();
-            Mapper.CreateMap<Account, AccountDto>();
+            Mapper.CreateMap<Account, AccountDto>()
+					.ForMember(dest => dest.GenderName,
+								opts => opts.MapFrom(src => Enum.GetName(typeof(GenderType), src.Gender.Value)))
+					.ForMember(dest => dest.RolesName,
+								opts => opts.MapFrom(src => src.C_Roles.RoleName));
+
             Mapper.CreateMap<C_Amenities, AmenityDto>();
             Mapper.CreateMap<PropertyDto, PropertyListing>();
             Mapper.CreateMap<AmenityDto, C_Amenities>();
@@ -387,6 +397,7 @@ namespace RentApartment.Service
 
                 response.Accounts = Mapper.Map<List<Account>, List<AccountDto>>(accounts.ToList());
 
+
             }
             catch (Exception ex)
             {
@@ -422,6 +433,7 @@ namespace RentApartment.Service
                     IsEmailConfirmed = false,
 					Login = dto.Login,
 					PasswordHash = dto.PasswordHash,
+					Birthday = dto.Birthday,
                    // C_Country = dto.Country,
                    //C_Roles = dto.Roles,
                     City = dto.City,
@@ -431,8 +443,8 @@ namespace RentApartment.Service
                     PostalCode = dto.PostalCode,
                     //Language = dto.Language
                     PictureUrl = dto.PictureUrl,
-                    FK__Roles = 1,
-                    FK__Country = 1
+                    FK__Roles = dto.Roles,
+                    FK__Country = 185
                     
 
                 };
@@ -476,8 +488,10 @@ namespace RentApartment.Service
                     IsEmailConfirmed = false,
 					Login = dto.Login,
 					PasswordHash = dto.PasswordHash,
+					Birthday = dto.Birthday,
                     // C_Country = dto.Country,
                     // C_Roles = dto.Roles,
+					FK__Roles = dto.Roles,
                     City = dto.City,
                     Address = dto.Address,
                     Mobile = dto.Mobile,

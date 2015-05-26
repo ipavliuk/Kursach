@@ -61,6 +61,7 @@
           <Property Name="IsValidated" Type="bit" Nullable="false" />
           <Property Name="PictureUrl" Type="nvarchar" MaxLength="255" />
           <Property Name="Login" Type="nvarchar" MaxLength="255" />
+          <Property Name="Birthday" Type="datetime" />
         </EntityType>
         <EntityType Name="DB_Errors_Log">
           <Key>
@@ -639,6 +640,7 @@
           <NavigationProperty Name="Reservations" Relationship="Self.FKReservatio820773" FromRole="Account" ToRole="Reservations" />
           <Property Name="PictureUrl" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Login" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Birthday" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="GuestReviews">
           <Key>
@@ -933,7 +935,7 @@
             <Parameter Name="Country" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="PropertyListingDelete">
-          <Parameter Name="O_ErrCode" Mode="InOut" Type="Int32" />
+            <Parameter Name="O_ErrCode" Mode="InOut" Type="Int32" />
             <Parameter Name="O_ErrMsg" Mode="InOut" Type="String" />
             <Parameter Name="PropertyId" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -1337,6 +1339,7 @@
           <EntitySetMapping Name="Account">
             <EntityTypeMapping TypeName="RentApartmentsModel.Account">
               <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
                 <ScalarProperty Name="Login" ColumnName="Login" />
                 <ScalarProperty Name="PictureUrl" ColumnName="PictureUrl" />
                 <ScalarProperty Name="id" ColumnName="id" />

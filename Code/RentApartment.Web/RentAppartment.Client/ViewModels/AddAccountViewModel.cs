@@ -41,6 +41,12 @@ namespace RentAppartment.Client.ViewModels
                 Id = item.Key,
                 Value = item.Value
             }).ToList());
+
+			this.RoleTypes = new ObservableCollection<DictItem>(repo.GetUserRoles().Select(item => new DictItem()
+			{
+				Id = item.Key,
+				Value = item.Value
+			}).ToList());
         }
         private bool isUpdate = false;
 
@@ -78,6 +84,39 @@ namespace RentAppartment.Client.ViewModels
             }
         }
 
+		private ObservableCollection<DictItem> roleTypes;
+        public ObservableCollection<DictItem> RoleTypes
+        {
+            get
+            {
+                return this.roleTypes;
+            }
+            set
+            {
+                if (this.roleTypes != value)
+                {
+                    this.roleTypes = value;
+                    OnPropertyChanged("RoleTypes");
+                }
+            }
+        }
+		private DictItem roleTypeSelectedItem;
+		public DictItem RoleTypeSelectedItem
+		{
+			get
+			{
+				return this.roleTypeSelectedItem;
+			}
+			set
+			{
+				if (this.roleTypeSelectedItem != value)
+				{
+					this.roleTypeSelectedItem = value;
+					OnPropertyChanged("RoleTypeSelectedItem");
+				}
+			}
+		}
+
         private AccountDto account;
         public AccountDto Account
         {
@@ -113,6 +152,23 @@ namespace RentAppartment.Client.ViewModels
         }
 
 
+		private DateTime selectedBirthDate;
+		public DateTime SelectedBirthDate
+        {
+            get
+            {
+				return this.selectedBirthDate;
+            }
+            set
+            {
+				if (this.selectedBirthDate != value)
+                {
+					this.selectedBirthDate = value;
+					OnPropertyChanged("SelectedBirthDate");
+                }
+            }
+        }
+
         private ICommand saveCommand;
         public ICommand SaveCommand
         {
@@ -134,8 +190,10 @@ namespace RentAppartment.Client.ViewModels
                 if (acc != null)
                 {
                     acc.Gender = (byte?)GenderTypeSelectedItem.Id;
+	                acc.Roles = (byte) RoleTypeSelectedItem.Id;
                     acc.PictureUrl = SelectedImagePath.Value;
                     acc.AccountId = Guid.NewGuid().ToString("d");
+					acc.Birthday = this.selectedBirthDate;
 	                string pwd = _pwdSupplier.GetPassword();
 	                if (pwd == null)
 	                {

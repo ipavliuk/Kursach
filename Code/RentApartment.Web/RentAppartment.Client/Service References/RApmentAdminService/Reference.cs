@@ -345,6 +345,9 @@ namespace RentAppartment.Client.RApmentAdminService {
         private string AddressField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> BirthdayField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string CityField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -358,6 +361,9 @@ namespace RentAppartment.Client.RApmentAdminService {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<byte> GenderField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string GenderNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool IsEmailConfirmedField;
@@ -387,7 +393,10 @@ namespace RentAppartment.Client.RApmentAdminService {
         private string PostalCodeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string RolesField;
+        private byte RolesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string RolesNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int idField;
@@ -424,6 +433,19 @@ namespace RentAppartment.Client.RApmentAdminService {
                 if ((object.ReferenceEquals(this.AddressField, value) != true)) {
                     this.AddressField = value;
                     this.RaisePropertyChanged("Address");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> Birthday {
+            get {
+                return this.BirthdayField;
+            }
+            set {
+                if ((this.BirthdayField.Equals(value) != true)) {
+                    this.BirthdayField = value;
+                    this.RaisePropertyChanged("Birthday");
                 }
             }
         }
@@ -489,6 +511,19 @@ namespace RentAppartment.Client.RApmentAdminService {
                 if ((this.GenderField.Equals(value) != true)) {
                     this.GenderField = value;
                     this.RaisePropertyChanged("Gender");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string GenderName {
+            get {
+                return this.GenderNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.GenderNameField, value) != true)) {
+                    this.GenderNameField = value;
+                    this.RaisePropertyChanged("GenderName");
                 }
             }
         }
@@ -611,14 +646,27 @@ namespace RentAppartment.Client.RApmentAdminService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Roles {
+        public byte Roles {
             get {
                 return this.RolesField;
             }
             set {
-                if ((object.ReferenceEquals(this.RolesField, value) != true)) {
+                if ((this.RolesField.Equals(value) != true)) {
                     this.RolesField = value;
                     this.RaisePropertyChanged("Roles");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string RolesName {
+            get {
+                return this.RolesNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RolesNameField, value) != true)) {
+                    this.RolesNameField = value;
+                    this.RaisePropertyChanged("RolesName");
                 }
             }
         }
@@ -699,6 +747,9 @@ namespace RentAppartment.Client.RApmentAdminService {
         private byte HomeTypeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string HomeTypeNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string PhotosField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -715,6 +766,9 @@ namespace RentAppartment.Client.RApmentAdminService {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private byte RoomTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string RoomTypeNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private byte StateField;
@@ -918,6 +972,19 @@ namespace RentAppartment.Client.RApmentAdminService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string HomeTypeName {
+            get {
+                return this.HomeTypeNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.HomeTypeNameField, value) != true)) {
+                    this.HomeTypeNameField = value;
+                    this.RaisePropertyChanged("HomeTypeName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string Photos {
             get {
                 return this.PhotosField;
@@ -991,6 +1058,19 @@ namespace RentAppartment.Client.RApmentAdminService {
                 if ((this.RoomTypeField.Equals(value) != true)) {
                     this.RoomTypeField = value;
                     this.RaisePropertyChanged("RoomType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string RoomTypeName {
+            get {
+                return this.RoomTypeNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RoomTypeNameField, value) != true)) {
+                    this.RoomTypeNameField = value;
+                    this.RaisePropertyChanged("RoomTypeName");
                 }
             }
         }

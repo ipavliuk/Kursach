@@ -21,6 +21,7 @@ namespace RentAppartment.Client.Views
 	{
 		public AddApartmentView()
 		{
+			this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
 			InitializeComponent();
 		}
 	}

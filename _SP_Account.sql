@@ -1,6 +1,7 @@
 use [RentApartments]
 Go
-
+alter table Account
+add Birthday datetime
 create procedure dbo.AccountCreate
 	@O_ErrCode INT OUTPUT,
 	@O_ErrMsg NVARCHAR(4000) OUTPUT,

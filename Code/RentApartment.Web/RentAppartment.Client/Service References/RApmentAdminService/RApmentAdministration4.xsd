@@ -23,12 +23,14 @@
       <xs:element minOccurs="0" name="GreatSummary" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="GreatTitle" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="HomeType" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="HomeTypeName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Photos" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="PricePerMonth" nillable="true" type="xs:long" />
       <xs:element minOccurs="0" name="PricePerNight" nillable="true" type="xs:long" />
       <xs:element minOccurs="0" name="PricePerWeek" nillable="true" type="xs:long" />
       <xs:element minOccurs="0" name="PropertyId" type="xs:int" />
       <xs:element minOccurs="0" name="RoomType" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="RoomTypeName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="State" type="xs:unsignedByte" />
       <xs:element minOccurs="0" name="State2" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Zip" nillable="true" type="xs:string" />

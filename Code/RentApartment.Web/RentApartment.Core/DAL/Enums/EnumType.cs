@@ -23,8 +23,10 @@ namespace RentApartment.Core.DAL.Enums
 
     public enum UserRole
     {
-        Owner = 1,
-        Client
+		Admin = 1,
+        Client,
+		Root
+
     }
 
     public enum ReservationStatus

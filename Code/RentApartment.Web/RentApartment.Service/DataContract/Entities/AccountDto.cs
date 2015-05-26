@@ -30,7 +30,10 @@ namespace RentApartment.Service.DataContract.Response
 		public string Country { get; set; }
 
 		[DataMember]
-		public string Roles { get; set; }
+		public byte Roles { get; set; }
+
+		[DataMember]
+		public string RolesName { get; set; }
 
 		[DataMember]
 		public string City { get; set; }
@@ -45,10 +48,16 @@ namespace RentApartment.Service.DataContract.Response
 		public Nullable<byte> Gender { get; set; }
 
 		[DataMember]
+		public string GenderName { get; set; }
+
+		[DataMember]
 		public string PostalCode { get; set; }
 
 		[DataMember]
 		public Nullable<int> Language { get; set; }
+
+		[DataMember]
+		public Nullable<DateTime> Birthday { get; set; }
 
 		[DataMember]
 		public bool IsValidated { get; set; }

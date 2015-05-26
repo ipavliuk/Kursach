@@ -26,7 +26,7 @@ namespace RentAppartment.Client.Utils
 
 		private AccessConfig config = new AccessConfig();
 
-		public void Load()
+		public void LoadConfig()
 		{
 			try
 			{

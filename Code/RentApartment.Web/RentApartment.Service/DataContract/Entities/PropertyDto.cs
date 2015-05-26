@@ -49,7 +49,13 @@ namespace RentApartment.Service.DataContract.Entities
 		[DataMember]
 		public byte HomeType { get; set; }
 		[DataMember]
+		public string HomeTypeName { get; set; }
+
+		[DataMember]
 		public byte RoomType { get; set; }
+		[DataMember]
+		public string RoomTypeName { get; set; }
+
 		[DataMember]
 		public byte Accommodates { get; set; }
 		[DataMember]

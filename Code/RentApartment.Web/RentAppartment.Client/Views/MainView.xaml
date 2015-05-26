@@ -51,7 +51,7 @@
             </Menu>
             <StackPanel DockPanel.Dock="Right" HorizontalAlignment="Right" Orientation="Horizontal">
                 <TextBlock Text="{Binding LoginText}" Margin="5 0" VerticalAlignment="Center" />
-                <Image Source="../Images/_user.png" Width="30" Height="30" VerticalAlignment="Center"/>
+                <Image Source="{Binding AvatarImage}" Width="30" Height="30" VerticalAlignment="Center"/>
                 <Button Command="{Binding SignInOutCommand}" Width="100" HorizontalAlignment="Right" DockPanel.Dock="Right">
                     <StackPanel Orientation="Horizontal">
                         <Image Width="24" Height="24" VerticalAlignment="Center">
@@ -74,6 +74,7 @@
             </StackPanel>
             
         </DockPanel>
+        <Border Grid.Column="0" Grid.Row="1" Style="{StaticResource MainBorderStyle}" MaxWidth="170">
         <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical" MaxWidth="150">
             <HeaderedContentControl
               ContentTemplate="{StaticResource CommandsTemplate}"
@@ -161,7 +162,13 @@
                 </StackPanel>
             </Button>
         </StackPanel>
-        <ContentControl Grid.Row="1" Grid.Column="2"
-         Content="{Binding Path=CurrentView}" />
+         </Border>
+        <Border Grid.Column="2"  Grid.Row="1" Style="{StaticResource MainBorderStyle}">
+            <StackPanel Orientation="Vertical">
+                <HeaderedContentControl Header="Workspaces" Style="{StaticResource MainHCCStyle}" />
+                <ContentControl Content="{Binding Path=CurrentView}" />
+            </StackPanel>
+            
+        </Border>
     </Grid>
 </Window>

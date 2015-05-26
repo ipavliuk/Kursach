@@ -14,19 +14,22 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Vertical">
-            <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
-                <StackPanel Orientation="Horizontal" Margin="5" Width="225">
+            <StackPanel Orientation="Horizontal" Margin="5">
                     <TextBlock Text="Ім'я: " FontSize="12" VerticalAlignment="Center"/>
-                    <TextBox Text="{Binding Account.FirstName, UpdateSourceTrigger=PropertyChanged}" Margin="113 0" FontSize="12" Width="80" Height="22" 
+                    <TextBox Text="{Binding Account.FirstName, UpdateSourceTrigger=PropertyChanged}" Margin="113 0" FontSize="12" Width="315" Height="22" 
                          HorizontalAlignment="Center"  
                          VerticalAlignment="Center"/>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="5" Width="230">
-                    <TextBlock Text="Прізвище: " Margin="5 0" FontSize="12" VerticalAlignment="Center"/>
-                    <TextBox Text="{Binding Account.LastName}" Margin="19 0" FontSize="12" Width="130" Height="22" 
+            <StackPanel Orientation="Horizontal" Margin="5" >
+                <TextBlock Text="Прізвище: " FontSize="12" VerticalAlignment="Center"/>
+                <TextBox Text="{Binding Account.LastName}" Margin="80 0" FontSize="12" Width="315" Height="22" 
                          HorizontalAlignment="Center"  
                          VerticalAlignment="Center"/>
-                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5" >
+                <TextBlock Text="Дата народження: " FontSize="12" VerticalAlignment="Center"/>
+                <DatePicker Grid.Row="2" Grid.Column="1"  HorizontalAlignment="Center" VerticalAlignment="Center"
+                        DisplayDate="{Binding SelectedBirthDate}" Margin="200 0" Width="150" Height="22"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="5">
                 <TextBlock Text="Email: " FontSize="12" VerticalAlignment="Center"/>
@@ -58,17 +61,29 @@
                          HorizontalAlignment="Center"  
                          VerticalAlignment="Center"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="5">
-                <TextBlock Text="Стать: " FontSize="12" VerticalAlignment="Center"/>
+            <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal" Margin="5" Width="225">
+                    <TextBlock Text="Стать: " FontSize="12" VerticalAlignment="Center"/>
 
-                <ComboBox Grid.Row="1" Grid.Column="3"  Margin="105 0" FontSize="12" Width="85" Height="22"
-                              ItemsSource="{Binding GenderTypes}"
+                    <ComboBox Grid.Row="1" Grid.Column="3"  Margin="105 0" FontSize="12" Width="85" Height="22"
+                                  ItemsSource="{Binding GenderTypes}"
+                                  DisplayMemberPath="Value"
+                                  SelectedValuePath="Key"
+                                  IsSynchronizedWithCurrentItem="True"
+                                  SelectedItem ="{Binding GenderTypeSelectedItem}" VerticalAlignment="Bottom"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="5" Width="225">
+                    <TextBlock Text="Роль: " FontSize="12" VerticalAlignment="Center" Margin = "10 0"/>
+
+                    <ComboBox Grid.Row="1" Grid.Column="3"  Margin="45 0" FontSize="12" Width="120" Height="22"
+                              ItemsSource="{Binding RoleTypes}"
                               DisplayMemberPath="Value"
                               SelectedValuePath="Key"
                               IsSynchronizedWithCurrentItem="True"
-                              SelectedItem ="{Binding GenderTypeSelectedItem}" VerticalAlignment="Bottom"/>
+                              SelectedItem ="{Binding RoleTypeSelectedItem}" VerticalAlignment="Bottom"/>
+                </StackPanel>
             </StackPanel>
-        </StackPanel>
+            </StackPanel>
         
         <StackPanel Grid.Row="1" Grid.Column="0"  Grid.ColumnSpan="2" Orientation="Vertical">
             <StackPanel Orientation="Horizontal" Margin="5">
