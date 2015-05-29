@@ -25,7 +25,14 @@ namespace RentApartment.Service
 					.ForMember(dest => dest.RoomTypeName,
 								opts => opts.MapFrom(src => Enum.GetName(typeof(RoomType), src.HomeType)));
 
-			Mapper.CreateMap<Reservations, ReservationDto>();
+			Mapper.CreateMap<Reservations, ReservationDto>()
+				.ForMember(dest => dest.StayingDays,
+								opts => opts.MapFrom(src => (src.ReservationEnd - src.ReservationStart).TotalDays))
+					.ForMember(dest => dest.TotalPrice,
+							opts => opts.MapFrom(src => (src.PropertyListing.PricePerNight ) * (src.ReservationEnd - src.ReservationStart).TotalDays));
+								//opts => opts.MapFrom(src => (src.PropertyListing.PricePerNight / 100) * (src.ReservationEnd - src.ReservationStart).TotalDays));
+
+
             Mapper.CreateMap<Account, AccountDto>()
 					.ForMember(dest => dest.GenderName,
 								opts => opts.MapFrom(src => Enum.GetName(typeof(GenderType), src.Gender.Value)))
@@ -236,7 +243,6 @@ namespace RentApartment.Service
         public BaseResponse MakeApartmentReservation(int accountId, int propertyId, DateTime startDate, DateTime endDate, string note)
         {
             var response = new BaseResponse();
-
 
             if (propertyId == 0)
             {
@@ -535,7 +541,28 @@ namespace RentApartment.Service
             return response;
         }
 
-        public AmenitiesResponse GetAmenities()
+
+		public BaseResponse AddPropertyReview(int propertyId, int accountId, int score, string reviewNotes)
+		{
+			var response = new BaseResponse();
+
+			try
+			{
+				response.ErrorId = (int)RApmentErrors.Ok;
+				bool result =
+					RentApartmentManager.Instance.AddPropertyReview(propertyId, accountId, score, reviewNotes);
+
+			}
+			catch (Exception ex)
+			{
+				response.ErrorId = (int)RApmentErrors.OperationError;
+				response.ErrorDesc = ex.Message;
+			}
+
+			return response;
+		}
+
+		public AmenitiesResponse GetAmenities()
         {
             var response = new AmenitiesResponse();
 

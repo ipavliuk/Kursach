@@ -262,4 +262,21 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="AddPropertyReview">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="propertyId" type="xs:int" />
+        <xs:element minOccurs="0" name="accountId" type="xs:int" />
+        <xs:element minOccurs="0" name="score" type="xs:int" />
+        <xs:element minOccurs="0" name="reviewNotes" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddPropertyReviewResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Response" minOccurs="0" name="AddPropertyReviewResult" nillable="true" type="q28:BaseResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

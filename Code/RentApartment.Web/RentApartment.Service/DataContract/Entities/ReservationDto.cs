@@ -34,6 +34,17 @@ namespace RentApartment.Service.DataContract.Response
 		public int Currency { get; set; }
 
 		[DataMember]
-		public PropertyDto PropertyItem { get; set; }
+		public PropertyDto PropertyListing { get; set; }
+
+		[DataMember]
+		public int StayingDays { get; set; }
+
+		[DataMember]
+		public decimal TotalPrice { get; set; }
+
+		[DataMember]
+		public string ReservationStatusName { get; set; }
+
+
 	}
 }

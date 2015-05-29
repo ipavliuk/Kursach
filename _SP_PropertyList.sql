@@ -251,7 +251,7 @@ GO
 --GO
 ----------------------------------------------------------------
 
-alter procedure dbo.PropertyListingGetByCity
+create procedure dbo.PropertyListingGetByCity
 	@O_ErrCode						INT					OUTPUT,
 	@O_ErrMsg						NVARCHAR(4000)		OUTPUT,
 	@City varchar(20)

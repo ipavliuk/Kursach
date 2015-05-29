@@ -32,6 +32,7 @@
   <xs:element name="PaginationRequest" nillable="true" type="tns:PaginationRequest" />
   <xs:complexType name="GetReservationsRequest">
     <xs:sequence>
+      <xs:element minOccurs="0" name="AccountId" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="City" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ReservationEnd" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="ReservationStart" nillable="true" type="xs:dateTime" />

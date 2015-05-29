@@ -99,7 +99,7 @@
     <Compile Include="DataContract\Response\GetDictionaryDataResponse.cs" />
     <Compile Include="DataContract\Response\GetPropertyListingResponse.cs" />
     <Compile Include="DataContract\Response\GetReservationsResponse.cs" />
-    <Compile Include="DataContract\Entities\Reservation.cs" />
+    <Compile Include="DataContract\Entities\ReservationDto.cs" />
     <Compile Include="DataContract\Response\RolesResponse.cs" />
     <Compile Include="Dictionaries.svc.cs">
       <DependentUpon>Dictionaries.svc</DependentUpon>

@@ -168,7 +168,8 @@ end
 --select * from account
 GO
 ----------------------------------------------------------------
-create procedure dbo.AccountGetbyPassword
+create procedure dbo.AccountAuthenticate
+@Login nvarchar(255),
 @PwdHash nvarchar(255)
 as
 begin
@@ -190,7 +191,7 @@ begin
 		  ,[IsValidated]
 		  ,[PictureUrl]
 	  FROM [RentApartments].[dbo].[Account]
-	  where PasswordHash = @PwdHash
+	  where PasswordHash = @PwdHash and Login = @Login
 end
 --EXEC
 --DECLARE	@return_value int

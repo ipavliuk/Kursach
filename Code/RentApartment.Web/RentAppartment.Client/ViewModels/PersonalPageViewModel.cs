@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using RentAppartment.Client.RApmentAdminService;
 using RentAppartment.Client.Utils;
 using RentAppartment.Client.Views;
@@ -47,9 +48,26 @@ namespace RentAppartment.Client.ViewModels
 				}
 			}
 		}
+		private ReservationDto selectedReservation;
 
-		private List<PropertyDto> bookedProperyListing;
-		public List<PropertyDto> Reservations
+		public ReservationDto SelectedReservation
+		{
+			get
+			{
+				return this.selectedReservation;
+			}
+			set
+			{
+				if (this.selectedReservation != value)
+				{
+					this.selectedReservation = value;
+					OnPropertyChanged("SelectedReservation");
+				}
+			}
+		}
+
+		private List<ReservationDto> bookedProperyListing;
+		public List<ReservationDto> Reservations
 		{
 			get
 			{
@@ -81,6 +99,48 @@ namespace RentAppartment.Client.ViewModels
 				}
 			}
 		}
+
+
+		private ICommand addReview;
+        public ICommand AddReview
+        {
+            get
+            {
+                if (this.addReview == null)
+                {
+                    this.addReview = new RelayCommand(o => this.AddReviewAction());
+                }
+                return this.addReview;
+            }
+        }
+
+		private void AddReviewAction()
+		{
+			try
+			{
+				if (SelectedReservation == null)
+				{
+					return;
+				}
+
+				var view = new GuestRatingView();
+				var vm = new GuestRatingViewModel(SelectedReservation.PropertyListing.PropertyId);
+				view.DataContext = vm;
+
+				if (vm.CloseAction == null)
+					vm.CloseAction = new Action(() => view.Close());
+
+				view.Show();
+			}
+			catch (Exception)
+			{
+				
+				throw;
+			}
+			
+
+		}
+
 
 	}
 }

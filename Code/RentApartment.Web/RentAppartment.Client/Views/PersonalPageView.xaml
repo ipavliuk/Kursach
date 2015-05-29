@@ -119,17 +119,28 @@
                             <StackPanel Orientation="Vertical">
                             </StackPanel>
                             <DataGrid Name="dgAccounts" Margin="10" SelectionMode="Single" 
-                              ItemsSource="{Binding Reservations}"  
-                               AutoGenerateColumns="False">
-                                        <DataGrid.Columns>
+                              ItemsSource="{Binding Reservations}" SelectedItem="{Binding SelectedReservation}"
+                               AutoGenerateColumns="False" IsReadOnly="True">
+                                
+                                <DataGrid.Columns>
                                    
                                     <DataGridTextColumn Header="Id" Binding="{Binding ReservationId}"/>
                                     <DataGridTextColumn Header="Status" Binding="{Binding ReservationStatus}"/>
                                     <DataGridTextColumn Header="Check-In date" Binding="{Binding ReservationStart}"/>
-                                    <DataGridTextColumn Header="Staying days" Binding="{Binding ReservationDates}"/>
-                                    <DataGridTextColumn Header="Price per Night" Binding="{Binding PropertyItem.PricePerNight}"/>
-                                    <DataGridTextColumn Header="Total amount" Binding="{Binding TotalAmount}"/>
+                                    <DataGridTextColumn Header="Staying days" Binding="{Binding StayingDays}"/>
+                                    <DataGridTextColumn Header="Price per Night" Binding="{Binding PropertyListing.PricePerNight}"/>
+                                    <DataGridTextColumn Header="Total price" Binding="{Binding TotalPrice}"/>
+                                    <DataGridTemplateColumn Header="">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Content ="Add Review" Command="{Binding DataContext.AddReview, RelativeSource={RelativeSource AncestorType={x:Type UserControl}, Mode=FindAncestor}}" 
+                                         ToolTip="Add Review">
+                                            </Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
                                 </DataGrid.Columns>
+                                
                                 <DataGrid.RowDetailsTemplate>
                                     <DataTemplate>
                                         <Border BorderThickness="0" Padding="10">
@@ -158,61 +169,60 @@
                 </TabItem.Header>
                 <Grid>
                     <GroupBox Header="Пропозиції користувача" Margin="10,10,10,10">
-                        <StackPanel Grid.Row="1" HorizontalAlignment="Stretch" Margin="25 0 0 0" Orientation="Vertical">
+                        <StackPanel Grid.Row="1" HorizontalAlignment="Stretch" Margin="5 0 0 0" Orientation="Vertical">
                             <TextBlock Text="Appartments" FontSize="18" Foreground="#FF0F232F"/>
 
                           <DataGrid Name="dgAppartments"
                                   HorizontalAlignment="Left"
-                                  Width="550" Margin="15,10,10,10" SelectionMode="Single" 
-                                  ItemsSource="{Binding ProperyListing}" SelectedItem="{Binding SelectedProperty}" 
+                                  Width="550" Margin="10,10,10,10" SelectionMode="Single" 
+                                  ItemsSource="{Binding ProperyListing}"
                                   AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True" 
-                                  ScrollViewer.VerticalScrollBarVisibility="Auto" CanUserAddRows="False">
+                                  ScrollViewer.VerticalScrollBarVisibility="Auto" CanUserAddRows="False" IsReadOnly="True">
                                    <DataGrid.Columns>
-                                    <DataGridTemplateColumn Header="Info">
+                                    <!--<DataGridTemplateColumn Header="Info">
                                         <DataGridTemplateColumn.CellTemplate>
                                             <DataTemplate>
                                                 <Button Style="{DynamicResource InfoButtonStyle}" Command="{Binding DataContext.SelectCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}, Mode=FindAncestor}}" />
                                             </DataTemplate>
                                         </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
+                                    </DataGridTemplateColumn>-->
 
                                     <DataGridTextColumn Header="Prop. Id" Binding="{Binding PropertyId}"/>
                                     <DataGridTextColumn Header="Price Per Night" Binding="{Binding PricePerNight}"/>
                                     <DataGridTextColumn Header="BedRoom" Binding="{Binding BedRoom}"/>
                                     <DataGridTextColumn Header="Accomodates" Binding="{Binding Accommodates}"/>
 
-                                    <DataGridTextColumn Header="HomeType" Binding="{Binding HomeType}"/>
+                                    <DataGridTextColumn Header="HomeType" Binding="{Binding HomeTypeName}"/>
                                     <DataGridTextColumn Header="City" Binding="{Binding City}"/>
-                                    <DataGridTemplateColumn Header="">
+                                    <!--<DataGridTemplateColumn Header="">
                                         <DataGridTemplateColumn.CellTemplate>
                                             <DataTemplate>
-                                                <Button  Style="{DynamicResource EditButtonStyle}"  Command="{Binding DataContext.EditCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}, Mode=FindAncestor}}" 
+                                                <Button Command="{Binding DataContext.EditCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}, Mode=FindAncestor}}" 
                                          ToolTip="Edit record">
                                                 </Button>
 
                                             </DataTemplate>
                                         </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
-                                    <DataGridTemplateColumn Header="">
+                                    </DataGridTemplateColumn>-->
+                                    <!--<DataGridTemplateColumn Header="">
                                         <DataGridTemplateColumn.CellTemplate>
                                             <DataTemplate>
-                                                <Button Style="{DynamicResource DeleteButtonStyle}" Command="{Binding DataContext.DeletePropertyCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}, Mode=FindAncestor}}" 
+                                                <Button Command="{Binding DataContext.DeletePropertyCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}, Mode=FindAncestor}}" 
                                         ToolTip="Delete item">
                                                  
                                                 </Button>
                                             </DataTemplate>
                                         </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
-                                    <DataGridTemplateColumn Header="">
+                                    </DataGridTemplateColumn>-->
+                                    <!--<DataGridTemplateColumn Header="">
                                         <DataGridTemplateColumn.CellTemplate>
                                             <DataTemplate>
-                                                <Button Style="{DynamicResource ScheduleButtonStyle}" Command="{Binding DataContext.ScheduleApartmentCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}, Mode=FindAncestor}}" 
+                                                <Button Command="{Binding DataContext.ScheduleApartmentCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}, Mode=FindAncestor}}" 
                                         ToolTip="Schedule">
-                                                  
                                                 </Button>
                                             </DataTemplate>
                                         </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
+                                    </DataGridTemplateColumn>-->
                                 </DataGrid.Columns>
                                 <DataGrid.RowDetailsTemplate>
                                     <DataTemplate>

@@ -124,6 +124,12 @@
   <wsdl:message name="IRApmentAdministration_GetPropertyByAccount_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetPropertyByAccountResponse" />
   </wsdl:message>
+  <wsdl:message name="IRApmentAdministration_AddPropertyReview_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddPropertyReview" />
+  </wsdl:message>
+  <wsdl:message name="IRApmentAdministration_AddPropertyReview_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddPropertyReviewResponse" />
+  </wsdl:message>
   <wsdl:portType name="IRApmentAdministration">
     <wsdl:operation name="Authenticate">
       <wsdl:input wsaw:Action="http://tempuri.org/IRApmentAdministration/Authenticate" message="tns:IRApmentAdministration_Authenticate_InputMessage" />
@@ -200,6 +206,10 @@
     <wsdl:operation name="GetPropertyByAccount">
       <wsdl:input wsaw:Action="http://tempuri.org/IRApmentAdministration/GetPropertyByAccount" message="tns:IRApmentAdministration_GetPropertyByAccount_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IRApmentAdministration/GetPropertyByAccountResponse" message="tns:IRApmentAdministration_GetPropertyByAccount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddPropertyReview">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRApmentAdministration/AddPropertyReview" message="tns:IRApmentAdministration_AddPropertyReview_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRApmentAdministration/AddPropertyReviewResponse" message="tns:IRApmentAdministration_AddPropertyReview_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IRApmentAdministration" type="tns:IRApmentAdministration">
@@ -368,6 +378,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetPropertyByAccount">
       <soap:operation soapAction="http://tempuri.org/IRApmentAdministration/GetPropertyByAccount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddPropertyReview">
+      <soap:operation soapAction="http://tempuri.org/IRApmentAdministration/AddPropertyReview" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

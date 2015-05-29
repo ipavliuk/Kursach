@@ -87,7 +87,14 @@ namespace RentApartment.Core.Infrastructure
 			{
 				using (var _db = new RentApartmentsContext())
 				{
-					return _db.PropertyListing.Where(prop => prop.FK_Account == accountId).ToList();
+					return _db.PropertyListing
+							.Include(p => p.Account.C_Roles)
+							.Include(p => p.C_Amenities)
+							.Include(p => p.Reservations)
+							.Include(p => p.GuestReviews)
+							.Include(p => p.Reservations)
+							.Include(p => p.C_Currency)
+							.Where(prop => prop.FK_Account == accountId).ToList();
 				}
 				
 			}
@@ -107,7 +114,14 @@ namespace RentApartment.Core.Infrastructure
 				{
 					var reservations = _db.Reservations.Where(res => res.FK_Account == accountId).Select(res => res.FK_PropertyListing);
 					
-					return _db.PropertyListing.Where(prop => reservations.All(r => r == prop.PropertyId)).ToList();
+					return _db.PropertyListing
+								.Include(p => p.Account.C_Roles)
+								.Include(p => p.C_Amenities)
+								.Include(p => p.Reservations)
+								.Include(p => p.GuestReviews)
+								.Include(p => p.Reservations)
+								.Include(p => p.C_Currency)
+								.Where(prop => reservations.All(r => r == prop.PropertyId)).ToList();
 				}
 
 			}
@@ -125,7 +139,14 @@ namespace RentApartment.Core.Infrastructure
             {
 	            using (var _db = new RentApartmentsContext())
 	            {
-					return _db.PropertyListing.Where(prop => prop.PropertyId == propertyId).ToList();
+					return _db.PropertyListing
+									.Include(p => p.Account.C_Roles)
+									.Include(p => p.C_Amenities)
+									.Include(p => p.Reservations)
+									.Include(p => p.GuestReviews)
+									.Include(p => p.Reservations)
+									.Include(p => p.C_Currency)
+									.Where(prop => prop.PropertyId == propertyId).ToList();
 	            }
                 
             }
@@ -174,7 +195,14 @@ namespace RentApartment.Core.Infrastructure
 			{
 				using (var _db = new RentApartmentsContext())
 				{
-					return _db.PropertyListing.Where(prop => prop.FK__Country == country && prop.City == city).ToList();
+					return _db.PropertyListing
+							.Include(p => p.Account.C_Roles)
+							.Include(p => p.C_Amenities)
+							.Include(p => p.Reservations)
+							.Include(p => p.GuestReviews)
+							.Include(p => p.Reservations)
+							.Include(p => p.C_Currency)
+						.Where(prop => prop.FK__Country == country && prop.City == city).ToList();
 				}
 				
 			}
@@ -192,7 +220,14 @@ namespace RentApartment.Core.Infrastructure
             {
 	            using (var _db = new RentApartmentsContext())
 	            {
-					return _db.PropertyListing.Where(prop => prop.City == city).ToList();
+					return _db.PropertyListing
+							.Include(p => p.Account.C_Roles)
+							.Include(p => p.C_Amenities)
+							.Include(p => p.Reservations)
+							.Include(p => p.GuestReviews)
+							.Include(p => p.Reservations)
+							.Include(p => p.C_Currency)
+							.Where(prop => prop.City == city).ToList();
 	            }
                 
             }
@@ -220,9 +255,19 @@ namespace RentApartment.Core.Infrastructure
                     //            && res.ReservationEnd <= endDate && (status != null && res.ReservationStatus == status)
                     //            && res.PropertyListing.City == city).ToList();
                     var l = _db.Reservations
-                        .Include(r => r.PropertyListing)
-                        .Include(r=>r.Account)
-                        .Where(res => res.PropertyListing.City == city).ToList();
+							.Include(r => r.PropertyListing)
+							.Include(r=>r.Account)
+							.Include(r => r.Account.C_Roles)
+							.Include(r => r.Account.C_Country)
+							.Include(r => r.Account.PropertyListing)
+							.Include(r => r.PropertyListing.C_Amenities)
+							.Include(r => r.PropertyListing.Reservations)
+							.Include(r => r.PropertyListing.GuestReviews)
+							.Include(r => r.PropertyListing.Reservations)
+							.Include(r => r.PropertyListing.C_Currency)
+							.Include(r => r.PropertyListing.Account)
+							.Include(r => r.C_Currency)
+							.Where(res => res.PropertyListing.City == city).ToList();
                     return l;
 				}
                 
@@ -240,7 +285,22 @@ namespace RentApartment.Core.Infrastructure
 			{
 				using (var _db = new RentApartmentsContext())
 				{
-					return _db.Reservations.Where(res => res.FK_Account == accountId).ToList();
+					return _db.Reservations
+									.Include(r => r.PropertyListing)
+									.Include(r => r.Account)
+									.Include(r => r.C_Currency)
+									.Include(r => r.PropertyListing.C_Amenities)
+									.Include(r => r.PropertyListing.Reservations)
+									.Include(r => r.PropertyListing.GuestReviews)
+									.Include(r => r.PropertyListing.Reservations)
+									.Include(r => r.PropertyListing.C_Currency)
+									.Include(r => r.PropertyListing.Account)
+									.Include(r => r.Account.C_Roles)
+									.Include(r => r.Account.C_Country)
+									.Include(r => r.Account.PropertyListing)
+									
+									
+									.Where(res => res.FK_Account == accountId).ToList();
 				}
 			
 			}
@@ -514,6 +574,34 @@ namespace RentApartment.Core.Infrastructure
             return result;
         }
 
-		
+
+
+		internal bool AddPropertyReview(int propertyId, int accountId, int score, string reviewNotes)
+		{
+			bool result = true;
+			try
+			{
+				using (var _db = new RentApartmentsContext())
+				{
+					var account = _db.GuestReviews.Add(new GuestReviews()
+					{
+						FK_Account = accountId,
+						FK_PropertyListing = propertyId,
+						RatingScore = score,
+						Review = reviewNotes
+					});
+
+					int id = _db.SaveChanges();
+					result = id == 0 ? false : true;
+				}
+			}
+			catch (Exception)
+			{
+
+				throw;
+			}
+
+			return result;
+		}
 	}
 }

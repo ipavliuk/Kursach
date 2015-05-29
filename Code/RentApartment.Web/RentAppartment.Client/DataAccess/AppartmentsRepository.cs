@@ -117,18 +117,24 @@ namespace RentAppartment.Client.DataAccess
 		}
 
 
-		internal List<PropertyDto> GetUserBookedProperties(int accountId)
+		internal List<ReservationDto> GetUserBookedProperties(int accountId)
 		{
-			List<PropertyDto> properties = new List<PropertyDto>();
+			var reservations = new List<ReservationDto>();
 			try
 			{
 
-				GetPropertyListingResponse response = _service.GetBookedPropertyByAccount(accountId);
+				//GetPropertyListingResponse response = _service.GetBookedPropertyByAccount(accountId);
+				var request = new GetReservationsRequest()
+				{
+					AccountId = accountId
+				};
+
+				GetReservationsResponse response = _service.GetReservations(request);
 				if (response != null)
 				{
 					if (response.ErrorId == 0)
 					{
-						properties = response.PropertListing.ToList();
+						reservations = response.Reservation.ToList();
 					}
 					else
 					{
@@ -144,7 +150,8 @@ namespace RentAppartment.Client.DataAccess
 				throw;
 			}
 
-			return properties;
+			return reservations;
+			;
 		}
 
         public bool UpdateProperty(PropertyDto apartment)
@@ -433,6 +440,32 @@ namespace RentAppartment.Client.DataAccess
 			return reservations;
 		}
 
+		internal bool AddReview(int propertyId, int accountId, int score, string reviewNotes)
+		{
+			try
+			{
+				BaseResponse response = _service.AddPropertyReview(propertyId, accountId, score, reviewNotes);
+				if (response != null)
+				{
+					if (response.ErrorId != 0)
+					{
+						return false;
+					}
+					else
+					{
+						//Add to Log message
+					}
+
+				}
+
+			}
+			catch (Exception)
+			{
+
+				throw;
+			}
+			return true;
+		}
 	
 		///
         ///
@@ -573,6 +606,7 @@ namespace RentAppartment.Client.DataAccess
         #endregion
 
 
-		
+
+
 	}
 }

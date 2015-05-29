@@ -1235,7 +1235,7 @@ namespace RentAppartment.Client.RApmentAdminService {
         private int CurrencyField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private RentAppartment.Client.RApmentAdminService.PropertyDto PropertyItemField;
+        private RentAppartment.Client.RApmentAdminService.PropertyDto PropertyListingField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int PropertyListingIdField;
@@ -1254,6 +1254,15 @@ namespace RentAppartment.Client.RApmentAdminService {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int ReservationStatusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ReservationStatusNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int StayingDaysField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal TotalPriceField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -1292,14 +1301,14 @@ namespace RentAppartment.Client.RApmentAdminService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public RentAppartment.Client.RApmentAdminService.PropertyDto PropertyItem {
+        public RentAppartment.Client.RApmentAdminService.PropertyDto PropertyListing {
             get {
-                return this.PropertyItemField;
+                return this.PropertyListingField;
             }
             set {
-                if ((object.ReferenceEquals(this.PropertyItemField, value) != true)) {
-                    this.PropertyItemField = value;
-                    this.RaisePropertyChanged("PropertyItem");
+                if ((object.ReferenceEquals(this.PropertyListingField, value) != true)) {
+                    this.PropertyListingField = value;
+                    this.RaisePropertyChanged("PropertyListing");
                 }
             }
         }
@@ -1378,6 +1387,45 @@ namespace RentAppartment.Client.RApmentAdminService {
                 if ((this.ReservationStatusField.Equals(value) != true)) {
                     this.ReservationStatusField = value;
                     this.RaisePropertyChanged("ReservationStatus");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ReservationStatusName {
+            get {
+                return this.ReservationStatusNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ReservationStatusNameField, value) != true)) {
+                    this.ReservationStatusNameField = value;
+                    this.RaisePropertyChanged("ReservationStatusName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int StayingDays {
+            get {
+                return this.StayingDaysField;
+            }
+            set {
+                if ((this.StayingDaysField.Equals(value) != true)) {
+                    this.StayingDaysField = value;
+                    this.RaisePropertyChanged("StayingDays");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal TotalPrice {
+            get {
+                return this.TotalPriceField;
+            }
+            set {
+                if ((this.TotalPriceField.Equals(value) != true)) {
+                    this.TotalPriceField = value;
+                    this.RaisePropertyChanged("TotalPrice");
                 }
             }
         }
@@ -1611,6 +1659,9 @@ namespace RentAppartment.Client.RApmentAdminService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> AccountIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string CityField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -1629,6 +1680,19 @@ namespace RentAppartment.Client.RApmentAdminService {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> AccountId {
+            get {
+                return this.AccountIdField;
+            }
+            set {
+                if ((this.AccountIdField.Equals(value) != true)) {
+                    this.AccountIdField = value;
+                    this.RaisePropertyChanged("AccountId");
+                }
             }
         }
         
@@ -1903,6 +1967,12 @@ namespace RentAppartment.Client.RApmentAdminService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRApmentAdministration/GetPropertyByAccount", ReplyAction="http://tempuri.org/IRApmentAdministration/GetPropertyByAccountResponse")]
         System.Threading.Tasks.Task<RentAppartment.Client.RApmentAdminService.GetPropertyListingResponse> GetPropertyByAccountAsync(int accountId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRApmentAdministration/AddPropertyReview", ReplyAction="http://tempuri.org/IRApmentAdministration/AddPropertyReviewResponse")]
+        RentAppartment.Client.RApmentAdminService.BaseResponse AddPropertyReview(int propertyId, int accountId, int score, string reviewNotes);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRApmentAdministration/AddPropertyReview", ReplyAction="http://tempuri.org/IRApmentAdministration/AddPropertyReviewResponse")]
+        System.Threading.Tasks.Task<RentAppartment.Client.RApmentAdminService.BaseResponse> AddPropertyReviewAsync(int propertyId, int accountId, int score, string reviewNotes);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2082,6 +2152,14 @@ namespace RentAppartment.Client.RApmentAdminService {
         
         public System.Threading.Tasks.Task<RentAppartment.Client.RApmentAdminService.GetPropertyListingResponse> GetPropertyByAccountAsync(int accountId) {
             return base.Channel.GetPropertyByAccountAsync(accountId);
+        }
+        
+        public RentAppartment.Client.RApmentAdminService.BaseResponse AddPropertyReview(int propertyId, int accountId, int score, string reviewNotes) {
+            return base.Channel.AddPropertyReview(propertyId, accountId, score, reviewNotes);
+        }
+        
+        public System.Threading.Tasks.Task<RentAppartment.Client.RApmentAdminService.BaseResponse> AddPropertyReviewAsync(int propertyId, int accountId, int score, string reviewNotes) {
+            return base.Channel.AddPropertyReviewAsync(propertyId, accountId, score, reviewNotes);
         }
     }
 }

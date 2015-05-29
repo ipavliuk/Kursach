@@ -66,5 +66,8 @@ namespace RentApartment.Service
 
 		[OperationContract]
 		GetPropertyListingResponse GetPropertyByAccount(int accountId);
+
+		[OperationContract]
+		BaseResponse AddPropertyReview(int propertyId, int accountId, int score, string reviewNotes);
 	}
 }

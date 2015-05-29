@@ -31,6 +31,10 @@
         <DataTemplate DataType="{x:Type viewModels1:WelcomePageViewModel}">
             <views:WelcomePageView />
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels1:GuestRatingViewModel}">
+            <views:GuestRatingView />
+        </DataTemplate>
+        
         <Style x:Key="ListBoxImages" TargetType="{x:Type ListBox}">
            <Setter Property="ItemTemplate">
                 <Setter.Value>

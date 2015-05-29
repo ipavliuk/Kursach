@@ -208,6 +208,13 @@ namespace RentApartment.Core.Infrastructure
             return service.RemoveProperty(propertyId); 
         }
 
-		
+
+
+		public bool AddPropertyReview(int propertyId, int accountId, int score, string reviewNotes)
+		{
+			var service = new PropertyListingService();
+
+			return service.AddPropertyReview(propertyId, accountId, score, reviewNotes); 
+		}
 	}
 }

@@ -9,7 +9,7 @@ namespace RentApartment.Service.DataContract.Request
 	[DataContract]
 	public class GetReservationsRequest
 	{
-		//[DataMember]
+		[DataMember]
 		public int? AccountId { get; set; }
 
 		//[DataMember]

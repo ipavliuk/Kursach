@@ -1,0 +1,53 @@
+﻿<Window x:Class="RentAppartment.Client.Views.GuestRatingView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:viewModels="clr-namespace:RentAppartment.Client.ViewModels"
+        xmlns:starRating="clr-namespace:RentAppartment.Client.Views"
+        Title="Відгук клієнта" Height="300" Width="300"  ResizeMode="NoResize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="2.5*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0">
+
+            <TextBlock Text="Оцініть якість житла"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="0"  Grid.ColumnSpan="2" Orientation="Horizontal">
+            <starRating:Rating Maximum="15" x:Name="rtFifteen" RatingChanged="rtFifteen_RatingChanged" StarOffColor="DarkOrange" StarOnColor="Red" VerticalAlignment="Center"/>
+            <!---->
+            <!--<TextBlock x:Name="txtScore" Tag="{Binding Score}" Text="{Binding ElementName=rtFifteen, Path=Value}" Margin="18,0,0,0" VerticalAlignment="Center"/>-->
+            <TextBlock x:Name="txtScore" Text="{Binding Path=Score, Mode=TwoWay}" Margin="18,0,0,0" VerticalAlignment="Center"/>
+        </StackPanel>
+        <!--Great description-->
+        <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+            <TextBlock Text="Відгук:" FontSize="16" Margin="5"/>
+            <TextBox Text="{Binding ReviewNotes}" FontSize="12" Margin="5"
+                 TextWrapping="Wrap"
+                 AcceptsReturn="True"
+                 Height="100"/>
+        </StackPanel>
+
+
+        <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" Orientation="Horizontal">
+            <Button Width="105" HorizontalAlignment="Right" FontSize="12" Margin="10" Command="{Binding SaveCommand}" >
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="../Images/_save-24.png" Width="24" Height="24" VerticalAlignment="Center"/>
+                    <TextBlock Text="Зберегти" VerticalAlignment="Center" Margin="5"/>
+                </StackPanel>
+            </Button>
+            <Button Width="100" HorizontalAlignment="Left" FontSize="12" Margin="10" Command="{Binding CancelCommand}" >
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="../Images/_Cancel.png" Width="24" Height="24" VerticalAlignment="Center"/>
+                    <TextBlock Text="Вийти" VerticalAlignment="Center" Margin="5"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>

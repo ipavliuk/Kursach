@@ -87,9 +87,9 @@
                     <DataGridTextColumn Header="Id" Binding="{Binding ReservationId}"/>
                     <DataGridTextColumn Header="Status" Binding="{Binding ReservationStatus}"/>
                     <DataGridTextColumn Header="Check-In date" Binding="{Binding ReservationStart}"/>
-                    <DataGridTextColumn Header="Staying days" Binding="{Binding ReservationDates}"/>
-                    <DataGridTextColumn Header="Price per Night" Binding="{Binding PropertyItem.PricePerNight}"/>
-                    <DataGridTextColumn Header="Total amount" Binding="{Binding TotalAmount}"/>
+                    <DataGridTextColumn Header="Staying days" Binding="{Binding StayingDays}"/>
+                    <DataGridTextColumn Header="Price per Night" Binding="{Binding PropertyListing.PricePerNight}"/>
+                    <DataGridTextColumn Header="Total price" Binding="{Binding TotalPrice}"/>
                 </DataGrid.Columns>
                 <DataGrid.RowDetailsTemplate>
                     <DataTemplate>

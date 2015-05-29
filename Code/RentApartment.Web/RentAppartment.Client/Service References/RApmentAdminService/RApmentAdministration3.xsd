@@ -76,13 +76,16 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="AccountId" type="xs:int" />
       <xs:element minOccurs="0" name="Currency" type="xs:int" />
-      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Entities" minOccurs="0" name="PropertyItem" nillable="true" type="q2:PropertyDto" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/RentApartment.Service.DataContract.Entities" minOccurs="0" name="PropertyListing" nillable="true" type="q2:PropertyDto" />
       <xs:element minOccurs="0" name="PropertyListingId" type="xs:int" />
       <xs:element minOccurs="0" name="ReservationEnd" type="xs:dateTime" />
       <xs:element minOccurs="0" name="ReservationId" type="xs:int" />
       <xs:element minOccurs="0" name="ReservationNote" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ReservationStart" type="xs:dateTime" />
       <xs:element minOccurs="0" name="ReservationStatus" type="xs:int" />
+      <xs:element minOccurs="0" name="ReservationStatusName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StayingDays" type="xs:int" />
+      <xs:element minOccurs="0" name="TotalPrice" type="xs:decimal" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ReservationDto" nillable="true" type="tns:ReservationDto" />
