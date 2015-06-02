@@ -7,6 +7,7 @@ using System.Windows.Input;
 using RentAppartment.Client.RApmentAdminService;
 using RentAppartment.Client.Utils;
 using RentAppartment.Client.Views;
+using System.Collections.ObjectModel;
 
 namespace RentAppartment.Client.ViewModels
 {
@@ -16,6 +17,11 @@ namespace RentAppartment.Client.ViewModels
 		{
 			account = acc;
 			InitUserData();
+            this.GenderTypeSelectedItem = new DictItem
+            {
+                Id = (int)acc.Gender,
+                Value = acc.GenderName
+            };
 		}
 
 		private void InitUserData()
@@ -25,13 +31,54 @@ namespace RentAppartment.Client.ViewModels
 				var repo = RepositoryFactory.Instance.GetApartmentRepository();
 				this.ProperyListing = repo.GetPropertyByAccount(account.id);
 				this.Reservations = repo.GetUserBookedProperties(account.id);
+
+         
+                this.GenderTypes = new ObservableCollection<DictItem>(repo.GetGenderTypes().Select(item => new DictItem()
+                {
+                    Id = item.Key,
+                    Value = item.Value
+                }).ToList());
+
+
 			}
 			catch (Exception ex)
 			{
 				
 			}
 		}
+        private ObservableCollection<DictItem> genderTypes;
+        public ObservableCollection<DictItem> GenderTypes
+        {
+            get
+            {
+                return this.genderTypes;
+            }
+            set
+            {
+                if (this.genderTypes != value)
+                {
+                    this.genderTypes = value;
+                    OnPropertyChanged("GenderTypes");
+                }
+            }
+        }
 
+        private DictItem genderTypeSelectedItem;
+        public DictItem GenderTypeSelectedItem
+        {
+            get
+            {
+                return this.genderTypeSelectedItem;
+            }
+            set
+            {
+                if (this.genderTypeSelectedItem != value)
+                {
+                    this.genderTypeSelectedItem = value;
+                    OnPropertyChanged("GenderTypeSelectedItem");
+                }
+            }
+        }
 		private List<PropertyDto> ownedProperyListing;
 		public List<PropertyDto> ProperyListing
 		{

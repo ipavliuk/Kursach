@@ -58,11 +58,63 @@
                     <ComboBox Grid.Row="1" Grid.Column="5"  Margin=" 11,4" Width="50" Height="22" ItemsSource="{Binding RoomNumbers}" 
                               SelectedItem="{Binding RoomNumberSelectedItem}"/>
 
-                    <TextBlock Text="Id Власника:" Grid.Row="2" Grid.Column="0"  FontSize="14" VerticalAlignment="Center" Margin="0,7,5,7" Height="21"/>
-                    <TextBox Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Height="22" Margin="11,4" Text="{Binding OwnerId}"/>
+                    <TextBlock Text="Id Власника:" Grid.Row="2" Grid.Column="0"  FontSize="14" VerticalAlignment="Center" Margin="0,7,5,7" Height="21">
+                     <TextBlock.Style>
+                      <Style TargetType="{x:Type TextBlock}" >
+                            <Style.Triggers>
+                               <DataTrigger Binding="{Binding IsIdTextOwnerAccessable}" Value="False">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                                    <DataTrigger Binding="{Binding IsIdTextOwnerAccessable}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                    <TextBox Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Height="22" Margin="11,4" Text="{Binding OwnerId}">
+                    <TextBox.Style>
+                      <Style TargetType="{x:Type TextBox}" >
+                            <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsIdTextOwnerAccessable}" Value="False">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                                    <DataTrigger Binding="{Binding IsIdTextOwnerAccessable}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBox.Style>
+                    </TextBox>
 
-                    <TextBlock Text="Id помешкання:" Grid.Row="2" Grid.Column="2"  FontSize="14" VerticalAlignment="Center" Margin="0,7,5,7" Height="21"/>
-                    <TextBox Grid.Row="2" Grid.Column="3" VerticalAlignment="Center" Height="22" Margin="11,4" Text="{Binding PropertyId}"/>
+                    <TextBlock Text="Id помешкання:" Grid.Row="2" Grid.Column="2"  FontSize="14" VerticalAlignment="Center" Margin="0,7,5,7" Height="21">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}" >
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsIdTextPropertyAccessable}" Value="False">
+                                        <Setter Property="Visibility" Value="Collapsed" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding IsIdTextPropertyAccessable}" Value="True">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                    <TextBox Grid.Row="2" Grid.Column="3" VerticalAlignment="Center" Height="22" Margin="11,4" Text="{Binding PropertyId}">
+                        <TextBox.Style>
+                            <Style TargetType="{x:Type TextBox}" >
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsIdTextPropertyAccessable}" Value="False">
+                                        <Setter Property="Visibility" Value="Collapsed" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding IsIdTextPropertyAccessable}" Value="True">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
 
 
                 </Grid>

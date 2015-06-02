@@ -60,9 +60,7 @@
                               SelectedValuePath="Key"
                               IsSynchronizedWithCurrentItem="True"
                               SelectedItem ="{Binding HomeTypeSelectedItem}" VerticalAlignment="Bottom"/>
-                    <!--<TextBox Text="{Binding Appartment.HomeType}" Margin="30 0" FontSize="12" Width="85" Height="20" 
-                         HorizontalAlignment="Center"  
-                         VerticalAlignment="Center"/>-->
+                   
                 </StackPanel>
             </StackPanel>
 
@@ -90,7 +88,7 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="5">
                         <TextBlock Text="Країна: " Margin="5 0" FontSize="12" VerticalAlignment="Center"/>
-                        <TextBox Text="{Binding Appartment.Country}" Margin="85 0" FontSize="12" Width="80" Height="22" 
+                        <TextBox Text="{Binding Appartment.FK__Country}" Margin="85 0" FontSize="12" Width="80" Height="22" 
                          HorizontalAlignment="Center"  
                          VerticalAlignment="Center"/>
                     </StackPanel>
@@ -102,6 +100,7 @@
         <ComboBox Grid.Row="3" Grid.Column="1"  Margin="10 0" Width="210" IsEnabled="{Binding CanOwnerEnable}"
                               ItemsSource="{Binding Owners}"
                               DisplayMemberPath="ShowedInfo"
+                            IsSynchronizedWithCurrentItem="True"
                               SelectedItem ="{Binding OwnerSelectedItem}" Height="20" VerticalAlignment="Center"/>
             <!--Amenities-->
         <TextBlock Text="Зручності" Grid.Row="4" Grid.Column="0" FontSize="16" Margin="5"/>

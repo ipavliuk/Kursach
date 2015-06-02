@@ -204,8 +204,15 @@ namespace RentAppartment.Client.ViewModels
 					acc.PasswordHash = CryptoHelper.CreateMD5Hash(pwd);
 
                     var repo = RepositoryFactory.Instance.GetApartmentRepository();
+                    if (isUpdate)
+                    {
+                        repo.UpdateAccount(acc);
+                    }
+                    else
+                    {
+                        repo.CreateAccount(acc);
+                    }
                     
-                    repo.CreateAccount(acc);
 
                     CloseAction();
                 }

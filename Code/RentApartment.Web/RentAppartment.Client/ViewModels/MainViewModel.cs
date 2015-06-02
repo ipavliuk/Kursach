@@ -15,7 +15,7 @@ namespace RentAppartment.Client.Views
 	    private const string LOG_IN = "Log In";
 		private const string LOG_OUT = "Log Out";
         private const string LOG_IN_Text = "Увійдіть у систему...";
-        private const string Welcome_Text = "Вітаємо користувача, {0}";
+        private const string Welcome_Text = "Вітаємо користувача, ";
 
 		public MainViewModel()
 		{
@@ -24,12 +24,11 @@ namespace RentAppartment.Client.Views
             this.CurrentView = new WelcomePageView();
 			AccessManager.Instance.LoadConfig();
 			this.AvatarImage = "../Images/_user.png";
+            this.IsScheduleViewAccessed = true;
+            this.IsAccountViewAccessed = true;
 		}
 
-	    public void SetControls()
-	    {
-
-	    }
+	    
 
 	    
         private string avatarImage;
@@ -53,6 +52,26 @@ namespace RentAppartment.Client.Views
 			}
 		}
 
+        private string loginName;
+        public string LoginName
+        {
+            get { return loginName; }
+            private set
+            {
+                loginName = value;
+                OnPropertyChanged("LoginName");
+            }
+        }
+        private string loginUserRole;
+        public string LoginUserRole
+        {
+            get { return loginUserRole; }
+            private set
+            {
+                loginUserRole = value;
+                OnPropertyChanged("LoginUserRole");
+            }
+        }
 		private bool isLogedIn;
 		public bool IsLogedIn
         {
@@ -96,6 +115,34 @@ namespace RentAppartment.Client.Views
                 OnPropertyChanged("CurrentView");
             }
         }
+        //Access view properties
+        private bool isScheduleViewAccessed;
+        public bool IsScheduleViewAccessed
+        {
+            get { return isScheduleViewAccessed; }
+            private set
+            {
+                isScheduleViewAccessed = value;
+                OnPropertyChanged("IsScheduleViewAccessed");
+            }
+        }
+
+        private bool isAccountViewAccessed;
+        public bool IsAccountViewAccessed
+        {
+            get { return isAccountViewAccessed; }
+            private set
+            {
+                isAccountViewAccessed = value;
+                OnPropertyChanged("IsAccountViewAccessed");
+            }
+        }
+
+        public void SetAccessforControls()
+        {
+ 
+        }
+
 
         private ICommand navigatePropertyListCommand;
         public ICommand NavigatePropertyListCommand
@@ -239,6 +286,11 @@ namespace RentAppartment.Client.Views
                  this.IsLogedIn = false;
                  this.IsAdmin = false;
                  this.LoginText = LOG_IN_Text;
+                 this.AvatarImage = string.Empty;
+                 this.IsAccountViewAccessed = true;
+                 this.IsScheduleViewAccessed = true;
+                 this.LoginName = "";
+                 this.LoginUserRole = "";
                  this.CurrentView = new WelcomePageViewModel();
 				 return;
 			 }
@@ -255,8 +307,15 @@ namespace RentAppartment.Client.Views
 				this.SignInOutText = LOG_OUT;
                 this.IsAdmin = AuthenticateUserManager.Instance.IsAdmin();
                 this.IsLogedIn = true;
-                this.LoginText = string.Format(Welcome_Text, AuthenticateUserManager.Instance.GetUserNickName());
-				this.AvatarImage = AuthenticateUserManager.Instance.Account.PictureUrl;
+                this.LoginText = Welcome_Text;
+                this.LoginName = AuthenticateUserManager.Instance.GetUserNickName();
+                this.LoginUserRole = AuthenticateUserManager.Instance.Account.RolesName;
+                this.AvatarImage = AuthenticateUserManager.Instance.Account.PictureUrl;
+                string role = AuthenticateUserManager.Instance.Account.RolesName;
+                this.IsAccountViewAccessed = AccessManager.Instance.GetViewAccess(role,
+                                    "AccountViews");
+                this.IsScheduleViewAccessed = AccessManager.Instance.GetViewAccess(role,
+                                    "Reservation");
 			}
 			else
 			{
@@ -264,10 +323,14 @@ namespace RentAppartment.Client.Views
                 this.IsAdmin = false;
                 this.LoginText = LOG_IN_Text;
 				this.AvatarImage = "../Images/_user.png";
+                this.IsAccountViewAccessed = true;
+                this.IsScheduleViewAccessed = true;
+                this.LoginName = "";
+                this.LoginUserRole = "";
 			}
 		}
 
-        private void SetInitialView()
+        private void SetControlAvailability(string role)
         {
            // this.CurrentView = 
         }

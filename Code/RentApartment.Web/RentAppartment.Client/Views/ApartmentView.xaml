@@ -4,8 +4,8 @@
         Title="ApartmentView" Height="449" Width="650" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -18,11 +18,47 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <!--<TextBlock Text="Заголовок" Grid.Row="0" Grid.Column="0" FontSize="16" Margin="5"/>-->
-        <TextBlock Text="{Binding SelectedAppartment.GreatTitle}" HorizontalAlignment ="Center" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" FontSize="12" VerticalAlignment="Center" Margin="0,7,5,7" Height="21"/>
         
+        <TextBlock Text="Заголовок" Grid.Row="0" Grid.Column="0" FontSize="16" Margin="5"/>
+        <TextBox Text="{Binding SelectedAppartment.GreatTitle}" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" FontSize="12"
+                 VerticalAlignment="Center" Margin="0,7,5,7" Height="22" Width="450" IsEnabled="False"/>
         <!--HomeType-->
         <TextBlock Text="Житло" Grid.Row="1" Grid.Column="0" FontSize="16" Margin="5"/>
-        
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical">
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <TextBlock Text="Кількість спалень: " FontSize="12" VerticalAlignment="Center"/>
+                <!--<ComboBox Grid.Row="1" Grid.Column="5"  Margin=" 11,4" Width="50" Height="22" ItemsSource="{Binding RoomNumbers}" 
+                              SelectedItem="{Binding RoomNumberSelectedItem}"/>-->
+                <TextBox Text="{Binding SelectedAppartment.BedRoom, UpdateSourceTrigger=PropertyChanged}" Margin="37 0" FontSize="12" Width="80" Height="20" 
+                         HorizontalAlignment="Center"  
+                         VerticalAlignment="Center" IsEnabled="False"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <TextBlock Text="Кількість ваних кімнат: " FontSize="12" VerticalAlignment="Center"/>
+                <TextBox Text="{Binding SelectedAppartment.Bathroom}" Margin="10 0" FontSize="12" Width="80" Height="20" 
+                         HorizontalAlignment="Center"  
+                         VerticalAlignment="Center" IsEnabled="False"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Vertical">
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <TextBlock Text="Кількість гостей: " FontSize="12" VerticalAlignment="Center"/>
+                <TextBox Text="{Binding SelectedAppartment.Accommodates, UpdateSourceTrigger=PropertyChanged}" Margin="38 0" FontSize="12" Width="85" Height="20" 
+                         HorizontalAlignment="Center"  
+                         VerticalAlignment="Center" IsEnabled="False"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <TextBlock Text="Тип помешкання: " FontSize="12" VerticalAlignment="Center"/>
+
+                <ComboBox Grid.Row="1" Grid.Column="3"  Margin="30 0" FontSize="12" Width="85" Height="20"
+                              ItemsSource="{Binding HomeTypes}"
+                              DisplayMemberPath="Value"
+                              SelectedValuePath="Key"
+                              IsSynchronizedWithCurrentItem="True" IsEnabled="False"
+                              SelectedItem ="{Binding HomeTypeSelectedItem}" VerticalAlignment="Bottom"/>
+
+            </StackPanel>
+        </StackPanel>
         <!--Amenities-->
         <TextBlock Text="Зручності" Grid.Row="2" Grid.Column="0" FontSize="16" Margin="5"/>
 
@@ -50,64 +86,64 @@
 
 
                     <TextBlock  Style="{DynamicResource StressedTextBlockStyle}" Text="Туалетні приналежності "/>
-                    <CheckBox Grid.Row="0" Grid.Column="1" IsChecked="{Binding SelectedAppartment.}" 
+                    <CheckBox Grid.Row="0" Grid.Column="1" IsChecked="{Binding Amenities.Toilet}" 
                           IsEnabled="False"/>
 
                     <TextBlock Grid.Row="1" Text="TV" Style="{DynamicResource StressedTextBlockStyle}" />
-                    <CheckBox Grid.Row="1" Grid.Column="1" IsChecked="{Binding SelectedAppartment.}" 
+                    <CheckBox Grid.Row="1" Grid.Column="1" IsChecked="{Binding Amenities.TV}" 
                           IsEnabled="False"/>
 
                     <TextBlock Grid.Row="2" Text="Кабельне телебачення " Style="{DynamicResource StressedTextBlockStyle}" />
-                    <CheckBox Grid.Row="2" Grid.Column="1" IsChecked="{Binding SelectedAppartment.}" 
+                    <CheckBox Grid.Row="2" Grid.Column="1" IsChecked="{Binding Amenities.Cable}" 
                           IsEnabled="False"/>
 
 
                     <TextBlock Grid.Row="3" Text="Опалення " Style="{DynamicResource StressedTextBlockStyle}"/>
-                    <CheckBox Grid.Row="3" Grid.Column="1" IsChecked="{Binding SelectedAppartment.}"
+                    <CheckBox Grid.Row="3" Grid.Column="1" IsChecked="{Binding Amenities.Heating}"
                           IsEnabled="False"/>
 
                     <TextBlock Grid.Row="4" Grid.Column="0" Text="Кондиціонер " Style="{DynamicResource StressedTextBlockStyle}"/>
-                    <CheckBox Grid.Row="4" Grid.Column="1" IsChecked="{Binding SelectedAppartment.}" 
+                    <CheckBox Grid.Row="4" Grid.Column="1" IsChecked="{Binding Amenities.Condition}" 
                         IsEnabled="False" />
 
                     <TextBlock Grid.Row="5" Grid.Column="0" Text="Холодильник " Style="{DynamicResource StressedTextBlockStyle}"/>
-                    <CheckBox Grid.Row="5" Grid.Column="1" IsChecked="{Binding SelectedAppartment.}" 
+                    <CheckBox Grid.Row="5" Grid.Column="1" IsChecked="{Binding Amenities.Fridge}" 
                         IsEnabled="False" />
 
                     <TextBlock Grid.Row="6" Grid.Column="0" Text="Можливо з тваринами " Style="{DynamicResource StressedTextBlockStyle}"/>
-                    <CheckBox Grid.Row="6" Grid.Column="1" IsChecked="{Binding SelectedAppartment.}" 
+                    <CheckBox Grid.Row="6" Grid.Column="1" IsChecked="{Binding Amenities.Animals}" 
                         IsEnabled="False" />
 
                     <TextBlock Grid.Row="7" Grid.Column="0" Text="Дозволено палити " Style="{DynamicResource StressedTextBlockStyle}"/>
-                    <CheckBox Grid.Row="7" Grid.Column="1" IsChecked="{Binding SelectedAppartment.}" 
+                    <CheckBox Grid.Row="7" Grid.Column="1" IsChecked="{Binding Amenities.Smocking}" 
                         IsEnabled="False" />
-                    
+
                     <TextBlock Grid.Row="0" Grid.Column="3" Text="Безпровідний інтернет " Style="{DynamicResource StressedTextBlockStyle}"/>
-                    <CheckBox Grid.Row="0" Grid.Column="4" IsChecked="{Binding SelectedAppartment.}" 
+                    <CheckBox Grid.Row="0" Grid.Column="4" IsChecked="{Binding Amenities.Wifi}" 
                           IsEnabled="False"/>
 
                     <TextBlock Grid.Row="1" Grid.Column="3" Text="Кухня " Style="{DynamicResource StressedTextBlockStyle}"/>
-                    <CheckBox Grid.Row="1" Grid.Column="4" IsChecked="{Binding SelectedAppartment.}" 
+                    <CheckBox Grid.Row="1" Grid.Column="4" IsChecked="{Binding Amenities.Citchen}" 
                           IsEnabled="False"/>
 
                     <TextBlock Grid.Row="2" Grid.Column="3" Text="Правльна машина " Style="{DynamicResource StressedTextBlockStyle}"/>
-                    <CheckBox Grid.Row="2" Grid.Column="4" IsChecked="{Binding SelectedAppartment.}" 
+                    <CheckBox Grid.Row="2" Grid.Column="4" IsChecked="{Binding Amenities.Washmachine}" 
                           IsEnabled="False"/>
 
                     <TextBlock Grid.Row="3" Grid.Column="3" Text="Парковка " Style="{DynamicResource StressedTextBlockStyle}"/>
-                    <CheckBox Grid.Row="3" Grid.Column="4" IsChecked="{Binding SelectedAppartment.}" 
+                    <CheckBox Grid.Row="3" Grid.Column="4" IsChecked="{Binding Amenities.Parking}" 
                           IsEnabled="False"/>
 
                     <TextBlock Grid.Row="4" Grid.Column="3" Text="Камін " Style="{DynamicResource StressedTextBlockStyle}"/>
-                    <CheckBox Grid.Row="4" Grid.Column="4" IsChecked="{Binding SelectedAppartment.}" 
+                    <CheckBox Grid.Row="4" Grid.Column="4" IsChecked="{Binding Amenities.Fireplace}" 
                           IsEnabled="False"/>
-                    
+
                     <TextBlock Grid.Row="5" Grid.Column="3" Text="Джакузі " Style="{DynamicResource StressedTextBlockStyle}"/>
-                    <CheckBox Grid.Row="5" Grid.Column="4" IsChecked="{Binding SelectedAppartment.}" 
+                    <CheckBox Grid.Row="5" Grid.Column="4" IsChecked="{Binding Amenities.Jacuzzi}" 
                           IsEnabled="False"/>
 
                     <TextBlock Grid.Row="6" Grid.Column="3" Text="Ліфт " Style="{DynamicResource StressedTextBlockStyle}"/>
-                    <CheckBox Grid.Row="6" Grid.Column="4" IsChecked="{Binding SelectedAppartment.}" 
+                    <CheckBox Grid.Row="6" Grid.Column="4" IsChecked="{Binding Amenities.Elevator}" 
                           IsEnabled="False"/>
                 </Grid>
             </Grid>

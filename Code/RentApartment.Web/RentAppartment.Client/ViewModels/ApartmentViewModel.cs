@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using RentAppartment.Client.Utils;
+using System.Collections.ObjectModel;
 
 namespace RentAppartment.Client.Views
 {
@@ -17,7 +18,21 @@ namespace RentAppartment.Client.Views
 
         public ApartmentViewModel(PropertyDto appartmernt)
         {
-			SelectedAppartment = appartmernt;
+			this.SelectedAppartment = appartmernt;
+            var repo = RepositoryFactory.Instance.GetApartmentRepository();
+            Amenities = new AmenitiesProvider(repo.GetAmenitites());
+            Amenities.SetAmenitiesModel(appartmernt.C_Amenities.ToList());
+
+            this.HomeTypes = new ObservableCollection<DictItem>(repo.GetHomeTypes().Select(item => new DictItem()
+            {
+                Id = item.Key,
+                Value = item.Value
+            }).ToList());
+            this.HomeTypeSelectedItem = new DictItem
+            {
+                Id = appartmernt.HomeType,
+                Value = appartmernt.HomeTypeName
+            };
         }
 
         public ApartmentViewModel()
@@ -25,6 +40,22 @@ namespace RentAppartment.Client.Views
 
         }
 
+        private AmenitiesProvider amenities;
+        public AmenitiesProvider Amenities
+        {
+            get
+            {
+                return this.amenities;
+            }
+            set
+            {
+                if (this.amenities != value)
+                {
+                    this.amenities = value;
+                    OnPropertyChanged("Amenities");
+                }
+            }
+        }
 		private PropertyDto selectedAppartment;
 		public PropertyDto SelectedAppartment
 		{
@@ -41,6 +72,25 @@ namespace RentAppartment.Client.Views
 				}
 			}
 		}
+
+        private DictItem homeTypeSelectedItem;
+        public DictItem HomeTypeSelectedItem
+        {
+            get
+            {
+                return this.homeTypeSelectedItem;
+            }
+            set
+            {
+                if (this.homeTypeSelectedItem != value)
+                {
+                    this.homeTypeSelectedItem = value;
+                    OnPropertyChanged("HomeTypeSelectedItem");
+                }
+            }
+        }
+
+        public ObservableCollection<DictItem> HomeTypes { get; private set; }
 
 		//Test command
 		private ICommand okCommand;

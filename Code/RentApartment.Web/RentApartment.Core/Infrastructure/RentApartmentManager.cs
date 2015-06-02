@@ -171,11 +171,11 @@ namespace RentApartment.Core.Infrastructure
 			return service.CreateProperty(property, amenities);   
         }
 
-        public bool UpdateProperty(PropertyListing property)
+        public bool UpdateProperty(PropertyListing property, List<C_Amenities> amenities)
         {
             var service = new PropertyListingService();
 
-            return service.UpdateProperty(property);   
+            return service.UpdateProperty(property, amenities);   
         }
 
 

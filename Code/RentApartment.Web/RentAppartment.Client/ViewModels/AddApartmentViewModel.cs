@@ -33,7 +33,13 @@ namespace RentAppartment.Client.Views
 				Id = item.Key,
 				Value = item.Value
 			}).ToList());
-			this.Owners = GenerateSimpleAccount(_accounts);
+            this.HomeTypeSelectedItem = new DictItem
+            {
+                Id = property.HomeType,
+                Value = property.HomeTypeName
+            };
+			this.Owners = GenerateSimpleAccounts(_accounts);
+            this.OwnerSelectedItem = MapToSimpleAccount(property.Account);
             this.CanOwnerEnable = false;
 			isUpdate = true;
         }
@@ -50,11 +56,11 @@ namespace RentAppartment.Client.Views
 				Value = item.Value
 			}).ToList());
 
-			this.Owners = GenerateSimpleAccount(_accounts);
+			this.Owners = GenerateSimpleAccounts(_accounts);
             this.CanOwnerEnable = true;
         }
 
-		private List<AccountDtoLite> GenerateSimpleAccount(List<AccountDto> accounts)
+		private List<AccountDtoLite> GenerateSimpleAccounts(List<AccountDto> accounts)
 		{
 			var generatedAccount = new List<AccountDtoLite>();
 
@@ -66,11 +72,7 @@ namespace RentAppartment.Client.Views
 
 			try
 			{
-				generatedAccount = accounts.Select(acc => new AccountDtoLite
-											{
-												AccountId = acc.id,
-												ShowedInfo = string.Format("Name: {0}  {1}; Addres: {2}", acc.FirstName, acc.LastName, acc.City)
-											}).ToList();
+                generatedAccount = accounts.Select(acc => MapToSimpleAccount(acc)).ToList();
 			}
 			catch (Exception)
 			{
@@ -80,6 +82,19 @@ namespace RentAppartment.Client.Views
 			return generatedAccount;
 		}
 
+        private Func<AccountDto, AccountDtoLite> MapToSimpleAccount = acc => new AccountDtoLite
+											{
+												AccountId = acc.id,
+												ShowedInfo = string.Format("Name: {0}  {1}; Addres: {2}", acc.FirstName, acc.LastName, acc.City)
+											};
+        //private AccountDtoLite CreateSimpleAccount(AccountDto acc)
+        //{
+        //    return new AccountDtoLite
+        //                                    {
+        //                                        AccountId = acc.id,
+        //                                        ShowedInfo = string.Format("Name: {0}  {1}; Addres: {2}", acc.FirstName, acc.LastName, acc.City)
+        //                                    }
+        //}
 		private AccountDto GetAccountFromSimple()
 		{
 			var account = new AccountDto();
@@ -87,7 +102,7 @@ namespace RentAppartment.Client.Views
 			{
 				//if (OwnerSelectedItem != null)
 				{
-					account = _accounts.Where(acc => acc.id == OwnerSelectedItem.AccountId).FirstOrDefault();
+                    account = AuthenticateUserManager.Instance.Account;//_accounts.Where(acc => acc.id == OwnerSelectedItem.AccountId).FirstOrDefault();
 				}
 					
 				
@@ -313,7 +328,16 @@ namespace RentAppartment.Client.Views
                     ap.C_Amenities = this.Amenities.GetSelectedAmenitites().ToArray();
                     var repo = RepositoryFactory.Instance.GetApartmentRepository();
 					ap.Account = isUpdate == true ? this.Appartment.Account : GetAccountFromSimple();
-                    repo.UpdateProperty(ap);
+                    ap.HomeType = (byte)this.HomeTypeSelectedItem.Id;
+                    if (isUpdate)
+                    {
+                        repo.UpdateProperty(ap);
+                    }
+                    else 
+                    {
+                        repo.CreateProperty(ap);
+                    }
+                    
 
                     CloseAction(); 
                 }

@@ -153,8 +153,7 @@ namespace RentAppartment.Client.DataAccess
 			return reservations;
 			;
 		}
-
-        public bool UpdateProperty(PropertyDto apartment)
+        public bool CreateProperty(PropertyDto apartment)
         {
             bool result = true;
             try
@@ -162,6 +161,32 @@ namespace RentAppartment.Client.DataAccess
                 var request = new ChangedPropertyRequest();
                 request.Property = apartment;
                 BaseResponse response = _service.CreateProperty(request);
+                if (response != null)
+                {
+                    if (response.ErrorId != 0)
+                    {
+                        result = false;//Add to Log message
+                    }
+
+                }
+
+            }
+            catch (Exception)
+            {
+                result = false;
+                //throw;
+            }
+
+            return result;
+        }
+        public bool UpdateProperty(PropertyDto apartment)
+        {
+            bool result = true;
+            try
+            {
+                var request = new ChangedPropertyRequest();
+                request.Property = apartment;
+                BaseResponse response = _service.UpdateProperty(request);
                 if (response != null)
                 {
                     if (response.ErrorId != 0)
@@ -265,7 +290,7 @@ namespace RentAppartment.Client.DataAccess
             {
                 var request = new ChangeAccountRequest();
                 request.Account = account;
-                BaseResponse response = _service.CreateAccount(request);
+                BaseResponse response = _service.UpdateAccount(request);
                 if (response != null)
                 {
                     if (response.ErrorId != 0)

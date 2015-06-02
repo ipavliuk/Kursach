@@ -352,9 +352,37 @@ namespace RentApartment.Service
             {
                 response.ErrorId = (int)RApmentErrors.Ok;
 
-                PropertyListing property = Mapper.Map<PropertyDto, PropertyListing>(request.Property);
+                //PropertyListing property = Mapper.Map<PropertyDto, PropertyListing>(request.Property);
+                PropertyDto dto = request.Property;
+                PropertyListing property = new PropertyListing()
+                {
+                    PropertyId = dto.PropertyId,
+                    FK_Account = dto.Account.id,
+                    State = dto.State,
+                    PricePerNight = dto.PricePerNight,
+                    PricePerMonth = dto.PricePerMonth,
+                    PricePerWeek = dto.PricePerWeek,
+                    Photos = dto.Photos,
+                    GreatTitle = dto.GreatTitle,
+                    GreatSummary = dto.GreatSummary,
+                    BedRoom = dto.BedRoom,
+                    Bathroom = dto.Bathroom,
+                    HomeType = dto.HomeType,
+                    RoomType = dto.RoomType,
+                    Accommodates = dto.Accommodates,
+                    Address1 = dto.Address1,
+                    Address2 = dto.Address2,
+                    City = dto.City,
+                    State2 = dto.State2,
+                    Zip = dto.Zip,
+                    FK__Country = dto.Country,
+                    // Currency = dto.Currency
+                    //C_Amenities = Mapper.Map<List<AmenityDto>, List<C_Amenities>>(dto.C_Amenities)//,
+                    //Account = acc
+                };
+                var amenities = Mapper.Map<List<AmenityDto>, List<C_Amenities>>(dto.C_Amenities);
                 bool result =
-                    RentApartmentManager.Instance.UpdateProperty(property);
+                    RentApartmentManager.Instance.UpdateProperty(property, amenities);
                 
             }
             catch (Exception ex)
@@ -487,6 +515,7 @@ namespace RentApartment.Service
                 AccountDto dto = request.Account;
                 Account account = new Account
                 {
+                    id = dto.id,
                     AccountId = dto.AccountId,
                     FirstName = dto.FirstName,
                     LastName = dto.LastName,
@@ -504,8 +533,8 @@ namespace RentApartment.Service
                     Gender = dto.Gender,
                     PostalCode = dto.PostalCode,
                     //Language = dto.Language
-                    PictureUrl = dto.PictureUrl
-
+                    PictureUrl = dto.PictureUrl,
+                    FK__Country = 185
                 };
 
 

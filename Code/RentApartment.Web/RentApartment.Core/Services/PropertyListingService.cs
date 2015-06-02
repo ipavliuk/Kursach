@@ -468,14 +468,27 @@ namespace RentApartment.Core.Infrastructure
             return result;
         }
 
-        public bool UpdateProperty(PropertyListing property)
+        public bool UpdateProperty(PropertyListing property, List<C_Amenities> amenities)
         {
             bool result = true;
             try
             {
 	            using (var _db = new RentApartmentsContext())
 	            {
-					_db.PropertyListing.Add(property);
+                    _db.PropertyListing.Attach(property);
+                    foreach (var cAmenitiese in amenities)
+                    {
+                        var amenity = _db.C_Amenities.SingleOrDefault(a => a.id == cAmenitiese.id);
+                        if (amenity == null)
+                        {
+                            amenity = cAmenitiese;
+                        }
+
+                        property.C_Amenities.Add(amenity);
+
+                    }
+                    _db.Entry(property).State = EntityState.Modified; 
+
 					int id = _db.SaveChanges();
 					result = id == 0 ? false : true;
 	            }
@@ -518,7 +531,9 @@ namespace RentApartment.Core.Infrastructure
             {
                 using (var _db = new RentApartmentsContext())
                 {
-                    _db.Account.Add(account);
+                    //_db.Account.Add(account);
+                    _db.Account.Attach(account);
+                    _db.Entry(account).State = EntityState.Modified; 
                     int id = _db.SaveChanges();
                     result = id == 0 ? false : true;
                 }

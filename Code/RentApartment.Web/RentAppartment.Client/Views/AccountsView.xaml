@@ -75,6 +75,7 @@
                     <DataGridTextColumn Header="Прізвище" Binding="{Binding LastName}"/>
                     <DataGridTextColumn Header="Стать" Binding="{Binding GenderName}"/>
                     <DataGridTextColumn Header="Роль" Binding="{Binding RolesName}"/>
+                    <DataGridTextColumn Header="Логін" Binding="{Binding Login}"/>
                     <DataGridTextColumn Header="Країна" Binding="{Binding Country}"/>
                     <DataGridTextColumn Header="Місто" Binding="{Binding City}"/>
                     <DataGridTemplateColumn Header="">
@@ -95,32 +96,34 @@
                 <DataGrid.RowDetailsTemplate>
                     <DataTemplate>
                         <Border BorderThickness="0" Padding="10">
-                            <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal">
                                 <Image DockPanel.Dock="Left" Source="{Binding PictureUrl}" Margin="10" 
                                        Height="150" Width="150"/>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock FontSize="12" Text="Email: " VerticalAlignment="Center" />
-                                    <TextBlock FontSize="16" Foreground="MidnightBlue" Text="{Binding Email}" VerticalAlignment="Center" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock FontSize="12" Text="Address: " VerticalAlignment="Center" />
-                                    <TextBlock FontSize="16" Foreground="MidnightBlue" Text="{Binding Address}" VerticalAlignment="Center" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock FontSize="12" Text="City: " VerticalAlignment="Center" />
-                                    <TextBlock FontSize="16" Foreground="MidnightBlue" Text="{Binding City}" VerticalAlignment="Center" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock FontSize="12" Text="Country: " VerticalAlignment="Center" />
-                                    <TextBlock FontSize="16" Foreground="MidnightBlue" Text="{Binding Country}" VerticalAlignment="Center" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock FontSize="12" Text="PostalCode: " VerticalAlignment="Center" />
-                                    <TextBlock FontSize="16" Foreground="MidnightBlue" Text="{Binding PostalCode}" VerticalAlignment="Center" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock FontSize="12" Text="Phone: " VerticalAlignment="Center" />
-                                    <TextBlock FontSize="16" Foreground="MidnightBlue" Text="{Binding Mobile}" VerticalAlignment="Center" />
+                                <StackPanel Orientation="Vertical">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock FontSize="12" Text="Email: " VerticalAlignment="Center" />
+                                        <TextBlock FontSize="16" Foreground="MidnightBlue" Text="{Binding Email}" VerticalAlignment="Center" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock FontSize="12" Text="Address: " VerticalAlignment="Center" />
+                                        <TextBlock FontSize="16" Foreground="MidnightBlue" Text="{Binding Address}" VerticalAlignment="Center" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock FontSize="12" Text="City: " VerticalAlignment="Center" />
+                                        <TextBlock FontSize="16" Foreground="MidnightBlue" Text="{Binding City}" VerticalAlignment="Center" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock FontSize="12" Text="Country: " VerticalAlignment="Center" />
+                                        <TextBlock FontSize="16" Foreground="MidnightBlue" Text="{Binding Country}" VerticalAlignment="Center" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock FontSize="12" Text="PostalCode: " VerticalAlignment="Center" />
+                                        <TextBlock FontSize="16" Foreground="MidnightBlue" Text="{Binding PostalCode}" VerticalAlignment="Center" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock FontSize="12" Text="Phone: " VerticalAlignment="Center" />
+                                        <TextBlock FontSize="16" Foreground="MidnightBlue" Text="{Binding Mobile}" VerticalAlignment="Center" />
+                                    </StackPanel>
                                 </StackPanel>
                             </StackPanel>
                             

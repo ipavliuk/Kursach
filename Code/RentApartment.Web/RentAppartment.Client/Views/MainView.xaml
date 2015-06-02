@@ -51,6 +51,10 @@
             </Menu>
             <StackPanel DockPanel.Dock="Right" HorizontalAlignment="Right" Orientation="Horizontal">
                 <TextBlock Text="{Binding LoginText}" Margin="5 0" VerticalAlignment="Center" />
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="{Binding LoginName}" Margin="5 0" VerticalAlignment="Top" />
+                    <TextBlock Text="{Binding LoginUserRole}" Margin="5 0" VerticalAlignment="Bottom" />
+                </StackPanel>
                 <Image Source="{Binding AvatarImage}" Width="30" Height="30" VerticalAlignment="Center"/>
                 <Button Command="{Binding SignInOutCommand}" Width="100" HorizontalAlignment="Right" DockPanel.Dock="Right">
                     <StackPanel Orientation="Horizontal">
@@ -99,7 +103,8 @@
                     <TextBlock Text="Пошук житла" VerticalAlignment="Center" Margin="10 0"/>
                 </StackPanel>
             </Button>
-            <Button Width="120" HorizontalAlignment="Right" FontSize="12" Margin="10" Command="{Binding NavigateAccountsCommand}" >
+            <Button Width="120" HorizontalAlignment="Right" FontSize="12" Margin="10" 
+                    Command="{Binding NavigateAccountsCommand}">
                 <Button.Style>
                     <Style TargetType="{x:Type Button}" >
                         <Style.Triggers>
@@ -109,7 +114,13 @@
                             <DataTrigger Binding="{Binding IsLogedIn}" Value="True">
                                 <Setter Property="IsEnabled" Value="True" />
                             </DataTrigger>
-                        </Style.Triggers>
+                                <DataTrigger Binding="{Binding IsAccountViewAccessed}" Value="False">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding IsAccountViewAccessed}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
                     </Style>
                 </Button.Style>
                 <StackPanel Orientation="Horizontal">
@@ -127,7 +138,13 @@
                             <DataTrigger Binding="{Binding IsLogedIn}" Value="True">
                                 <Setter Property="IsEnabled" Value="True" />
                             </DataTrigger>
-                        </Style.Triggers>
+                                <DataTrigger Binding="{Binding IsScheduleViewAccessed}" Value="False">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding IsScheduleViewAccessed}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
                     </Style>
                 </Button.Style>
                 <StackPanel Orientation="Horizontal">
@@ -150,10 +167,10 @@
                             <DataTrigger Binding="{Binding IsAdmin}" Value="False">
                                 <Setter Property="Visibility" Value="Collapsed" />
                             </DataTrigger>
-                            <!--<Trigger Property="IsEnabled" Value="False">
-                                <Setter Property="Visibility" Value="Collapsed" />
-                            </Trigger>-->
-                        </Style.Triggers>
+                                <DataTrigger Binding="{Binding IsAdmin}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
                     </Style>
                 </Button.Style>
                 <StackPanel Orientation="Horizontal">

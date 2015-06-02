@@ -14,6 +14,7 @@ namespace RentAppartment.Client.Views
 {
 	public class PropertyListingViewModel : ViewModelBase
 	{
+        private const string ViewId = "PropertyListingView";
 		public class DictItem
 		{
 			public int Id { get; set; }
@@ -33,6 +34,12 @@ namespace RentAppartment.Client.Views
 																}).ToList());
 
             this.RoomNumbers = Enumerable.Range(1, 6).ToList();
+
+            string role = AuthenticateUserManager.Instance.Account.RolesName;
+            this.IsIdTextOwnerAccessable = AccessManager.Instance.GetViewControlAccess(role,
+                                ViewId, "txtIdOwner");
+            this.IsIdTextPropertyAccessable = AccessManager.Instance.GetViewControlAccess(role,
+                                ViewId, "txtIdProperty");
         }
 
 		//Filter data
@@ -176,6 +183,43 @@ namespace RentAppartment.Client.Views
 				}
 			}
 		}
+
+
+
+        private bool isIdTextOwnerAccessable;
+        public bool IsIdTextOwnerAccessable
+		{
+			get
+			{
+                return this.isIdTextOwnerAccessable;
+			}
+			set
+			{
+                if (this.isIdTextOwnerAccessable != value)
+				{
+                    this.isIdTextOwnerAccessable = value;
+                    OnPropertyChanged("IsIdTextOwnerAccessable");
+				}
+			}
+		}
+        private bool isIdTextPropertyAccessable;
+        public bool IsIdTextPropertyAccessable
+        {
+            get
+            {
+                return this.isIdTextPropertyAccessable;
+            }
+            set
+            {
+                if (this.isIdTextPropertyAccessable != value)
+                {
+                    this.isIdTextPropertyAccessable = value;
+                    OnPropertyChanged("IsIdTextPropertyAccessable");
+                }
+            }
+        }
+
+
 		//commands
 		private ICommand searchCommand;
 		public ICommand SearchCommand

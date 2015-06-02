@@ -42,5 +42,61 @@ namespace RentAppartment.Client.Utils
 				Console.WriteLine(string.Format("Exception during load data from random api => {0}", ex.Message));
 			}
 		}
+
+        public bool GetViewAccess(string role, string view)
+        {
+            bool isAccessed = false;
+            try 
+	        {
+                if (string.IsNullOrEmpty(role) || string.IsNullOrEmpty(view))
+                {
+                    return true;
+                }
+                     
+		         string access = config.UserRole.Single(ur => ur.Role == role).AccessType;
+                 var views = config.AccesTypesSpec.Single(at => at.AccessType == access).Views;
+                 isAccessed = views.Single(v => v.View == view).Access == "Disabled" ? false : true;
+	        }
+	        catch (Exception)
+	        {
+		
+		        throw;
+	        }
+           
+            return isAccessed;
+        }
+
+        public bool GetViewControlAccess(string role, string view, string control)
+        {
+            bool isAccessed = false;
+            try
+            {
+                if (string.IsNullOrEmpty(role) || string.IsNullOrEmpty(view) || string.IsNullOrEmpty(control))
+                {
+                    return true;
+                }
+
+                List<ViewCtrl> views = config.UserRole.Single(ur => ur.Role == role).Views;
+                if (views != null)
+                {
+                    List<Control> controls = views.SingleOrDefault(v => v.View == view).Controls;
+                    var permission = controls.SingleOrDefault(ctrl => ctrl.Name == control);
+
+                    isAccessed = permission.Permis != null && permission.Permis == "Disabled" ? false : true;
+                }
+                else
+                {
+                    isAccessed = true;
+                }
+
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+            
+            return isAccessed;
+        }
 	}
 }
