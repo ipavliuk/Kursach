@@ -7,6 +7,8 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <!--<TextBlock Text="Test" />-->
-        <Image Source="../Images/Welcome.png" />
+        <!--<Image Source="../Images/Welcome.png" />-->
+        <Image Source="../Images/MainView.jpg" />
+        
     </Grid>
 </UserControl>

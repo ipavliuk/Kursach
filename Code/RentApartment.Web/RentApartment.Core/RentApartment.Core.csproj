@@ -58,6 +58,18 @@
     <Compile Include="Common\RApmentErrors.cs" />
     <Compile Include="DAL\Enums\EnumType.cs" />
     <Compile Include="Infrastructure\RentApartmentManager.cs" />
+    <Compile Include="Model\EF\AccountAuthenticate_Result.cs">
+      <DependentUpon>RentApartments.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\EF\AccountGetAll_Result.cs">
+      <DependentUpon>RentApartments.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\EF\AccountGetbyEmail_Result.cs">
+      <DependentUpon>RentApartments.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\EF\AccountGetbyId_Result.cs">
+      <DependentUpon>RentApartments.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\EF\DB_Errors_Log.cs">
       <DependentUpon>RentApartments.tt</DependentUpon>
     </Compile>
@@ -173,6 +185,7 @@
     <None Include="App.Config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <EntityDeploy Include="Model\EF\RentApartments.edmx">
       <Generator>EntityModelCodeGenerator</Generator>

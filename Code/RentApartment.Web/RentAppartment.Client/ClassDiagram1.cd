@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="RentAppartment.Client.Views.ViewModelBase">
+    <Position X="9.25" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\ViewModelBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="RentAppartment.Client.ViewModels.AddAccountViewModel">
+    <Position X="8.75" Y="2.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>RUIACAAAAAAAABAAwAAAAAQAAAQEQQAEAAUCQgUGAEI=</HashCode>
+      <FileName>ViewModels\AddAccountViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RentAppartment.Client.DataAccess.AppartmentsRepository">
+    <Position X="5.5" Y="4.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAgAMgAAACAAAAAQAIAARJIQAAQAAAAQCEABAAAAAEA=</HashCode>
+      <FileName>DataAccess\AppartmentsRepository.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_service" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="RentAppartment.Client.Views.AddAccountView">
+    <Position X="6" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\AddAccountView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="RentAppartment.Client.RApmentAdminService.IRApmentAdministration" Collapsed="true">
+    <Position X="5.75" Y="3.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>CggAYAIEAAAEIAAgQYQYRhIcAQxAAIAQCQAFAABACEE=</HashCode>
+      <FileName>Service References\RApmentAdminService\Reference.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

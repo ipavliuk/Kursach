@@ -14,17 +14,15 @@ namespace RentApartment.Core.DAL
 	{
 		private const string spAccountCreate = "AccountCreate";
 		private const string spAccountUpdate = "AccountUpdate";
-		private const string spAccountGetbyPassword = "AccountGetbyPassword";
+		private const string spAccountAuthenticate = "AccountAuthenticate";
 		private const string spAccountGetbyEmail = "AccountGetbyEmail";
 		private const string spAccountGetbyId = "AccountGetbyId";
 		private const string spAccountGetAll = "AccountGetAll";
 		private const string spAccountDelete = "AccountDelete";
 
 		private static readonly ILog log = LogManager.GetLogger(typeof (DataAccessorWrapper));
-		//_CountryGetById
-		//_RolesGetById
 
-		public int CreateAccount(string accountSystemId, string passwordHash, string firstName, string lastName, string email, int countryId)
+		public int CreateAccount(string accountSystemId, string passwordHash, string firstName, string lastName, string email, int countryId, byte gender, bool passErrorParams = true)
 		{
 			int newId = 0;
 			try
@@ -41,10 +39,14 @@ namespace RentApartment.Core.DAL
 					command.Parameters.AddWithValue("LastName", lastName);
 					command.Parameters.AddWithValue("Email", email);
 					command.Parameters.AddWithValue("Country", countryId);
+					command.Parameters.AddWithValue("Gender", gender);
+					if (passErrorParams)
+					{
+						command.Parameters.Add(new SqlParameter("@O_ErrCode", SqlDbType.Int, 4) { Direction = ParameterDirection.Output });
+						command.Parameters.Add(new SqlParameter("@O_ErrMsg", SqlDbType.VarChar, 2000) { Direction = ParameterDirection.Output });
+					}
 
 					newId = Convert.ToInt32(command.ExecuteScalar());
-					
-					
 				}
 			}
 			catch (Exception ex)
@@ -55,7 +57,7 @@ namespace RentApartment.Core.DAL
 			return newId;
 		}
 
-		public Account GetAccountGetbyId(int accountId)
+		public Account GetAccountGetbyId(int accountId, bool passErrorParams = false)
 		{
 			Account a = new Account();
 
@@ -68,7 +70,11 @@ namespace RentApartment.Core.DAL
 				})
 				{
 					command.Parameters.AddWithValue("Acc_Id", accountId);
-					
+					if (passErrorParams)
+					{
+						command.Parameters.Add(new SqlParameter("@O_ErrCode", SqlDbType.Int, 4) { Direction = ParameterDirection.Output });
+						command.Parameters.Add(new SqlParameter("@O_ErrMsg", SqlDbType.VarChar, 2000) { Direction = ParameterDirection.Output });
+					}
 					
 					using (var reader = command.ExecuteReader())
 					{
@@ -88,20 +94,26 @@ namespace RentApartment.Core.DAL
 			return a;
 		}
 
-		public Account GetAccountByPwd(string pwdHash)
+		public Account GetAccountByPwd(string login, string pwdHash, bool passErrorParams = true)
 		{
 
 			Account a = new Account();
 			try
 			{
 				using (var conn = GetConnection())
-				using (SqlCommand command = new SqlCommand(spAccountGetbyPassword, conn)
+				using (SqlCommand command = new SqlCommand(spAccountAuthenticate, conn)
 				{
 					CommandType = CommandType.StoredProcedure
 				})
 				{
+					command.Parameters.AddWithValue("Login", login);
+					
 					command.Parameters.AddWithValue("PwdHash", pwdHash);
-
+					if (passErrorParams)
+					{
+						command.Parameters.Add(new SqlParameter("@O_ErrCode", SqlDbType.Int, 4) { Direction = ParameterDirection.Output });
+						command.Parameters.Add(new SqlParameter("@O_ErrMsg", SqlDbType.VarChar, 2000) { Direction = ParameterDirection.Output });
+					}
 
 					using (var reader = command.ExecuteReader())
 					{
@@ -121,7 +133,7 @@ namespace RentApartment.Core.DAL
 			return a;
 		}
 
-		public Account GetAccountByEmail(string email)
+		public Account GetAccountByEmail(string email, bool passErrorParams = false)
 		{
 
 			Account a = new Account();
@@ -134,7 +146,11 @@ namespace RentApartment.Core.DAL
 				})
 				{
 					command.Parameters.AddWithValue("Email", email);
-
+					if (passErrorParams)
+					{
+						command.Parameters.Add(new SqlParameter("@O_ErrCode", SqlDbType.Int, 4) { Direction = ParameterDirection.Output });
+						command.Parameters.Add(new SqlParameter("@O_ErrMsg", SqlDbType.VarChar, 2000) { Direction = ParameterDirection.Output });
+					}
 
 					using (var reader = command.ExecuteReader())
 					{
@@ -166,15 +182,6 @@ namespace RentApartment.Core.DAL
 					CommandType = CommandType.StoredProcedure
 				})
 				{
-					//command.Parameters.AddWithValue("Email", email);
-					//using (var reader = command.ExecuteReader())
-					//{
-
-					//	if (reader.Read())
-					//	{
-					//		a.CreateAccount(reader);
-					//	}
-					//}
 					DataSet ds = new DataSet();
 					SqlDataAdapter adapter = new SqlDataAdapter(command);
 					adapter.Fill(ds);
@@ -200,7 +207,7 @@ namespace RentApartment.Core.DAL
 			return acounts;
 		}
 
-		public void DeleteAccount(int id)
+		public void DeleteAccount(int id, bool passErrorParams = true)
 		{
 			try
 			{
@@ -211,7 +218,11 @@ namespace RentApartment.Core.DAL
 				})
 				{
 					command.Parameters.AddWithValue("Acc_Id", id);
-					
+					if (passErrorParams)
+					{
+						command.Parameters.Add(new SqlParameter("@O_ErrCode", SqlDbType.Int, 4) { Direction = ParameterDirection.Output });
+						command.Parameters.Add(new SqlParameter("@O_ErrMsg", SqlDbType.VarChar, 2000) { Direction = ParameterDirection.Output });
+					}
 
 					command.ExecuteNonQuery();
 				}
@@ -229,43 +240,5 @@ namespace RentApartment.Core.DAL
 
 			return conn;
 		}
-
-		//private Account ConvertToAccount(SqlDataReader reader)
-		//{
-		//	try
-		//	{
-		//		Account acc = new Account();
-		//		acc.id = Int32.Parse(reader["id"].ToString());
-		//		acc.AccountId = reader["AccountId"].ToString();
-		//		acc.PasswordHash = reader["PasswordHash"].ToString();
-		//		acc.FirstName = reader["PasswordHash"].ToString();
-		//		acc.LastName = reader["LastName"].ToString();
-		//		acc.Email = reader["Email"].ToString();
-		//		acc.IsEmailConfirmed = Boolean.Parse(reader["IsEmailConfirmed"].ToString());
-		//		//[FK__Country]
-		//		//[FK__Roles]
-		//		acc.City = reader["City"].ToString();
-		//		acc.Address = reader["Address"].ToString();
-		//		acc.Mobile = reader["Mobile"].ToString();
-		//		string gender = reader["Gender"].ToString();
-
-		//		acc.Gender = string.IsNullOrEmpty(gender) ? (Byte?)Byte.Parse(gender) : null;
-		//		acc.PostalCode = reader["PostalCode"].ToString();
-
-		//		string lang = reader["Language"].ToString();
-		//		acc.Language = string.IsNullOrEmpty(lang) ? (int?)Int32.Parse(lang): null;
-
-		//		acc.IsValidated = Boolean.Parse(reader["IsValidated"].ToString());
-		//		acc.ImageSourceId = reader["ImageSourceId"].ToString();
-
-		//	}
-		//	catch (Exception)
-		//	{
-				
-		//		throw;
-		//	}
-			
-		//}
-		
 	}
 }

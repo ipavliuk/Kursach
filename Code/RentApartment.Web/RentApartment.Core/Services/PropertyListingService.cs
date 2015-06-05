@@ -266,8 +266,11 @@ namespace RentApartment.Core.Infrastructure
 							.Include(r => r.PropertyListing.Reservations)
 							.Include(r => r.PropertyListing.C_Currency)
 							.Include(r => r.PropertyListing.Account)
+							.Include(r => r.PropertyListing.Account.C_Roles)
 							.Include(r => r.C_Currency)
-							.Where(res => res.PropertyListing.City == city).ToList();
+							.Where(res => city != null && res.PropertyListing.City == city || city == null)
+							.Where(res => res.ReservationStart >= startDate && res.ReservationEnd <= endDate)
+							.ToList();
                     return l;
 				}
                 
@@ -288,18 +291,17 @@ namespace RentApartment.Core.Infrastructure
 					return _db.Reservations
 									.Include(r => r.PropertyListing)
 									.Include(r => r.Account)
-									.Include(r => r.C_Currency)
+									.Include(r => r.Account.C_Roles)
+									.Include(r => r.Account.C_Country)
+									.Include(r => r.Account.PropertyListing)
 									.Include(r => r.PropertyListing.C_Amenities)
 									.Include(r => r.PropertyListing.Reservations)
 									.Include(r => r.PropertyListing.GuestReviews)
 									.Include(r => r.PropertyListing.Reservations)
 									.Include(r => r.PropertyListing.C_Currency)
 									.Include(r => r.PropertyListing.Account)
-									.Include(r => r.Account.C_Roles)
-									.Include(r => r.Account.C_Country)
-									.Include(r => r.Account.PropertyListing)
-									
-									
+									.Include(r => r.PropertyListing.Account.C_Roles)
+									.Include(r => r.C_Currency)
 									.Where(res => res.FK_Account == accountId).ToList();
 				}
 			

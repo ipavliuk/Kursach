@@ -29,7 +29,9 @@ namespace RentApartment.Service
 				.ForMember(dest => dest.StayingDays,
 								opts => opts.MapFrom(src => (src.ReservationEnd - src.ReservationStart).TotalDays))
 					.ForMember(dest => dest.TotalPrice,
-							opts => opts.MapFrom(src => (src.PropertyListing.PricePerNight ) * (src.ReservationEnd - src.ReservationStart).TotalDays));
+							opts => opts.MapFrom(src =>
+								(src.PropertyListing.PricePerNight)*(src.ReservationEnd - src.ReservationStart).TotalDays
+							));
 								//opts => opts.MapFrom(src => (src.PropertyListing.PricePerNight / 100) * (src.ReservationEnd - src.ReservationStart).TotalDays));
 
 
@@ -315,7 +317,7 @@ namespace RentApartment.Service
                     City = dto.City,
                     State2 = dto.State2,
                     Zip = dto.Zip,
-                    FK__Country = dto.Country,
+                    FK__Country = dto.FK__Country,
                    // Currency = dto.Currency
                    //C_Amenities = Mapper.Map<List<AmenityDto>, List<C_Amenities>>(dto.C_Amenities)//,
                    //Account = acc
@@ -375,7 +377,7 @@ namespace RentApartment.Service
                     City = dto.City,
                     State2 = dto.State2,
                     Zip = dto.Zip,
-                    FK__Country = dto.Country,
+                    FK__Country = dto.FK__Country,
                     // Currency = dto.Currency
                     //C_Amenities = Mapper.Map<List<AmenityDto>, List<C_Amenities>>(dto.C_Amenities)//,
                     //Account = acc

@@ -26,12 +26,12 @@ namespace RentApartment.Core.Model.EF
 				this.City = reader["City"].ToString();
 				this.Address = reader["Address"].ToString();
 				this.Mobile = reader["Mobile"].ToString();
-				string gender = reader["Gender"].ToString();
+				//string gender = reader["Gender"].ToString();
 
-				this.Gender = string.IsNullOrEmpty(gender) ? (Byte?)Byte.Parse(gender) : null;
+				this.Gender = byte.Parse(reader["Gender"].ToString());//string.IsNullOrEmpty(gender) ? (Byte?)Byte.Parse(gender) : null;
 				this.PostalCode = reader["PostalCode"].ToString();
 
-				string lang = reader["Language"].ToString();
+				//string lang = reader["Language"].ToString();
 
 				this.IsValidated = Boolean.Parse(reader["IsValidated"].ToString());
 				this.PictureUrl = reader["PictureUrl"].ToString();

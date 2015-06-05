@@ -8,7 +8,7 @@
         <EntityTypeShape EntityType="RentApartmentsModel.C_Amenities" Width="1.5" PointX="5.125" PointY="3.25" IsExpanded="true" />
         <EntityTypeShape EntityType="RentApartmentsModel.C_Country" Width="1.5" PointX="0.75" PointY="6.375" IsExpanded="true" />
         <EntityTypeShape EntityType="RentApartmentsModel.C_Currency" Width="1.5" PointX="8.25" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="RentApartmentsModel.C_Roles" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RentApartmentsModel.C_Roles" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
         <EntityTypeShape EntityType="RentApartmentsModel.Account" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
         <EntityTypeShape EntityType="RentApartmentsModel.GuestReviews" Width="1.5" PointX="5.25" PointY="6.125" IsExpanded="true" />
         <EntityTypeShape EntityType="RentApartmentsModel.Messages" Width="1.5" PointX="5.25" PointY="9.375" IsExpanded="true" />

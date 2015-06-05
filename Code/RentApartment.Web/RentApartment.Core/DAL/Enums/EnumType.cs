@@ -23,8 +23,8 @@ namespace RentApartment.Core.DAL.Enums
 
     public enum UserRole
     {
-		Admin = 1,
-        Client,
+		Client = 1,
+		Admin,
 		Root
 
     }

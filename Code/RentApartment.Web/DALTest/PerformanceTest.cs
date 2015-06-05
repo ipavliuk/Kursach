@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RentApartment.Core.DAL;
+using RentApartment.Core.DAL.Enums;
 using RentApartment.Core.DAL.Test;
 using RentApartment.Core.Infrastructure;
 using RentApartment.Core.Model.EF;
@@ -26,7 +27,7 @@ namespace DALTest
 			public void AddExecutionTime(long ellapsedTime, long count)
 			{
 				ElapsedMilliseconds += ellapsedTime;
-				IterNumber += count;
+				IterNumber++;
 			}
 
 			public Action<int> IterationAction { get; set; }
@@ -75,8 +76,8 @@ namespace DALTest
 			Console.WriteLine("ADO.NET Test ");
 			DataAccessorWrapper db = new DataAccessorWrapper();
 			var acc = AcccountGenerator.GenerateADOEF("Ado_net_");
-			tests.Add((n) => acc.id = db.CreateAccount(acc.AccountId, acc.PasswordHash, acc.FirstName, acc.LastName, acc.Email, acc.FK__Country), "AdoNet_CreateAccount");
-			tests.Add((n) => db.GetAccountByPwd(acc.PasswordHash).ThrowIfNull("No item in DB ADO.NEt GetAccountByPwd"), "AdoNet_GetByPwd");
+			tests.Add((n) => acc.id = db.CreateAccount(acc.AccountId, acc.PasswordHash, acc.FirstName, acc.LastName, acc.Email, acc.FK__Country, (byte)GenderType.Male), "AdoNet_CreateAccount");
+			tests.Add((n) => db.GetAccountByPwd("",acc.PasswordHash,false).ThrowIfNull("No item in DB ADO.NEt GetAccountByPwd"), "AdoNet_GetByPwd");
 			tests.Add((n) => db.GetAccountGetbyId(acc.id).ThrowIfNull("No item in DB ADO.NEt GetAccountByPwd"), "AdoNet_GetAccountGetbyId");
 			tests.Add((n) => db.GetAccountByEmail(acc.Email).ThrowIfNull("No item in DB ADO.NEt GetAccountByEmail"), "AdoNet_GetAccountByEmail");
 			tests.Add((n) => db.DeleteAccount(acc.id), "AdoNet_DeleteAccount");
@@ -84,7 +85,7 @@ namespace DALTest
 			tests.Run(iter);
 			tests.Clear();
 
-			Console.WriteLine("----------------------"); 
+			Console.WriteLine("----------------------");
 			Console.WriteLine("Ef Test ");
 			///Run EF test
 			Account[] array = new Account[iter];
@@ -92,7 +93,7 @@ namespace DALTest
 			{
 				array[i] = AcccountGenerator.GenerateADOEF("EF_");
 			}
-			
+
 			var dbEF = new RentApartmentsContext();
 			tests.Add((n) => { dbEF.Account.Add(array[n]); dbEF.SaveChanges(); }, "EF_CreateAccount");
 
@@ -101,8 +102,10 @@ namespace DALTest
 				var accEf = array[n];
 				dbEF.Account.Single(a => a.id == accEf.id);
 			}, "EF_GetAccountById");
-			tests.Add((n) =>{var accEf = array[n];
-				                dbEF.Account.FirstOrDefault(a => a.Email == accEf.Email);
+			tests.Add((n) =>
+			{
+				var accEf = array[n];
+				dbEF.Account.FirstOrDefault(a => a.Email == accEf.Email);
 			}, "EF_GetAccountByEmail");
 			tests.Add((n) =>
 			{
@@ -117,7 +120,6 @@ namespace DALTest
 			Console.WriteLine("Results:");
 			tests.Run(iter);
 			dbEF.Dispose();
-
 
 		}
 	}

@@ -30,7 +30,23 @@ namespace RentAppartment.Client.ViewModels
             Init();
             isUpdate = true;
             
-           
+			this.GenderTypeSelectedItem = new DictItem
+            {
+                Id = (int)acc.Gender,
+                Value = acc.GenderName
+            };
+
+			this.RoleTypeSelectedItem = new DictItem
+            {
+                Id = (int)acc.Roles,
+                Value = acc.RolesName
+            };
+
+			this.SelectedImagePath = new ImageData()
+			{
+				Value = acc.PictureUrl
+			};
+			this.SelectedBirthDate = acc.Birthday.HasValue ? (DateTime) acc.Birthday : DateTime.Now;
         }
 
         private void Init()
@@ -245,7 +261,7 @@ namespace RentAppartment.Client.ViewModels
             {
                 OpenFileDialog openFileDialog = new OpenFileDialog();
                 openFileDialog.Multiselect = false;
-                openFileDialog.Filter = "Images files (*.png)|*.png|(*.jpg)|*.jpg|All files (*.*)|*.*";
+                openFileDialog.Filter = "Images files (*.jpg)|*.jpg|(*.png)|*.png|All files (*.*)|*.*";
                 openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
                 if (openFileDialog.ShowDialog() == true)
                 {

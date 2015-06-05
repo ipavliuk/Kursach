@@ -89,7 +89,7 @@
           <Property Name="ReviewId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FK_Account" Type="int" Nullable="false" />
           <Property Name="FK_PropertyListing" Type="int" Nullable="false" />
-          <Property Name="Review" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Review" Type="nvarchar" MaxLength="2000" Nullable="false" />
           <Property Name="RatingScore" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Messages">
@@ -113,8 +113,8 @@
           <Property Name="PricePerMonth" Type="bigint" />
           <Property Name="PricePerWeek" Type="bigint" />
           <Property Name="Photos" Type="nvarchar" MaxLength="2000" />
-          <Property Name="GreatTitle" Type="nvarchar" MaxLength="40" />
-          <Property Name="GreatSummary" Type="nvarchar" MaxLength="255" />
+          <Property Name="GreatTitle" Type="nvarchar" MaxLength="255" />
+          <Property Name="GreatSummary" Type="nvarchar" MaxLength="2000" />
           <Property Name="BedRoom" Type="tinyint" Nullable="false" />
           <Property Name="Bathroom" Type="int" Nullable="false" />
           <Property Name="HomeType" Type="tinyint" Nullable="false" />
@@ -146,7 +146,7 @@
           <Property Name="ReservationStatus" Type="int" Nullable="false" />
           <Property Name="ReservationStart" Type="datetime" Nullable="false" />
           <Property Name="ReservationEnd" Type="datetime" Nullable="false" />
-          <Property Name="ReservationNote" Type="nvarchar" MaxLength="255" />
+          <Property Name="ReservationNote" Type="nvarchar" MaxLength="2000" />
           <Property Name="FK__Currency" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
@@ -327,6 +327,10 @@
         <Function Name="f_RolesGetById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="_RolesGetById">
           <Parameter Name="id" Type="int" Mode="In" />
         </Function>
+        <Function Name="AccountAuthenticate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Login" Type="nvarchar" Mode="In" />
+          <Parameter Name="PwdHash" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="AccountCreate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="O_ErrCode" Type="int" Mode="InOut" />
           <Parameter Name="O_ErrMsg" Type="nvarchar" Mode="InOut" />
@@ -347,6 +351,13 @@
         <Function Name="AccountDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="O_ErrCode" Type="int" Mode="InOut" />
           <Parameter Name="O_ErrMsg" Type="nvarchar" Mode="InOut" />
+          <Parameter Name="Acc_Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="AccountGetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="AccountGetbyEmail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="AccountGetbyId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Acc_Id" Type="int" Mode="In" />
         </Function>
         <Function Name="AccountUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -649,7 +660,7 @@
           <Property Name="ReviewId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FK_Account" Type="Int32" Nullable="false" />
           <Property Name="FK_PropertyListing" Type="Int32" Nullable="false" />
-          <Property Name="Review" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Review" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="RatingScore" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Account" Relationship="Self.FKGuestRevie904213" FromRole="GuestReviews" ToRole="Account" />
           <NavigationProperty Name="PropertyListing" Relationship="Self.FKGuestRevie649365" FromRole="GuestReviews" ToRole="PropertyListing" />
@@ -676,8 +687,8 @@
           <Property Name="PricePerMonth" Type="Int64" />
           <Property Name="PricePerWeek" Type="Int64" />
           <Property Name="Photos" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
-          <Property Name="GreatTitle" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
-          <Property Name="GreatSummary" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="GreatTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="GreatSummary" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
           <Property Name="BedRoom" Type="Byte" Nullable="false" />
           <Property Name="Bathroom" Type="Int32" Nullable="false" />
           <Property Name="HomeType" Type="Byte" Nullable="false" />
@@ -707,7 +718,7 @@
           <Property Name="ReservationStatus" Type="Int32" Nullable="false" />
           <Property Name="ReservationStart" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ReservationEnd" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ReservationNote" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ReservationNote" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
           <Property Name="FK__Currency" Type="Int32" Nullable="false" />
           <NavigationProperty Name="C_Currency" Relationship="Self.FKReservatio101343" FromRole="Reservations" ToRole="C_Currency" />
           <NavigationProperty Name="Account" Relationship="Self.FKReservatio820773" FromRole="Reservations" ToRole="Account" />
@@ -1083,6 +1094,17 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="AccountAuthenticate" ReturnType="Collection(RentApartmentsModel.AccountAuthenticate_Result)">
+            <Parameter Name="Login" Mode="In" Type="String" />
+            <Parameter Name="PwdHash" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="AccountGetAll" ReturnType="Collection(RentApartmentsModel.AccountGetAll_Result)" />
+          <FunctionImport Name="AccountGetbyEmail" ReturnType="Collection(RentApartmentsModel.AccountGetbyEmail_Result)">
+            <Parameter Name="Email" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="AccountGetbyId" ReturnType="Collection(RentApartmentsModel.AccountGetbyId_Result)">
+            <Parameter Name="Acc_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <Association Name="FKPropertyLi101343">
           <End Type="RentApartmentsModel.C_Currency" Role="C_Currency" Multiplicity="0..1" />
@@ -1290,6 +1312,78 @@
           <Property Type="Int32" Name="ID" Nullable="false" />
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="AccountAuthenticate_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="AccountId" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="PasswordHash" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="255" />
+          <Property Type="Boolean" Name="IsEmailConfirmed" Nullable="false" />
+          <Property Type="Int32" Name="FK__Country" Nullable="false" />
+          <Property Type="Byte" Name="FK__Roles" Nullable="false" />
+          <Property Type="String" Name="City" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Mobile" Nullable="true" MaxLength="15" />
+          <Property Type="Byte" Name="Gender" Nullable="true" />
+          <Property Type="String" Name="PostalCode" Nullable="true" MaxLength="255" />
+          <Property Type="Boolean" Name="IsValidated" Nullable="false" />
+          <Property Type="String" Name="PictureUrl" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="AccountGetAll_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="AccountId" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="PasswordHash" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="255" />
+          <Property Type="Boolean" Name="IsEmailConfirmed" Nullable="false" />
+          <Property Type="Int32" Name="FK__Country" Nullable="false" />
+          <Property Type="Byte" Name="FK__Roles" Nullable="false" />
+          <Property Type="String" Name="City" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Mobile" Nullable="true" MaxLength="15" />
+          <Property Type="Byte" Name="Gender" Nullable="true" />
+          <Property Type="String" Name="PostalCode" Nullable="true" MaxLength="255" />
+          <Property Type="Boolean" Name="IsValidated" Nullable="false" />
+          <Property Type="String" Name="PictureUrl" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="AccountGetbyEmail_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="AccountId" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="PasswordHash" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="255" />
+          <Property Type="Boolean" Name="IsEmailConfirmed" Nullable="false" />
+          <Property Type="Int32" Name="FK__Country" Nullable="false" />
+          <Property Type="Byte" Name="FK__Roles" Nullable="false" />
+          <Property Type="String" Name="City" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Mobile" Nullable="true" MaxLength="15" />
+          <Property Type="Byte" Name="Gender" Nullable="true" />
+          <Property Type="String" Name="PostalCode" Nullable="true" MaxLength="255" />
+          <Property Type="Boolean" Name="IsValidated" Nullable="false" />
+          <Property Type="String" Name="PictureUrl" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="AccountGetbyId_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="AccountId" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="PasswordHash" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="255" />
+          <Property Type="Boolean" Name="IsEmailConfirmed" Nullable="false" />
+          <Property Type="Int32" Name="FK__Country" Nullable="false" />
+          <Property Type="Byte" Name="FK__Roles" Nullable="false" />
+          <Property Type="String" Name="City" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Mobile" Nullable="true" MaxLength="15" />
+          <Property Type="Byte" Name="Gender" Nullable="true" />
+          <Property Type="String" Name="PostalCode" Nullable="true" MaxLength="255" />
+          <Property Type="Boolean" Name="IsValidated" Nullable="false" />
+          <Property Type="String" Name="PictureUrl" Nullable="true" MaxLength="255" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1700,6 +1794,94 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="RentApartmentsModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="RentApartmentsModel.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="AccountAuthenticate" FunctionName="RentApartmentsModel.Store.AccountAuthenticate">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RentApartmentsModel.AccountAuthenticate_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IsEmailConfirmed" ColumnName="IsEmailConfirmed" />
+                <ScalarProperty Name="FK__Country" ColumnName="FK__Country" />
+                <ScalarProperty Name="FK__Roles" ColumnName="FK__Roles" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="IsValidated" ColumnName="IsValidated" />
+                <ScalarProperty Name="PictureUrl" ColumnName="PictureUrl" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="AccountGetAll" FunctionName="RentApartmentsModel.Store.AccountGetAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RentApartmentsModel.AccountGetAll_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IsEmailConfirmed" ColumnName="IsEmailConfirmed" />
+                <ScalarProperty Name="FK__Country" ColumnName="FK__Country" />
+                <ScalarProperty Name="FK__Roles" ColumnName="FK__Roles" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="IsValidated" ColumnName="IsValidated" />
+                <ScalarProperty Name="PictureUrl" ColumnName="PictureUrl" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="AccountGetbyEmail" FunctionName="RentApartmentsModel.Store.AccountGetbyEmail">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RentApartmentsModel.AccountGetbyEmail_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IsEmailConfirmed" ColumnName="IsEmailConfirmed" />
+                <ScalarProperty Name="FK__Country" ColumnName="FK__Country" />
+                <ScalarProperty Name="FK__Roles" ColumnName="FK__Roles" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="IsValidated" ColumnName="IsValidated" />
+                <ScalarProperty Name="PictureUrl" ColumnName="PictureUrl" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="AccountGetbyId" FunctionName="RentApartmentsModel.Store.AccountGetbyId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RentApartmentsModel.AccountGetbyId_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IsEmailConfirmed" ColumnName="IsEmailConfirmed" />
+                <ScalarProperty Name="FK__Country" ColumnName="FK__Country" />
+                <ScalarProperty Name="FK__Roles" ColumnName="FK__Roles" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="IsValidated" ColumnName="IsValidated" />
+                <ScalarProperty Name="PictureUrl" ColumnName="PictureUrl" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

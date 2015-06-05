@@ -640,5 +640,41 @@ namespace RentApartment.Core.Model.EF
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
+    
+        public virtual ObjectResult<AccountAuthenticate_Result> AccountAuthenticate(string login, string pwdHash)
+        {
+            var loginParameter = login != null ?
+                new ObjectParameter("Login", login) :
+                new ObjectParameter("Login", typeof(string));
+    
+            var pwdHashParameter = pwdHash != null ?
+                new ObjectParameter("PwdHash", pwdHash) :
+                new ObjectParameter("PwdHash", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AccountAuthenticate_Result>("AccountAuthenticate", loginParameter, pwdHashParameter);
+        }
+    
+        public virtual ObjectResult<AccountGetAll_Result> AccountGetAll()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AccountGetAll_Result>("AccountGetAll");
+        }
+    
+        public virtual ObjectResult<AccountGetbyEmail_Result> AccountGetbyEmail(string email)
+        {
+            var emailParameter = email != null ?
+                new ObjectParameter("Email", email) :
+                new ObjectParameter("Email", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AccountGetbyEmail_Result>("AccountGetbyEmail", emailParameter);
+        }
+    
+        public virtual ObjectResult<AccountGetbyId_Result> AccountGetbyId(Nullable<int> acc_Id)
+        {
+            var acc_IdParameter = acc_Id.HasValue ?
+                new ObjectParameter("Acc_Id", acc_Id) :
+                new ObjectParameter("Acc_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AccountGetbyId_Result>("AccountGetbyId", acc_IdParameter);
+        }
     }
 }

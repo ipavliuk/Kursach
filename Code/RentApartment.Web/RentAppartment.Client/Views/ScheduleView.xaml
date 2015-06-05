@@ -21,13 +21,13 @@
         <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical">
             <TextBlock Text="Початкова дата:"/>
             <DatePicker viewModel:BlackOutDatesAdapter.BlackOutDates="{Binding BlackOutDates}"
-                    DisplayDate="{Binding StartDate}" Margin="10" />
+                    DisplayDate="{Binding StartDate}" SelectedDate="{Binding DataContext.StartDate,RelativeSource={RelativeSource AncestorType=Window},Mode=TwoWay}" Margin="10" />
             
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical">
             <TextBlock Text="Кінцева дата:"/>
             <DatePicker  viewModel:BlackOutDatesAdapter.BlackOutDates="{Binding BlackOutDates}"
-                    DisplayDate="{Binding EndDate}" Margin="10" />
+                    DisplayDate="{Binding EndDate}" SelectedDate="{Binding DataContext.EndDate,RelativeSource={RelativeSource AncestorType=Window},Mode=TwoWay}" Margin="10" />
         </StackPanel>
         <!--Great description-->
         <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
