@@ -38,6 +38,8 @@ namespace RentApartment.Service
             Mapper.CreateMap<Account, AccountDto>()
 					.ForMember(dest => dest.GenderName,
 								opts => opts.MapFrom(src => Enum.GetName(typeof(GenderType), src.Gender.Value)))
+					.ForMember(dest => dest.Roles,
+								opts => opts.MapFrom(src => src.C_Roles.RoleId))
 					.ForMember(dest => dest.RolesName,
 								opts => opts.MapFrom(src => src.C_Roles.RoleName));
 

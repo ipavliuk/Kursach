@@ -80,7 +80,7 @@
                               DisplayMemberPath="Value"
                               SelectedValuePath="Key"
                               IsSynchronizedWithCurrentItem="True"
-                              SelectedItem ="{Binding RoleTypeSelectedItem}" VerticalAlignment="Bottom"/>
+                              SelectedItem ="{Binding RoleTypeSelectedItem, Mode=TwoWay}" VerticalAlignment="Bottom"/>
                 </StackPanel>
             </StackPanel>
             </StackPanel>

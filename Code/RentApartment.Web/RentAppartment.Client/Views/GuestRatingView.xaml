@@ -20,7 +20,7 @@
             <TextBlock Text="Оцініть якість житла"/>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="0"  Grid.ColumnSpan="2" Orientation="Horizontal">
-            <starRating:Rating Maximum="15" x:Name="rtFifteen" RatingChanged="rtFifteen_RatingChanged" StarOffColor="DarkOrange" StarOnColor="Red" VerticalAlignment="Center"/>
+            <starRating:Rating Maximum="10" x:Name="rtFifteen" RatingChanged="rtFifteen_RatingChanged" StarOffColor="DarkOrange" StarOnColor="Red" VerticalAlignment="Center"/>
             <!---->
             <!--<TextBlock x:Name="txtScore" Tag="{Binding Score}" Text="{Binding ElementName=rtFifteen, Path=Value}" Margin="18,0,0,0" VerticalAlignment="Center"/>-->
             <TextBlock x:Name="txtScore" Text="{Binding Path=Score, Mode=TwoWay}" Margin="18,0,0,0" VerticalAlignment="Center"/>
