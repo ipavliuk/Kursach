@@ -43,3 +43,5 @@ ALTER TABLE Reservations ADD CONSTRAINT FKReservatio405665 FOREIGN KEY (FK_Prope
 ALTER TABLE Account ADD CONSTRAINT FKAccount816800 FOREIGN KEY (FK__Country) REFERENCES _Country (id);
 GO
 
+create nonclustered index IX_PropertyPriceCity
+on PropertyListing(PricePerNight,City)
