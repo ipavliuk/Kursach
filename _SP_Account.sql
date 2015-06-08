@@ -26,8 +26,6 @@ begin
 		SELECT	 @O_ErrCode	= 0
 				,@O_ErrMsg	= ''
 
-		----------------------------------- Parameters Validation -------------------------------------------
-				
 		INSERT INTO Account(AccountId, PasswordHash, FirstName, LastName, Email, IsEmailConfirmed, FK__Country, FK__Roles, City, Address, Mobile, Gender, PostalCode, IsValidated, PictureUrl) 
 		VALUES (@AccountId, @PasswordHash, @FirstName, @LastName, @Email, 0, @Country, 1, @City, @Address, @Mobile, @Gender, @PostalCode, 0, @ImageSourceId);
 		SELECT SCOPE_IDENTITY()
@@ -169,11 +167,18 @@ end
 GO
 ----------------------------------------------------------------
 create procedure dbo.AccountAuthenticate
+@O_ErrCode						INT					OUTPUT,
+@O_ErrMsg						NVARCHAR(4000)		OUTPUT,
 @Login nvarchar(255),
 @PwdHash nvarchar(255)
 as
 begin
 	set nocount on;
+	begin try
+		
+		-- Initialization
+		SELECT	 @O_ErrCode	= 0
+				,@O_ErrMsg	= ''
 	SELECT [id]
 		  ,[AccountId]
 		  ,[PasswordHash]
@@ -192,6 +197,14 @@ begin
 		  ,[PictureUrl]
 	  FROM [RentApartments].[dbo].[Account]
 	  where PasswordHash = @PwdHash and Login = @Login
+	BEGIN CATCH
+	
+		--Handle the error 
+		EXEC [dbo].[sp_HandleSPErrors]
+			 @IO_ErrCode = @O_ErrCode	OUTPUT
+			,@IO_ErrMsg  = @O_ErrMsg	OUTPUT   
+	
+	END CATCH
 end
 --EXEC
 --DECLARE	@return_value int

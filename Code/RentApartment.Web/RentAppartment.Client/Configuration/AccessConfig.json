@@ -23,7 +23,7 @@
 		{"AccessType": "ClientAccess",
   			"Views" : [
 				{"View":"PropertyListingView", "Access" : "Read"},
-  				{"View":"AccountViews", "Access" : "Read"},
+  				{"View":"AccountViews", "Access" : "Disabled"},
   				{"View":"Reservation", "Access" : "Disabled"},
   				{"View":"PersonalPage", "Access" : "ReadWrite"}
   			]

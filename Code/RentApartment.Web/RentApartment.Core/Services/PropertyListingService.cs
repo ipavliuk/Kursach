@@ -14,11 +14,9 @@ using RentApartment.Core.DAL.Enums;
 
 namespace RentApartment.Core.Infrastructure
 {
-    internal class PropertyListingService : IPropertyListingService, IDisposable
+    internal class PropertyListingService : IPropertyListingService
 	{
 		private static readonly ILog log = LogManager.GetLogger(typeof(PropertyListingService));
-
-		//private readonly RentApartmentsContext _db = new RentApartmentsContext();
 
 		public Account Authenticate(string login, string hash)
 		{
@@ -174,10 +172,6 @@ namespace RentApartment.Core.Infrastructure
 							.Where(prop => prop.City == city || string.IsNullOrEmpty(city))
 							.Where(p => homeType != null && p.HomeType == homeType || homeType == null)
 							.Where(p => roomNumbers != null && p.BedRoom == roomNumbers || roomNumbers == null).ToList();
-
-										//.Where(a => accountId != null && a.id == accountId || accountId == null)
-										//.Where(a => a.FirstName == name || string.IsNullOrEmpty(name))
-										//.Where(a => a.City == city || string.IsNullOrEmpty(city)).ToList();
 					return loc;
 	            }
                
@@ -239,11 +233,7 @@ namespace RentApartment.Core.Infrastructure
             return new List<PropertyListing>();
 
         }
-		/*public List<PropertyListing> GetPropertyListings()
-		{
-
-		}*/
-
+		
 		//For now in UTC
 		public List<Reservations> GetReservationsByDate(DateTime startDate, DateTime endDate, int? status, string city)
 		{
@@ -251,10 +241,7 @@ namespace RentApartment.Core.Infrastructure
 			{
 				using (var _db = new RentApartmentsContext())
 				{
-                    //return _db.Reservations.Where(res => res.ReservationStart >= startDate 
-                    //            && res.ReservationEnd <= endDate && (status != null && res.ReservationStatus == status)
-                    //            && res.PropertyListing.City == city).ToList();
-                    var l = _db.Reservations
+                   var l = _db.Reservations
 							.Include(r => r.PropertyListing)
 							.Include(r=>r.Account)
 							.Include(r => r.Account.C_Roles)
@@ -340,31 +327,7 @@ namespace RentApartment.Core.Infrastructure
             return new List<DateTime>();
         }
 
-		//public void Dispose()
-		//{
-		//	_db.Dispose();
-		//}
-
 		private bool disposed = false;
-
-		//protected virtual void Dispose(bool disposing)
-		//{
-		//	if (!this.disposed)
-		//	{
-		//		if (disposing)
-		//		{
-		//			_db.Dispose();
-		//		}
-		//	}
-		//	this.disposed = true;
-		//}
-
-		public void Dispose()
-		{
-			//Dispose(true);
-			GC.SuppressFinalize(this);
-		}
-
 
 		public List<C_Country> GetCountries()
 		{
@@ -425,11 +388,10 @@ namespace RentApartment.Core.Infrastructure
 					result = id == 0 ? false : true;
 		        }
             }
-	        catch (Exception)
+	        catch (Exception ex)
 	        {
-		
-		        throw;
-	        }
+				log.Error("Exception in make apartment reservation => ", ex);
+		     }
             return result;
         }
 
@@ -462,10 +424,9 @@ namespace RentApartment.Core.Infrastructure
 	            }
 				
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+				log.Error("Exception in create property => ", ex);
             }
             return result;
         }
@@ -495,10 +456,9 @@ namespace RentApartment.Core.Infrastructure
 					result = id == 0 ? false : true;
 	            }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+				log.Error("Exception in update property => ", ex);
             }
             return result;
         }
@@ -518,10 +478,10 @@ namespace RentApartment.Core.Infrastructure
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+				log.Error("Exception in create account => ", ex);
             }
             return result;
         }
@@ -533,17 +493,15 @@ namespace RentApartment.Core.Infrastructure
             {
                 using (var _db = new RentApartmentsContext())
                 {
-                    //_db.Account.Add(account);
                     _db.Account.Attach(account);
                     _db.Entry(account).State = EntityState.Modified; 
                     int id = _db.SaveChanges();
                     result = id == 0 ? false : true;
                 }
             }
-            catch (Exception)
-            {
-
-                throw;
+            catch (Exception ex)
+			{
+				log.Error("Exception in update account => ", ex);
             }
             return result;
         }
@@ -560,10 +518,9 @@ namespace RentApartment.Core.Infrastructure
                     result = id == 0 ? false : true;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
-                throw;
+				log.Error("Exception in remove property => ", ex);
             }
 
             return result;
@@ -582,10 +539,9 @@ namespace RentApartment.Core.Infrastructure
                     result = id == 0 ? false : true;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+				log.Error("Exception in remove account => ", ex);
             }
 
             return result;
@@ -593,7 +549,7 @@ namespace RentApartment.Core.Infrastructure
 
 
 
-		internal bool AddPropertyReview(int propertyId, int accountId, int score, string reviewNotes)
+		public bool AddPropertyReview(int propertyId, int accountId, int score, string reviewNotes)
 		{
 			bool result = true;
 			try
@@ -612,10 +568,9 @@ namespace RentApartment.Core.Infrastructure
 					result = id == 0 ? false : true;
 				}
 			}
-			catch (Exception)
+			catch (Exception ex)
 			{
-
-				throw;
+				log.Error("Exception in add property review => ", ex);
 			}
 
 			return result;

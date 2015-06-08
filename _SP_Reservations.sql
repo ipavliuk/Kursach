@@ -10,9 +10,24 @@ create procedure dbo.ReservationsCreate
 	  @ReservationNote    nvarchar(255), 
 	  @CurrencyId       int
 as
-begin	
+begin
+	begin try
+		-- Initialization
+		SELECT	 @O_ErrCode	= 0
+			,@O_ErrMsg	= ''	
+		
+
 	INSERT INTO Reservations(FK_Account, FK_PropertyListing, ReservationStatus, ReservationStart, ReservationEnd, ReservationNote, FK__Currency) 
 	VALUES (@AccountId, @PropertyListingId, @ReservationStatus, @ReservationStart, @ReservationEnd, @ReservationNote, @CurrencyId);
+
+	end try
+	begin catch
+		--Handle the error 
+		EXEC [dbo].[sp_HandleSPErrors]
+			 @IO_ErrCode = @O_ErrCode	OUTPUT
+			,@IO_ErrMsg  = @O_ErrMsg	OUTPUT   
+	
+	end catch
 end
 GO
 --EXEC
